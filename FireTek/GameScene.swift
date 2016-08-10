@@ -1,40 +1,26 @@
-//
-//  GameScene.swift
-//  FireTek
-//
-//  Created by Konstantin Sukharev on 17/07/16.
-//  Copyright (c) 2016 P0ed. All rights reserved.
-//
-
 import SpriteKit
 
 class GameScene: SKScene {
-    override func didMoveToView(view: SKView) {
-        /* Setup your scene here */
-        let myLabel = SKLabelNode(fontNamed:"Chalkduster")
-        myLabel.text = "Hello, World!"
-        myLabel.fontSize = 45
-        myLabel.position = CGPoint(x:CGRectGetMidX(self.frame), y:CGRectGetMidY(self.frame))
-        
-        self.addChild(myLabel)
-    }
-    
+	override func didMoveToView(view: SKView) {
+		super.didMoveToView(view)
+	}
+
     override func mouseDown(theEvent: NSEvent) {
-        /* Called when a mouse click occurs */
-        
         let location = theEvent.locationInNode(self)
-        
-        let sprite = SKSpriteNode(imageNamed:"Spaceship")
+
+		let texture = SKTexture(imageNamed: "Tank")
+		texture.filteringMode = .Nearest
+        let sprite = SKSpriteNode(texture: texture)
         sprite.position = location;
-        sprite.setScale(0.5)
-        
-        let action = SKAction.rotateByAngle(CGFloat(M_PI), duration:1)
-        sprite.runAction(SKAction.repeatActionForever(action))
-        
-        self.addChild(sprite)
+        sprite.setScale(2)
+
+		let action = SKAction.rotateByAngle(CGFloat(M_PI) / 4, duration:1)
+		sprite.runAction(SKAction.repeatActionForever(action))
+
+		self.addChild(sprite)
     }
-    
+
     override func update(currentTime: CFTimeInterval) {
-        /* Called before each frame is rendered */
+
     }
 }

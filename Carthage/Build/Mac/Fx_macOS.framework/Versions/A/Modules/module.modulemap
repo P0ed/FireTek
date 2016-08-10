@@ -1,0 +1,3 @@
+framework module Fx_macOS {
+    header "Fx_macOS-Swift.h"
+}

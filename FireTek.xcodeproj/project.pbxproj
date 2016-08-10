@@ -12,6 +12,12 @@
 		5F9104A01D3BA19500C2C519 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 5F91049F1D3BA19500C2C519 /* GameScene.sks */; };
 		5F9104A21D3BA19500C2C519 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5F9104A11D3BA19500C2C519 /* Assets.xcassets */; };
 		5F9104A51D3BA19500C2C519 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5F9104A31D3BA19500C2C519 /* MainMenu.xib */; };
+		5FB51C511D586F8C00F9FFA4 /* Engine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FB51C501D586F8C00F9FFA4 /* Engine.swift */; };
+		5FB51C531D586FB900F9FFA4 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FB51C521D586FB900F9FFA4 /* Store.swift */; };
+		5FB51C551D587D7100F9FFA4 /* Cartfile in Resources */ = {isa = PBXBuildFile; fileRef = 5FB51C541D587D7100F9FFA4 /* Cartfile */; };
+		5FB51C581D587DFB00F9FFA4 /* General.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FB51C571D587DFB00F9FFA4 /* General.swift */; };
+		5FD28A551D5A6AF300BAFC0F /* Entity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FD28A541D5A6AF300BAFC0F /* Entity.swift */; };
+		5FD28A571D5B091E00BAFC0F /* File.md in Resources */ = {isa = PBXBuildFile; fileRef = 5FD28A561D5B091E00BAFC0F /* File.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +28,12 @@
 		5F9104A11D3BA19500C2C519 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5F9104A41D3BA19500C2C519 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		5F9104A61D3BA19500C2C519 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5FB51C501D586F8C00F9FFA4 /* Engine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Engine.swift; sourceTree = "<group>"; };
+		5FB51C521D586FB900F9FFA4 /* Store.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
+		5FB51C541D587D7100F9FFA4 /* Cartfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Cartfile; sourceTree = "<group>"; };
+		5FB51C571D587DFB00F9FFA4 /* General.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = General.swift; sourceTree = "<group>"; };
+		5FD28A541D5A6AF300BAFC0F /* Entity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Entity.swift; sourceTree = "<group>"; };
+		5FD28A561D5B091E00BAFC0F /* File.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = File.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -38,6 +50,8 @@
 		5F91048F1D3BA19500C2C519 = {
 			isa = PBXGroup;
 			children = (
+				5FD28A561D5B091E00BAFC0F /* File.md */,
+				5FB51C541D587D7100F9FFA4 /* Cartfile */,
 				5F91049A1D3BA19500C2C519 /* FireTek */,
 				5F9104991D3BA19500C2C519 /* Products */,
 			);
@@ -54,6 +68,8 @@
 		5F91049A1D3BA19500C2C519 /* FireTek */ = {
 			isa = PBXGroup;
 			children = (
+				5FB51C561D587DED00F9FFA4 /* Utilities */,
+				5FB51C4F1D586F8300F9FFA4 /* Engine */,
 				5F91049B1D3BA19500C2C519 /* AppDelegate.swift */,
 				5F91049D1D3BA19500C2C519 /* GameScene.swift */,
 				5F91049F1D3BA19500C2C519 /* GameScene.sks */,
@@ -62,6 +78,24 @@
 				5F9104A61D3BA19500C2C519 /* Info.plist */,
 			);
 			path = FireTek;
+			sourceTree = "<group>";
+		};
+		5FB51C4F1D586F8300F9FFA4 /* Engine */ = {
+			isa = PBXGroup;
+			children = (
+				5FB51C501D586F8C00F9FFA4 /* Engine.swift */,
+				5FB51C521D586FB900F9FFA4 /* Store.swift */,
+				5FD28A541D5A6AF300BAFC0F /* Entity.swift */,
+			);
+			name = Engine;
+			sourceTree = "<group>";
+		};
+		5FB51C561D587DED00F9FFA4 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				5FB51C571D587DFB00F9FFA4 /* General.swift */,
+			);
+			name = Utilities;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -124,7 +158,9 @@
 			files = (
 				5F9104A21D3BA19500C2C519 /* Assets.xcassets in Resources */,
 				5F9104A01D3BA19500C2C519 /* GameScene.sks in Resources */,
+				5FB51C551D587D7100F9FFA4 /* Cartfile in Resources */,
 				5F9104A51D3BA19500C2C519 /* MainMenu.xib in Resources */,
+				5FD28A571D5B091E00BAFC0F /* File.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -136,7 +172,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				5F91049E1D3BA19500C2C519 /* GameScene.swift in Sources */,
+				5FB51C511D586F8C00F9FFA4 /* Engine.swift in Sources */,
+				5FD28A551D5A6AF300BAFC0F /* Entity.swift in Sources */,
 				5F91049C1D3BA19500C2C519 /* AppDelegate.swift in Sources */,
+				5FB51C531D586FB900F9FFA4 /* Store.swift in Sources */,
+				5FB51C581D587DFB00F9FFA4 /* General.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -279,6 +319,7 @@
 				5F9104AB1D3BA19500C2C519 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
