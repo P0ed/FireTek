@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5F8EBA161D5BD0E30059A7DD /* Fx_macOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F8EBA151D5BD0E30059A7DD /* Fx_macOS.framework */; };
 		5F91049C1D3BA19500C2C519 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F91049B1D3BA19500C2C519 /* AppDelegate.swift */; };
 		5F91049E1D3BA19500C2C519 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F91049D1D3BA19500C2C519 /* GameScene.swift */; };
 		5F9104A01D3BA19500C2C519 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 5F91049F1D3BA19500C2C519 /* GameScene.sks */; };
@@ -19,10 +18,26 @@
 		5FB51C581D587DFB00F9FFA4 /* General.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FB51C571D587DFB00F9FFA4 /* General.swift */; };
 		5FD28A551D5A6AF300BAFC0F /* Entity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FD28A541D5A6AF300BAFC0F /* Entity.swift */; };
 		5FD28A571D5B091E00BAFC0F /* File.md in Resources */ = {isa = PBXBuildFile; fileRef = 5FD28A561D5B091E00BAFC0F /* File.md */; };
+		5FE123981D5E398C00C41BAC /* Fx.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FE123971D5E398C00C41BAC /* Fx.framework */; };
+		5FE1239B1D5E3AC500C41BAC /* Fx.framework.dSYM in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5FE1239A1D5E3AC500C41BAC /* Fx.framework.dSYM */; };
+		5FE1239D1D5E3ADA00C41BAC /* Fx.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5FE1239C1D5E3ADA00C41BAC /* Fx.framework */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		5FE123991D5E3AAE00C41BAC /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 12;
+			dstPath = "";
+			dstSubfolderSpec = 16;
+			files = (
+				5FE1239B1D5E3AC500C41BAC /* Fx.framework.dSYM in CopyFiles */,
+				5FE1239D1D5E3ADA00C41BAC /* Fx.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
-		5F8EBA151D5BD0E30059A7DD /* Fx_macOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fx_macOS.framework; sourceTree = "<group>"; };
 		5F9104981D3BA19500C2C519 /* FireTek.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FireTek.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5F91049B1D3BA19500C2C519 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5F91049D1D3BA19500C2C519 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
@@ -36,6 +51,9 @@
 		5FB51C571D587DFB00F9FFA4 /* General.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = General.swift; sourceTree = "<group>"; };
 		5FD28A541D5A6AF300BAFC0F /* Entity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Entity.swift; sourceTree = "<group>"; };
 		5FD28A561D5B091E00BAFC0F /* File.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = File.md; sourceTree = "<group>"; };
+		5FE123971D5E398C00C41BAC /* Fx.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fx.framework; sourceTree = "<group>"; };
+		5FE1239A1D5E3AC500C41BAC /* Fx.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = Fx.framework.dSYM; path = Carthage/Build/Mac/Fx.framework.dSYM; sourceTree = "<group>"; };
+		5FE1239C1D5E3ADA00C41BAC /* Fx.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Fx.framework; path = Carthage/Build/Mac/Fx.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -43,7 +61,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5F8EBA161D5BD0E30059A7DD /* Fx_macOS.framework in Frameworks */,
+				5FE123981D5E398C00C41BAC /* Fx.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -62,7 +80,7 @@
 		5F543A701D5BD0380039FB0B /* Mac */ = {
 			isa = PBXGroup;
 			children = (
-				5F8EBA151D5BD0E30059A7DD /* Fx_macOS.framework */,
+				5FE123971D5E398C00C41BAC /* Fx.framework */,
 			);
 			path = Mac;
 			sourceTree = "<group>";
@@ -70,6 +88,8 @@
 		5F91048F1D3BA19500C2C519 = {
 			isa = PBXGroup;
 			children = (
+				5FE1239C1D5E3ADA00C41BAC /* Fx.framework */,
+				5FE1239A1D5E3AC500C41BAC /* Fx.framework.dSYM */,
 				5FD28A561D5B091E00BAFC0F /* File.md */,
 				5FB51C541D587D7100F9FFA4 /* Cartfile */,
 				5F543A6F1D5BD00B0039FB0B /* Frameworks */,
@@ -129,6 +149,7 @@
 				5F9104941D3BA19500C2C519 /* Sources */,
 				5F9104951D3BA19500C2C519 /* Frameworks */,
 				5F9104961D3BA19500C2C519 /* Resources */,
+				5FE123991D5E3AAE00C41BAC /* CopyFiles */,
 			);
 			buildRules = (
 			);

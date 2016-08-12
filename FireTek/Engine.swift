@@ -1,5 +1,3 @@
-import Fx_macOS
-
 final class Engine {
 
 	private var unusedStoreID: StoreID = 0

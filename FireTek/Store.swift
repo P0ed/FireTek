@@ -1,4 +1,4 @@
-import Fx_macOS
+import Fx
 
 typealias StoreID = UInt16
 
