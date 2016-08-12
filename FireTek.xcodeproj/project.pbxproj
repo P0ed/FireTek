@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5F8EBA161D5BD0E30059A7DD /* Fx_macOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F8EBA151D5BD0E30059A7DD /* Fx_macOS.framework */; };
 		5F91049C1D3BA19500C2C519 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F91049B1D3BA19500C2C519 /* AppDelegate.swift */; };
 		5F91049E1D3BA19500C2C519 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F91049D1D3BA19500C2C519 /* GameScene.swift */; };
 		5F9104A01D3BA19500C2C519 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 5F91049F1D3BA19500C2C519 /* GameScene.sks */; };
@@ -21,6 +22,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5F8EBA151D5BD0E30059A7DD /* Fx_macOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fx_macOS.framework; sourceTree = "<group>"; };
 		5F9104981D3BA19500C2C519 /* FireTek.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FireTek.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5F91049B1D3BA19500C2C519 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5F91049D1D3BA19500C2C519 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
@@ -41,17 +43,36 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5F8EBA161D5BD0E30059A7DD /* Fx_macOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5F543A6F1D5BD00B0039FB0B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				5F543A701D5BD0380039FB0B /* Mac */,
+			);
+			name = Frameworks;
+			path = Carthage/Build;
+			sourceTree = "<group>";
+		};
+		5F543A701D5BD0380039FB0B /* Mac */ = {
+			isa = PBXGroup;
+			children = (
+				5F8EBA151D5BD0E30059A7DD /* Fx_macOS.framework */,
+			);
+			path = Mac;
+			sourceTree = "<group>";
+		};
 		5F91048F1D3BA19500C2C519 = {
 			isa = PBXGroup;
 			children = (
 				5FD28A561D5B091E00BAFC0F /* File.md */,
 				5FB51C541D587D7100F9FFA4 /* Cartfile */,
+				5F543A6F1D5BD00B0039FB0B /* Frameworks */,
 				5F91049A1D3BA19500C2C519 /* FireTek */,
 				5F9104991D3BA19500C2C519 /* Products */,
 			);
@@ -281,6 +302,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
+				);
 				INFOPLIST_FILE = FireTek/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.github.p0ed.FireTek;
@@ -293,6 +318,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
+				);
 				INFOPLIST_FILE = FireTek/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.github.p0ed.FireTek;
