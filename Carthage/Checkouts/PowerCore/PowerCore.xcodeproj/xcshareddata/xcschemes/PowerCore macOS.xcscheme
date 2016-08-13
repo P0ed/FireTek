@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "5FD28A5E1D5B271600BAFC0F"
-               BuildableName = "Fx.framework"
-               BlueprintName = "Fx_macOS"
-               ReferencedContainer = "container:Fx.xcodeproj">
+               BlueprintIdentifier = "5FE123A71D5F3AEB00C41BAC"
+               BuildableName = "PowerCore.framework"
+               BlueprintName = "PowerCore_macOS"
+               ReferencedContainer = "container:PowerCore.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -45,10 +45,10 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "5FD28A5E1D5B271600BAFC0F"
-            BuildableName = "Fx.framework"
-            BlueprintName = "Fx_macOS"
-            ReferencedContainer = "container:Fx.xcodeproj">
+            BlueprintIdentifier = "5FE123A71D5F3AEB00C41BAC"
+            BuildableName = "PowerCore.framework"
+            BlueprintName = "PowerCore_macOS"
+            ReferencedContainer = "container:PowerCore.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -63,10 +63,10 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "5FD28A5E1D5B271600BAFC0F"
-            BuildableName = "Fx.framework"
-            BlueprintName = "Fx_macOS"
-            ReferencedContainer = "container:Fx.xcodeproj">
+            BlueprintIdentifier = "5FE123A71D5F3AEB00C41BAC"
+            BuildableName = "PowerCore.framework"
+            BlueprintName = "PowerCore_macOS"
+            ReferencedContainer = "container:PowerCore.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </ProfileAction>

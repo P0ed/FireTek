@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "5FD28A5E1D5B271600BAFC0F"
-               BuildableName = "Fx.framework"
-               BlueprintName = "Fx_macOS"
-               ReferencedContainer = "container:Fx.xcodeproj">
+               BlueprintIdentifier = "5FE123D01D5F3C0100C41BAC"
+               BuildableName = "PowerCore_tvOS.framework"
+               BlueprintName = "PowerCore_tvOS"
+               ReferencedContainer = "container:PowerCore.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -45,10 +45,10 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "5FD28A5E1D5B271600BAFC0F"
-            BuildableName = "Fx.framework"
-            BlueprintName = "Fx_macOS"
-            ReferencedContainer = "container:Fx.xcodeproj">
+            BlueprintIdentifier = "5FE123D01D5F3C0100C41BAC"
+            BuildableName = "PowerCore_tvOS.framework"
+            BlueprintName = "PowerCore_tvOS"
+            ReferencedContainer = "container:PowerCore.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -63,10 +63,10 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "5FD28A5E1D5B271600BAFC0F"
-            BuildableName = "Fx.framework"
-            BlueprintName = "Fx_macOS"
-            ReferencedContainer = "container:Fx.xcodeproj">
+            BlueprintIdentifier = "5FE123D01D5F3C0100C41BAC"
+            BuildableName = "PowerCore_tvOS.framework"
+            BlueprintName = "PowerCore_tvOS"
+            ReferencedContainer = "container:PowerCore.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </ProfileAction>

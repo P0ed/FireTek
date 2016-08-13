@@ -12,15 +12,14 @@
 		5F9104A01D3BA19500C2C519 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 5F91049F1D3BA19500C2C519 /* GameScene.sks */; };
 		5F9104A21D3BA19500C2C519 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5F9104A11D3BA19500C2C519 /* Assets.xcassets */; };
 		5F9104A51D3BA19500C2C519 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5F9104A31D3BA19500C2C519 /* MainMenu.xib */; };
-		5FB51C511D586F8C00F9FFA4 /* Engine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FB51C501D586F8C00F9FFA4 /* Engine.swift */; };
-		5FB51C531D586FB900F9FFA4 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FB51C521D586FB900F9FFA4 /* Store.swift */; };
 		5FB51C551D587D7100F9FFA4 /* Cartfile in Resources */ = {isa = PBXBuildFile; fileRef = 5FB51C541D587D7100F9FFA4 /* Cartfile */; };
 		5FB51C581D587DFB00F9FFA4 /* General.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FB51C571D587DFB00F9FFA4 /* General.swift */; };
-		5FD28A551D5A6AF300BAFC0F /* Entity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FD28A541D5A6AF300BAFC0F /* Entity.swift */; };
 		5FD28A571D5B091E00BAFC0F /* File.md in Resources */ = {isa = PBXBuildFile; fileRef = 5FD28A561D5B091E00BAFC0F /* File.md */; };
 		5FE123981D5E398C00C41BAC /* Fx.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FE123971D5E398C00C41BAC /* Fx.framework */; };
 		5FE1239B1D5E3AC500C41BAC /* Fx.framework.dSYM in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5FE1239A1D5E3AC500C41BAC /* Fx.framework.dSYM */; };
 		5FE1239D1D5E3ADA00C41BAC /* Fx.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5FE1239C1D5E3ADA00C41BAC /* Fx.framework */; };
+		5FE1240F1D5F451400C41BAC /* PowerCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FE1240E1D5F451400C41BAC /* PowerCore.framework */; };
+		5FE124111D5F454200C41BAC /* Engine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FE124101D5F454200C41BAC /* Engine.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -45,15 +44,14 @@
 		5F9104A11D3BA19500C2C519 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5F9104A41D3BA19500C2C519 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		5F9104A61D3BA19500C2C519 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		5FB51C501D586F8C00F9FFA4 /* Engine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Engine.swift; sourceTree = "<group>"; };
-		5FB51C521D586FB900F9FFA4 /* Store.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
 		5FB51C541D587D7100F9FFA4 /* Cartfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Cartfile; sourceTree = "<group>"; };
 		5FB51C571D587DFB00F9FFA4 /* General.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = General.swift; sourceTree = "<group>"; };
-		5FD28A541D5A6AF300BAFC0F /* Entity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Entity.swift; sourceTree = "<group>"; };
 		5FD28A561D5B091E00BAFC0F /* File.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = File.md; sourceTree = "<group>"; };
 		5FE123971D5E398C00C41BAC /* Fx.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fx.framework; sourceTree = "<group>"; };
 		5FE1239A1D5E3AC500C41BAC /* Fx.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = Fx.framework.dSYM; path = Carthage/Build/Mac/Fx.framework.dSYM; sourceTree = "<group>"; };
 		5FE1239C1D5E3ADA00C41BAC /* Fx.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Fx.framework; path = Carthage/Build/Mac/Fx.framework; sourceTree = "<group>"; };
+		5FE1240E1D5F451400C41BAC /* PowerCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PowerCore.framework; sourceTree = "<group>"; };
+		5FE124101D5F454200C41BAC /* Engine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Engine.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +60,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5FE123981D5E398C00C41BAC /* Fx.framework in Frameworks */,
+				5FE1240F1D5F451400C41BAC /* PowerCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -80,6 +79,7 @@
 		5F543A701D5BD0380039FB0B /* Mac */ = {
 			isa = PBXGroup;
 			children = (
+				5FE1240E1D5F451400C41BAC /* PowerCore.framework */,
 				5FE123971D5E398C00C41BAC /* Fx.framework */,
 			);
 			path = Mac;
@@ -124,9 +124,7 @@
 		5FB51C4F1D586F8300F9FFA4 /* Engine */ = {
 			isa = PBXGroup;
 			children = (
-				5FB51C501D586F8C00F9FFA4 /* Engine.swift */,
-				5FB51C521D586FB900F9FFA4 /* Store.swift */,
-				5FD28A541D5A6AF300BAFC0F /* Entity.swift */,
+				5FE124101D5F454200C41BAC /* Engine.swift */,
 			);
 			name = Engine;
 			sourceTree = "<group>";
@@ -214,11 +212,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				5F91049E1D3BA19500C2C519 /* GameScene.swift in Sources */,
-				5FB51C511D586F8C00F9FFA4 /* Engine.swift in Sources */,
-				5FD28A551D5A6AF300BAFC0F /* Entity.swift in Sources */,
 				5F91049C1D3BA19500C2C519 /* AppDelegate.swift in Sources */,
-				5FB51C531D586FB900F9FFA4 /* Store.swift in Sources */,
 				5FB51C581D587DFB00F9FFA4 /* General.swift in Sources */,
+				5FE124111D5F454200C41BAC /* Engine.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
