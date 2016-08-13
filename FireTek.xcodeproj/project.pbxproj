@@ -7,19 +7,23 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5F91049C1D3BA19500C2C519 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F91049B1D3BA19500C2C519 /* AppDelegate.swift */; };
-		5F91049E1D3BA19500C2C519 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F91049D1D3BA19500C2C519 /* GameScene.swift */; };
-		5F9104A01D3BA19500C2C519 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 5F91049F1D3BA19500C2C519 /* GameScene.sks */; };
-		5F9104A21D3BA19500C2C519 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5F9104A11D3BA19500C2C519 /* Assets.xcassets */; };
-		5F9104A51D3BA19500C2C519 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5F9104A31D3BA19500C2C519 /* MainMenu.xib */; };
-		5FB51C551D587D7100F9FFA4 /* Cartfile in Resources */ = {isa = PBXBuildFile; fileRef = 5FB51C541D587D7100F9FFA4 /* Cartfile */; };
-		5FB51C581D587DFB00F9FFA4 /* General.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FB51C571D587DFB00F9FFA4 /* General.swift */; };
-		5FD28A571D5B091E00BAFC0F /* File.md in Resources */ = {isa = PBXBuildFile; fileRef = 5FD28A561D5B091E00BAFC0F /* File.md */; };
 		5FE123981D5E398C00C41BAC /* Fx.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FE123971D5E398C00C41BAC /* Fx.framework */; };
-		5FE1239B1D5E3AC500C41BAC /* Fx.framework.dSYM in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5FE1239A1D5E3AC500C41BAC /* Fx.framework.dSYM */; };
-		5FE1239D1D5E3ADA00C41BAC /* Fx.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5FE1239C1D5E3ADA00C41BAC /* Fx.framework */; };
 		5FE1240F1D5F451400C41BAC /* PowerCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FE1240E1D5F451400C41BAC /* PowerCore.framework */; };
-		5FE124111D5F454200C41BAC /* Engine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FE124101D5F454200C41BAC /* Engine.swift */; };
+		5FE124381D5FA4EC00C41BAC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FE1241E1D5FA4EC00C41BAC /* AppDelegate.swift */; };
+		5FE124391D5FA4EC00C41BAC /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5FE1241F1D5FA4EC00C41BAC /* MainMenu.xib */; };
+		5FE1243B1D5FA4EC00C41BAC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5FE124231D5FA4EC00C41BAC /* Assets.xcassets */; };
+		5FE1243F1D5FA4EC00C41BAC /* SpriteComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FE1242C1D5FA4EC00C41BAC /* SpriteComponent.swift */; };
+		5FE124401D5FA4EC00C41BAC /* VehicleComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FE1242D1D5FA4EC00C41BAC /* VehicleComponent.swift */; };
+		5FE124411D5FA4ED00C41BAC /* VehicleInputComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FE1242E1D5FA4EC00C41BAC /* VehicleInputComponent.swift */; };
+		5FE124421D5FA4ED00C41BAC /* Engine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FE1242F1D5FA4EC00C41BAC /* Engine.swift */; };
+		5FE124431D5FA4ED00C41BAC /* SpriteSpawnSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FE124311D5FA4EC00C41BAC /* SpriteSpawnSystem.swift */; };
+		5FE124441D5FA4ED00C41BAC /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 5FE124331D5FA4EC00C41BAC /* GameScene.sks */; };
+		5FE124451D5FA4ED00C41BAC /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FE124341D5FA4EC00C41BAC /* GameScene.swift */; };
+		5FE124461D5FA4ED00C41BAC /* General.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FE124361D5FA4EC00C41BAC /* General.swift */; };
+		5FE1244D1D5FA5BB00C41BAC /* Fx.framework.dSYM in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5FE124491D5FA5A900C41BAC /* Fx.framework.dSYM */; };
+		5FE1244E1D5FA5BB00C41BAC /* PowerCore.framework.dSYM in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5FE1244A1D5FA5A900C41BAC /* PowerCore.framework.dSYM */; };
+		5FE1244F1D5FA5CB00C41BAC /* PowerCore.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5FE1240E1D5F451400C41BAC /* PowerCore.framework */; };
+		5FE124501D5FA5CB00C41BAC /* Fx.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5FE123971D5E398C00C41BAC /* Fx.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -29,8 +33,10 @@
 			dstPath = "";
 			dstSubfolderSpec = 16;
 			files = (
-				5FE1239B1D5E3AC500C41BAC /* Fx.framework.dSYM in CopyFiles */,
-				5FE1239D1D5E3ADA00C41BAC /* Fx.framework in CopyFiles */,
+				5FE1244F1D5FA5CB00C41BAC /* PowerCore.framework in CopyFiles */,
+				5FE124501D5FA5CB00C41BAC /* Fx.framework in CopyFiles */,
+				5FE1244D1D5FA5BB00C41BAC /* Fx.framework.dSYM in CopyFiles */,
+				5FE1244E1D5FA5BB00C41BAC /* PowerCore.framework.dSYM in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -38,20 +44,24 @@
 
 /* Begin PBXFileReference section */
 		5F9104981D3BA19500C2C519 /* FireTek.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FireTek.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		5F91049B1D3BA19500C2C519 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		5F91049D1D3BA19500C2C519 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
-		5F91049F1D3BA19500C2C519 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
-		5F9104A11D3BA19500C2C519 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		5F9104A41D3BA19500C2C519 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
-		5F9104A61D3BA19500C2C519 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5FB51C541D587D7100F9FFA4 /* Cartfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Cartfile; sourceTree = "<group>"; };
-		5FB51C571D587DFB00F9FFA4 /* General.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = General.swift; sourceTree = "<group>"; };
 		5FD28A561D5B091E00BAFC0F /* File.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = File.md; sourceTree = "<group>"; };
 		5FE123971D5E398C00C41BAC /* Fx.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fx.framework; sourceTree = "<group>"; };
-		5FE1239A1D5E3AC500C41BAC /* Fx.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = Fx.framework.dSYM; path = Carthage/Build/Mac/Fx.framework.dSYM; sourceTree = "<group>"; };
-		5FE1239C1D5E3ADA00C41BAC /* Fx.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Fx.framework; path = Carthage/Build/Mac/Fx.framework; sourceTree = "<group>"; };
 		5FE1240E1D5F451400C41BAC /* PowerCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PowerCore.framework; sourceTree = "<group>"; };
-		5FE124101D5F454200C41BAC /* Engine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Engine.swift; sourceTree = "<group>"; };
+		5FE1241E1D5FA4EC00C41BAC /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		5FE124201D5FA4EC00C41BAC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		5FE124211D5FA4EC00C41BAC /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5FE124231D5FA4EC00C41BAC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		5FE1242C1D5FA4EC00C41BAC /* SpriteComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpriteComponent.swift; sourceTree = "<group>"; };
+		5FE1242D1D5FA4EC00C41BAC /* VehicleComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VehicleComponent.swift; sourceTree = "<group>"; };
+		5FE1242E1D5FA4EC00C41BAC /* VehicleInputComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VehicleInputComponent.swift; sourceTree = "<group>"; };
+		5FE1242F1D5FA4EC00C41BAC /* Engine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Engine.swift; path = Engine/Engine.swift; sourceTree = "<group>"; };
+		5FE124311D5FA4EC00C41BAC /* SpriteSpawnSystem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpriteSpawnSystem.swift; sourceTree = "<group>"; };
+		5FE124331D5FA4EC00C41BAC /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
+		5FE124341D5FA4EC00C41BAC /* GameScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
+		5FE124361D5FA4EC00C41BAC /* General.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = General.swift; sourceTree = "<group>"; };
+		5FE124491D5FA5A900C41BAC /* Fx.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; path = Fx.framework.dSYM; sourceTree = "<group>"; };
+		5FE1244A1D5FA5A900C41BAC /* PowerCore.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; path = PowerCore.framework.dSYM; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +89,8 @@
 		5F543A701D5BD0380039FB0B /* Mac */ = {
 			isa = PBXGroup;
 			children = (
+				5FE124491D5FA5A900C41BAC /* Fx.framework.dSYM */,
+				5FE1244A1D5FA5A900C41BAC /* PowerCore.framework.dSYM */,
 				5FE1240E1D5F451400C41BAC /* PowerCore.framework */,
 				5FE123971D5E398C00C41BAC /* Fx.framework */,
 			);
@@ -88,12 +100,12 @@
 		5F91048F1D3BA19500C2C519 = {
 			isa = PBXGroup;
 			children = (
-				5FE1239C1D5E3ADA00C41BAC /* Fx.framework */,
-				5FE1239A1D5E3AC500C41BAC /* Fx.framework.dSYM */,
 				5FD28A561D5B091E00BAFC0F /* File.md */,
 				5FB51C541D587D7100F9FFA4 /* Cartfile */,
 				5F543A6F1D5BD00B0039FB0B /* Frameworks */,
-				5F91049A1D3BA19500C2C519 /* FireTek */,
+				5FE124291D5FA4EC00C41BAC /* Source */,
+				5FE124221D5FA4EC00C41BAC /* Resources */,
+				5FE1241D1D5FA4EC00C41BAC /* macOS */,
 				5F9104991D3BA19500C2C519 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -106,35 +118,85 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		5F91049A1D3BA19500C2C519 /* FireTek */ = {
+		5FE1241D1D5FA4EC00C41BAC /* macOS */ = {
 			isa = PBXGroup;
 			children = (
-				5FB51C561D587DED00F9FFA4 /* Utilities */,
-				5FB51C4F1D586F8300F9FFA4 /* Engine */,
-				5F91049B1D3BA19500C2C519 /* AppDelegate.swift */,
-				5F91049D1D3BA19500C2C519 /* GameScene.swift */,
-				5F91049F1D3BA19500C2C519 /* GameScene.sks */,
-				5F9104A11D3BA19500C2C519 /* Assets.xcassets */,
-				5F9104A31D3BA19500C2C519 /* MainMenu.xib */,
-				5F9104A61D3BA19500C2C519 /* Info.plist */,
+				5FE1241E1D5FA4EC00C41BAC /* AppDelegate.swift */,
+				5FE1241F1D5FA4EC00C41BAC /* MainMenu.xib */,
+				5FE124211D5FA4EC00C41BAC /* Info.plist */,
 			);
-			path = FireTek;
+			path = macOS;
 			sourceTree = "<group>";
 		};
-		5FB51C4F1D586F8300F9FFA4 /* Engine */ = {
+		5FE124221D5FA4EC00C41BAC /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				5FE124101D5F454200C41BAC /* Engine.swift */,
+				5FE124231D5FA4EC00C41BAC /* Assets.xcassets */,
 			);
-			name = Engine;
+			path = Resources;
 			sourceTree = "<group>";
 		};
-		5FB51C561D587DED00F9FFA4 /* Utilities */ = {
+		5FE124291D5FA4EC00C41BAC /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				5FB51C571D587DFB00F9FFA4 /* General.swift */,
+				5FE1242A1D5FA4EC00C41BAC /* Engine */,
+				5FE1242F1D5FA4EC00C41BAC /* Engine.swift */,
+				5FE124321D5FA4EC00C41BAC /* Scenes */,
+				5FE124351D5FA4EC00C41BAC /* Utilities */,
 			);
-			name = Utilities;
+			path = Source;
+			sourceTree = "<group>";
+		};
+		5FE1242A1D5FA4EC00C41BAC /* Engine */ = {
+			isa = PBXGroup;
+			children = (
+				5FE1242B1D5FA4EC00C41BAC /* Components */,
+				5FE124301D5FA4EC00C41BAC /* Systems */,
+			);
+			path = Engine;
+			sourceTree = "<group>";
+		};
+		5FE1242B1D5FA4EC00C41BAC /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				5FE1242C1D5FA4EC00C41BAC /* SpriteComponent.swift */,
+				5FE1242D1D5FA4EC00C41BAC /* VehicleComponent.swift */,
+				5FE1242E1D5FA4EC00C41BAC /* VehicleInputComponent.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		5FE124301D5FA4EC00C41BAC /* Systems */ = {
+			isa = PBXGroup;
+			children = (
+				5FE124311D5FA4EC00C41BAC /* SpriteSpawnSystem.swift */,
+			);
+			path = Systems;
+			sourceTree = "<group>";
+		};
+		5FE124321D5FA4EC00C41BAC /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				5FE124331D5FA4EC00C41BAC /* GameScene.sks */,
+				5FE124341D5FA4EC00C41BAC /* GameScene.swift */,
+			);
+			path = Scenes;
+			sourceTree = "<group>";
+		};
+		5FE124351D5FA4EC00C41BAC /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				5FE124361D5FA4EC00C41BAC /* General.swift */,
+				5FE124371D5FA4EC00C41BAC /* Terrain Generator */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		5FE124371D5FA4EC00C41BAC /* Terrain Generator */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Terrain Generator";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -196,11 +258,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5F9104A21D3BA19500C2C519 /* Assets.xcassets in Resources */,
-				5F9104A01D3BA19500C2C519 /* GameScene.sks in Resources */,
-				5FB51C551D587D7100F9FFA4 /* Cartfile in Resources */,
-				5F9104A51D3BA19500C2C519 /* MainMenu.xib in Resources */,
-				5FD28A571D5B091E00BAFC0F /* File.md in Resources */,
+				5FE124391D5FA4EC00C41BAC /* MainMenu.xib in Resources */,
+				5FE124441D5FA4ED00C41BAC /* GameScene.sks in Resources */,
+				5FE1243B1D5FA4EC00C41BAC /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -211,20 +271,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5F91049E1D3BA19500C2C519 /* GameScene.swift in Sources */,
-				5F91049C1D3BA19500C2C519 /* AppDelegate.swift in Sources */,
-				5FB51C581D587DFB00F9FFA4 /* General.swift in Sources */,
-				5FE124111D5F454200C41BAC /* Engine.swift in Sources */,
+				5FE1243F1D5FA4EC00C41BAC /* SpriteComponent.swift in Sources */,
+				5FE124411D5FA4ED00C41BAC /* VehicleInputComponent.swift in Sources */,
+				5FE124401D5FA4EC00C41BAC /* VehicleComponent.swift in Sources */,
+				5FE124431D5FA4ED00C41BAC /* SpriteSpawnSystem.swift in Sources */,
+				5FE124381D5FA4EC00C41BAC /* AppDelegate.swift in Sources */,
+				5FE124451D5FA4ED00C41BAC /* GameScene.swift in Sources */,
+				5FE124461D5FA4ED00C41BAC /* General.swift in Sources */,
+				5FE124421D5FA4ED00C41BAC /* Engine.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		5F9104A31D3BA19500C2C519 /* MainMenu.xib */ = {
+		5FE1241F1D5FA4EC00C41BAC /* MainMenu.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				5F9104A41D3BA19500C2C519 /* Base */,
+				5FE124201D5FA4EC00C41BAC /* Base */,
 			);
 			name = MainMenu.xib;
 			sourceTree = "<group>";
@@ -323,7 +387,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/Mac",
 				);
-				INFOPLIST_FILE = FireTek/Info.plist;
+				INFOPLIST_FILE = macOS/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.github.p0ed.FireTek;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -339,7 +403,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/Mac",
 				);
-				INFOPLIST_FILE = FireTek/Info.plist;
+				INFOPLIST_FILE = macOS/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.github.p0ed.FireTek;
 				PRODUCT_NAME = "$(TARGET_NAME)";

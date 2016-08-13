@@ -1,8 +1,16 @@
 import SpriteKit
+import Fx
 
-class GameScene: SKScene {
+final class GameScene: SKScene {
+
+	var engine: Engine!
+
 	override func didMoveToView(view: SKView) {
 		super.didMoveToView(view)
+
+		engine = Engine(Engine.Model(
+			scene: unown(self, const))
+		)
 	}
 
     override func mouseDown(theEvent: NSEvent) {
