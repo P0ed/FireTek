@@ -9,3 +9,13 @@ extension Store {
 		}
 	}
 }
+
+struct Point {
+	var x: Float
+	var y: Float
+}
+
+struct Vector {
+	var dx: Float
+	var dy: Float
+}

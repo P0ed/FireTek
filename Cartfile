@@ -1,2 +1,2 @@
 github "P0ed/Fx" == 0.4
-github "P0ed/PowerCore" == 0.3
+github "P0ed/PowerCore" "master"

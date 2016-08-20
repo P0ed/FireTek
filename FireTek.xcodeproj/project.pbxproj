@@ -9,14 +9,18 @@
 /* Begin PBXBuildFile section */
 		5F082FEF1D60D8B400DE34DC /* TileMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F082FEE1D60D8B400DE34DC /* TileMap.swift */; };
 		5F082FF11D60DE3700DE34DC /* Level.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F082FF01D60DE3700DE34DC /* Level.swift */; };
+		5F428C7F1D6886160075FA6B /* HPComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F428C7E1D6886160075FA6B /* HPComponent.swift */; };
+		5F428C811D688DB00075FA6B /* AIComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F428C801D688DB00075FA6B /* AIComponents.swift */; };
+		5F428C851D68A4EC0075FA6B /* UnitFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F428C841D68A4EC0075FA6B /* UnitFactory.swift */; };
+		5F428C871D68B2D30075FA6B /* SpriteFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F428C861D68B2D30075FA6B /* SpriteFactory.swift */; };
 		5FE123981D5E398C00C41BAC /* Fx.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FE123971D5E398C00C41BAC /* Fx.framework */; };
 		5FE1240F1D5F451400C41BAC /* PowerCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FE1240E1D5F451400C41BAC /* PowerCore.framework */; };
 		5FE124381D5FA4EC00C41BAC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FE1241E1D5FA4EC00C41BAC /* AppDelegate.swift */; };
 		5FE124391D5FA4EC00C41BAC /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5FE1241F1D5FA4EC00C41BAC /* MainMenu.xib */; };
 		5FE1243B1D5FA4EC00C41BAC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5FE124231D5FA4EC00C41BAC /* Assets.xcassets */; };
 		5FE1243F1D5FA4EC00C41BAC /* SpriteComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FE1242C1D5FA4EC00C41BAC /* SpriteComponent.swift */; };
-		5FE124401D5FA4EC00C41BAC /* VehicleComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FE1242D1D5FA4EC00C41BAC /* VehicleComponent.swift */; };
-		5FE124411D5FA4ED00C41BAC /* VehicleInputComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FE1242E1D5FA4EC00C41BAC /* VehicleInputComponent.swift */; };
+		5FE124401D5FA4EC00C41BAC /* UnitComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FE1242D1D5FA4EC00C41BAC /* UnitComponents.swift */; };
+		5FE124411D5FA4ED00C41BAC /* InputComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FE1242E1D5FA4EC00C41BAC /* InputComponents.swift */; };
 		5FE124421D5FA4ED00C41BAC /* Engine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FE1242F1D5FA4EC00C41BAC /* Engine.swift */; };
 		5FE124431D5FA4ED00C41BAC /* SpriteSpawnSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FE124311D5FA4EC00C41BAC /* SpriteSpawnSystem.swift */; };
 		5FE124441D5FA4ED00C41BAC /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 5FE124331D5FA4EC00C41BAC /* GameScene.sks */; };
@@ -48,6 +52,10 @@
 /* Begin PBXFileReference section */
 		5F082FEE1D60D8B400DE34DC /* TileMap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TileMap.swift; sourceTree = "<group>"; };
 		5F082FF01D60DE3700DE34DC /* Level.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Level.swift; sourceTree = "<group>"; };
+		5F428C7E1D6886160075FA6B /* HPComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HPComponent.swift; sourceTree = "<group>"; };
+		5F428C801D688DB00075FA6B /* AIComponents.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AIComponents.swift; sourceTree = "<group>"; };
+		5F428C841D68A4EC0075FA6B /* UnitFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnitFactory.swift; sourceTree = "<group>"; };
+		5F428C861D68B2D30075FA6B /* SpriteFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpriteFactory.swift; sourceTree = "<group>"; };
 		5F9104981D3BA19500C2C519 /* FireTek.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FireTek.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5FB51C541D587D7100F9FFA4 /* Cartfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Cartfile; sourceTree = "<group>"; };
 		5FD28A561D5B091E00BAFC0F /* File.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = File.md; sourceTree = "<group>"; };
@@ -58,8 +66,8 @@
 		5FE124211D5FA4EC00C41BAC /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5FE124231D5FA4EC00C41BAC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5FE1242C1D5FA4EC00C41BAC /* SpriteComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpriteComponent.swift; sourceTree = "<group>"; };
-		5FE1242D1D5FA4EC00C41BAC /* VehicleComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VehicleComponent.swift; sourceTree = "<group>"; };
-		5FE1242E1D5FA4EC00C41BAC /* VehicleInputComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VehicleInputComponent.swift; sourceTree = "<group>"; };
+		5FE1242D1D5FA4EC00C41BAC /* UnitComponents.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnitComponents.swift; sourceTree = "<group>"; };
+		5FE1242E1D5FA4EC00C41BAC /* InputComponents.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputComponents.swift; sourceTree = "<group>"; };
 		5FE1242F1D5FA4EC00C41BAC /* Engine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Engine.swift; path = Engine/Engine.swift; sourceTree = "<group>"; };
 		5FE124311D5FA4EC00C41BAC /* SpriteSpawnSystem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpriteSpawnSystem.swift; sourceTree = "<group>"; };
 		5FE124331D5FA4EC00C41BAC /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -90,6 +98,15 @@
 				5F082FF01D60DE3700DE34DC /* Level.swift */,
 			);
 			path = Level;
+			sourceTree = "<group>";
+		};
+		5F428C831D68A4D60075FA6B /* Fabrics */ = {
+			isa = PBXGroup;
+			children = (
+				5F428C841D68A4EC0075FA6B /* UnitFactory.swift */,
+				5F428C861D68B2D30075FA6B /* SpriteFactory.swift */,
+			);
+			path = Fabrics;
 			sourceTree = "<group>";
 		};
 		5F543A6F1D5BD00B0039FB0B /* Frameworks */ = {
@@ -168,6 +185,7 @@
 			children = (
 				5FE1242B1D5FA4EC00C41BAC /* Components */,
 				5FE124301D5FA4EC00C41BAC /* Systems */,
+				5F428C831D68A4D60075FA6B /* Fabrics */,
 			);
 			path = Engine;
 			sourceTree = "<group>";
@@ -175,9 +193,11 @@
 		5FE1242B1D5FA4EC00C41BAC /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				5FE1242D1D5FA4EC00C41BAC /* UnitComponents.swift */,
 				5FE1242C1D5FA4EC00C41BAC /* SpriteComponent.swift */,
-				5FE1242D1D5FA4EC00C41BAC /* VehicleComponent.swift */,
-				5FE1242E1D5FA4EC00C41BAC /* VehicleInputComponent.swift */,
+				5F428C7E1D6886160075FA6B /* HPComponent.swift */,
+				5FE1242E1D5FA4EC00C41BAC /* InputComponents.swift */,
+				5F428C801D688DB00075FA6B /* AIComponents.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -289,15 +309,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				5FE1243F1D5FA4EC00C41BAC /* SpriteComponent.swift in Sources */,
+				5F428C871D68B2D30075FA6B /* SpriteFactory.swift in Sources */,
 				5F082FF11D60DE3700DE34DC /* Level.swift in Sources */,
 				5F082FEF1D60D8B400DE34DC /* TileMap.swift in Sources */,
-				5FE124411D5FA4ED00C41BAC /* VehicleInputComponent.swift in Sources */,
-				5FE124401D5FA4EC00C41BAC /* VehicleComponent.swift in Sources */,
+				5FE124411D5FA4ED00C41BAC /* InputComponents.swift in Sources */,
+				5FE124401D5FA4EC00C41BAC /* UnitComponents.swift in Sources */,
 				5FE124431D5FA4ED00C41BAC /* SpriteSpawnSystem.swift in Sources */,
 				5FE124381D5FA4EC00C41BAC /* AppDelegate.swift in Sources */,
+				5F428C7F1D6886160075FA6B /* HPComponent.swift in Sources */,
 				5FE124451D5FA4ED00C41BAC /* GameScene.swift in Sources */,
+				5F428C811D688DB00075FA6B /* AIComponents.swift in Sources */,
 				5FE124541D5FA81700C41BAC /* DiamondSquare.swift in Sources */,
 				5FE124461D5FA4ED00C41BAC /* General.swift in Sources */,
+				5F428C851D68A4EC0075FA6B /* UnitFactory.swift in Sources */,
 				5FE124421D5FA4ED00C41BAC /* Engine.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
