@@ -1,2 +1,3 @@
 github "P0ed/Fx" == 0.4
 github "P0ed/PowerCore" "master"
+github "P0ed/OpenEmu-SDK" "master"

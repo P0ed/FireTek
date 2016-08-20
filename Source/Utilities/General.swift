@@ -1,4 +1,5 @@
 import PowerCore
+import CoreGraphics.CGBase
 
 extension Store {
 
@@ -13,6 +14,12 @@ extension Store {
 struct Point {
 	var x: Float
 	var y: Float
+}
+
+extension Point {
+	var cgPoint: CGPoint {
+		return CGPoint(x: Double(x), y: Double(y))
+	}
 }
 
 struct Vector {

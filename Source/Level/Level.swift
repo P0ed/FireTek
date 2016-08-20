@@ -7,9 +7,11 @@ struct Tile {
 final class Level {
 
 	let tileMap: TileMap<Tile>
+	let spawnPosition: Point
 
 	init() {
 		tileMap = Level.generateTileMap()
+		spawnPosition = Point(x: 32, y: 32)
 	}
 
 	static func generateTileMap() -> TileMap<Tile> {

@@ -4,10 +4,10 @@ import SpriteKit
 
 enum UnitFactory {
 
-	static func createPlayer(world: World) -> Entity {
+	static func createPlayer(world: World, position: Point) -> Entity {
 		let entity = world.entityManager.create()
 
-		let sprite = SpriteFactory.createTankSprite()
+		let sprite = SpriteFactory.createTankSprite(position)
 		let hp = HPComponent(maxHP: 100, currentHP: 100)
 
 		let vehicle = VehicleComponent(
@@ -20,12 +20,27 @@ enum UnitFactory {
 		return entity
 	}
 
-	static func createAIPlayer(world: World) -> Entity {
-		let entity = createPlayer(world)
+	static func createAIPlayer(world: World, position: Point) -> Entity {
+		let entity = createPlayer(world, position: position)
 		let vehicle = world.vehicles.sharedIndexAt § world.vehicles.indexOf(entity)!
 
 		let ai = VehicleAIComponent(vehicle: vehicle, state: .Hold(Point(x: 0, y: 0)), target: nil)
 		world.vehicleAI.add(ai, to: entity)
+
+		return entity
+	}
+
+	static func createBuilding(world: World, position: Point) -> Entity {
+		let entity = world.entityManager.create()
+		let sprite = SpriteFactory.createBuildingSprite()
+		let hp = HPComponent(maxHP: 20, currentHP: 20)
+
+		let building = BuildingComponent(
+			sprite: world.sprites.sharedIndexAt § world.sprites.add(sprite, to: entity),
+			hp: world.hp.sharedIndexAt § world.hp.add(hp, to: entity)
+		)
+
+		world.buildings.add(building, to: entity)
 
 		return entity
 	}

@@ -13,6 +13,23 @@
 		5F428C811D688DB00075FA6B /* AIComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F428C801D688DB00075FA6B /* AIComponents.swift */; };
 		5F428C851D68A4EC0075FA6B /* UnitFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F428C841D68A4EC0075FA6B /* UnitFactory.swift */; };
 		5F428C871D68B2D30075FA6B /* SpriteFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F428C861D68B2D30075FA6B /* SpriteFactory.swift */; };
+		5F428C8B1D68EC6C0075FA6B /* LevelSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F428C8A1D68EC6C0075FA6B /* LevelSystem.swift */; };
+		5F428C8D1D69039C0075FA6B /* World.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F428C8C1D69039C0075FA6B /* World.swift */; };
+		5F428C901D6909EE0075FA6B /* InputController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F428C8F1D6909EE0075FA6B /* InputController.swift */; };
+		5F428C981D690A250075FA6B /* Controller-Database.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5F428C921D690A250075FA6B /* Controller-Database.plist */; };
+		5F428C991D690A250075FA6B /* DeviceAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F428C931D690A250075FA6B /* DeviceAction.swift */; };
+		5F428C9A1D690A250075FA6B /* DeviceConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F428C941D690A250075FA6B /* DeviceConfiguration.swift */; };
+		5F428C9B1D690A250075FA6B /* DSExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F428C951D690A250075FA6B /* DSExtensions.swift */; };
+		5F428C9C1D690A250075FA6B /* EventsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F428C961D690A250075FA6B /* EventsController.swift */; };
+		5F428C9D1D690A250075FA6B /* HIDController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F428C971D690A250075FA6B /* HIDController.swift */; };
+		5F428CA21D690C4F0075FA6B /* OpenEmuBase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F428C9E1D690C4F0075FA6B /* OpenEmuBase.framework */; };
+		5F428CA31D690C4F0075FA6B /* OpenEmuBase.framework.dSYM in Resources */ = {isa = PBXBuildFile; fileRef = 5F428C9F1D690C4F0075FA6B /* OpenEmuBase.framework.dSYM */; };
+		5F428CA41D690C4F0075FA6B /* OpenEmuSystem.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F428CA01D690C4F0075FA6B /* OpenEmuSystem.framework */; };
+		5F428CA51D690C4F0075FA6B /* OpenEmuSystem.framework.dSYM in Resources */ = {isa = PBXBuildFile; fileRef = 5F428CA11D690C4F0075FA6B /* OpenEmuSystem.framework.dSYM */; };
+		5F428CA61D690C6E0075FA6B /* OpenEmuBase.framework.dSYM in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5F428C9F1D690C4F0075FA6B /* OpenEmuBase.framework.dSYM */; };
+		5F428CA71D690C6E0075FA6B /* OpenEmuSystem.framework.dSYM in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5F428CA11D690C4F0075FA6B /* OpenEmuSystem.framework.dSYM */; };
+		5F428CA81D690C6E0075FA6B /* OpenEmuBase.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5F428C9E1D690C4F0075FA6B /* OpenEmuBase.framework */; };
+		5F428CA91D690C6E0075FA6B /* OpenEmuSystem.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5F428CA01D690C4F0075FA6B /* OpenEmuSystem.framework */; };
 		5FE123981D5E398C00C41BAC /* Fx.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FE123971D5E398C00C41BAC /* Fx.framework */; };
 		5FE1240F1D5F451400C41BAC /* PowerCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FE1240E1D5F451400C41BAC /* PowerCore.framework */; };
 		5FE124381D5FA4EC00C41BAC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FE1241E1D5FA4EC00C41BAC /* AppDelegate.swift */; };
@@ -40,6 +57,10 @@
 			dstPath = "";
 			dstSubfolderSpec = 16;
 			files = (
+				5F428CA61D690C6E0075FA6B /* OpenEmuBase.framework.dSYM in CopyFiles */,
+				5F428CA71D690C6E0075FA6B /* OpenEmuSystem.framework.dSYM in CopyFiles */,
+				5F428CA81D690C6E0075FA6B /* OpenEmuBase.framework in CopyFiles */,
+				5F428CA91D690C6E0075FA6B /* OpenEmuSystem.framework in CopyFiles */,
 				5FE1244F1D5FA5CB00C41BAC /* PowerCore.framework in CopyFiles */,
 				5FE124501D5FA5CB00C41BAC /* Fx.framework in CopyFiles */,
 				5FE1244D1D5FA5BB00C41BAC /* Fx.framework.dSYM in CopyFiles */,
@@ -56,6 +77,19 @@
 		5F428C801D688DB00075FA6B /* AIComponents.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AIComponents.swift; sourceTree = "<group>"; };
 		5F428C841D68A4EC0075FA6B /* UnitFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnitFactory.swift; sourceTree = "<group>"; };
 		5F428C861D68B2D30075FA6B /* SpriteFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpriteFactory.swift; sourceTree = "<group>"; };
+		5F428C8A1D68EC6C0075FA6B /* LevelSystem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelSystem.swift; sourceTree = "<group>"; };
+		5F428C8C1D69039C0075FA6B /* World.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = World.swift; sourceTree = "<group>"; };
+		5F428C8F1D6909EE0075FA6B /* InputController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputController.swift; sourceTree = "<group>"; };
+		5F428C921D690A250075FA6B /* Controller-Database.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Controller-Database.plist"; sourceTree = "<group>"; };
+		5F428C931D690A250075FA6B /* DeviceAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceAction.swift; sourceTree = "<group>"; };
+		5F428C941D690A250075FA6B /* DeviceConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceConfiguration.swift; sourceTree = "<group>"; };
+		5F428C951D690A250075FA6B /* DSExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DSExtensions.swift; sourceTree = "<group>"; };
+		5F428C961D690A250075FA6B /* EventsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventsController.swift; sourceTree = "<group>"; };
+		5F428C971D690A250075FA6B /* HIDController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HIDController.swift; sourceTree = "<group>"; };
+		5F428C9E1D690C4F0075FA6B /* OpenEmuBase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = OpenEmuBase.framework; sourceTree = "<group>"; };
+		5F428C9F1D690C4F0075FA6B /* OpenEmuBase.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; path = OpenEmuBase.framework.dSYM; sourceTree = "<group>"; };
+		5F428CA01D690C4F0075FA6B /* OpenEmuSystem.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = OpenEmuSystem.framework; sourceTree = "<group>"; };
+		5F428CA11D690C4F0075FA6B /* OpenEmuSystem.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; path = OpenEmuSystem.framework.dSYM; sourceTree = "<group>"; };
 		5F9104981D3BA19500C2C519 /* FireTek.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FireTek.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5FB51C541D587D7100F9FFA4 /* Cartfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Cartfile; sourceTree = "<group>"; };
 		5FD28A561D5B091E00BAFC0F /* File.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = File.md; sourceTree = "<group>"; };
@@ -68,7 +102,7 @@
 		5FE1242C1D5FA4EC00C41BAC /* SpriteComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpriteComponent.swift; sourceTree = "<group>"; };
 		5FE1242D1D5FA4EC00C41BAC /* UnitComponents.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnitComponents.swift; sourceTree = "<group>"; };
 		5FE1242E1D5FA4EC00C41BAC /* InputComponents.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputComponents.swift; sourceTree = "<group>"; };
-		5FE1242F1D5FA4EC00C41BAC /* Engine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Engine.swift; path = Engine/Engine.swift; sourceTree = "<group>"; };
+		5FE1242F1D5FA4EC00C41BAC /* Engine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Engine.swift; sourceTree = "<group>"; };
 		5FE124311D5FA4EC00C41BAC /* SpriteSpawnSystem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpriteSpawnSystem.swift; sourceTree = "<group>"; };
 		5FE124331D5FA4EC00C41BAC /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
 		5FE124341D5FA4EC00C41BAC /* GameScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
@@ -84,6 +118,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				5FE123981D5E398C00C41BAC /* Fx.framework in Frameworks */,
+				5F428CA41D690C4F0075FA6B /* OpenEmuSystem.framework in Frameworks */,
+				5F428CA21D690C4F0075FA6B /* OpenEmuBase.framework in Frameworks */,
 				5FE1240F1D5F451400C41BAC /* PowerCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -109,6 +145,28 @@
 			path = Fabrics;
 			sourceTree = "<group>";
 		};
+		5F428C8E1D6909DD0075FA6B /* IO */ = {
+			isa = PBXGroup;
+			children = (
+				5F428C911D690A250075FA6B /* GamepadKit */,
+				5F428C8F1D6909EE0075FA6B /* InputController.swift */,
+			);
+			path = IO;
+			sourceTree = "<group>";
+		};
+		5F428C911D690A250075FA6B /* GamepadKit */ = {
+			isa = PBXGroup;
+			children = (
+				5F428C921D690A250075FA6B /* Controller-Database.plist */,
+				5F428C931D690A250075FA6B /* DeviceAction.swift */,
+				5F428C941D690A250075FA6B /* DeviceConfiguration.swift */,
+				5F428C951D690A250075FA6B /* DSExtensions.swift */,
+				5F428C961D690A250075FA6B /* EventsController.swift */,
+				5F428C971D690A250075FA6B /* HIDController.swift */,
+			);
+			path = GamepadKit;
+			sourceTree = "<group>";
+		};
 		5F543A6F1D5BD00B0039FB0B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -121,8 +179,12 @@
 		5F543A701D5BD0380039FB0B /* Mac */ = {
 			isa = PBXGroup;
 			children = (
+				5F428C9F1D690C4F0075FA6B /* OpenEmuBase.framework.dSYM */,
+				5F428CA11D690C4F0075FA6B /* OpenEmuSystem.framework.dSYM */,
 				5FE124491D5FA5A900C41BAC /* Fx.framework.dSYM */,
 				5FE1244A1D5FA5A900C41BAC /* PowerCore.framework.dSYM */,
+				5F428C9E1D690C4F0075FA6B /* OpenEmuBase.framework */,
+				5F428CA01D690C4F0075FA6B /* OpenEmuSystem.framework */,
 				5FE1240E1D5F451400C41BAC /* PowerCore.framework */,
 				5FE123971D5E398C00C41BAC /* Fx.framework */,
 			);
@@ -171,9 +233,9 @@
 		5FE124291D5FA4EC00C41BAC /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				5F428C8E1D6909DD0075FA6B /* IO */,
 				5F082FED1D60D8AC00DE34DC /* Level */,
 				5FE1242A1D5FA4EC00C41BAC /* Engine */,
-				5FE1242F1D5FA4EC00C41BAC /* Engine.swift */,
 				5FE124321D5FA4EC00C41BAC /* Scenes */,
 				5FE124351D5FA4EC00C41BAC /* Utilities */,
 			);
@@ -186,6 +248,8 @@
 				5FE1242B1D5FA4EC00C41BAC /* Components */,
 				5FE124301D5FA4EC00C41BAC /* Systems */,
 				5F428C831D68A4D60075FA6B /* Fabrics */,
+				5FE1242F1D5FA4EC00C41BAC /* Engine.swift */,
+				5F428C8C1D69039C0075FA6B /* World.swift */,
 			);
 			path = Engine;
 			sourceTree = "<group>";
@@ -206,6 +270,7 @@
 			isa = PBXGroup;
 			children = (
 				5FE124311D5FA4EC00C41BAC /* SpriteSpawnSystem.swift */,
+				5F428C8A1D68EC6C0075FA6B /* LevelSystem.swift */,
 			);
 			path = Systems;
 			sourceTree = "<group>";
@@ -296,8 +361,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				5FE124391D5FA4EC00C41BAC /* MainMenu.xib in Resources */,
+				5F428CA51D690C4F0075FA6B /* OpenEmuSystem.framework.dSYM in Resources */,
+				5F428C981D690A250075FA6B /* Controller-Database.plist in Resources */,
 				5FE124441D5FA4ED00C41BAC /* GameScene.sks in Resources */,
 				5FE1243B1D5FA4EC00C41BAC /* Assets.xcassets in Resources */,
+				5F428CA31D690C4F0075FA6B /* OpenEmuBase.framework.dSYM in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -309,17 +377,25 @@
 			buildActionMask = 2147483647;
 			files = (
 				5FE1243F1D5FA4EC00C41BAC /* SpriteComponent.swift in Sources */,
+				5F428C8D1D69039C0075FA6B /* World.swift in Sources */,
 				5F428C871D68B2D30075FA6B /* SpriteFactory.swift in Sources */,
 				5F082FF11D60DE3700DE34DC /* Level.swift in Sources */,
 				5F082FEF1D60D8B400DE34DC /* TileMap.swift in Sources */,
 				5FE124411D5FA4ED00C41BAC /* InputComponents.swift in Sources */,
+				5F428C901D6909EE0075FA6B /* InputController.swift in Sources */,
 				5FE124401D5FA4EC00C41BAC /* UnitComponents.swift in Sources */,
 				5FE124431D5FA4ED00C41BAC /* SpriteSpawnSystem.swift in Sources */,
+				5F428C9D1D690A250075FA6B /* HIDController.swift in Sources */,
 				5FE124381D5FA4EC00C41BAC /* AppDelegate.swift in Sources */,
 				5F428C7F1D6886160075FA6B /* HPComponent.swift in Sources */,
+				5F428C991D690A250075FA6B /* DeviceAction.swift in Sources */,
+				5F428C8B1D68EC6C0075FA6B /* LevelSystem.swift in Sources */,
 				5FE124451D5FA4ED00C41BAC /* GameScene.swift in Sources */,
+				5F428C9B1D690A250075FA6B /* DSExtensions.swift in Sources */,
 				5F428C811D688DB00075FA6B /* AIComponents.swift in Sources */,
+				5F428C9C1D690A250075FA6B /* EventsController.swift in Sources */,
 				5FE124541D5FA81700C41BAC /* DiamondSquare.swift in Sources */,
+				5F428C9A1D690A250075FA6B /* DeviceConfiguration.swift in Sources */,
 				5FE124461D5FA4ED00C41BAC /* General.swift in Sources */,
 				5F428C851D68A4EC0075FA6B /* UnitFactory.swift in Sources */,
 				5FE124421D5FA4ED00C41BAC /* Engine.swift in Sources */,

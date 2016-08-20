@@ -2,7 +2,7 @@ import SpriteKit
 import PowerCore
 import Fx
 
-final class SpriteSpawnSystem {
+struct SpriteSpawnSystem {
 
 	let disposable = CompositeDisposable()
 
