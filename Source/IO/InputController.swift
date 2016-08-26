@@ -1,9 +1,8 @@
-
 final class InputController {
 
 	let eventsController: EventsController
 
-	var buttonsState: Int = 0
+	private var buttonsState: Int = 0
 
 	init(_ eventsController: EventsController) {
 		self.eventsController = eventsController

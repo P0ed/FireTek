@@ -3,6 +3,7 @@ import PowerCore
 final class World {
 	let entityManager: EntityManager
 	let sprites: Store<SpriteComponent>
+	let physics: Store<PhysicsComponent>
 
 	let vehicles: Store<VehicleComponent>
 	let buildings: Store<BuildingComponent>
@@ -19,6 +20,7 @@ final class World {
 		let core = PowerCore.World()
 		entityManager = core.entityManager
 		sprites = core.createStore()
+		physics = core.createStore()
 		vehicles = core.createStore()
 		buildings = core.createStore()
 		hp = core.createStore()

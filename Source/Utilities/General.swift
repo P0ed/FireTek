@@ -26,3 +26,40 @@ struct Vector {
 	var dx: Float
 	var dy: Float
 }
+
+public struct Closure<A> {
+	public typealias Getter = () -> (A)
+	public typealias Setter = (A) -> ()
+
+	let get: Getter
+	let set: Setter
+
+	public init(get: Getter, set: Setter) {
+		self.get = get
+		self.set = set
+	}
+
+	var value: A {
+		get {
+			return get()
+		}
+		nonmutating set {
+			set(newValue)
+		}
+	}
+}
+
+extension Store {
+
+	func closureAt(index: Int) -> Closure<Component> {
+		let sharedIndex = sharedIndexAt(index)
+		return Closure(
+			get: {
+				self[sharedIndex.value]
+			},
+			set: { data in
+				self[sharedIndex.value] = data
+			}
+		)
+	}
+}

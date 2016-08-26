@@ -6,6 +6,7 @@ final class GameScene: SKScene {
 	private var engine: Engine!
 	private var world: SKNode!
 	private var lastUpdate = 0 as CFTimeInterval
+	private let hidController = HIDController()
 
 	override func didMoveToView(view: SKView) {
 		super.didMoveToView(view)
@@ -19,8 +20,9 @@ final class GameScene: SKScene {
 		addChild(world)
 
 		engine = Engine(Engine.Model(
-			scene: unown(self, const))
-		)
+			scene: unown(self, const),
+			inputController: InputController(hidController.eventsController)
+		))
 
 		renderTileMap(Level())
 	}
