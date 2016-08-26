@@ -1,3 +1,5 @@
+import SpriteKit
+
 struct PhysicsSystem {
 
 	private let world: World
@@ -11,6 +13,18 @@ struct PhysicsSystem {
 	}
 
 	private func applyVehicleInputs() {
-//		world.vehicles
+		let vehicles = world.vehicles
+		let inputs = world.vehicleInput
+		let physics = world.physics
+
+		vehicles.forEach { vehicle in
+			let input = inputs[vehicle.input.value]
+			let physics = physics[vehicle.physics.value]
+			applyInput(input, to: physics)
+		}
+	}
+
+	private func applyInput(input: VehicleInputComponent, to physics: PhysicsComponent) {
+
 	}
 }

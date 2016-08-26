@@ -3,10 +3,10 @@ import CoreGraphics.CGBase
 
 extension Store {
 
-	func getComponentAt(idx: Int) -> () -> Component {
-		let sharedIdx = sharedIndexAt(idx)
+	func getComponentAt(index: Int) -> () -> Component {
+		let sharedIndex = sharedIndexAt(index)
 		return {
-			self[sharedIdx.value]
+			self[sharedIndex.value]
 		}
 	}
 }
