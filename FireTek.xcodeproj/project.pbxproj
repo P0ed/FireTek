@@ -10,6 +10,9 @@
 		5F082FEF1D60D8B400DE34DC /* TileMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F082FEE1D60D8B400DE34DC /* TileMap.swift */; };
 		5F082FF11D60DE3700DE34DC /* Level.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F082FF01D60DE3700DE34DC /* Level.swift */; };
 		5F2B51E91D6F71BC00AF62A1 /* InputSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F2B51E81D6F71BC00AF62A1 /* InputSystem.swift */; };
+		5F2F9F3B1D7328380016AA2F /* AISystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F2F9F3A1D7328380016AA2F /* AISystem.swift */; };
+		5F2F9F3D1D7331E60016AA2F /* Math.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F2F9F3C1D7331E60016AA2F /* Math.swift */; };
+		5F2F9F3F1D7333C40016AA2F /* CameraSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F2F9F3E1D7333C40016AA2F /* CameraSystem.swift */; };
 		5F428C7F1D6886160075FA6B /* HPComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F428C7E1D6886160075FA6B /* HPComponent.swift */; };
 		5F428C811D688DB00075FA6B /* AIComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F428C801D688DB00075FA6B /* AIComponents.swift */; };
 		5F428C851D68A4EC0075FA6B /* UnitFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F428C841D68A4EC0075FA6B /* UnitFactory.swift */; };
@@ -77,6 +80,9 @@
 		5F082FEE1D60D8B400DE34DC /* TileMap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TileMap.swift; sourceTree = "<group>"; };
 		5F082FF01D60DE3700DE34DC /* Level.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Level.swift; sourceTree = "<group>"; };
 		5F2B51E81D6F71BC00AF62A1 /* InputSystem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputSystem.swift; sourceTree = "<group>"; };
+		5F2F9F3A1D7328380016AA2F /* AISystem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AISystem.swift; sourceTree = "<group>"; };
+		5F2F9F3C1D7331E60016AA2F /* Math.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Math.swift; sourceTree = "<group>"; };
+		5F2F9F3E1D7333C40016AA2F /* CameraSystem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraSystem.swift; sourceTree = "<group>"; };
 		5F428C7E1D6886160075FA6B /* HPComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HPComponent.swift; sourceTree = "<group>"; };
 		5F428C801D688DB00075FA6B /* AIComponents.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AIComponents.swift; sourceTree = "<group>"; };
 		5F428C841D68A4EC0075FA6B /* UnitFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnitFactory.swift; sourceTree = "<group>"; };
@@ -280,6 +286,8 @@
 				5F428C8A1D68EC6C0075FA6B /* LevelSystem.swift */,
 				5F2B51E81D6F71BC00AF62A1 /* InputSystem.swift */,
 				5F53F3B91D6F83570077B2A0 /* PhysicsSystem.swift */,
+				5F2F9F3A1D7328380016AA2F /* AISystem.swift */,
+				5F2F9F3E1D7333C40016AA2F /* CameraSystem.swift */,
 			);
 			path = Systems;
 			sourceTree = "<group>";
@@ -297,6 +305,7 @@
 			isa = PBXGroup;
 			children = (
 				5FE124361D5FA4EC00C41BAC /* General.swift */,
+				5F2F9F3C1D7331E60016AA2F /* Math.swift */,
 				5FE124371D5FA4EC00C41BAC /* Terrain Generator */,
 			);
 			path = Utilities;
@@ -388,6 +397,7 @@
 				5FE1243F1D5FA4EC00C41BAC /* SpriteComponent.swift in Sources */,
 				5F2B51E91D6F71BC00AF62A1 /* InputSystem.swift in Sources */,
 				5F428C8D1D69039C0075FA6B /* World.swift in Sources */,
+				5F2F9F3D1D7331E60016AA2F /* Math.swift in Sources */,
 				5F428C871D68B2D30075FA6B /* SpriteFactory.swift in Sources */,
 				5F082FF11D60DE3700DE34DC /* Level.swift in Sources */,
 				5F082FEF1D60D8B400DE34DC /* TileMap.swift in Sources */,
@@ -399,12 +409,14 @@
 				5FE124381D5FA4EC00C41BAC /* AppDelegate.swift in Sources */,
 				5F428C7F1D6886160075FA6B /* HPComponent.swift in Sources */,
 				5F53F3BC1D6F94610077B2A0 /* PhysicsComponent.swift in Sources */,
+				5F2F9F3B1D7328380016AA2F /* AISystem.swift in Sources */,
 				5F428C991D690A250075FA6B /* DeviceAction.swift in Sources */,
 				5F428C8B1D68EC6C0075FA6B /* LevelSystem.swift in Sources */,
 				5FE124451D5FA4ED00C41BAC /* GameScene.swift in Sources */,
 				5F428C9B1D690A250075FA6B /* DSExtensions.swift in Sources */,
 				5F53F3BA1D6F83570077B2A0 /* PhysicsSystem.swift in Sources */,
 				5F428C811D688DB00075FA6B /* AIComponents.swift in Sources */,
+				5F2F9F3F1D7333C40016AA2F /* CameraSystem.swift in Sources */,
 				5F428C9C1D690A250075FA6B /* EventsController.swift in Sources */,
 				5FE124541D5FA81700C41BAC /* DiamondSquare.swift in Sources */,
 				5F428C9A1D690A250075FA6B /* DeviceConfiguration.swift in Sources */,

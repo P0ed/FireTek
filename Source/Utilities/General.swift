@@ -62,4 +62,13 @@ extension Store {
 			}
 		)
 	}
+
+	func find(f: Component -> Bool) -> Int? {
+		for (index, component) in self.enumerate() {
+			if f(component) {
+				return .Some(index)
+			}
+		}
+		return .None
+	}
 }

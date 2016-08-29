@@ -16,6 +16,8 @@ final class World {
 	let towerAI: Store<TowerAIComponent>
 	let vehicleAI: Store<VehicleAIComponent>
 
+	let team: Store<Team>
+
 	init() {
 		let core = PowerCore.World()
 		entityManager = core.entityManager
@@ -28,5 +30,6 @@ final class World {
 		vehicleInput = core.createStore()
 		towerAI = core.createStore()
 		vehicleAI = core.createStore()
+		team = core.createStore()
 	}
 }

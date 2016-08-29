@@ -30,7 +30,9 @@ struct LevelSystem {
 extension LevelSystem.State {
 
 	static func initialState(world world: World, level: Level) -> LevelSystem.State {
-		let player = UnitFactory.createPlayer(world: world, position: level.spawnPosition)
+		let player = UnitFactory.createPlayer(world: world, position: level.spawnPosition, team: .Blue)
+		UnitFactory.createAIPlayer(world: world, position: Point(x: 180, y: 40))
+		UnitFactory.createAIPlayer(world: world, position: Point(x: 40, y: 180))
 
 		return LevelSystem.State(
 			player: player
