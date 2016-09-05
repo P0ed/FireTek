@@ -42,16 +42,16 @@ struct AISystem {
 						let toTarget = (targetPosition - position).asVector
 
 						let angle = sprite.orientation.angle(with: toTarget)
+						let (sa, ca) = (sin(angle), cos(angle))
 
-						if abs(sin(angle)) > 0.1 || cos(angle) < 0 {
-//							input.turnHull = max(-1, min(1, sin(Float(angle)) * -2))
-							input.turnHull = sin(angle) < 0 ? 1 : -1
+						if abs(sa) > 0.1 || ca < 0 {
+							input.turnHull = sa < 0 ? 1 : -1
 						} else {
 							input.turnHull = 0
 						}
 
-						if cos(angle) > 0.5 {
-							input.accelerate = Float(cos(angle))
+						if cos(angle) > 0.1 {
+							input.accelerate = Float(ca)
 						}
 					}
 

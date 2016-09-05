@@ -5,14 +5,12 @@ struct VehicleComponent {
 	let physics: Box<Int>
 	let hp: Box<Int>
 	let input: Box<Int>
-
-	let stats: Stats
+	let stats: Box<Int>
 }
 
-extension VehicleComponent {
-	struct Stats {
-		let speed: Float
-	}
+struct VehicleStats {
+	let speed: Float
+	var weapon: Weapon
 }
 
 struct TowerComponent {

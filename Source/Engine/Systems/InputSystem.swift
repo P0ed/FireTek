@@ -1,17 +1,20 @@
+import SpriteKit
 import PowerCore
 import Fx
 
 struct InputSystem {
 
-	private let updateInput: Closure<VehicleInputComponent>.Setter?
+	private let updateInput: Closure<VehicleInputComponent>?
 	private let inputController: InputController
+	private let world: World
 
 	init(world: World, player: Entity, inputController: InputController) {
+		self.world = world
 		self.inputController = inputController
-		updateInput = {world.vehicleInput.closureAt($0).set} <^> world.vehicleInput.indexOf(player)
+		updateInput = world.vehicleInput.closureAt <^> world.vehicleInput.indexOf(player)
 	}
 
 	func update() {
-		updateInput?(inputController.currentInput())
+		updateInput?.value = inputController.currentInput()
 	}
 }

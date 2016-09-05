@@ -18,8 +18,10 @@ final class Engine {
 	private let spriteSpawnSystem: SpriteSpawnSystem
 	private let inputSystem: InputSystem
 	private let physicsSystem: PhysicsSystem
+	private let collisionsSystem: CollisionsSystem
 	private var aiSystem: AISystem
 	private let cameraSystem: CameraSystem
+	private var weaponSystem: WeaponSystem
 
 	init(_ model: Model) {
 		self.model = model
@@ -27,17 +29,21 @@ final class Engine {
 		self.world = world
 		spriteSpawnSystem = SpriteSpawnSystem(scene: model.scene(), store: world.sprites)
 		physicsSystem = PhysicsSystem(world: world)
+		collisionsSystem = CollisionsSystem(scene: model.scene())
+		weaponSystem = WeaponSystem(world: world)
+
 		levelSystem = LevelSystem(world: world, level: Level())
 		inputSystem = InputSystem(world: world, player: levelSystem.state.value.player, inputController: model.inputController)
 		aiSystem = AISystem(world: world)
 
-		cameraSystem = CameraSystem(player: { world.sprites[0] }, camera: model.scene().camera!)
+		cameraSystem = CameraSystem(player: world.sprites[0].sprite, camera: model.scene().camera!)
 		cameraSystem.update()
 	}
 
 	func simulate() {
 		inputSystem.update()
 		physicsSystem.update()
+		weaponSystem.update()
 		levelSystem.update()
 		aiSystem.update()
 		cameraSystem.update()

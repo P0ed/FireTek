@@ -3,10 +3,10 @@ import PowerCore
 
 struct CameraSystem {
 
-	let player: Closure<SpriteComponent>.Getter
+	let player: SKSpriteNode
 	let camera: SKCameraNode
 
 	func update() {
-		camera.position = player().sprite.position
+		camera.position = player.position
 	}
 }
