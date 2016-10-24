@@ -3,7 +3,7 @@ import SpriteKit
 
 extension CGVector {
 
-	public func rotate(angle: CGFloat) -> CGVector {
+	public func rotate(_ angle: CGFloat) -> CGVector {
 		return CGVector(
 			dx: dx * cos(angle) - dy * sin(angle),
 			dy: dx * sin(angle) + dy * cos(angle)
@@ -30,11 +30,11 @@ extension CGVector {
 		return self / sqrt(lengthSquared)
 	}
 
-	public func dot(vector: CGVector) -> CGFloat {
+	public func dot(_ vector: CGVector) -> CGFloat {
 		return dx * vector.dx + dy * vector.dy
 	}
 
-	public func cross(vector: CGVector) -> CGFloat {
+	public func cross(_ vector: CGVector) -> CGFloat {
 		return dx * vector.dy - dy * vector.dx
 	}
 

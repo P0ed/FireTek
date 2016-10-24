@@ -47,7 +47,7 @@ struct VehicleInstance {
 
 extension World {
 
-	func vehicleAt(index: Int) -> VehicleInstance {
+	func vehicleAt(_ index: Int) -> VehicleInstance {
 		let entity = self.vehicles.entityAt(index)
 		let vehicle = self.vehicles[index]
 

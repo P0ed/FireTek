@@ -1,10 +1,11 @@
 import PowerCore
 import CoreGraphics.CGBase
 import Fx
+import Runes
 
 extension Store {
 
-	func getComponentAt(index: Int) -> () -> Component {
+	func getComponentAt(_ index: Int) -> () -> Component {
 		let sharedIndex = sharedIndexAt(index)
 		return {
 			self[sharedIndex.value]
@@ -47,7 +48,7 @@ struct Closure<A> {
 		}
 	}
 
-	func update(f: (inout A) -> ()) {
+	func update(_ f: (inout A) -> ()) {
 		var value = get()
 		f(&value)
 		set(value)
@@ -65,7 +66,7 @@ extension Store {
 		}
 	}
 
-	func closureAt(index: Int) -> Closure<Component> {
+	func closureAt(_ index: Int) -> Closure<Component> {
 		let sharedIndex = sharedIndexAt(index)
 
 		return Closure(
@@ -78,31 +79,31 @@ extension Store {
 		)
 	}
 
-	func weakClosure(entity: Entity) -> Closure<Component?> {
+	func weakClosure(_ entity: Entity) -> Closure<Component?> {
 		return Closure(
 			get: {
 				{self[$0]} <^> self.indexOf(entity)
 			},
 			set: { newValue in
-				guard let index = self.indexOf(entity), newValue = newValue else { return }
+				guard let index = self.indexOf(entity), let newValue = newValue else { return }
 				self[index] = newValue
 			}
 		)
 	}
 
-	func find(f: Component -> Bool) -> Int? {
-		for (index, component) in self.enumerate() {
+	func find(_ f: (Component) -> Bool) -> Int? {
+		for (index, component) in self.enumerated() {
 			if f(component) {
-				return .Some(index)
+				return .some(index)
 			}
 		}
-		return .None
+		return .none
 	}
 }
 
 extension Set {
 
-	func filterSet(@noescape predicate: (Element) -> Bool) -> Set<Element> {
+	func filterSet(_ predicate: (Element) -> Bool) -> Set<Element> {
 		var newValue = Set<Element>(minimumCapacity: count)
 		for element in self where predicate(element) {
 			newValue.insert(element)

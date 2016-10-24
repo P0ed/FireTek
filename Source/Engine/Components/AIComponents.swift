@@ -4,10 +4,10 @@ import Fx
 struct VehicleAIComponent {
 
 	enum State {
-		case Move(Point)
-		case Hold(Point)
-		case Attack(Point)
-		case Patrol(Point, Point)
+		case move(Point)
+		case hold(Point)
+		case attack(Point)
+		case patrol(Point, Point)
 	}
 
 	let vehicle: Box<Int>

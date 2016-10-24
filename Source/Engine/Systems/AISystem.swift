@@ -1,6 +1,7 @@
 import PowerCore
 import Fx
 import SpriteKit
+import Runes
 
 struct AISystem {
 
@@ -22,14 +23,14 @@ struct AISystem {
 
 	private func updateVehicles() {
 		let ai = world.vehicleAI
-		ai.enumerate().forEach { index, ai in
+		ai.enumerated().forEach { index, ai in
 			let vehicle = world.vehicles[ai.vehicle.value]
 			world.vehicleInput[vehicle.input.value] = {
 
 				var ai = ai
 				var input = .empty as VehicleInputComponent
 				if ai.target == nil {
-					ai.target = { world.team.entityAt($0) } <^> world.team.find{ (team: Team) in team == .Blue }
+					ai.target = { world.team.entityAt($0) } <^> world.team.find{ (team: Team) in team == .blue }
 				}
 
 				if let target = ai.target, let targetSprite = world.sprites.indexOf(target) {

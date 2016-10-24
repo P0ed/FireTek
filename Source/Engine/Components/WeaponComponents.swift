@@ -1,9 +1,9 @@
 import PowerCore
 
 enum ProjectileType {
-	case Shell
-	case Missle
-	case HomingMissle(Entity)
+	case shell
+	case missle
+	case homingMissle(Entity)
 }
 
 struct Weapon {

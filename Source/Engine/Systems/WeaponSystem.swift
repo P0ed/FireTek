@@ -22,7 +22,7 @@ struct WeaponSystem {
 		let inputs = world.vehicleInput
 		let stats = world.vehicleStats
 
-		vehicles.enumerate().forEach { index, vehicle in
+		vehicles.enumerated().forEach { index, vehicle in
 			let entity = vehicles.entityAt(index)
 			let input = inputs[vehicle.input]
 			if input.primaryFire && stats[vehicle.stats].weapon.remainingCooldown == 0 {
@@ -34,12 +34,12 @@ struct WeaponSystem {
 	private func updateCooldowns() {
 		let vehicleStats = world.vehicleStats
 		// FIXME: replace enumerate with count
-		vehicleStats.enumerate().forEach { index, _ in
+		vehicleStats.enumerated().forEach { index, _ in
 			updateWeaponCooldown(&vehicleStats[index].weapon)
 		}
 	}
 
-	private func updateWeaponCooldown(inout weapon: Weapon) {
+	private func updateWeaponCooldown(_ weapon: inout Weapon) {
 		if weapon.remainingCooldown != 0 {
 			weapon.remainingCooldown = max(0, weapon.remainingCooldown - Float(Engine.timeStep))
 			if weapon.remainingCooldown == 0 {
@@ -69,7 +69,7 @@ struct WeaponSystem {
 		}
 	}
 
-	private func fire(inout weapon: Weapon, at transform: Transform, source: Entity) {
+	private func fire(_ weapon: inout Weapon, at transform: Transform, source: Entity) {
 		let roundsPerTick = weapon.perShotCooldown == 0 ? weapon.rounds : 1
 
 		weapon.rounds -= roundsPerTick
@@ -79,6 +79,7 @@ struct WeaponSystem {
 		for _ in 0..<roundsPerTick {
 			ProjectileFactory.createProjectile(
 				world,
+				at: transform,
 				projectile: ProjectileComponent(
 					source: source,
 					type: weapon.type,

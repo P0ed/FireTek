@@ -21,7 +21,7 @@ final class HeightMapGenerator {
 			frand = HeightMapGenerator.randomWithSource(GKRandomSource())
 		}
 
-		let maxIndex = size.predecessor()
+		let maxIndex = size - 1
 
 		/// Initial corner values.
 		heightMap[0, 0] = frand()
@@ -30,14 +30,14 @@ final class HeightMapGenerator {
 		heightMap[maxIndex, maxIndex] = frand()
 	}
 
-	private static func randomWithSeed(seed: Int) -> () -> Float {
+	private static func randomWithSeed(_ seed: Int) -> () -> Float {
 		var seedValue = seed
-		let seedData = NSData(bytes: &seedValue, length: sizeof(seedValue.dynamicType))
-		let randomSource = GKARC4RandomSource(seed: seedData)
+//		let seedData = Data(bytes: UnsafePointer<UInt8>(&seedValue), count: sizeof(type(of: seedValue)))
+		let randomSource = GKARC4RandomSource(seed: /*seedData*/Data())
 		return randomWithSource(randomSource)
 	}
 
-	private static func randomWithSource(randomSource: GKRandomSource) -> () -> Float {
+	private static func randomWithSource(_ randomSource: GKRandomSource) -> () -> Float {
 		return {
 			/// Returns in the range -1..1
 			randomSource.nextUniform() * 2 - 1
@@ -45,12 +45,12 @@ final class HeightMapGenerator {
 	}
 
 	/// Roughness 1 = rough, 0 = flat. 0.6 looks good.
-	func diamondSquare(roughness: Float, seed: Int? = nil) {
+	func diamondSquare(_ roughness: Float, seed: Int? = nil) {
 		frand = seed.map(HeightMapGenerator.randomWithSeed) ?? frand
 
-		let maxIndex = heightMap.size.predecessor()
+		let maxIndex = (heightMap.size - 1)
 
-		func iterate(subSize: Int, @noescape f: (Int, Int) -> ()) {
+		func iterate(_ subSize: Int, f: (Int, Int) -> ()) {
 			var y = 0
 			while y < maxIndex {
 				var x = 0
@@ -79,7 +79,7 @@ final class HeightMapGenerator {
 
 	/// Sets the midpoint of the square to be the average of the four corner points plus a random value.
 	/// x,y are the top left values.
-	private func diamond(x x: Int, y: Int, size: Int, randomScale: Float) {
+	private func diamond(x: Int, y: Int, size: Int, randomScale: Float) {
 		let tl = heightMap[x, y]
 		let tr = heightMap[x + size, y]
 		let bl = heightMap[x, y + size]
@@ -90,7 +90,7 @@ final class HeightMapGenerator {
 
 	/// Sets the midpoints of the sides of the square to be the average of the 3 or
 	/// 4 horiz/vert points plus a random value.
-	private func square(x x: Int, y: Int, size: Int, randomScale: Float) {
+	private func square(x: Int, y: Int, size: Int, randomScale: Float) {
 		/// Get all the inputs.
 		let half = size / 2
 		let tl = heightMap[x, y]
@@ -101,7 +101,7 @@ final class HeightMapGenerator {
 
 		let mapSize = heightMap.size
 		let fix: (Int, Int) -> Float? = { x, y in
-			(x >= 0 && y >= 0 && x < mapSize && y < mapSize) ? .Some(self.heightMap[x, y]) : .None
+			(x >= 0 && y >= 0 && x < mapSize && y < mapSize) ? .some(self.heightMap[x, y]) : .none
 		}
 
 		let above = fix(x + half, y - half)
@@ -118,7 +118,7 @@ final class HeightMapGenerator {
 		heightMap[x + size, y + half] = average(tr, br, m, right) + frand() * randomScale /// Right
 	}
 
-	private func average(a: Float, _ b: Float, _ c: Float, _ d: Float?) -> Float {
+	private func average(_ a: Float, _ b: Float, _ c: Float, _ d: Float?) -> Float {
 		if let d = d {
 			return (a+b+c+d) / 4
 		} else {

@@ -8,43 +8,43 @@ struct DSVector {
 }
 
 enum DSButton: Int {
-	case Square = 1
-	case Cross = 2
-	case Circle = 3
-	case Triangle = 4
-	case L1 = 5
-	case R1 = 6
-	case L2 = 7
-	case R2 = 8
-	case Share = 9
-	case Options = 10
+	case square = 1
+	case cross = 2
+	case circle = 3
+	case triangle = 4
+	case l1 = 5
+	case r1 = 6
+	case l2 = 7
+	case r2 = 8
+	case share = 9
+	case options = 10
 }
 
 enum DSStick {
-	case Left
-	case Right
+	case left
+	case right
 }
 
 enum DSTrigger {
-	case Left
-	case Right
+	case left
+	case right
 }
 
 enum DSHatDirection: Int {
-	case Null		= 0
-	case Up			= 1
-	case Right		= 2
-	case Down		= 4
-	case Left		= 8
-	case UpRight	= 3
-	case DownRight	= 6
-	case UpLeft		= 9
-	case DownLeft	= 12
+	case null		= 0
+	case up			= 1
+	case right		= 2
+	case down		= 4
+	case left		= 8
+	case upRight	= 3
+	case downRight	= 6
+	case upLeft		= 9
+	case downLeft	= 12
 }
 
 enum DSControl {
-	case Button(DSButton)
-	case Stick(DSStick)
-	case Trigger(DSTrigger)
-	case DPad(DSHatDirection)
+	case button(DSButton)
+	case stick(DSStick)
+	case trigger(DSTrigger)
+	case dPad(DSHatDirection)
 }

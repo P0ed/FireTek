@@ -25,6 +25,6 @@ struct BuildingComponent {
 }
 
 enum Team {
-	case Blue
-	case Red
+	case blue
+	case red
 }

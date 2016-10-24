@@ -41,6 +41,10 @@
 		5F6EECB01D776CA10089A0AB /* ProjectileFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F6EECAF1D776CA10089A0AB /* ProjectileFactory.swift */; };
 		5F77832D1D7A04F50027FFED /* CollisionsSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F77832C1D7A04F50027FFED /* CollisionsSystem.swift */; };
 		5FD551061D7978AE0092A187 /* SpriteKitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FD551051D7978AE0092A187 /* SpriteKitExtensions.swift */; };
+		5FDF95CA1DBE82AE009E11DA /* Runes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FDF95C81DBE82AE009E11DA /* Runes.framework */; };
+		5FDF95CB1DBE82AE009E11DA /* Runes.framework.dSYM in Resources */ = {isa = PBXBuildFile; fileRef = 5FDF95C91DBE82AE009E11DA /* Runes.framework.dSYM */; };
+		5FDF95CC1DBE9CB3009E11DA /* Runes.framework.dSYM in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5FDF95C91DBE82AE009E11DA /* Runes.framework.dSYM */; };
+		5FDF95CD1DBE9CB3009E11DA /* Runes.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5FDF95C81DBE82AE009E11DA /* Runes.framework */; };
 		5FE123981D5E398C00C41BAC /* Fx.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FE123971D5E398C00C41BAC /* Fx.framework */; };
 		5FE1240F1D5F451400C41BAC /* PowerCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FE1240E1D5F451400C41BAC /* PowerCore.framework */; };
 		5FE124381D5FA4EC00C41BAC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FE1241E1D5FA4EC00C41BAC /* AppDelegate.swift */; };
@@ -68,6 +72,8 @@
 			dstPath = "";
 			dstSubfolderSpec = 16;
 			files = (
+				5FDF95CC1DBE9CB3009E11DA /* Runes.framework.dSYM in CopyFiles */,
+				5FDF95CD1DBE9CB3009E11DA /* Runes.framework in CopyFiles */,
 				5F428CA61D690C6E0075FA6B /* OpenEmuBase.framework.dSYM in CopyFiles */,
 				5F428CA71D690C6E0075FA6B /* OpenEmuSystem.framework.dSYM in CopyFiles */,
 				5F428CA81D690C6E0075FA6B /* OpenEmuBase.framework in CopyFiles */,
@@ -115,6 +121,8 @@
 		5FB51C541D587D7100F9FFA4 /* Cartfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Cartfile; sourceTree = "<group>"; };
 		5FD28A561D5B091E00BAFC0F /* File.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = File.md; sourceTree = "<group>"; };
 		5FD551051D7978AE0092A187 /* SpriteKitExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpriteKitExtensions.swift; sourceTree = "<group>"; };
+		5FDF95C81DBE82AE009E11DA /* Runes.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Runes.framework; sourceTree = "<group>"; };
+		5FDF95C91DBE82AE009E11DA /* Runes.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; path = Runes.framework.dSYM; sourceTree = "<group>"; };
 		5FE123971D5E398C00C41BAC /* Fx.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fx.framework; sourceTree = "<group>"; };
 		5FE1240E1D5F451400C41BAC /* PowerCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PowerCore.framework; sourceTree = "<group>"; };
 		5FE1241E1D5FA4EC00C41BAC /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -142,6 +150,7 @@
 				5FE123981D5E398C00C41BAC /* Fx.framework in Frameworks */,
 				5F428CA41D690C4F0075FA6B /* OpenEmuSystem.framework in Frameworks */,
 				5F428CA21D690C4F0075FA6B /* OpenEmuBase.framework in Frameworks */,
+				5FDF95CA1DBE82AE009E11DA /* Runes.framework in Frameworks */,
 				5FE1240F1D5F451400C41BAC /* PowerCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -204,12 +213,14 @@
 			children = (
 				5F428C9F1D690C4F0075FA6B /* OpenEmuBase.framework.dSYM */,
 				5F428CA11D690C4F0075FA6B /* OpenEmuSystem.framework.dSYM */,
-				5FE124491D5FA5A900C41BAC /* Fx.framework.dSYM */,
 				5FE1244A1D5FA5A900C41BAC /* PowerCore.framework.dSYM */,
+				5FE124491D5FA5A900C41BAC /* Fx.framework.dSYM */,
+				5FDF95C91DBE82AE009E11DA /* Runes.framework.dSYM */,
 				5F428C9E1D690C4F0075FA6B /* OpenEmuBase.framework */,
 				5F428CA01D690C4F0075FA6B /* OpenEmuSystem.framework */,
 				5FE1240E1D5F451400C41BAC /* PowerCore.framework */,
 				5FE123971D5E398C00C41BAC /* Fx.framework */,
+				5FDF95C81DBE82AE009E11DA /* Runes.framework */,
 			);
 			path = Mac;
 			sourceTree = "<group>";
@@ -362,11 +373,12 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
-				LastUpgradeCheck = 0730;
+				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = P0ed;
 				TargetAttributes = {
 					5F9104971D3BA19500C2C519 = {
 						CreatedOnToolsVersion = 7.3.1;
+						LastSwiftMigration = 0800;
 					};
 				};
 			};
@@ -399,6 +411,7 @@
 				5FE124441D5FA4ED00C41BAC /* GameScene.sks in Resources */,
 				5FE1243B1D5FA4EC00C41BAC /* Assets.xcassets in Resources */,
 				5F428CA31D690C4F0075FA6B /* OpenEmuBase.framework.dSYM in Resources */,
+				5FDF95CB1DBE82AE009E11DA /* Runes.framework.dSYM in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -474,8 +487,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "-";
@@ -519,8 +534,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "-";
@@ -539,6 +556,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = macosx;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 			};
 			name = Release;
 		};
@@ -555,6 +573,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.github.p0ed.FireTek;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -571,6 +590,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.github.p0ed.FireTek;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};

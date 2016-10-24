@@ -7,7 +7,7 @@ final class InputController {
 	init(_ eventsController: EventsController) {
 		self.eventsController = eventsController
 
-		let buttonAction: DSButton -> DeviceAction = {
+		let buttonAction: (DSButton) -> DeviceAction = {
 			button in
 			return DeviceAction {
 				pressed in
@@ -20,9 +20,9 @@ final class InputController {
 		}
 
 		let buttonActions: [DSButton: DeviceAction] = [
-			.Square: buttonAction(.Square),
-			.Cross: buttonAction(.Cross),
-			.Circle: buttonAction(.Circle)
+			.square: buttonAction(.square),
+			.cross: buttonAction(.cross),
+			.circle: buttonAction(.circle)
 		]
 
 		eventsController.deviceConfiguration = DeviceConfiguration(
@@ -32,7 +32,7 @@ final class InputController {
 		)
 	}
 
-	func buttonPressed(button: DSButton) -> Bool {
+	func buttonPressed(_ button: DSButton) -> Bool {
 		return buttonsState & 1 << button.rawValue != 0
 	}
 }
@@ -43,9 +43,9 @@ extension InputController {
 			accelerate: .init(eventsController.leftJoystick.dy),
 			turnHull: .init(eventsController.leftJoystick.dx),
 			turnTurret: .init(eventsController.rightJoystick.dx),
-			primaryFire: buttonPressed(.Cross),
-			secondaryFire: buttonPressed(.Square),
-			special: buttonPressed(.Circle)
+			primaryFire: buttonPressed(.cross),
+			secondaryFire: buttonPressed(.square),
+			special: buttonPressed(.circle)
 		)
 	}
 }

@@ -5,15 +5,15 @@ struct CollisionsSystem {
 
 	private let contactDelegate: SceneDelegate
 
-	let didBeginContact: Stream<SKPhysicsContact>
-	let didEndContact: Stream<SKPhysicsContact>
+	let didBeginContact: Signal<SKPhysicsContact>
+	let didEndContact: Signal<SKPhysicsContact>
 
 	init(scene: SKScene) {
 
-		let (beginContactStream, beginContactPipe) = Stream<SKPhysicsContact>.pipe()
+		let (beginContactStream, beginContactPipe) = Signal<SKPhysicsContact>.pipe()
 		didBeginContact = beginContactStream
 
-		let (endContactStream, endContactPipe) = Stream<SKPhysicsContact>.pipe()
+		let (endContactStream, endContactPipe) = Signal<SKPhysicsContact>.pipe()
 		didEndContact = endContactStream
 
 		contactDelegate = SceneDelegate(didBeginContact: beginContactPipe, didEndContact: endContactPipe)
@@ -23,20 +23,20 @@ struct CollisionsSystem {
 	@objc
 	final class SceneDelegate: NSObject, SKPhysicsContactDelegate {
 
-		private let _didBeginContact: (SKPhysicsContact) -> ()
-		private let _didEndContact: (SKPhysicsContact) -> ()
+		private let didBeginContact: (SKPhysicsContact) -> ()
+		private let didEndContact: (SKPhysicsContact) -> ()
 
-		init(didBeginContact: (SKPhysicsContact) -> (), didEndContact: (SKPhysicsContact) -> ()) {
-			_didBeginContact = didBeginContact
-			_didEndContact = didEndContact
+		init(didBeginContact: @escaping (SKPhysicsContact) -> (), didEndContact: @escaping (SKPhysicsContact) -> ()) {
+			self.didBeginContact = didBeginContact
+			self.didEndContact = didEndContact
 		}
 
-		func didBeginContact(contact: SKPhysicsContact) {
-			_didBeginContact(contact)
+		func didBegin(_ contact: SKPhysicsContact) {
+			didBeginContact(contact)
 		}
 
-		func didEndContact(contact: SKPhysicsContact) {
-			_didEndContact(contact)
+		func didEnd(_ contact: SKPhysicsContact) {
+			didEndContact(contact)
 		}
 	}
 }

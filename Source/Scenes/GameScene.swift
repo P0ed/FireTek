@@ -8,8 +8,8 @@ final class GameScene: SKScene {
 	private var lastUpdate = 0 as CFTimeInterval
 	private let hidController = HIDController()
 
-	override func didMoveToView(view: SKView) {
-		super.didMoveToView(view)
+	override func didMove(to view: SKView) {
+		super.didMove(to: view)
 
 		let camera = SKCameraNode()
 		camera.position = CGPoint(x: 128, y: 128)
@@ -27,17 +27,17 @@ final class GameScene: SKScene {
 		renderTileMap(Level())
 	}
 
-	func renderTileMap(level: Level) {
+	func renderTileMap(_ level: Level) {
 		let tileSize = 32
 		level.tileMap.forEach { position, tile in
 			let node = SKSpriteNode(color: tile.color, size: CGSize(width: tileSize, height: tileSize))
 			node.position = CGPoint(x: position.x * tileSize, y: position.y * tileSize)
-			node.anchorPoint = CGPointZero
+			node.anchorPoint = .zero
 			world.addChild(node)
 		}
 	}
 
-    override func update(currentTime: CFTimeInterval) {
+    override func update(_ currentTime: TimeInterval) {
 		if lastUpdate != 0 {
 			while currentTime - lastUpdate > Engine.timeStep {
 				lastUpdate += Engine.timeStep

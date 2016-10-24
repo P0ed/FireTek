@@ -6,7 +6,7 @@ extension SKNode {
 
 	private final class EntityContainer {
 
-		private static let key = UnsafeMutablePointer<Int8>.alloc(1)
+		fileprivate static let key = UnsafeMutablePointer<Int8>.allocate(capacity: 1)
 
 		let entity: Entity
 
@@ -25,12 +25,18 @@ extension SKNode {
 	}
 
 	var transform: Transform {
-		let position = self.position
-		let zRotation = self.zRotation
-		return Transform(
-			x: Float(position.x),
-			y: Float(position.y),
-			zRotation: Float(zRotation)
-		)
+		set {
+			self.position = CGPoint(x: CGFloat(newValue.x), y: CGFloat(newValue.y))
+			self.zRotation = CGFloat(newValue.zRotation)
+		}
+		get {
+			let position = self.position
+			let zRotation = self.zRotation
+			return Transform(
+				x: Float(position.x),
+				y: Float(position.y),
+				zRotation: Float(zRotation)
+			)
+		}
 	}
 }

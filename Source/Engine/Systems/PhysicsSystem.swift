@@ -25,7 +25,7 @@ struct PhysicsSystem {
 		}
 	}
 
-	private func applyInput(input: VehicleInputComponent, to physics: PhysicsComponent, stats: VehicleStats) {
+	private func applyInput(_ input: VehicleInputComponent, to physics: PhysicsComponent, stats: VehicleStats) {
 		let direction = CGVector(dx: 0, dy: 1).rotate(physics.body.node!.zRotation)
 		physics.body.applyImpulse(direction * CGFloat(stats.speed) * CGFloat(input.accelerate) * 7)
 		physics.body.applyTorque(CGFloat(stats.speed) * CGFloat(input.turnHull) * -0.6)

@@ -7,7 +7,7 @@ struct DeviceConfiguration {
 	var dPadMapTable: [DSHatDirection: DeviceAction]
 	var keyboardMapTable: [Int: DeviceAction]
 
-	static func keyCodeForVirtualKey(virtualKey: Int) -> Int {
-		return Int(OEHIDEvent.keyCodeForVirtualKey(CGCharCode(virtualKey)))
+	static func keyCode(forVirtualKey key: Int) -> Int {
+		return Int(OEHIDEvent.keyCode(forVirtualKey: CGCharCode(key)))
 	}
 }
