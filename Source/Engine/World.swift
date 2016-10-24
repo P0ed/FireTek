@@ -16,6 +16,7 @@ final class World {
 
 	let towerAI: Store<TowerAIComponent>
 	let vehicleAI: Store<VehicleAIComponent>
+	let projectiles: Store<ProjectileComponent>
 
 	let team: Store<Team>
 
@@ -33,6 +34,7 @@ final class World {
 		towerAI = core.createStore()
 		vehicleAI = core.createStore()
 		team = core.createStore()
+		projectiles = core.createStore()
 	}
 }
 

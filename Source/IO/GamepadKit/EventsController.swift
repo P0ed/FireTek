@@ -35,7 +35,7 @@ class EventsController {
 			}
 		case OEHIDEventTypeButton.rawValue:
 			if let button = DSButton(rawValue: Int(event.buttonNumber)), let action = deviceConfiguration.buttonsMapTable[button] {
-//				action.performAction(Bool(event.state.rawValue))
+				action.performAction(event.state == OEHIDEventStateOn)
 			}
 		case OEHIDEventTypeHatSwitch.rawValue:
 			if let hatDirection = DSHatDirection(rawValue: Int(event.hatDirection.rawValue)) {
@@ -55,7 +55,7 @@ class EventsController {
 			}
 		case OEHIDEventTypeKeyboard.rawValue:
 			if let action = deviceConfiguration.keyboardMapTable[Int(event.keycode)] {
-//				action.performAction(Bool(event.state.rawValue))
+				action.performAction(event.state == OEHIDEventStateOn)
 			}
 		default: break
 		}

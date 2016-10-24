@@ -33,7 +33,6 @@ struct WeaponSystem {
 
 	private func updateCooldowns() {
 		let vehicleStats = world.vehicleStats
-		// FIXME: replace enumerate with count
 		vehicleStats.enumerated().forEach { index, _ in
 			updateWeaponCooldown(&vehicleStats[index].weapon)
 		}
