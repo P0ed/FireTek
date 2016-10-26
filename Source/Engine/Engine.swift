@@ -22,6 +22,7 @@ final class Engine {
 	private var aiSystem: AISystem
 	private let cameraSystem: CameraSystem
 	private var weaponSystem: WeaponSystem
+	private let projectileSystem: ProjectileSystem
 
 	init(_ model: Model) {
 		self.model = model
@@ -31,6 +32,7 @@ final class Engine {
 		physicsSystem = PhysicsSystem(world: world)
 		collisionsSystem = CollisionsSystem(scene: model.scene())
 		weaponSystem = WeaponSystem(world: world)
+		projectileSystem = ProjectileSystem(world: world)
 
 		levelSystem = LevelSystem(world: world, level: Level())
 		inputSystem = InputSystem(world: world, player: levelSystem.state.value.player, inputController: model.inputController)
@@ -44,6 +46,7 @@ final class Engine {
 		inputSystem.update()
 		physicsSystem.update()
 		weaponSystem.update()
+		projectileSystem.update()
 		levelSystem.update()
 		aiSystem.update()
 		cameraSystem.update()

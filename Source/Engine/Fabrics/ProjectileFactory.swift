@@ -6,10 +6,27 @@ enum ProjectileFactory {
 	@discardableResult
 	static func createProjectile(_ world: World, at position: Transform, projectile: ProjectileComponent) -> Entity {
 		let entity = world.entityManager.create()
+
 		let sprite = SpriteFactory.createProjectileSprite(entity, type: projectile.type)
 		sprite.sprite.transform = position
+
+		let physics = projectilePhysics(sprite.sprite)
+		physics.body.velocity = CGVector(dx: 0, dy: 200).rotate(CGFloat(position.zRotation))
+
 		world.sprites.add(component: sprite, to: entity)
+		world.physics.add(component: physics, to: entity)
+		world.projectiles.add(component: projectile, to: entity)
 
 		return entity
+	}
+
+	static func projectilePhysics(_ sprite: SKSpriteNode) -> PhysicsComponent {
+		let body = SKPhysicsBody(rectangleOf: CGSize(width: 4, height: 4))
+		body.isDynamic = true
+		body.mass = 1
+		body.categoryBitMask = 0
+		body.collisionBitMask = 0
+		sprite.physicsBody = body
+		return PhysicsComponent(body: body)
 	}
 }

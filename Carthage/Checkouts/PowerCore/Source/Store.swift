@@ -4,10 +4,10 @@ typealias StoreID = UInt16
 
 public final class Store<Component> {
 
-	private weak var entityManager: EntityManager?
+	fileprivate weak var entityManager: EntityManager!
 
 	private let id: StoreID
-	private var entities: ContiguousArray<Entity> = []
+	fileprivate var entities: ContiguousArray<Entity> = []
 	fileprivate var components: ContiguousArray<Component> = []
 	private var indexes: ContiguousArray<MutableBox<Int>> = []
 	private var map: [Entity: Int] = [:]
@@ -90,6 +90,10 @@ public final class Store<Component> {
 
 		removedComponentsPipe(entity, component)
 	}
+
+	public var indices: CountableRange<Int> {
+		return 0..<entities.count
+	}
 }
 
 extension Store: Sequence {
@@ -97,5 +101,30 @@ extension Store: Sequence {
 
 	public func makeIterator() -> Store.Iterator {
 		return components.makeIterator()
+	}
+}
+
+public extension Store {
+
+	public func removeComponents(where f: (Entity, Component) -> Bool) {
+		var index = 0
+		while index < components.count {
+			if f(entities[index], components[index]) {
+				removeAt(index)
+			} else {
+				index += 1
+			}
+		}
+	}
+
+	public func removeEntities(where f: (Entity, Component) -> Bool) {
+		var index = 0
+		while index < components.count {
+			if f(entities[index], components[index]) {
+				entityManager.removeEntity(entities[index])
+			} else {
+				index += 1
+			}
+		}
 	}
 }

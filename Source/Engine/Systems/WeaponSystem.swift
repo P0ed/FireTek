@@ -82,7 +82,8 @@ struct WeaponSystem {
 				projectile: ProjectileComponent(
 					source: source,
 					type: weapon.type,
-					damage: weapon.damage
+					damage: weapon.damage,
+					lifetime: 120
 				)
 			)
 		}
