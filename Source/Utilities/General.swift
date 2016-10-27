@@ -112,3 +112,11 @@ extension Set {
 		return newValue
 	}
 }
+
+extension Array {
+
+	mutating func fastRemove(at index: Int) {
+		self[index] = self[count - 1]
+		self.removeLast()
+	}
+}
