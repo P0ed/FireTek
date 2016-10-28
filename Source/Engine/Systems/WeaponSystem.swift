@@ -41,7 +41,7 @@ struct WeaponSystem {
 	private func updateWeaponCooldown(_ weapon: inout Weapon) {
 		if weapon.remainingCooldown != 0 {
 			weapon.remainingCooldown = max(0, weapon.remainingCooldown - Float(Engine.timeStep))
-			if weapon.remainingCooldown == 0 {
+			if weapon.remainingCooldown == 0 && weapon.rounds == 0 {
 				weapon.rounds = min(weapon.roundsPerShot, weapon.ammo)
 			}
 		}
@@ -58,7 +58,12 @@ struct WeaponSystem {
 				let statsIndex = vehicle.stats.value
 				let transform = sprites[vehicle.sprite].sprite.transform
 
-				fire(&stats[statsIndex].weapon, at: transform, source: entity)
+				let weapon = stats[statsIndex].weapon
+
+				if weapon.remainingCooldown == 0 && weapon.rounds != 0 {
+
+					fire(&stats[statsIndex].weapon, at: transform, source: entity)
+				}
 
 				return stats[statsIndex].weapon.rounds > 0
 			}

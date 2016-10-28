@@ -16,13 +16,13 @@ enum UnitFactory {
 			type: .shell,
 			damage: 6,
 			velocity: 300,
-			cooldown: 2.5,
-			perShotCooldown: 0.4,
+			cooldown: 1.2,
+			perShotCooldown: 0.15,
 			maxAmmo: 80,
 			roundsPerShot: 3
 		)
 
-		let stats = VehicleStats(speed: 20, weapon: weapon)
+		let stats = VehicleStats(speed: 28, weapon: weapon)
 
 		let vehicle = VehicleComponent(
 			sprite: world.sprites.sharedIndexAt § world.sprites.add(component: sprite, to: entity),
