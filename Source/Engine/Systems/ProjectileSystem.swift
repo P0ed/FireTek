@@ -1,3 +1,4 @@
+import SpriteKit
 import PowerCore
 import Fx
 import Runes
@@ -10,11 +11,11 @@ final class ProjectileSystem {
 		let sprite: Box<Int>
 	}
 
-	private let world: World
+	fileprivate let world: World
 	private var units = [] as [Unit]
 	private let disposable = CompositeDisposable()
 
-	init(world: World) {
+	init(world: World, collisionsSystem: CollisionsSystem) {
 		self.world = world
 
 		disposable += world.projectiles.newComponents.observe { [unowned self] index in
@@ -30,9 +31,12 @@ final class ProjectileSystem {
 
 		disposable += world.projectiles.removedComponents.observe { [unowned self] entity, _ in
 			if let index = self.units.index(where: { $0.entity == entity }) {
-				self.units.remove(at: index)
+				self.units.fastRemove(at: index)
 			}
 		}
+
+		disposable += collisionsSystem.didBeginContact
+			.observe(unown(self, type(of: self).processContact))
 	}
 
 	func update() {
@@ -58,6 +62,34 @@ final class ProjectileSystem {
 
 		projectiles.removeEntities { _, component in
 			component.lifetime <= 0
+		}
+	}
+}
+
+/// Projectile collisions
+private extension ProjectileSystem {
+
+	func processContact(_ contact: SKPhysicsContact) {
+		if let entityA = contact.bodyA.node?.entity,
+			let entityB = contact.bodyB.node?.entity,
+			let indexes = indexesOf(entityA: entityA, entityB: entityB) {
+
+			world.entityManager.removeEntity(world.projectiles.entityAt(indexes.projectile))
+		}
+	}
+
+	private func indexesOf(entityA: Entity, entityB: Entity) -> (hp: Int, projectile: Int)? {
+		let hp = world.hp
+		let projectiles = world.projectiles
+
+		if let hpIndex = hp.indexOf(entityA), let projectileIndex = projectiles.indexOf(entityB) {
+			return (hp: hpIndex, projectile: projectileIndex)
+		}
+		else if let hpIndex = hp.indexOf(entityB), let projectileIndex = projectiles.indexOf(entityA) {
+			return (hp: hpIndex, projectile: projectileIndex)
+		}
+		else {
+			return nil
 		}
 	}
 }

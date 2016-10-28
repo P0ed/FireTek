@@ -28,7 +28,7 @@ final class GameScene: SKScene {
 	}
 
 	func renderTileMap(_ level: Level) {
-		let tileSize = 32
+		let tileSize = 64
 		level.tileMap.forEach { position, tile in
 			let node = SKSpriteNode(color: tile.color, size: CGSize(width: tileSize, height: tileSize))
 			node.position = CGPoint(x: position.x * tileSize, y: position.y * tileSize)

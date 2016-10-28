@@ -23,7 +23,7 @@ enum SpriteFactory {
 	}
 
 	static func createProjectileSprite(_ entity: Entity, type: ProjectileType) -> SpriteComponent {
-		let color = SKColor(red: 0.7, green: 0.6, blue: 0.56, alpha: 1)
+		let color = SKColor(red: 0.7, green: 0.6, blue: 0.3, alpha: 1)
 		let spriteNode = SKSpriteNode(color: color, size: CGSize(width: 4, height: 4))
 		spriteNode.entity = entity
 		return SpriteComponent(sprite: spriteNode)

@@ -39,7 +39,7 @@ struct AISystem {
 					let targetPosition = world.sprites[targetSprite].sprite.position
 					let distance = position.distance(to: targetPosition)
 
-					if distance > 120 {
+					if distance > 180 {
 						let toTarget = (targetPosition - position).asVector
 
 						let angle = sprite.orientation.angle(with: toTarget)

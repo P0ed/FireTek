@@ -32,7 +32,7 @@ final class Engine {
 		physicsSystem = PhysicsSystem(world: world)
 		collisionsSystem = CollisionsSystem(scene: model.scene())
 		weaponSystem = WeaponSystem(world: world)
-		projectileSystem = ProjectileSystem(world: world)
+		projectileSystem = ProjectileSystem(world: world, collisionsSystem: collisionsSystem)
 
 		levelSystem = LevelSystem(world: world, level: Level())
 		inputSystem = InputSystem(world: world, player: levelSystem.state.value.player, inputController: model.inputController)

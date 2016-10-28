@@ -22,7 +22,7 @@ enum UnitFactory {
 			roundsPerShot: 3
 		)
 
-		let stats = VehicleStats(speed: 28, weapon: weapon)
+		let stats = VehicleStats(speed: 36, weapon: weapon)
 
 		let vehicle = VehicleComponent(
 			sprite: world.sprites.sharedIndexAt § world.sprites.add(component: sprite, to: entity),
