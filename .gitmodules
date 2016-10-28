@@ -1,0 +1,12 @@
+[submodule "PowerCore"]
+	path = PowerCore
+	url = ./Carthage/Checkouts/PowerCore/
+[submodule "Fx"]
+	path = Fx
+	url = ./Carthage/Checkouts/Fx
+[submodule "OpenEmu-SDK"]
+	path = OpenEmu-SDK
+	url = ./Carthage/Checkouts/OpenEmu-SDK/
+[submodule "Runes"]
+	path = Runes
+	url = ./Carthage/Checkouts/Runes/
