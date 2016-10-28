@@ -24,9 +24,8 @@ enum ProjectileFactory {
 	static func projectilePhysics(_ sprite: SKSpriteNode) -> PhysicsComponent {
 		let body = SKPhysicsBody(rectangleOf: CGSize(width: 4, height: 4))
 		body.isDynamic = true
-		body.mass = 1
-		body.categoryBitMask = 0
-		body.collisionBitMask = 0
+		body.mass = 0.1
+		body.contactTestBitMask = 0x1
 		sprite.physicsBody = body
 		return PhysicsComponent(body: body)
 	}

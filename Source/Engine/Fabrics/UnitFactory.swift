@@ -14,7 +14,7 @@ enum UnitFactory {
 
 		let weapon = Weapon(
 			type: .shell,
-			damage: 6,
+			damage: 26,
 			velocity: 300,
 			cooldown: 1.2,
 			perShotCooldown: 0.12,

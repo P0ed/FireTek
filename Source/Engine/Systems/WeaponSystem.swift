@@ -56,7 +56,11 @@ struct WeaponSystem {
 			if let index = vehicles.indexOf(entity) {
 				let vehicle = vehicles[index]
 				let statsIndex = vehicle.stats.value
-				let transform = sprites[vehicle.sprite].sprite.transform
+
+				var transform = sprites[vehicle.sprite].sprite.transform
+				let offset = 36 as Float
+				transform.x += offset * -sin(transform.zRotation)
+				transform.y += offset * cos(transform.zRotation)
 
 				let weapon = stats[statsIndex].weapon
 

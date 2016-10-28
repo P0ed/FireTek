@@ -74,7 +74,15 @@ private extension ProjectileSystem {
 			let entityB = contact.bodyB.node?.entity,
 			let indexes = indexesOf(entityA: entityA, entityB: entityB) {
 
-			world.entityManager.removeEntity(world.projectiles.entityAt(indexes.projectile))
+			let projectile = world.projectiles[indexes.projectile]
+			let projectileEntity = world.projectiles.entityAt(indexes.projectile)
+			world.entityManager.removeEntity(projectileEntity)
+
+			world.hp[indexes.hp].currentHP -= Int(projectile.damage)
+			if world.hp[indexes.hp].currentHP < 0 {
+				let hpEntity = world.hp.entityAt(indexes.hp)
+				world.entityManager.removeEntity(hpEntity)
+			}
 		}
 	}
 
