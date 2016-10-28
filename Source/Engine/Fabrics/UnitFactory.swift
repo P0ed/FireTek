@@ -17,7 +17,7 @@ enum UnitFactory {
 			damage: 6,
 			velocity: 300,
 			cooldown: 1.2,
-			perShotCooldown: 0.15,
+			perShotCooldown: 0.12,
 			maxAmmo: 80,
 			roundsPerShot: 3
 		)

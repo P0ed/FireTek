@@ -84,11 +84,12 @@ struct WeaponSystem {
 			ProjectileFactory.createProjectile(
 				world,
 				at: transform,
+				velocity: 350,
 				projectile: ProjectileComponent(
 					source: source,
 					type: weapon.type,
 					damage: weapon.damage,
-					lifetime: 120
+					lifetime: 90
 				)
 			)
 		}
