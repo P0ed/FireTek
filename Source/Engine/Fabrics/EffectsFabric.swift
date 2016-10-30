@@ -12,8 +12,10 @@ enum EffectsFabric {
 		let sprite = SKSpriteNode(texture: textures.first)
 		sprite.transform = transform
 
-		let action = SKAction.animate(with: textures, timePerFrame: 0.1)
-		sprite.run(action)
+		sprite.run(.group([
+			.animate(with: textures, timePerFrame: 0.1),
+			SoundsFabric.explosion()
+		]))
 
 		world.sprites.add(component: SpriteComponent(sprite: sprite), to: entity)
 		world.explosions.add(component: ExplosionComponent(lifetime: 60), to: entity)
@@ -30,8 +32,10 @@ enum EffectsFabric {
 		sprite.setScale(1.5)
 		sprite.transform = transform
 
-		let action = SKAction.animate(with: textures, timePerFrame: 0.1)
-		sprite.run(action)
+		sprite.run(.group([
+			.animate(with: textures, timePerFrame: 0.1),
+			SoundsFabric.vehicleExplosion()
+		]))
 
 		world.sprites.add(component: SpriteComponent(sprite: sprite), to: entity)
 		world.explosions.add(component: ExplosionComponent(lifetime: 50), to: entity)

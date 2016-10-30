@@ -19,6 +19,8 @@ final class GameScene: SKScene {
 		world = SKNode()
 		addChild(world)
 
+		SoundsFabric.preload()
+
 		engine = Engine(Engine.Model(
 			scene: unown(self, const),
 			inputController: InputController(hidController.eventsController)
