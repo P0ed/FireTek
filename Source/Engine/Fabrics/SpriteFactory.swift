@@ -30,9 +30,21 @@ enum SpriteFactory {
 		return SpriteComponent(sprite: spriteNode)
 	}
 
-	static func explosionTextures() -> [SKTexture] {
+
+}
+
+// MARK: Textures
+extension SpriteFactory {
+
+	static func shellExplosionTextures() -> [SKTexture] {
 		return (0...7).map { index in
 			effects.textureNamed("shell-explosion-\(index)")
+		}
+	}
+
+	static func vehiceExplosionTextures() -> [SKTexture] {
+		return (0...6).map { index in
+			effects.textureNamed("vehicle-explosion-\(index)")
 		}
 	}
 }

@@ -79,11 +79,17 @@ private extension ProjectileSystem {
 			world.entityManager.removeEntity(projectileEntity)
 
 			let transform = Transform(point: contact.contactPoint, vector: contact.contactNormal)
-			EffectsFabric.createExplosion(world: world, at: transform)
+			EffectsFabric.createShellExplosion(world: world, at: transform)
 
 			world.hp[indexes.hp].currentHP -= Int(projectile.damage)
 			if world.hp[indexes.hp].currentHP < 0 {
 				let hpEntity = world.hp.entityAt(indexes.hp)
+
+				if let spriteIndex = world.sprites.indexOf(hpEntity) {
+					let sprite = world.sprites[spriteIndex].sprite
+					EffectsFabric.createVehilceExplosion(world: world, at: sprite.transform)
+				}
+
 				world.entityManager.removeEntity(hpEntity)
 			}
 		}
