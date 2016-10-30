@@ -78,6 +78,9 @@ private extension ProjectileSystem {
 			let projectileEntity = world.projectiles.entityAt(indexes.projectile)
 			world.entityManager.removeEntity(projectileEntity)
 
+			let transform = Transform(point: contact.contactPoint, vector: contact.contactNormal)
+			EffectsFabric.createExplosion(world: world, at: transform)
+
 			world.hp[indexes.hp].currentHP -= Int(projectile.damage)
 			if world.hp[indexes.hp].currentHP < 0 {
 				let hpEntity = world.hp.entityAt(indexes.hp)

@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "81CDDE252E3A10A2A018511A18C984A28694CC60",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "BE66ABADB5887D969A1E0DAF79388AAFC35FF663" : 9223372036854775807,
+    "81CDDE252E3A10A2A018511A18C984A28694CC60" : 9223372036854775807
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "8D5E24A4-B0E1-4214-A66A-034C5DC9436C",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "BE66ABADB5887D969A1E0DAF79388AAFC35FF663" : "FireTek\/Carthage\/Checkouts\/PowerCore\/",
+    "81CDDE252E3A10A2A018511A18C984A28694CC60" : "FireTek\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "FireTek",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "FireTek.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/P0ed\/FireTek.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "81CDDE252E3A10A2A018511A18C984A28694CC60"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/P0ed\/PowerCore.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "BE66ABADB5887D969A1E0DAF79388AAFC35FF663"
+    }
+  ]
+}

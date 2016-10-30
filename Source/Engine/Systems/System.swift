@@ -2,6 +2,10 @@ import Fx
 import PowerCore
 import Runes
 
+protocol SystemType {
+	func update()
+}
+
 struct CachedUnit<Storage> {
 	let entity: Entity
 	var store: Storage
@@ -18,7 +22,7 @@ extension CachedUnit: Hashable {
 	}
 }
 
-final class System<Unit> {
+final class System<Unit>: SystemType {
 
 	typealias AddUnit = (CachedUnit<Unit>) -> ()
 	typealias RemoveUnit = (Entity) -> ()

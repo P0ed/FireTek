@@ -3,6 +3,8 @@ import PowerCore
 
 enum SpriteFactory {
 
+	static let effects = SKTextureAtlas(named: "Effects")
+
 	static func createTankSprite(_ entity: Entity, at position: Point) -> SpriteComponent {
 		let texture = SKTexture(imageNamed: "Tank")
 		texture.filteringMode = .nearest
@@ -23,9 +25,14 @@ enum SpriteFactory {
 	}
 
 	static func createProjectileSprite(_ entity: Entity, type: ProjectileType) -> SpriteComponent {
-		let color = SKColor(red: 0.7, green: 0.6, blue: 0.3, alpha: 1)
-		let spriteNode = SKSpriteNode(color: color, size: CGSize(width: 4, height: 4))
+		let spriteNode = SKSpriteNode(texture: effects.textureNamed("shell"))
 		spriteNode.entity = entity
 		return SpriteComponent(sprite: spriteNode)
+	}
+
+	static func explosionTextures() -> [SKTexture] {
+		return (0...7).map { index in
+			effects.textureNamed("shell-explosion-\(index)")
+		}
 	}
 }

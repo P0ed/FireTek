@@ -1,6 +1,14 @@
 import Foundation
 import SpriteKit
 
+extension Transform {
+	init(point: CGPoint, vector: CGVector) {
+		x = Float(point.x)
+		y = Float(point.y)
+		zRotation = Float(vector.angle)
+	}
+}
+
 extension CGVector {
 
 	public func rotate(_ angle: CGFloat) -> CGVector {
