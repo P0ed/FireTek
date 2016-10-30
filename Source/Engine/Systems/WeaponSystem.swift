@@ -111,10 +111,10 @@ struct WeaponSystem {
 		weapon.ammo -= roundsPerTick
 		weapon.remainingCooldown += weapon.rounds == 0 ? weapon.cooldown : weapon.perShotCooldown
 
-		for _ in 0..<roundsPerTick {
+		for round in 0..<roundsPerTick {
 			ProjectileFactory.createProjectile(
 				world,
-				at: transform,
+				at: transform.move(by: offset(round: round, outOf: roundsPerTick)),
 				velocity: weapon.velocity,
 				projectile: ProjectileComponent(
 					source: source,
@@ -123,5 +123,17 @@ struct WeaponSystem {
 				)
 			)
 		}
+	}
+
+	private func offset(round: Int, outOf total: Int) -> CGVector {
+		if total == 1 { return .zero }
+
+		let spacing = 4 as CGFloat
+		let spread = spacing * CGFloat(total - 1)
+
+		return CGVector(
+			dx: (-spread / 2) + spacing * CGFloat(round),
+			dy: 0
+		)
 	}
 }

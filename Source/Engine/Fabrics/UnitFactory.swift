@@ -15,20 +15,20 @@ enum UnitFactory {
 		let primaryWeapon = Weapon(
 			type: .shell,
 			damage: 12,
-			velocity: 320,
+			velocity: 340,
 			cooldown: 1.2,
-			perShotCooldown: 0.12,
-			maxAmmo: 80,
+			perShotCooldown: 0.18,
+			maxAmmo: 60,
 			roundsPerShot: 3
 		)
 
 		let secondaryWeapon = Weapon(
 			type: .shell,
 			damage: 32,
-			velocity: 240,
+			velocity: 260,
 			cooldown: 0.9,
 			perShotCooldown: 0,
-			maxAmmo: 40,
+			maxAmmo: 20,
 			roundsPerShot: 1
 		)
 
