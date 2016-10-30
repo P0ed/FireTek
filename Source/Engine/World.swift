@@ -17,7 +17,7 @@ final class World {
 	let towerAI: Store<TowerAIComponent>
 	let vehicleAI: Store<VehicleAIComponent>
 	let projectiles: Store<ProjectileComponent>
-	let explosions: Store<ExplosionComponent>
+	let lifetime: Store<LifetimeComponent>
 
 	let team: Store<Team>
 
@@ -36,7 +36,7 @@ final class World {
 		vehicleAI = core.createStore()
 		team = core.createStore()
 		projectiles = core.createStore()
-		explosions = core.createStore()
+		lifetime = core.createStore()
 	}
 }
 

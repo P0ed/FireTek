@@ -16,9 +16,12 @@ enum ProjectileFactory {
 		physics.body.velocity = CGVector(dx: 0, dy: CGFloat(velocity))
 			.rotate(CGFloat(position.zRotation))
 
+		let lifetime = LifetimeComponent(lifetime: 90)
+
 		world.sprites.add(component: sprite, to: entity)
 		world.physics.add(component: physics, to: entity)
 		world.projectiles.add(component: projectile, to: entity)
+		world.lifetime.add(component: lifetime, to: entity)
 
 		return entity
 	}

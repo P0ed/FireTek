@@ -43,8 +43,6 @@ final class ProjectileSystem {
 //		let sprites = world.sprites
 		let projectiles = world.projectiles
 
-		updateLifetme(projectiles: projectiles)
-
 		for unit in units {
 			let projectile = projectiles[unit.projectile]
 
@@ -52,16 +50,6 @@ final class ProjectileSystem {
 
 			}
 
-		}
-	}
-
-	private func updateLifetme(projectiles: Store<ProjectileComponent>) {
-		for index in projectiles.indices {
-			projectiles[index].lifetime -= 1
-		}
-
-		projectiles.removeEntities { _, component in
-			component.lifetime <= 0
 		}
 	}
 }

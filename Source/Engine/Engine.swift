@@ -23,7 +23,7 @@ final class Engine {
 	private let cameraSystem: CameraSystem
 	private var weaponSystem: WeaponSystem
 	private let projectileSystem: ProjectileSystem
-	private let effectsSystem: EffectsSystem
+	private let lifetimeSystem: LifetimeSystem
 
 	init(_ model: Model) {
 		self.model = model
@@ -39,21 +39,24 @@ final class Engine {
 		inputSystem = InputSystem(world: world, player: levelSystem.state.value.player, inputController: model.inputController)
 		aiSystem = AISystem(world: world)
 
-		effectsSystem = EffectsSystem(world: world)
+		lifetimeSystem = LifetimeSystem(world: world)
 
 		cameraSystem = CameraSystem(player: world.sprites[0].sprite, camera: model.scene().camera!)
 		cameraSystem.update()
 	}
 
 	func simulate() {
+		lifetimeSystem.update()
+
 		inputSystem.update()
 		physicsSystem.update()
 		weaponSystem.update()
+
 		projectileSystem.update()
+
 		levelSystem.update()
 		aiSystem.update()
 
-		effectsSystem.update()
 		cameraSystem.update()
 	}
 }

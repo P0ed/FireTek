@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5F039FA01DC61FFB00AC45C8 /* EffectsComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F039F9F1DC61FFB00AC45C8 /* EffectsComponents.swift */; };
+		5F039FA01DC61FFB00AC45C8 /* LifetimeComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F039F9F1DC61FFB00AC45C8 /* LifetimeComponent.swift */; };
 		5F039FA41DC6227200AC45C8 /* EffectsFabric.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F039FA31DC6227200AC45C8 /* EffectsFabric.swift */; };
 		5F039FA61DC6284400AC45C8 /* Effects.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 5F039FA51DC6284400AC45C8 /* Effects.atlas */; };
 		5F039FAE1DC6476B00AC45C8 /* Boom-0.wav in Resources */ = {isa = PBXBuildFile; fileRef = 5F039FAA1DC6476B00AC45C8 /* Boom-0.wav */; };
@@ -44,12 +44,11 @@
 		5F428CA91D690C6E0075FA6B /* OpenEmuSystem.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5F428CA01D690C4F0075FA6B /* OpenEmuSystem.framework */; };
 		5F53F3BA1D6F83570077B2A0 /* PhysicsSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F53F3B91D6F83570077B2A0 /* PhysicsSystem.swift */; };
 		5F53F3BC1D6F94610077B2A0 /* PhysicsComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F53F3BB1D6F94610077B2A0 /* PhysicsComponent.swift */; };
-		5F5D31E51DC61E6300BC0969 /* EffectsSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F5D31E41DC61E6300BC0969 /* EffectsSystem.swift */; };
+		5F5D31E51DC61E6300BC0969 /* LifetimeSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F5D31E41DC61E6300BC0969 /* LifetimeSystem.swift */; };
 		5F6EECAC1D775C120089A0AB /* WeaponSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F6EECAB1D775C120089A0AB /* WeaponSystem.swift */; };
 		5F6EECAE1D775E360089A0AB /* WeaponComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F6EECAD1D775E360089A0AB /* WeaponComponents.swift */; };
 		5F6EECB01D776CA10089A0AB /* ProjectileFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F6EECAF1D776CA10089A0AB /* ProjectileFactory.swift */; };
 		5F77832D1D7A04F50027FFED /* CollisionsSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F77832C1D7A04F50027FFED /* CollisionsSystem.swift */; };
-		5FCEA7BA1DC3C6B1005F72B0 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 5FCEA7B91DC3C6B1005F72B0 /* README.md */; };
 		5FD551061D7978AE0092A187 /* SpriteKitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FD551051D7978AE0092A187 /* SpriteKitExtensions.swift */; };
 		5FDF95CA1DBE82AE009E11DA /* Runes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FDF95C81DBE82AE009E11DA /* Runes.framework */; };
 		5FDF95CB1DBE82AE009E11DA /* Runes.framework.dSYM in Resources */ = {isa = PBXBuildFile; fileRef = 5FDF95C91DBE82AE009E11DA /* Runes.framework.dSYM */; };
@@ -126,7 +125,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		5F039F9F1DC61FFB00AC45C8 /* EffectsComponents.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EffectsComponents.swift; sourceTree = "<group>"; };
+		5F039F9F1DC61FFB00AC45C8 /* LifetimeComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LifetimeComponent.swift; sourceTree = "<group>"; };
 		5F039FA31DC6227200AC45C8 /* EffectsFabric.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EffectsFabric.swift; sourceTree = "<group>"; };
 		5F039FA51DC6284400AC45C8 /* Effects.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = Effects.atlas; sourceTree = "<group>"; };
 		5F039FAA1DC6476B00AC45C8 /* Boom-0.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "Boom-0.wav"; sourceTree = "<group>"; };
@@ -159,7 +158,7 @@
 		5F428CA11D690C4F0075FA6B /* OpenEmuSystem.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; path = OpenEmuSystem.framework.dSYM; sourceTree = "<group>"; };
 		5F53F3B91D6F83570077B2A0 /* PhysicsSystem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhysicsSystem.swift; sourceTree = "<group>"; };
 		5F53F3BB1D6F94610077B2A0 /* PhysicsComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhysicsComponent.swift; sourceTree = "<group>"; };
-		5F5D31E41DC61E6300BC0969 /* EffectsSystem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EffectsSystem.swift; sourceTree = "<group>"; };
+		5F5D31E41DC61E6300BC0969 /* LifetimeSystem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LifetimeSystem.swift; sourceTree = "<group>"; };
 		5F6EECAB1D775C120089A0AB /* WeaponSystem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeaponSystem.swift; sourceTree = "<group>"; };
 		5F6EECAD1D775E360089A0AB /* WeaponComponents.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeaponComponents.swift; sourceTree = "<group>"; };
 		5F6EECAF1D776CA10089A0AB /* ProjectileFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectileFactory.swift; sourceTree = "<group>"; };
@@ -371,7 +370,7 @@
 				5FE1242E1D5FA4EC00C41BAC /* InputComponents.swift */,
 				5F428C801D688DB00075FA6B /* AIComponents.swift */,
 				5F6EECAD1D775E360089A0AB /* WeaponComponents.swift */,
-				5F039F9F1DC61FFB00AC45C8 /* EffectsComponents.swift */,
+				5F039F9F1DC61FFB00AC45C8 /* LifetimeComponent.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -389,7 +388,7 @@
 				5F2F9F3A1D7328380016AA2F /* AISystem.swift */,
 				5F2F9F3E1D7333C40016AA2F /* CameraSystem.swift */,
 				5FDF95CE1DBEA1DE009E11DA /* ProjectileSystem.swift */,
-				5F5D31E41DC61E6300BC0969 /* EffectsSystem.swift */,
+				5F5D31E41DC61E6300BC0969 /* LifetimeSystem.swift */,
 			);
 			path = Systems;
 			sourceTree = "<group>";
@@ -540,7 +539,7 @@
 				5F2B51E91D6F71BC00AF62A1 /* InputSystem.swift in Sources */,
 				5F428C8D1D69039C0075FA6B /* World.swift in Sources */,
 				5F2F9F3D1D7331E60016AA2F /* Math.swift in Sources */,
-				5F5D31E51DC61E6300BC0969 /* EffectsSystem.swift in Sources */,
+				5F5D31E51DC61E6300BC0969 /* LifetimeSystem.swift in Sources */,
 				5F428C871D68B2D30075FA6B /* SpriteFactory.swift in Sources */,
 				5F082FF11D60DE3700DE34DC /* Level.swift in Sources */,
 				5F082FEF1D60D8B400DE34DC /* TileMap.swift in Sources */,
@@ -566,7 +565,6 @@
 				5F428C9C1D690A250075FA6B /* EventsController.swift in Sources */,
 				5FE124541D5FA81700C41BAC /* DiamondSquare.swift in Sources */,
 				5F428C9A1D690A250075FA6B /* DeviceConfiguration.swift in Sources */,
-				5FCEA7BA1DC3C6B1005F72B0 /* README.md in Sources */,
 				5F6EECB01D776CA10089A0AB /* ProjectileFactory.swift in Sources */,
 				5F039FB31DC6481100AC45C8 /* SoundsFabric.swift in Sources */,
 				5F6EECAC1D775C120089A0AB /* WeaponSystem.swift in Sources */,
@@ -575,7 +573,7 @@
 				5FD551061D7978AE0092A187 /* SpriteKitExtensions.swift in Sources */,
 				5F428C851D68A4EC0075FA6B /* UnitFactory.swift in Sources */,
 				5FE124421D5FA4ED00C41BAC /* Engine.swift in Sources */,
-				5F039FA01DC61FFB00AC45C8 /* EffectsComponents.swift in Sources */,
+				5F039FA01DC61FFB00AC45C8 /* LifetimeComponent.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

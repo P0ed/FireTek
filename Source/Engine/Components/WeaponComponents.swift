@@ -37,5 +37,4 @@ struct ProjectileComponent {
 	let source: Entity
 	let type: ProjectileType
 	let damage: Float
-	var lifetime: Int16
 }

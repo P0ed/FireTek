@@ -18,7 +18,7 @@ enum EffectsFabric {
 		]))
 
 		world.sprites.add(component: SpriteComponent(sprite: sprite), to: entity)
-		world.explosions.add(component: ExplosionComponent(lifetime: 60), to: entity)
+		world.lifetime.add(component: LifetimeComponent(lifetime: 60), to: entity)
 
 		return entity
 	}
@@ -38,7 +38,7 @@ enum EffectsFabric {
 		]))
 
 		world.sprites.add(component: SpriteComponent(sprite: sprite), to: entity)
-		world.explosions.add(component: ExplosionComponent(lifetime: 50), to: entity)
+		world.lifetime.add(component: LifetimeComponent(lifetime: 50), to: entity)
 
 		return entity
 	}
