@@ -62,6 +62,9 @@ enum UnitFactory {
 		let body = SKPhysicsBody(rectangleOf: CGSize(width: 32, height: 64))
 		body.isDynamic = true
 		body.mass = 40
+
+		body.categoryBitMask = 0x1 << 0
+
 		sprite.physicsBody = body
 		return PhysicsComponent(body: body)
 	}

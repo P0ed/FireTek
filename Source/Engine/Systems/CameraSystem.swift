@@ -7,6 +7,6 @@ struct CameraSystem {
 	let camera: SKCameraNode
 
 	func update() {
-		camera.position = player.position
+		camera.run(SKAction.move(to: player.position, duration: 0.2))
 	}
 }

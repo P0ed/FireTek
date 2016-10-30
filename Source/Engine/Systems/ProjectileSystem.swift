@@ -41,16 +41,16 @@ final class ProjectileSystem {
 
 	func update() {
 //		let sprites = world.sprites
-		let projectiles = world.projectiles
-
-		for unit in units {
-			let projectile = projectiles[unit.projectile]
-
-			if case .homingMissle = projectile.type {
-
-			}
-
-		}
+//		let projectiles = world.projectiles
+//
+//		for unit in units {
+//			let projectile = projectiles[unit.projectile]
+//
+//			if case .homingMissle = projectile.type {
+//
+//			}
+//
+//		}
 	}
 }
 
