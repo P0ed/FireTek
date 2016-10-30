@@ -43,8 +43,8 @@ extension InputController {
 			accelerate: .init(eventsController.leftJoystick.dy),
 			turnHull: .init(eventsController.leftJoystick.dx),
 			turnTurret: .init(eventsController.rightJoystick.dx),
-			primaryFire: buttonPressed(.cross),
-			secondaryFire: buttonPressed(.square),
+			primaryFire: buttonPressed(.square),
+			secondaryFire: buttonPressed(.cross),
 			special: buttonPressed(.circle)
 		)
 	}

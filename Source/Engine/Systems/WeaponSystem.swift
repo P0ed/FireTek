@@ -5,7 +5,8 @@ import Fx
 struct WeaponSystem {
 
 	private let world: World
-	private var firingEntities = [] as Set<Entity>
+	private var primaryFiringEntities = [] as Set<Entity>
+	private var secondaryFiringEntities = [] as Set<Entity>
 
 	init(world: World) {
 		self.world = world
@@ -14,7 +15,8 @@ struct WeaponSystem {
 	mutating func update() {
 		applyVehicleInputs()
 		updateCooldowns()
-		firingEntities = updateFiring()
+		primaryFiringEntities = updatePrimaryFiring()
+		secondaryFiringEntities = updateSecondaryFiring()
 	}
 
 	private mutating func applyVehicleInputs() {
@@ -25,8 +27,12 @@ struct WeaponSystem {
 		vehicles.enumerated().forEach { index, vehicle in
 			let entity = vehicles.entityAt(index)
 			let input = inputs[vehicle.input]
-			if input.primaryFire && stats[vehicle.stats].weapon.remainingCooldown == 0 {
-				firingEntities.insert(entity)
+
+			if input.primaryFire && stats[vehicle.stats].primaryWeapon.remainingCooldown == 0 {
+				primaryFiringEntities.insert(entity)
+			}
+			if input.secondaryFire && stats[vehicle.stats].secondaryWeapon.remainingCooldown == 0 {
+				secondaryFiringEntities.insert(entity)
 			}
 		}
 	}
@@ -34,7 +40,8 @@ struct WeaponSystem {
 	private func updateCooldowns() {
 		let vehicleStats = world.vehicleStats
 		vehicleStats.enumerated().forEach { index, _ in
-			updateWeaponCooldown(&vehicleStats[index].weapon)
+			updateWeaponCooldown(&vehicleStats[index].primaryWeapon)
+			updateWeaponCooldown(&vehicleStats[index].secondaryWeapon)
 		}
 	}
 
@@ -47,29 +54,49 @@ struct WeaponSystem {
 		}
 	}
 
-	private func updateFiring() -> Set<Entity> {
+	private func updatePrimaryFiring() -> Set<Entity> {
 		let vehicles = world.vehicles
 		let stats = world.vehicleStats
 		let sprites = world.sprites
 
-		return firingEntities.filterSet { entity in
+		return primaryFiringEntities.filterSet { entity in
 			if let index = vehicles.indexOf(entity) {
 				let vehicle = vehicles[index]
 				let statsIndex = vehicle.stats.value
 
-				var transform = sprites[vehicle.sprite].sprite.transform
-				let offset = 36 as Float
-				transform.x += offset * -sin(transform.zRotation)
-				transform.y += offset * cos(transform.zRotation)
-
-				let weapon = stats[statsIndex].weapon
-
+				let weapon = stats[statsIndex].primaryWeapon
 				if weapon.remainingCooldown == 0 && weapon.rounds != 0 {
-
-					fire(&stats[statsIndex].weapon, at: transform, source: entity)
+					let offset = CGVector(dx: 0, dy: 36)
+					let transform = sprites[vehicle.sprite].sprite.transform.move(by: offset)
+					fire(&stats[statsIndex].primaryWeapon, at: transform, source: entity)
 				}
 
-				return stats[statsIndex].weapon.rounds > 0
+				return stats[statsIndex].primaryWeapon.rounds > 0
+			}
+			else {
+				return false
+			}
+		}
+	}
+
+	private func updateSecondaryFiring() -> Set<Entity> {
+		let vehicles = world.vehicles
+		let stats = world.vehicleStats
+		let sprites = world.sprites
+
+		return secondaryFiringEntities.filterSet { entity in
+			if let index = vehicles.indexOf(entity) {
+				let vehicle = vehicles[index]
+				let statsIndex = vehicle.stats.value
+
+				let weapon = stats[statsIndex].secondaryWeapon
+				if weapon.remainingCooldown == 0 && weapon.rounds != 0 {
+					let offset = CGVector(dx: 0, dy: 36)
+					let transform = sprites[vehicle.sprite].sprite.transform.move(by: offset)
+					fire(&stats[statsIndex].secondaryWeapon, at: transform, source: entity)
+				}
+
+				return stats[statsIndex].secondaryWeapon.rounds > 0
 			}
 			else {
 				return false
@@ -88,7 +115,7 @@ struct WeaponSystem {
 			ProjectileFactory.createProjectile(
 				world,
 				at: transform,
-				velocity: 350,
+				velocity: weapon.velocity,
 				projectile: ProjectileComponent(
 					source: source,
 					type: weapon.type,

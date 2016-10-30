@@ -10,7 +10,8 @@ struct VehicleComponent {
 
 struct VehicleStats {
 	let speed: Float
-	var weapon: Weapon
+	var primaryWeapon: Weapon
+	var secondaryWeapon: Weapon
 }
 
 struct TowerComponent {

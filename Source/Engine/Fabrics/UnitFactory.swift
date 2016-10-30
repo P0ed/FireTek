@@ -12,17 +12,27 @@ enum UnitFactory {
 		let hp = HPComponent(hp: 80)
 		let physics = vehiclePhysics(sprite.sprite)
 
-		let weapon = Weapon(
+		let primaryWeapon = Weapon(
 			type: .shell,
-			damage: 26,
-			velocity: 300,
+			damage: 12,
+			velocity: 320,
 			cooldown: 1.2,
 			perShotCooldown: 0.12,
 			maxAmmo: 80,
 			roundsPerShot: 3
 		)
 
-		let stats = VehicleStats(speed: 36, weapon: weapon)
+		let secondaryWeapon = Weapon(
+			type: .shell,
+			damage: 32,
+			velocity: 240,
+			cooldown: 0.9,
+			perShotCooldown: 0,
+			maxAmmo: 40,
+			roundsPerShot: 1
+		)
+
+		let stats = VehicleStats(speed: 36, primaryWeapon: primaryWeapon, secondaryWeapon: secondaryWeapon)
 
 		let vehicle = VehicleComponent(
 			sprite: world.sprites.sharedIndexAt § world.sprites.add(component: sprite, to: entity),

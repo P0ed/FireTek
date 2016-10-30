@@ -2,10 +2,20 @@ import Foundation
 import SpriteKit
 
 extension Transform {
+
 	init(point: CGPoint, vector: CGVector) {
 		x = Float(point.x)
 		y = Float(point.y)
 		zRotation = Float(vector.angle)
+	}
+
+	func move(by vector: CGVector) -> Transform {
+		let rotated = vector.rotate(CGFloat(zRotation))
+		return Transform(
+			x: x + Float(rotated.dx),
+			y: y + Float(rotated.dy),
+			zRotation: zRotation
+		)
 	}
 }
 
