@@ -1,3 +1,5 @@
+import Carbon.HIToolbox
+
 final class InputController {
 
 	let eventsController: EventsController
@@ -7,10 +9,8 @@ final class InputController {
 	init(_ eventsController: EventsController) {
 		self.eventsController = eventsController
 
-		let buttonAction: (DSButton) -> DeviceAction = {
-			button in
-			return DeviceAction {
-				pressed in
+		let buttonAction: (DSButton) -> DeviceAction = { button in
+			return DeviceAction { pressed in
 				if pressed {
 					self.buttonsState |= 1 << button.rawValue
 				} else {
@@ -25,10 +25,28 @@ final class InputController {
 			.circle: buttonAction(.circle)
 		]
 
+		let keyboardActions: [Int: DeviceAction] = [
+			DeviceConfiguration.keyCode(forVirtualKey: kVK_ANSI_Q): buttonAction(.square),
+			DeviceConfiguration.keyCode(forVirtualKey: kVK_ANSI_W): buttonAction(.cross),
+			DeviceConfiguration.keyCode(forVirtualKey: kVK_ANSI_E): buttonAction(.circle),
+			DeviceConfiguration.keyCode(forVirtualKey: kVK_UpArrow): DeviceAction { pressed in
+				eventsController.leftJoystick.dy = pressed ? 1 : 0
+			},
+			DeviceConfiguration.keyCode(forVirtualKey: kVK_DownArrow): DeviceAction { pressed in
+				eventsController.leftJoystick.dy = pressed ? -1 : 0
+			},
+			DeviceConfiguration.keyCode(forVirtualKey: kVK_LeftArrow): DeviceAction { pressed in
+				eventsController.leftJoystick.dx = pressed ? -1 : 0
+			},
+			DeviceConfiguration.keyCode(forVirtualKey: kVK_RightArrow): DeviceAction { pressed in
+				eventsController.leftJoystick.dx = pressed ? 1 : 0
+			}
+		]
+
 		eventsController.deviceConfiguration = DeviceConfiguration(
 			buttonsMapTable: buttonActions,
 			dPadMapTable: [:],
-			keyboardMapTable: [:]
+			keyboardMapTable: keyboardActions
 		)
 	}
 
