@@ -14,6 +14,9 @@ enum SpriteFactory {
 		spriteNode.position = position.cgPoint
 		spriteNode.entity = entity
 
+		spriteNode.shadowCastBitMask = 0x1
+		spriteNode.lightingBitMask = 0x1
+
 		return SpriteComponent(sprite: spriteNode)
 	}
 
@@ -29,8 +32,6 @@ enum SpriteFactory {
 		spriteNode.entity = entity
 		return SpriteComponent(sprite: spriteNode)
 	}
-
-
 }
 
 // MARK: Textures

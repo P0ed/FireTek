@@ -11,6 +11,8 @@ final class GameScene: SKScene {
 	override func didMove(to view: SKView) {
 		super.didMove(to: view)
 
+		backgroundColor = SKColor(red: 0.01, green: 0.02, blue: 0.06, alpha: 1)
+
 		let camera = SKCameraNode()
 		camera.position = CGPoint(x: 128, y: 128)
 		addChild(camera)

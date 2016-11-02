@@ -19,7 +19,7 @@ struct Weapon {
 	let roundsPerShot: Int
 	var rounds: Int
 
-	init(type: ProjectileType, damage: Float, velocity: Float, cooldown: Float, perShotCooldown: Float, maxAmmo: Int, roundsPerShot: Int) {
+	init(type: ProjectileType, damage: Float, velocity: Float, cooldown: Float, perShotCooldown: Float, roundsPerShot: Int, maxAmmo: Int) {
 		self.type = type
 		self.damage = damage
 		self.velocity = velocity

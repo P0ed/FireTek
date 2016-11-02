@@ -18,7 +18,7 @@ struct AISystem {
 			updateVehicles()
 		}
 
-		currentTick = (currentTick + 1) % 8
+		currentTick = (currentTick + 1) % 4
 	}
 
 	private func updateVehicles() {
@@ -39,24 +39,22 @@ struct AISystem {
 					let targetPosition = world.sprites[targetSprite].sprite.position
 					let distance = position.distance(to: targetPosition)
 
-					if distance > 180 {
-						let toTarget = (targetPosition - position).asVector
+					let toTarget = (targetPosition - position).asVector
 
-						let angle = sprite.orientation.angle(with: toTarget)
-						let (sa, ca) = (sin(angle), cos(angle))
+					let angle = sprite.orientation.angle(with: toTarget)
+					let (sa, ca) = (sin(angle), cos(angle))
 
-						if abs(sa) > 0.1 || ca < 0 {
-							input.turnHull = sa < 0 ? 1 : -1
-						} else {
-							input.turnHull = 0
-						}
-
-						if cos(angle) > 0.1 {
-							input.accelerate = Float(ca)
-						}
+					if abs(sa) > 0.1 || ca < 0 {
+						input.turnHull = sa < 0 ? 1 : -1
+//						input.primaryFire = false
+					} else {
+						input.turnHull = 0
+//						input.primaryFire = true
 					}
 
-
+					if cos(angle) > 0.1 && distance > 180 {
+						input.accelerate = Float(ca)
+					}
 				}
 				
 				world.vehicleAI[index] = ai

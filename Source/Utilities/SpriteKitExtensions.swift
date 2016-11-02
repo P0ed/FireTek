@@ -4,23 +4,14 @@ import PowerCore
 
 extension SKNode {
 
-	private final class EntityContainer {
-
-		fileprivate static let key = UnsafeMutablePointer<Int8>.allocate(capacity: 1)
-
-		let entity: Entity
-
-		init(_ entity: Entity) {
-			self.entity = entity
-		}
-	}
+	private static let entityContainerKey = UnsafeMutablePointer<Int8>.allocate(capacity: 1)
 
 	var entity: Entity? {
 		get {
-			return (objc_getAssociatedObject(self, EntityContainer.key) as? EntityContainer)?.entity
+			return objc_getAssociatedObject(self, SKNode.entityContainerKey) as? Entity
 		}
 		set {
-			objc_setAssociatedObject(self, EntityContainer.key, newValue.map(EntityContainer.init), .OBJC_ASSOCIATION_RETAIN)
+			objc_setAssociatedObject(self, SKNode.entityContainerKey, newValue, .OBJC_ASSOCIATION_RETAIN)
 		}
 	}
 

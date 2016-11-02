@@ -18,8 +18,8 @@ enum UnitFactory {
 			velocity: 340,
 			cooldown: 1.2,
 			perShotCooldown: 0.18,
-			maxAmmo: 60,
-			roundsPerShot: 3
+			roundsPerShot: 3,
+			maxAmmo: 60
 		)
 
 		let secondaryWeapon = Weapon(
@@ -28,8 +28,8 @@ enum UnitFactory {
 			velocity: 260,
 			cooldown: 0.9,
 			perShotCooldown: 0,
-			maxAmmo: 20,
-			roundsPerShot: 1
+			roundsPerShot: 1,
+			maxAmmo: 20
 		)
 
 		let stats = VehicleStats(speed: 36, primaryWeapon: primaryWeapon, secondaryWeapon: secondaryWeapon)
@@ -63,7 +63,7 @@ enum UnitFactory {
 		body.isDynamic = true
 		body.mass = 40
 
-		body.categoryBitMask = 0x1 << 0
+		body.categoryBitMask = 0x1
 
 		sprite.physicsBody = body
 		return PhysicsComponent(body: body)

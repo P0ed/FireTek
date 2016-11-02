@@ -24,6 +24,7 @@ final class Engine {
 	private var weaponSystem: WeaponSystem
 	private let projectileSystem: ProjectileSystem
 	private let lifetimeSystem: LifetimeSystem
+	private let lootSystem: LootSystem
 
 	init(_ model: Model) {
 		self.model = model
@@ -40,6 +41,8 @@ final class Engine {
 		aiSystem = AISystem(world: world)
 
 		lifetimeSystem = LifetimeSystem(world: world)
+
+		lootSystem = LootSystem(world: world, collisionsSystem: collisionsSystem)
 
 		cameraSystem = CameraSystem(player: world.sprites[0].sprite, camera: model.scene().camera!)
 		cameraSystem.update()
@@ -58,5 +61,9 @@ final class Engine {
 		aiSystem.update()
 
 		cameraSystem.update()
+
+		lootSystem.update()
+
+		world.dead.removeEntities(where: const(true))
 	}
 }

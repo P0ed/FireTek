@@ -11,6 +11,9 @@ final class World {
 	let hp: Store<HPComponent>
 	let vehicleStats: Store<VehicleStats>
 
+	let loot: Store<LootComponent>
+	let dead: Store<DeadComponent>
+
 	let towerInput: Store<TowerInputComponent>
 	let vehicleInput: Store<VehicleInputComponent>
 
@@ -37,6 +40,8 @@ final class World {
 		team = core.createStore()
 		projectiles = core.createStore()
 		lifetime = core.createStore()
+		loot = core.createStore()
+		dead = core.createStore()
 	}
 }
 

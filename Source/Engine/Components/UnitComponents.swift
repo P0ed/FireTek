@@ -1,4 +1,5 @@
 import Fx
+import PowerCore
 
 struct VehicleComponent {
 	let sprite: Box<Int>
@@ -28,4 +29,17 @@ struct BuildingComponent {
 enum Team {
 	case blue
 	case red
+}
+
+enum Crystal {
+	case blue, red, purple, cyan, yellow, green, orange
+}
+
+struct LootComponent {
+	let crystal: Crystal
+	let count: Int8
+}
+
+struct DeadComponent {
+	let killedBy: Entity
 }
