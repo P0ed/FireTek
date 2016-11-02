@@ -60,40 +60,46 @@ private extension ProjectileSystem {
 	func processContact(_ contact: SKPhysicsContact) {
 		if let entityA = contact.bodyA.node?.entity,
 			let entityB = contact.bodyB.node?.entity,
-			let indexes = indexesOf(entityA: entityA, entityB: entityB) {
+			let projectile = getProjectile(entityA: entityA, entityB: entityB) {
 
-			let projectile = world.projectiles[indexes.projectile]
-			let projectileEntity = world.projectiles.entityAt(indexes.projectile)
-			world.entityManager.removeEntity(projectileEntity)
+			let projectileComponent = world.projectiles[projectile.index]
+			world.entityManager.removeEntity(projectile.entity)
 
 			let transform = Transform(point: contact.contactPoint, vector: contact.contactNormal)
 			EffectsFabric.createShellExplosion(world: world, at: transform)
 
-			world.hp[indexes.hp].currentHP -= Int(projectile.damage)
-			if world.hp[indexes.hp].currentHP < 0 {
-				let hpEntity = world.hp.entityAt(indexes.hp)
-
-				if let spriteIndex = world.sprites.indexOf(hpEntity) {
-					let sprite = world.sprites[spriteIndex].sprite
-					EffectsFabric.createVehilceExplosion(world: world, at: sprite.transform)
+			if let hp = getHP(entityA: entityA, entityB: entityB) {
+				world.hp[hp.index].currentHP -= Int(projectileComponent.damage)
+				if world.hp[hp.index].currentHP < 0 {
+					if let spriteIndex = world.sprites.indexOf(hp.entity) {
+						let sprite = world.sprites[spriteIndex].sprite
+						EffectsFabric.createVehilceExplosion(world: world, at: sprite.transform)
+					}
+					let dead = DeadComponent(killedBy: projectileComponent.source)
+					world.dead.add(component: dead, to: hp.entity)
 				}
-
-				world.entityManager.removeEntity(hpEntity)
 			}
+
+
 		}
 	}
 
-	private func indexesOf(entityA: Entity, entityB: Entity) -> (hp: Int, projectile: Int)? {
-		let hp = world.hp
-		let projectiles = world.projectiles
+	private func getProjectile(entityA: Entity, entityB: Entity) -> (index: Int, entity: Entity)? {
+		if let index = world.projectiles.indexOf(entityA) {
+			return (index, entityA)
+		} else if let index = world.projectiles.indexOf(entityB) {
+			return (index, entityB)
+		} else {
+			return nil
+		}
+	}
 
-		if let hpIndex = hp.indexOf(entityA), let projectileIndex = projectiles.indexOf(entityB) {
-			return (hp: hpIndex, projectile: projectileIndex)
-		}
-		else if let hpIndex = hp.indexOf(entityB), let projectileIndex = projectiles.indexOf(entityA) {
-			return (hp: hpIndex, projectile: projectileIndex)
-		}
-		else {
+	private func getHP(entityA: Entity, entityB: Entity) -> (index: Int, entity: Entity)? {
+		if let index = world.hp.indexOf(entityB) {
+			return (index, entityB)
+		} else if let index = world.hp.indexOf(entityA) {
+			return (index, entityA)
+		} else {
 			return nil
 		}
 	}

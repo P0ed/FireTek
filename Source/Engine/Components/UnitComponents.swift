@@ -35,6 +35,10 @@ enum Crystal {
 	case blue, red, purple, cyan, yellow, green, orange
 }
 
+struct CrystalComponent {
+	let crystal: Crystal
+}
+
 struct LootComponent {
 	let crystal: Crystal
 	let count: Int8

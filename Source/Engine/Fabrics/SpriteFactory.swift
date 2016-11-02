@@ -32,6 +32,14 @@ enum SpriteFactory {
 		spriteNode.entity = entity
 		return SpriteComponent(sprite: spriteNode)
 	}
+
+	static func createCrystal(entity: Entity, at position: CGPoint, crystal: Crystal) -> SpriteComponent {
+		let node = SKSpriteNode(texture: effects.textureNamed("crystal"))
+		node.setScale(0.3)
+		node.entity = entity
+		node.position = position
+		return SpriteComponent(sprite: node)
+	}
 }
 
 // MARK: Textures

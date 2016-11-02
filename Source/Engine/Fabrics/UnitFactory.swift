@@ -5,7 +5,7 @@ import SpriteKit
 enum UnitFactory {
 
 	@discardableResult
-	static func createPlayer(world: World, position: Point, team: Team) -> Entity {
+	static func createTank(world: World, position: Point, team: Team) -> Entity {
 		let entity = world.entityManager.create()
 
 		let sprite = SpriteFactory.createTankSprite(entity, at: position)
@@ -44,12 +44,14 @@ enum UnitFactory {
 		world.vehicles.add(component: vehicle, to: entity)
 		world.team.add(component: team, to: entity)
 
+		world.loot.add(component: LootComponent(crystal: .orange, count: 3), to: entity)
+
 		return entity
 	}
 
 	@discardableResult
 	static func createAIPlayer(world: World, position: Point) -> Entity {
-		let entity = createPlayer(world: world, position: position, team: .red)
+		let entity = createTank(world: world, position: position, team: .red)
 		let vehicle = world.vehicles.sharedIndexAt § world.vehicles.indexOf(entity)!
 
 		let ai = VehicleAIComponent(vehicle: vehicle, state: .hold(Point(x: 0, y: 0)), target: nil)
@@ -81,6 +83,23 @@ enum UnitFactory {
 		)
 
 		world.buildings.add(component: building, to: entity)
+
+		return entity
+	}
+
+	@discardableResult
+	static func addCrystal(world: World, crystal: Crystal, at position: CGPoint, moveBy offset: CGVector) -> Entity {
+		let entity = world.entityManager.create()
+
+		let sprite = SpriteFactory.createCrystal(entity: entity, at: position, crystal: crystal)
+
+		sprite.sprite.run(.group([
+			.repeatForever(.rotate(byAngle: 1, duration: 0.6)),
+			.move(by: offset, duration: 0.6)
+		]))
+
+		world.sprites.add(component: sprite, to: entity)
+		world.lifetime.add(component: LifetimeComponent(lifetime: 600), to: entity)
 
 		return entity
 	}
