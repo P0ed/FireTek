@@ -12,7 +12,7 @@ enum UnitFactory {
 		let hp = HPComponent(hp: 80)
 		let physics = vehiclePhysics(sprite.sprite)
 
-		let primaryWeapon = Weapon(
+		let weapon = WeaponComponent(
 			type: .shell,
 			damage: 12,
 			velocity: 340,
@@ -22,24 +22,25 @@ enum UnitFactory {
 			maxAmmo: 60
 		)
 
-		let secondaryWeapon = Weapon(
-			type: .shell,
-			damage: 82,
-			velocity: 260,
-			cooldown: 0.9,
-			perShotCooldown: 0,
-			roundsPerShot: 1,
-			maxAmmo: 20
-		)
+//		let secondaryWeapon = WeaponComponent(
+//			type: .shell,
+//			damage: 82,
+//			velocity: 260,
+//			cooldown: 0.9,
+//			perShotCooldown: 0,
+//			roundsPerShot: 1,
+//			maxAmmo: 20
+//		)
 
-		let stats = VehicleStats(speed: 36, primaryWeapon: primaryWeapon, secondaryWeapon: secondaryWeapon)
+		let stats = VehicleStats(speed: 36)
 
 		let vehicle = VehicleComponent(
 			sprite: world.sprites.sharedIndexAt § world.sprites.add(component: sprite, to: entity),
 			physics: world.physics.sharedIndexAt § world.physics.add(component: physics, to: entity),
 			hp: world.hp.sharedIndexAt § world.hp.add(component: hp, to: entity),
 			input: world.vehicleInput.sharedIndexAt § world.vehicleInput.add(component: .empty, to: entity),
-			stats: world.vehicleStats.sharedIndexAt § world.vehicleStats.add(component: stats, to: entity)
+			stats: world.vehicleStats.sharedIndexAt § world.vehicleStats.add(component: stats, to: entity),
+			weapon: world.primaryWpn.sharedIndexAt § world.primaryWpn.add(component: weapon, to: entity)
 		)
 		world.vehicles.add(component: vehicle, to: entity)
 		world.team.add(component: team, to: entity)

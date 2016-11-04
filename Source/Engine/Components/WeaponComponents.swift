@@ -6,7 +6,7 @@ enum ProjectileType {
 	case homingMissle(Entity)
 }
 
-struct Weapon {
+struct WeaponComponent {
 
 	let type: ProjectileType
 	let damage: Float

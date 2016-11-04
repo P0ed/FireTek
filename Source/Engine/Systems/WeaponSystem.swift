@@ -14,38 +14,57 @@ struct WeaponSystem {
 
 	mutating func update() {
 		applyVehicleInputs()
+		applyShipsInputs()
 		updateCooldowns()
-		primaryFiringEntities = updatePrimaryFiring()
-		secondaryFiringEntities = updateSecondaryFiring()
+		primaryFiringEntities = updateFiring(weapons: world.primaryWpn)
+		secondaryFiringEntities = updateFiring(weapons: world.secondaryWpn)
 	}
 
 	private mutating func applyVehicleInputs() {
 		let vehicles = world.vehicles
 		let inputs = world.vehicleInput
-		let stats = world.vehicleStats
+		let primaryWpn = world.primaryWpn
 
 		vehicles.enumerated().forEach { index, vehicle in
 			let entity = vehicles.entityAt(index)
 			let input = inputs[vehicle.input]
 
-			if input.primaryFire && stats[vehicle.stats].primaryWeapon.remainingCooldown == 0 {
+			if input.primaryFire && primaryWpn[vehicle.weapon].remainingCooldown == 0 {
 				primaryFiringEntities.insert(entity)
 			}
-			if input.secondaryFire && stats[vehicle.stats].secondaryWeapon.remainingCooldown == 0 {
+		}
+	}
+
+	private mutating func applyShipsInputs() {
+		let ships = world.ships
+		let inputs = world.vehicleInput
+		let primaryWpn = world.primaryWpn
+		let secondaryWpn = world.secondaryWpn
+
+		ships.enumerated().forEach { index, ship in
+			let entity = ships.entityAt(index)
+			let input = inputs[ship.input]
+
+			if input.primaryFire && primaryWpn[ship.primaryWpn].remainingCooldown == 0 {
+				primaryFiringEntities.insert(entity)
+			}
+			if input.secondaryFire && secondaryWpn[ship.secondaryWpn].remainingCooldown == 0 {
 				secondaryFiringEntities.insert(entity)
 			}
 		}
+
 	}
 
 	private func updateCooldowns() {
-		let vehicleStats = world.vehicleStats
-		vehicleStats.enumerated().forEach { index, _ in
-			updateWeaponCooldown(&vehicleStats[index].primaryWeapon)
-			updateWeaponCooldown(&vehicleStats[index].secondaryWeapon)
+		for index in world.primaryWpn.indices {
+			updateWeaponCooldown(&world.primaryWpn[index])
+		}
+		for index in world.secondaryWpn.indices {
+			updateWeaponCooldown(&world.secondaryWpn[index])
 		}
 	}
 
-	private func updateWeaponCooldown(_ weapon: inout Weapon) {
+	private func updateWeaponCooldown(_ weapon: inout WeaponComponent) {
 		if weapon.remainingCooldown != 0 {
 			weapon.remainingCooldown = max(0, weapon.remainingCooldown - Float(Engine.timeStep))
 			if weapon.remainingCooldown == 0 && weapon.rounds == 0 {
@@ -54,24 +73,22 @@ struct WeaponSystem {
 		}
 	}
 
-	private func updatePrimaryFiring() -> Set<Entity> {
-		let vehicles = world.vehicles
-		let stats = world.vehicleStats
-		let sprites = world.sprites
-
+	private func updateFiring(weapons: Store<WeaponComponent>) -> Set<Entity> {
 		return primaryFiringEntities.filterSet { entity in
-			if let index = vehicles.indexOf(entity) {
-				let vehicle = vehicles[index]
-				let statsIndex = vehicle.stats.value
+			if let index = weapons.indexOf(entity) {
+				let weapon = weapons[index]
 
-				let weapon = stats[statsIndex].primaryWeapon
 				if weapon.remainingCooldown == 0 && weapon.rounds != 0 {
 					let offset = CGVector(dx: 0, dy: 36)
-					let transform = sprites[vehicle.sprite].sprite.transform.move(by: offset)
-					fire(&stats[statsIndex].primaryWeapon, at: transform, source: entity)
+					if let spriteIndex = world.sprites.indexOf(entity) {
+						let transform = world.sprites[spriteIndex].sprite.transform.move(by: offset)
+						fire(&weapons[index], at: transform, source: entity)
+					}
+					else {
+						return false
+					}
 				}
-
-				return stats[statsIndex].primaryWeapon.rounds > 0
+				return weapons[index].rounds > 0
 			}
 			else {
 				return false
@@ -79,32 +96,7 @@ struct WeaponSystem {
 		}
 	}
 
-	private func updateSecondaryFiring() -> Set<Entity> {
-		let vehicles = world.vehicles
-		let stats = world.vehicleStats
-		let sprites = world.sprites
-
-		return secondaryFiringEntities.filterSet { entity in
-			if let index = vehicles.indexOf(entity) {
-				let vehicle = vehicles[index]
-				let statsIndex = vehicle.stats.value
-
-				let weapon = stats[statsIndex].secondaryWeapon
-				if weapon.remainingCooldown == 0 && weapon.rounds != 0 {
-					let offset = CGVector(dx: 0, dy: 36)
-					let transform = sprites[vehicle.sprite].sprite.transform.move(by: offset)
-					fire(&stats[statsIndex].secondaryWeapon, at: transform, source: entity)
-				}
-
-				return stats[statsIndex].secondaryWeapon.rounds > 0
-			}
-			else {
-				return false
-			}
-		}
-	}
-
-	private func fire(_ weapon: inout Weapon, at transform: Transform, source: Entity) {
+	private func fire(_ weapon: inout WeaponComponent, at transform: Transform, source: Entity) {
 		let roundsPerTick = weapon.perShotCooldown == 0 ? weapon.rounds : 1
 
 		weapon.rounds -= roundsPerTick
