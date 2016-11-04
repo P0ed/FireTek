@@ -51,4 +51,7 @@ final class GameScene: SKScene {
 			lastUpdate = currentTime
 		}
     }
+
+	override func keyDown(with event: NSEvent) {}
+	override func keyUp(with event: NSEvent) {}
 }
