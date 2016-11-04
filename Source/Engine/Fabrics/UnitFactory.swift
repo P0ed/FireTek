@@ -8,7 +8,7 @@ enum UnitFactory {
 	static func createShip(world: World, position: Point, team: Team) -> Entity {
 		let entity = world.entityManager.create()
 
-		let sprite = SpriteFactory.createTankSprite(entity, at: position)
+		let sprite = SpriteFactory.createShipSprite(entity, at: position)
 		let hp = HPComponent(hp: 80)
 		let physics = vehiclePhysics(sprite.sprite)
 
@@ -24,7 +24,7 @@ enum UnitFactory {
 
 		let secondary = WeaponComponent(
 			type: .shell,
-			damage: 82,
+			damage: 36,
 			velocity: 260,
 			cooldown: 0.9,
 			perShotCooldown: 0,

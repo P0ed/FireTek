@@ -5,6 +5,18 @@ enum SpriteFactory {
 
 	static let effects = SKTextureAtlas(named: "Effects")
 
+	static func createShipSprite(_ entity: Entity, at position: Point) -> SpriteComponent {
+		let texture = SKTexture(imageNamed: "Intruder")
+		texture.filteringMode = .nearest
+
+		let spriteNode = SKSpriteNode(texture: texture)
+		spriteNode.setScale(1.2)
+		spriteNode.position = position.cgPoint
+		spriteNode.entity = entity
+
+		return SpriteComponent(sprite: spriteNode)
+	}
+
 	static func createTankSprite(_ entity: Entity, at position: Point) -> SpriteComponent {
 		let texture = SKTexture(imageNamed: "Tank")
 		texture.filteringMode = .nearest
@@ -13,9 +25,6 @@ enum SpriteFactory {
 		spriteNode.setScale(2)
 		spriteNode.position = position.cgPoint
 		spriteNode.entity = entity
-
-		spriteNode.shadowCastBitMask = 0x1
-		spriteNode.lightingBitMask = 0x1
 
 		return SpriteComponent(sprite: spriteNode)
 	}
