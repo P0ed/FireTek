@@ -1,12 +1,8 @@
-[submodule "PowerCore"]
-	path = PowerCore
-	url = ./Carthage/Checkouts/PowerCore/
-[submodule "Fx"]
-	path = Fx
-	url = ./Carthage/Checkouts/Fx
-[submodule "OpenEmu-SDK"]
-	path = OpenEmu-SDK
-	url = ./Carthage/Checkouts/OpenEmu-SDK/
-[submodule "Runes"]
-	path = Runes
-	url = ./Carthage/Checkouts/Runes/
+[submodule "Carthage/Checkouts/Fx"]
+	url = https://github.com/P0ed/Fx.git
+[submodule "Carthage/Checkouts/OpenEmu-SDK"]
+	url = https://github.com/P0ed/OpenEmu-SDK.git
+[submodule "Carthage/Checkouts/PowerCore"]
+	url = https://github.com/P0ed/PowerCore.git
+[submodule "Carthage/Checkouts/Runes"]
+	url = https://github.com/thoughtbot/Runes.git

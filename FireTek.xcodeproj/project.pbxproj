@@ -31,11 +31,7 @@
 		5F428C9C1D690A250075FA6B /* EventsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F428C961D690A250075FA6B /* EventsController.swift */; };
 		5F428C9D1D690A250075FA6B /* HIDController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F428C971D690A250075FA6B /* HIDController.swift */; };
 		5F428CA21D690C4F0075FA6B /* OpenEmuBase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F428C9E1D690C4F0075FA6B /* OpenEmuBase.framework */; };
-		5F428CA31D690C4F0075FA6B /* OpenEmuBase.framework.dSYM in Resources */ = {isa = PBXBuildFile; fileRef = 5F428C9F1D690C4F0075FA6B /* OpenEmuBase.framework.dSYM */; };
 		5F428CA41D690C4F0075FA6B /* OpenEmuSystem.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F428CA01D690C4F0075FA6B /* OpenEmuSystem.framework */; };
-		5F428CA51D690C4F0075FA6B /* OpenEmuSystem.framework.dSYM in Resources */ = {isa = PBXBuildFile; fileRef = 5F428CA11D690C4F0075FA6B /* OpenEmuSystem.framework.dSYM */; };
-		5F428CA61D690C6E0075FA6B /* OpenEmuBase.framework.dSYM in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5F428C9F1D690C4F0075FA6B /* OpenEmuBase.framework.dSYM */; };
-		5F428CA71D690C6E0075FA6B /* OpenEmuSystem.framework.dSYM in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5F428CA11D690C4F0075FA6B /* OpenEmuSystem.framework.dSYM */; };
 		5F428CA81D690C6E0075FA6B /* OpenEmuBase.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5F428C9E1D690C4F0075FA6B /* OpenEmuBase.framework */; };
 		5F428CA91D690C6E0075FA6B /* OpenEmuSystem.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5F428CA01D690C4F0075FA6B /* OpenEmuSystem.framework */; };
 		5F53F3BA1D6F83570077B2A0 /* PhysicsSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F53F3B91D6F83570077B2A0 /* PhysicsSystem.swift */; };
@@ -47,8 +43,6 @@
 		5F77832D1D7A04F50027FFED /* CollisionsSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F77832C1D7A04F50027FFED /* CollisionsSystem.swift */; };
 		5FD551061D7978AE0092A187 /* SpriteKitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FD551051D7978AE0092A187 /* SpriteKitExtensions.swift */; };
 		5FDF95CA1DBE82AE009E11DA /* Runes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FDF95C81DBE82AE009E11DA /* Runes.framework */; };
-		5FDF95CB1DBE82AE009E11DA /* Runes.framework.dSYM in Resources */ = {isa = PBXBuildFile; fileRef = 5FDF95C91DBE82AE009E11DA /* Runes.framework.dSYM */; };
-		5FDF95CC1DBE9CB3009E11DA /* Runes.framework.dSYM in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5FDF95C91DBE82AE009E11DA /* Runes.framework.dSYM */; };
 		5FDF95CD1DBE9CB3009E11DA /* Runes.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5FDF95C81DBE82AE009E11DA /* Runes.framework */; };
 		5FDF95CF1DBEA1DE009E11DA /* ProjectileSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FDF95CE1DBEA1DE009E11DA /* ProjectileSystem.swift */; };
 		5FDF95D11DBFEE05009E11DA /* System.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FDF95D01DBFEE05009E11DA /* System.swift */; };
@@ -64,7 +58,6 @@
 		5FE124441D5FA4ED00C41BAC /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 5FE124331D5FA4EC00C41BAC /* GameScene.sks */; };
 		5FE124451D5FA4ED00C41BAC /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FE124341D5FA4EC00C41BAC /* GameScene.swift */; };
 		5FE124461D5FA4ED00C41BAC /* General.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FE124361D5FA4EC00C41BAC /* General.swift */; };
-		5FE1244D1D5FA5BB00C41BAC /* Fx.framework.dSYM in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5FE124491D5FA5A900C41BAC /* Fx.framework.dSYM */; };
 		5FE124501D5FA5CB00C41BAC /* Fx.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5FE123971D5E398C00C41BAC /* Fx.framework */; };
 		5FE124541D5FA81700C41BAC /* DiamondSquare.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FE124531D5FA81700C41BAC /* DiamondSquare.swift */; };
 		5FEF36611DC68A4F00B52FB9 /* LootSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FEF36601DC68A4F00B52FB9 /* LootSystem.swift */; };
@@ -113,14 +106,10 @@
 			dstPath = "";
 			dstSubfolderSpec = 16;
 			files = (
-				5FDF95CC1DBE9CB3009E11DA /* Runes.framework.dSYM in CopyFiles */,
 				5FDF95CD1DBE9CB3009E11DA /* Runes.framework in CopyFiles */,
-				5F428CA61D690C6E0075FA6B /* OpenEmuBase.framework.dSYM in CopyFiles */,
-				5F428CA71D690C6E0075FA6B /* OpenEmuSystem.framework.dSYM in CopyFiles */,
 				5F428CA81D690C6E0075FA6B /* OpenEmuBase.framework in CopyFiles */,
 				5F428CA91D690C6E0075FA6B /* OpenEmuSystem.framework in CopyFiles */,
 				5FE124501D5FA5CB00C41BAC /* Fx.framework in CopyFiles */,
-				5FE1244D1D5FA5BB00C41BAC /* Fx.framework.dSYM in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -151,9 +140,7 @@
 		5F428C961D690A250075FA6B /* EventsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventsController.swift; sourceTree = "<group>"; };
 		5F428C971D690A250075FA6B /* HIDController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HIDController.swift; sourceTree = "<group>"; };
 		5F428C9E1D690C4F0075FA6B /* OpenEmuBase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = OpenEmuBase.framework; sourceTree = "<group>"; };
-		5F428C9F1D690C4F0075FA6B /* OpenEmuBase.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; path = OpenEmuBase.framework.dSYM; sourceTree = "<group>"; };
 		5F428CA01D690C4F0075FA6B /* OpenEmuSystem.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = OpenEmuSystem.framework; sourceTree = "<group>"; };
-		5F428CA11D690C4F0075FA6B /* OpenEmuSystem.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; path = OpenEmuSystem.framework.dSYM; sourceTree = "<group>"; };
 		5F53F3B91D6F83570077B2A0 /* PhysicsSystem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhysicsSystem.swift; sourceTree = "<group>"; };
 		5F53F3BB1D6F94610077B2A0 /* PhysicsComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhysicsComponent.swift; sourceTree = "<group>"; };
 		5F5D31E41DC61E6300BC0969 /* LifetimeSystem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LifetimeSystem.swift; sourceTree = "<group>"; };
@@ -168,7 +155,6 @@
 		5FD28A561D5B091E00BAFC0F /* File.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = File.md; sourceTree = "<group>"; };
 		5FD551051D7978AE0092A187 /* SpriteKitExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpriteKitExtensions.swift; sourceTree = "<group>"; };
 		5FDF95C81DBE82AE009E11DA /* Runes.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Runes.framework; sourceTree = "<group>"; };
-		5FDF95C91DBE82AE009E11DA /* Runes.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; path = Runes.framework.dSYM; sourceTree = "<group>"; };
 		5FDF95CE1DBEA1DE009E11DA /* ProjectileSystem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectileSystem.swift; sourceTree = "<group>"; };
 		5FDF95D01DBFEE05009E11DA /* System.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = System.swift; sourceTree = "<group>"; };
 		5FE123971D5E398C00C41BAC /* Fx.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fx.framework; sourceTree = "<group>"; };
@@ -184,7 +170,6 @@
 		5FE124331D5FA4EC00C41BAC /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
 		5FE124341D5FA4EC00C41BAC /* GameScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
 		5FE124361D5FA4EC00C41BAC /* General.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = General.swift; sourceTree = "<group>"; };
-		5FE124491D5FA5A900C41BAC /* Fx.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; path = Fx.framework.dSYM; sourceTree = "<group>"; };
 		5FE124531D5FA81700C41BAC /* DiamondSquare.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiamondSquare.swift; sourceTree = "<group>"; };
 		5FEF36601DC68A4F00B52FB9 /* LootSystem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LootSystem.swift; sourceTree = "<group>"; };
 		5FFF82E21DCC8636007EFAAD /* CrystalCollected.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = CrystalCollected.wav; sourceTree = "<group>"; };
@@ -277,10 +262,6 @@
 		5F543A701D5BD0380039FB0B /* Mac */ = {
 			isa = PBXGroup;
 			children = (
-				5F428C9F1D690C4F0075FA6B /* OpenEmuBase.framework.dSYM */,
-				5F428CA11D690C4F0075FA6B /* OpenEmuSystem.framework.dSYM */,
-				5FE124491D5FA5A900C41BAC /* Fx.framework.dSYM */,
-				5FDF95C91DBE82AE009E11DA /* Runes.framework.dSYM */,
 				5F428C9E1D690C4F0075FA6B /* OpenEmuBase.framework */,
 				5F428CA01D690C4F0075FA6B /* OpenEmuSystem.framework */,
 				5FE123971D5E398C00C41BAC /* Fx.framework */,
@@ -523,14 +504,11 @@
 				5FE124391D5FA4EC00C41BAC /* MainMenu.xib in Resources */,
 				5FFF82EB1DCC863D007EFAAD /* Boom1.wav in Resources */,
 				5FFF82EC1DCC863D007EFAAD /* Boom2.wav in Resources */,
-				5F428CA51D690C4F0075FA6B /* OpenEmuSystem.framework.dSYM in Resources */,
 				5F428C981D690A250075FA6B /* Controller-Database.plist in Resources */,
 				5FE124441D5FA4ED00C41BAC /* GameScene.sks in Resources */,
 				5FFF82ED1DCC863D007EFAAD /* Cannon0.wav in Resources */,
 				5FE1243B1D5FA4EC00C41BAC /* Assets.xcassets in Resources */,
-				5F428CA31D690C4F0075FA6B /* OpenEmuBase.framework.dSYM in Resources */,
 				5FFF82EA1DCC863D007EFAAD /* Boom0.wav in Resources */,
-				5FDF95CB1DBE82AE009E11DA /* Runes.framework.dSYM in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

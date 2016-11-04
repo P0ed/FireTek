@@ -1,2 +1,0 @@
-github "typelift/SwiftCheck" "swift-develop"
-github "gfontenot/Mozart" ~> 1.0.0
