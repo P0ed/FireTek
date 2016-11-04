@@ -29,9 +29,10 @@ enum SpriteFactory {
 		return SpriteComponent(sprite: spriteNode)
 	}
 
-	static func createBuildingSprite(_ entity: Entity) -> SpriteComponent {
+	static func createBuildingSprite(_ entity: Entity, at position: Point) -> SpriteComponent {
 		let color = SKColor(red: 0.2, green: 0.3, blue: 0.2, alpha: 1)
 		let spriteNode = SKSpriteNode(color: color, size: CGSize(width: 32, height: 32))
+		spriteNode.position = position.cgPoint
 		spriteNode.entity = entity
 		return SpriteComponent(sprite: spriteNode)
 	}

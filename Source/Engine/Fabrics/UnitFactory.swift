@@ -100,7 +100,6 @@ enum UnitFactory {
 
 	static func vehiclePhysics(_ sprite: SKSpriteNode) -> PhysicsComponent {
 		let body = SKPhysicsBody(rectangleOf: CGSize(width: 32, height: 64))
-		body.isDynamic = true
 		body.mass = 40
 
 		body.categoryBitMask = 0x1
@@ -112,17 +111,30 @@ enum UnitFactory {
 	@discardableResult
 	static func createBuilding(world: World, position: Point) -> Entity {
 		let entity = world.entityManager.create()
-		let sprite = SpriteFactory.createBuildingSprite(entity)
-		let hp = HPComponent(hp: 20)
+		let sprite = SpriteFactory.createBuildingSprite(entity, at: position)
+		let hp = HPComponent(hp: 40)
 
 		let building = BuildingComponent(
 			sprite: world.sprites.sharedIndexAt § world.sprites.add(component: sprite, to: entity),
 			hp: world.hp.sharedIndexAt § world.hp.add(component: hp, to: entity)
 		)
-
 		world.buildings.add(component: building, to: entity)
 
+		let physics = buildingPhysics(sprite.sprite)
+		world.physics.add(component: physics, to: entity)
+		world.loot.add(component: LootComponent(crystal: .blue, count: 1), to: entity)
+
 		return entity
+	}
+
+	static func buildingPhysics(_ sprite: SKSpriteNode) -> PhysicsComponent {
+		let body = SKPhysicsBody(rectangleOf: sprite.size)
+		body.isDynamic = false
+
+		body.categoryBitMask = 0x1
+
+		sprite.physicsBody = body
+		return PhysicsComponent(body: body)
 	}
 
 	@discardableResult
