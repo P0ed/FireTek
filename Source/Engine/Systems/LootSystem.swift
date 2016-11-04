@@ -4,7 +4,7 @@ import Fx
 
 final class LootSystem {
 
-	private let world: World
+	fileprivate let world: World
 	private let collisionsSystem: CollisionsSystem
 	private let disposable = CompositeDisposable()
 
@@ -12,9 +12,9 @@ final class LootSystem {
 		self.world = world
 		self.collisionsSystem = collisionsSystem
 
-		disposable += collisionsSystem.didBeginContact.observe { contact in
-
-		}
+		disposable += collisionsSystem.didBeginContact.observe(
+			unown(self, type(of: self).processContact)
+		)
 	}
 
 	func update() {
@@ -61,6 +61,33 @@ final class LootSystem {
 		case 9: return .cyan
 		case 10: return .orange
 		default: return base
+		}
+	}
+}
+
+private extension LootSystem {
+
+	func processContact(_ contact: SKPhysicsContact) {
+		if let entityA = contact.bodyA.node?.entity,
+			let entityB = contact.bodyB.node?.entity,
+			let loot = getCrystal(a: entityA, b: entityB) {
+
+			world.entityManager.removeEntity(loot.entity)
+
+			let e = loot.entity == entityA ? entityB : entityA
+			if let i = world.sprites.indexOf(e) {
+				world.sprites[i].sprite.run(SoundsFabric.crystalCollected)
+			}
+		}
+	}
+
+	private func getCrystal(a: Entity, b: Entity) -> (index: Int, entity: Entity)? {
+		if let i = world.crystals.indexOf(a) {
+			return (i, a)
+		} else if let i = world.crystals.indexOf(b) {
+			return (i, b)
+		} else {
+			return nil
 		}
 	}
 }

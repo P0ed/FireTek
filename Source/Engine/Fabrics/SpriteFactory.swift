@@ -38,6 +38,7 @@ enum SpriteFactory {
 		node.setScale(0.3)
 		node.entity = entity
 		node.position = position
+		node.entity = entity
 		return SpriteComponent(sprite: node)
 	}
 }

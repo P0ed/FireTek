@@ -24,7 +24,7 @@ enum UnitFactory {
 
 		let secondaryWeapon = Weapon(
 			type: .shell,
-			damage: 32,
+			damage: 82,
 			velocity: 260,
 			cooldown: 0.9,
 			perShotCooldown: 0,
@@ -93,6 +93,12 @@ enum UnitFactory {
 
 		let sprite = SpriteFactory.createCrystal(entity: entity, at: position, crystal: crystal)
 
+		let body = SKPhysicsBody(rectangleOf: sprite.sprite.size)
+		body.categoryBitMask = 0x1 << 2
+		body.collisionBitMask = 0x1
+		body.contactTestBitMask = 0x1
+		sprite.sprite.physicsBody = body
+
 		sprite.sprite.run(.group([
 			.repeatForever(.rotate(byAngle: 1, duration: 0.6)),
 			.move(by: offset, duration: 0.6)
@@ -100,6 +106,7 @@ enum UnitFactory {
 
 		world.sprites.add(component: sprite, to: entity)
 		world.lifetime.add(component: LifetimeComponent(lifetime: 600), to: entity)
+		world.crystals.add(component: CrystalComponent(crystal: crystal), to: entity)
 
 		return entity
 	}

@@ -12,6 +12,7 @@ final class World {
 	let vehicleStats: Store<VehicleStats>
 
 	let loot: Store<LootComponent>
+	let crystals: Store<CrystalComponent>
 	let dead: Store<DeadComponent>
 
 	let towerInput: Store<TowerInputComponent>
@@ -42,6 +43,7 @@ final class World {
 		lifetime = core.createStore()
 		loot = core.createStore()
 		dead = core.createStore()
+		crystals = core.createStore()
 	}
 }
 

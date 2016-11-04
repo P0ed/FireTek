@@ -21,7 +21,7 @@ final class GameScene: SKScene {
 		world = SKNode()
 		addChild(world)
 
-		SoundsFabric.preload()
+		SoundsFabric.preheat()
 
 		engine = Engine(Engine.Model(
 			scene: unown(self, const),

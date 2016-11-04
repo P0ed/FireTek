@@ -10,7 +10,7 @@ enum ProjectileFactory {
 		let sprite = SpriteFactory.createProjectileSprite(entity, type: projectile.type)
 		sprite.sprite.transform = position
 
-		sprite.sprite.run(SoundsFabric.cannon())
+		sprite.sprite.run(SoundsFabric.cannon)
 
 		let physics = projectilePhysics(sprite.sprite)
 		physics.body.velocity = CGVector(dx: 0, dy: CGFloat(velocity))
@@ -32,8 +32,8 @@ enum ProjectileFactory {
 		body.mass = 0.1
 
 		body.categoryBitMask = 0x1 << 1
-		body.collisionBitMask = ~0 ^ (0x1 << 1)
-		body.contactTestBitMask = 0x1 << 0
+		body.collisionBitMask = ~0 ^ (0x1 << 1 | 0x1 << 2)
+		body.contactTestBitMask = 0x1
 
 		sprite.physicsBody = body
 		return PhysicsComponent(body: body)
