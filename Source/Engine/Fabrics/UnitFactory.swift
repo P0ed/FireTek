@@ -5,6 +5,53 @@ import SpriteKit
 enum UnitFactory {
 
 	@discardableResult
+	static func createShip(world: World, position: Point, team: Team) -> Entity {
+		let entity = world.entityManager.create()
+
+		let sprite = SpriteFactory.createTankSprite(entity, at: position)
+		let hp = HPComponent(hp: 80)
+		let physics = vehiclePhysics(sprite.sprite)
+
+		let primary = WeaponComponent(
+			type: .shell,
+			damage: 12,
+			velocity: 340,
+			cooldown: 1.2,
+			perShotCooldown: 0.18,
+			roundsPerShot: 3,
+			maxAmmo: 60
+		)
+
+		let secondary = WeaponComponent(
+			type: .shell,
+			damage: 82,
+			velocity: 260,
+			cooldown: 0.9,
+			perShotCooldown: 0,
+			roundsPerShot: 1,
+			maxAmmo: 20
+		)
+
+		let stats = VehicleStats(speed: 36)
+
+		let ship = ShipComponent(
+			sprite: world.sprites.sharedIndexAt § world.sprites.add(component: sprite, to: entity),
+			physics: world.physics.sharedIndexAt § world.physics.add(component: physics, to: entity),
+			hp: world.hp.sharedIndexAt § world.hp.add(component: hp, to: entity),
+			input: world.shipInput.sharedIndexAt § world.shipInput.add(component: .empty, to: entity),
+			stats: world.vehicleStats.sharedIndexAt § world.vehicleStats.add(component: stats, to: entity),
+			primaryWpn: world.primaryWpn.sharedIndexAt § world.primaryWpn.add(component: primary, to: entity),
+			secondaryWpn: world.secondaryWpn.sharedIndexAt § world.secondaryWpn.add(component: secondary, to: entity)
+		)
+		world.ships.add(component: ship, to: entity)
+		world.team.add(component: team, to: entity)
+
+		world.loot.add(component: LootComponent(crystal: .orange, count: 3), to: entity)
+
+		return entity
+	}
+
+	@discardableResult
 	static func createTank(world: World, position: Point, team: Team) -> Entity {
 		let entity = world.entityManager.create()
 
@@ -21,16 +68,6 @@ enum UnitFactory {
 			roundsPerShot: 3,
 			maxAmmo: 60
 		)
-
-//		let secondaryWeapon = WeaponComponent(
-//			type: .shell,
-//			damage: 82,
-//			velocity: 260,
-//			cooldown: 0.9,
-//			perShotCooldown: 0,
-//			roundsPerShot: 1,
-//			maxAmmo: 20
-//		)
 
 		let stats = VehicleStats(speed: 36)
 

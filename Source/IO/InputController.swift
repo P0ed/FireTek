@@ -56,11 +56,11 @@ final class InputController {
 }
 
 extension InputController {
-	func currentInput() -> VehicleInputComponent {
-		return VehicleInputComponent(
+	func currentInput() -> ShipInputComponent {
+		return ShipInputComponent(
 			accelerate: .init(eventsController.leftJoystick.dy),
 			turnHull: .init(eventsController.leftJoystick.dx),
-			turnTurret: .init(eventsController.rightJoystick.dx),
+			strafe: .init(eventsController.rightTrigger - eventsController.leftTrigger),
 			primaryFire: buttonPressed(.square),
 			secondaryFire: buttonPressed(.cross),
 			special: buttonPressed(.circle)

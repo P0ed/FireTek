@@ -16,8 +16,8 @@ struct WeaponSystem {
 		applyVehicleInputs()
 		applyShipsInputs()
 		updateCooldowns()
-		primaryFiringEntities = updateFiring(weapons: world.primaryWpn)
-		secondaryFiringEntities = updateFiring(weapons: world.secondaryWpn)
+		primaryFiringEntities = updateFiring(firing: primaryFiringEntities, weapons: world.primaryWpn)
+		secondaryFiringEntities = updateFiring(firing: secondaryFiringEntities, weapons: world.secondaryWpn)
 	}
 
 	private mutating func applyVehicleInputs() {
@@ -29,7 +29,7 @@ struct WeaponSystem {
 			let entity = vehicles.entityAt(index)
 			let input = inputs[vehicle.input]
 
-			if input.primaryFire && primaryWpn[vehicle.weapon].remainingCooldown == 0 {
+			if input.fire && primaryWpn[vehicle.weapon].remainingCooldown == 0 {
 				primaryFiringEntities.insert(entity)
 			}
 		}
@@ -37,7 +37,7 @@ struct WeaponSystem {
 
 	private mutating func applyShipsInputs() {
 		let ships = world.ships
-		let inputs = world.vehicleInput
+		let inputs = world.shipInput
 		let primaryWpn = world.primaryWpn
 		let secondaryWpn = world.secondaryWpn
 
@@ -52,7 +52,6 @@ struct WeaponSystem {
 				secondaryFiringEntities.insert(entity)
 			}
 		}
-
 	}
 
 	private func updateCooldowns() {
@@ -73,8 +72,8 @@ struct WeaponSystem {
 		}
 	}
 
-	private func updateFiring(weapons: Store<WeaponComponent>) -> Set<Entity> {
-		return primaryFiringEntities.filterSet { entity in
+	private func updateFiring(firing: Set<Entity>, weapons: Store<WeaponComponent>) -> Set<Entity> {
+		return firing.filterSet { entity in
 			if let index = weapons.indexOf(entity) {
 				let weapon = weapons[index]
 

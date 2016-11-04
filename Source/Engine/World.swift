@@ -18,8 +18,9 @@ final class World {
 	let crystals: Store<CrystalComponent>
 	let dead: Store<DeadComponent>
 
-	let towerInput: Store<TowerInputComponent>
+	let shipInput: Store<ShipInputComponent>
 	let vehicleInput: Store<VehicleInputComponent>
+	let towerInput: Store<TowerInputComponent>
 
 	let towerAI: Store<TowerAIComponent>
 	let vehicleAI: Store<VehicleAIComponent>
@@ -35,17 +36,23 @@ final class World {
 		entityManager = core.entityManager
 		sprites = core.createStore()
 		physics = core.createStore()
+
 		ships = core.createStore()
 		vehicles = core.createStore()
 		buildings = core.createStore()
+
 		hp = core.createStore()
 		vehicleStats = core.createStore()
 		primaryWpn = core.createStore()
 		secondaryWpn = core.createStore()
-		towerInput = core.createStore()
+
+		shipInput = core.createStore()
 		vehicleInput = core.createStore()
+		towerInput = core.createStore()
+
 		towerAI = core.createStore()
 		vehicleAI = core.createStore()
+
 		team = core.createStore()
 		projectiles = core.createStore()
 		lifetime = core.createStore()
