@@ -1,3 +1,3 @@
 struct LifetimeComponent {
-	var lifetime: Int16
+	var lifetime: UInt16
 }

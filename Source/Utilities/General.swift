@@ -82,7 +82,7 @@ extension Store {
 	func weakClosure(_ entity: Entity) -> Closure<Component?> {
 		return Closure(
 			get: {
-				{self[$0]} <^> self.indexOf(entity)
+				self.instanceOf(entity)
 			},
 			set: { newValue in
 				guard let index = self.indexOf(entity), let newValue = newValue else { return }

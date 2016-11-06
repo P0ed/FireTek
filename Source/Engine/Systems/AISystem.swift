@@ -46,10 +46,10 @@ struct AISystem {
 
 					if abs(sa) > 0.1 || ca < 0 {
 						input.turnHull = sa < 0 ? 1 : -1
-//						input.primaryFire = false
+						input.fire = false
 					} else {
 						input.turnHull = 0
-//						input.primaryFire = true
+						input.fire = true
 					}
 
 					if cos(angle) > 0.1 && distance > 180 {

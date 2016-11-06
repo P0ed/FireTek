@@ -103,6 +103,13 @@ extension CGPoint {
 	}
 }
 
+extension CGSize {
+
+	static func square(side: CGFloat) -> CGSize {
+		return CGSize(width: side, height: side)
+	}
+}
+
 extension SKNode {
 
 	public var orientation: CGVector {

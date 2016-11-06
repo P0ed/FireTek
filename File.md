@@ -11,14 +11,13 @@ Ballistic:
 
 Hitbox:
 
-• • • • • • • •
-• • • • • • • •
-• • * * * * • •
-• • * * * * • •
-• • * * * * • •
-• • * * * * • •
-• • • • • • • •
-• • • • • • • •
+• • • • • • •
+• • • • • • •
+• • * * * • •
+• • * * * • •
+• • * * * • •
+• • • • • • •
+• • • • • • •
 
 • — armor
 * — structure
@@ -28,14 +27,12 @@ Structure has shared HP, when structure HP reaches 0 unit is destroyed
 
 Ballistic is cumulative, part of damage applies to box behind collision:
 
-• • • • X • • •
-• • • • x • • •
-• • * * * * • •
-• • * * * * • •
+• • • X • • •
+• • • x • • •
+• • * * * • •
 
 Rockets spread damage on side boxes:
 
-• • • x X x • •
-• • • • • • • •
-• • * * * * • •
-• • * * * * • •
+• • x X x • •
+• • • • • • •
+• • * * * • •

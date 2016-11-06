@@ -1,5 +1,5 @@
 import PowerCore
-import SpriteKit
+import Fx
 
 final class LifetimeSystem {
 
@@ -10,10 +10,11 @@ final class LifetimeSystem {
 	}
 
 	func update() {
-		updateExplosions()
+		updateLifetime()
+		removeDead()
 	}
 
-	private func updateExplosions() {
+	private func updateLifetime() {
 		let lifetime = world.lifetime
 
 		for index in lifetime.indices {
@@ -21,7 +22,11 @@ final class LifetimeSystem {
 		}
 
 		lifetime.removeEntities { _, component in
-			component.lifetime <= 0
+			component.lifetime == 0
 		}
+	}
+
+	private func removeDead() {
+		world.dead.removeEntities(where: const(true))
 	}
 }

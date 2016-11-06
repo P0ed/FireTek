@@ -5,7 +5,7 @@ import Fx
 final class Engine {
 
 	struct Model {
-		let scene: () -> SKScene
+		let scene: () -> GameScene
 		let inputController: InputController
 	}
 
@@ -19,12 +19,14 @@ final class Engine {
 	private let inputSystem: InputSystem
 	private let physicsSystem: PhysicsSystem
 	private let collisionsSystem: CollisionsSystem
+	private let damageSystem: DamageSystem
 	private var aiSystem: AISystem
 	private let cameraSystem: CameraSystem
 	private var weaponSystem: WeaponSystem
 	private let projectileSystem: ProjectileSystem
 	private let lifetimeSystem: LifetimeSystem
 	private let lootSystem: LootSystem
+	private let hudSystem: HUDSystem
 
 	init(_ model: Model) {
 		self.model = model
@@ -34,7 +36,8 @@ final class Engine {
 		physicsSystem = PhysicsSystem(world: world)
 		collisionsSystem = CollisionsSystem(scene: model.scene())
 		weaponSystem = WeaponSystem(world: world)
-		projectileSystem = ProjectileSystem(world: world, collisionsSystem: collisionsSystem)
+		damageSystem = DamageSystem(world: world)
+		projectileSystem = ProjectileSystem(world: world, collisionsSystem: collisionsSystem, damageSystem: damageSystem)
 
 		levelSystem = LevelSystem(world: world, level: Level())
 		inputSystem = InputSystem(world: world, player: levelSystem.state.value.player, inputController: model.inputController)
@@ -46,11 +49,11 @@ final class Engine {
 
 		cameraSystem = CameraSystem(player: world.sprites[0].sprite, camera: model.scene().camera!)
 		cameraSystem.update()
+
+		hudSystem = HUDSystem(world: world, player: levelSystem.state.value.player, hudNode: model.scene().hud)
 	}
 
 	func simulate() {
-		lifetimeSystem.update()
-
 		inputSystem.update()
 		physicsSystem.update()
 		weaponSystem.update()
@@ -61,9 +64,9 @@ final class Engine {
 		aiSystem.update()
 
 		cameraSystem.update()
+		hudSystem.update()
 
 		lootSystem.update()
-
-		world.dead.removeEntities(where: const(true))
+		lifetimeSystem.update()
 	}
 }

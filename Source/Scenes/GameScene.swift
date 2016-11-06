@@ -8,6 +8,8 @@ final class GameScene: SKScene {
 	private var lastUpdate = 0 as CFTimeInterval
 	private let hidController = HIDController()
 
+	let hud = HUDNode()
+
 	override func didMove(to view: SKView) {
 		super.didMove(to: view)
 
@@ -21,6 +23,7 @@ final class GameScene: SKScene {
 		world = SKNode()
 		addChild(world)
 
+
 		SoundsFabric.preheat()
 
 		engine = Engine(Engine.Model(
@@ -29,6 +32,11 @@ final class GameScene: SKScene {
 		))
 
 		renderTileMap(Level())
+
+		camera.addChild(hud)
+		hud.zPosition = 1000
+		hud.layout(size: size)
+
 	}
 
 	func renderTileMap(_ level: Level) {

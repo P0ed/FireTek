@@ -12,11 +12,14 @@ final class ProjectileSystem {
 	}
 
 	fileprivate let world: World
+	fileprivate let damageSystem: DamageSystem
+
 	private var units = [] as [Unit]
 	private let disposable = CompositeDisposable()
 
-	init(world: World, collisionsSystem: CollisionsSystem) {
+	init(world: World, collisionsSystem: CollisionsSystem, damageSystem: DamageSystem) {
 		self.world = world
+		self.damageSystem = damageSystem
 
 		disposable += world.projectiles.newComponents.observe { [unowned self] index in
 			let projectile = world.projectiles.sharedIndexAt(index)
@@ -69,18 +72,13 @@ private extension ProjectileSystem {
 			EffectsFabric.createShellExplosion(world: world, at: transform)
 
 			if let hp = getHP(entityA: entityA, entityB: entityB) {
-				world.hp[hp.index].currentHP -= Int(projectileComponent.damage)
-				if world.hp[hp.index].currentHP < 0 {
-					if let spriteIndex = world.sprites.indexOf(hp.entity) {
-						let sprite = world.sprites[spriteIndex].sprite
-						EffectsFabric.createVehilceExplosion(world: world, at: sprite.transform)
-					}
-					let dead = DeadComponent(killedBy: projectileComponent.source)
-					world.dead.add(component: dead, to: hp.entity)
-				}
+				damageSystem.damage(
+					hp: hp,
+					projectile: projectileComponent,
+					point: contact.contactPoint,
+					normal: contact.contactNormal
+				)
 			}
-
-
 		}
 	}
 

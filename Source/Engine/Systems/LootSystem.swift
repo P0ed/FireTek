@@ -52,7 +52,7 @@ final class LootSystem {
 	}
 
 	private func generate(base: Crystal) -> Crystal {
-		switch Int(arc4random_uniform(10)) {
+		switch Int(arc4random_uniform(16)) {
 		case 0...1: return .red
 		case 2...3: return .green
 		case 4...5: return .blue

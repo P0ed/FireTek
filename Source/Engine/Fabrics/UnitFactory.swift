@@ -9,7 +9,7 @@ enum UnitFactory {
 		let entity = world.entityManager.create()
 
 		let sprite = SpriteFactory.createShipSprite(entity, at: position)
-		let hp = HPComponent(hp: 80)
+		let hp = HPComponent(maxHP: 80, armor: 40)
 		let physics = vehiclePhysics(sprite.sprite)
 
 		let primary = WeaponComponent(
@@ -56,17 +56,17 @@ enum UnitFactory {
 		let entity = world.entityManager.create()
 
 		let sprite = SpriteFactory.createTankSprite(entity, at: position)
-		let hp = HPComponent(hp: 80)
+		let hp = HPComponent(maxHP: 80, armor: 20)
 		let physics = vehiclePhysics(sprite.sprite)
 
 		let weapon = WeaponComponent(
 			type: .shell,
 			damage: 12,
 			velocity: 340,
-			cooldown: 1.2,
+			cooldown: 0.8,
 			perShotCooldown: 0.18,
-			roundsPerShot: 3,
-			maxAmmo: 60
+			roundsPerShot: 1,
+			maxAmmo: 260
 		)
 
 		let stats = VehicleStats(speed: 36)
@@ -112,7 +112,7 @@ enum UnitFactory {
 	static func createBuilding(world: World, position: Point) -> Entity {
 		let entity = world.entityManager.create()
 		let sprite = SpriteFactory.createBuildingSprite(entity, at: position)
-		let hp = HPComponent(hp: 40)
+		let hp = HPComponent(maxHP: 40)
 
 		let building = BuildingComponent(
 			sprite: world.sprites.sharedIndexAt § world.sprites.add(component: sprite, to: entity),
