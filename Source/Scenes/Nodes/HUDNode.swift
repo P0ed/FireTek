@@ -13,8 +13,6 @@ final class HUDNode: SKNode {
 	required init?(coder aDecoder: NSCoder) { fatalError("init(coder:) has not been implemented") }
 
 	func layout(size: CGSize) {
-//		guard let scene = scene else { return }
-
 		playerArmor.layout(size: size)
 		playerArmor.position = CGPoint(x: 0 - 300, y: 0 - 180)
 	}
@@ -25,14 +23,25 @@ final class HPNode: SKNode {
 	static let spacing: CGFloat = 1
 	static let side: CGFloat = 4
 	static let cellSize: CGSize = .square(side: side)
-	static let cellColor = SKColor(red: 0.9, green: 0.9, blue: 0.9, alpha: 0.9)
+	static let cellColor = SKColor(red: 0.9, green: 0.3, blue: 0.3, alpha: 0.8)
+	static let texture = { () -> SKTexture in
+		let texture = SKTextureAtlas(named: "HUD").textureNamed("Armor")
+		texture.filteringMode = .nearest
+		return texture
+	}()
 
 	let hpCell: SKSpriteNode
 	let armorCells: [SKSpriteNode]
 
 	override init() {
 		hpCell = SKSpriteNode(color: HPNode.cellColor, size: .square(side: HPNode.side * 3 + HPNode.spacing * 2))
-		armorCells = (0..<40).map { _ in SKSpriteNode(color: HPNode.cellColor, size: HPNode.cellSize) }
+		hpCell.texture = HPNode.texture
+
+		armorCells = (0..<40).map { _ in
+			let cell = SKSpriteNode(color: HPNode.cellColor, size: HPNode.cellSize)
+			cell.texture = HPNode.texture
+			return cell
+		}
 
 		super.init()
 

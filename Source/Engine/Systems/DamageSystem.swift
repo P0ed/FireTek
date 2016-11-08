@@ -59,19 +59,15 @@ private extension DamageSystem {
 
 		switch (sin(angle), cos(angle)) {
 		case (let s, let c) where c >= w:
-			print(normalize(s))
 			let y = Int((1 - normalize(s)) * CGFloat(bound))
 			return (bound - 1, y)
 		case (let s, let c) where s >= w:
-			print(normalize(c))
 			let x = Int(normalize(c) * CGFloat(bound))
 			return (x, 0)
 		case (let s, let c) where c <= -w:
-			print(normalize(s))
 			let y = Int((1 - normalize(s)) * CGFloat(bound))
 			return (0, y)
 		case (let s, let c) where s <= -w:
-			print(normalize(c))
 			let x = Int(normalize(c) * CGFloat(bound))
 			return (x, bound - 1)
 		default:

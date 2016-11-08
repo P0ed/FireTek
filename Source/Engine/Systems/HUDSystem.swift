@@ -36,10 +36,11 @@ final class HUDSystem {
 
 	private func updateNode() {
 		if let hp = playerHP {
-			hudNode.playerArmor.alpha = 1
-			hudNode.playerArmor.hpCell.alpha = CGFloat(hp.currentHP) / CGFloat(hp.maxHP)
+			hudNode.playerArmor.alpha = 0.9
+			hudNode.playerArmor.hpCell.colorBlendFactor = 1 - CGFloat(hp.currentHP) / CGFloat(hp.maxHP)
+
 			for (index, armor) in hp.structure.enumerated() {
-				hudNode.playerArmor.armorCells[index].alpha = CGFloat(armor) / CGFloat(UInt8.max)
+				hudNode.playerArmor.armorCells[index].colorBlendFactor = 1 - CGFloat(armor) / CGFloat(UInt8.max)
 			}
 		} else {
 			hudNode.playerArmor.alpha = 0

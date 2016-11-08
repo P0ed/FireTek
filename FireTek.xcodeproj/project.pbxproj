@@ -43,6 +43,7 @@
 		5F6EECAE1D775E360089A0AB /* WeaponComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F6EECAD1D775E360089A0AB /* WeaponComponents.swift */; };
 		5F6EECB01D776CA10089A0AB /* ProjectileFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F6EECAF1D776CA10089A0AB /* ProjectileFactory.swift */; };
 		5F77832D1D7A04F50027FFED /* CollisionsSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F77832C1D7A04F50027FFED /* CollisionsSystem.swift */; };
+		5FCE00911DD12F8B009DD942 /* HUD.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 5FCE00901DD12F8B009DD942 /* HUD.atlas */; };
 		5FD551061D7978AE0092A187 /* SpriteKitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FD551051D7978AE0092A187 /* SpriteKitExtensions.swift */; };
 		5FDF95CA1DBE82AE009E11DA /* Runes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FDF95C81DBE82AE009E11DA /* Runes.framework */; };
 		5FDF95CD1DBE9CB3009E11DA /* Runes.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5FDF95C81DBE82AE009E11DA /* Runes.framework */; };
@@ -155,6 +156,7 @@
 		5F77832C1D7A04F50027FFED /* CollisionsSystem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollisionsSystem.swift; sourceTree = "<group>"; };
 		5F9104981D3BA19500C2C519 /* FireTek.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FireTek.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5FB51C541D587D7100F9FFA4 /* Cartfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Cartfile; sourceTree = "<group>"; };
+		5FCE00901DD12F8B009DD942 /* HUD.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = HUD.atlas; sourceTree = "<group>"; };
 		5FCEA7A51DC2A09D005F72B0 /* PowerCore.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = PowerCore.xcodeproj; path = Carthage/Checkouts/PowerCore/PowerCore.xcodeproj; sourceTree = SOURCE_ROOT; };
 		5FCEA7B91DC3C6B1005F72B0 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		5FD28A561D5B091E00BAFC0F /* File.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = File.md; sourceTree = "<group>"; };
@@ -330,6 +332,7 @@
 			isa = PBXGroup;
 			children = (
 				5F039FA71DC645A300AC45C8 /* SFX */,
+				5FCE00901DD12F8B009DD942 /* HUD.atlas */,
 				5F039FA51DC6284400AC45C8 /* Effects.atlas */,
 				5FE124231D5FA4EC00C41BAC /* Assets.xcassets */,
 			);
@@ -518,6 +521,7 @@
 			files = (
 				5FFF82E31DCC8636007EFAAD /* CrystalCollected.wav in Resources */,
 				5F039FA61DC6284400AC45C8 /* Effects.atlas in Resources */,
+				5FCE00911DD12F8B009DD942 /* HUD.atlas in Resources */,
 				5FE124391D5FA4EC00C41BAC /* MainMenu.xib in Resources */,
 				5FFF82EB1DCC863D007EFAAD /* Boom1.wav in Resources */,
 				5FFF82EC1DCC863D007EFAAD /* Boom2.wav in Resources */,
