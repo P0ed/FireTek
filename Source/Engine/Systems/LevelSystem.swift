@@ -31,7 +31,7 @@ extension LevelSystem.State {
 
 	static func initialState(world: World, level: Level) -> LevelSystem.State {
 		let player = UnitFactory.createShip(world: world, position: level.spawnPosition, team: .blue)
-//		UnitFactory.createAIPlayer(world: world, position: Point(x: 220, y: 40))
+		UnitFactory.createAIPlayer(world: world, position: Point(x: 220, y: 40))
 		UnitFactory.createAIPlayer(world: world, position: Point(x: 40, y: 220))
 
 		let buildings: [Point] = [

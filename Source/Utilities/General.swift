@@ -5,7 +5,7 @@ import Runes
 
 extension Store {
 
-	func getComponentAt(_ index: Int) -> () -> Component {
+	func getComponentAt(_ index: Int) -> () -> C {
 		let sharedIndex = sharedIndexAt(index)
 		return {
 			self[sharedIndex.value]
@@ -57,7 +57,7 @@ struct Closure<A> {
 
 extension Store {
 
-	subscript(sharedIndex: Box<Int>) -> Component {
+	subscript(sharedIndex: Box<Int>) -> C {
 		get {
 			return self[sharedIndex.value]
 		}
@@ -66,32 +66,7 @@ extension Store {
 		}
 	}
 
-	func closureAt(_ index: Int) -> Closure<Component> {
-		let sharedIndex = sharedIndexAt(index)
-
-		return Closure(
-			get: {
-				self[sharedIndex]
-			},
-			set: { data in
-				self[sharedIndex] = data
-			}
-		)
-	}
-
-	func weakClosure(_ entity: Entity) -> Closure<Component?> {
-		return Closure(
-			get: {
-				self.instanceOf(entity)
-			},
-			set: { newValue in
-				guard let index = self.indexOf(entity), let newValue = newValue else { return }
-				self[index] = newValue
-			}
-		)
-	}
-
-	func find(_ f: (Component) -> Bool) -> Int? {
+	func find(_ f: (C) -> Bool) -> Int? {
 		for (index, component) in self.enumerated() {
 			if f(component) {
 				return .some(index)

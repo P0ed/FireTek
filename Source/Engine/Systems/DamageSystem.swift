@@ -10,7 +10,8 @@ final class DamageSystem {
 	}
 
 	func damage(hp: (index: Int, entity: Entity), projectile: ProjectileComponent, point: CGPoint, normal: CGVector) {
-		let sprite = world.sprites.instanceOf(hp.entity)!.sprite
+		let spriteIndex = world.sprites.indexOf(hp.entity)!
+		let sprite = world.sprites[spriteIndex].sprite
 		var hpComponent = world.hp[hp.index]
 		var damage = projectile.damage
 

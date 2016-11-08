@@ -7,16 +7,17 @@ final class HUDSystem {
 	private let world: World
 	private let hudNode: HUDNode
 
-	private var player: Entity?
-	private var target: Entity?
 	private var targetLifetime: UInt16 = 0
-	private var playerHP: HPComponent?
-	private var targetHP: HPComponent?
+	private var playerHP: Component<HPComponent>?
+	private var targetHP: Component<HPComponent>?
 
 	init(world: World, player: Entity, hudNode: HUDNode) {
 		self.world = world
-		self.player = player
 		self.hudNode = hudNode
+
+		if let playerIndex = world.hp.indexOf(player) {
+			playerHP = world.hp.instanceAt(playerIndex)
+		}
 	}
 
 	func update() {
@@ -25,17 +26,14 @@ final class HUDSystem {
 	}
 
 	private func fillHud() {
-		if target != nil && targetLifetime > 0 {
+		if targetHP != nil && targetLifetime > 0 {
 			targetLifetime -= 1
 		}
-		if targetLifetime == 0 { target = nil }
-
-		playerHP = world.hp.instanceOf -<< player
-		targetHP = world.hp.instanceOf -<< target
+		if targetLifetime == 0 { targetHP = nil }
 	}
 
 	private func updateNode() {
-		if let hp = playerHP {
+		if let hp = playerHP?.value {
 			hudNode.playerArmor.alpha = 0.9
 			hudNode.playerArmor.hpCell.colorBlendFactor = 1 - CGFloat(hp.currentHP) / CGFloat(hp.maxHP)
 
