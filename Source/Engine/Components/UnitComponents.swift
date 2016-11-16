@@ -35,6 +35,12 @@ struct BuildingComponent {
 	let hp: Box<Int>
 }
 
+struct TargetComponent {
+	var target: Entity?
+
+	static let none = TargetComponent(target: nil)
+}
+
 enum Team {
 	case blue
 	case red

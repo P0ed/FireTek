@@ -36,7 +36,6 @@ final class GameScene: SKScene {
 		camera.addChild(hud)
 		hud.zPosition = 1000
 		hud.layout(size: size)
-
 	}
 
 	func renderTileMap(_ level: Level) {

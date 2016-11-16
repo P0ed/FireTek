@@ -45,6 +45,7 @@ enum UnitFactory {
 		)
 		world.ships.add(component: ship, to: entity)
 		world.team.add(component: team, to: entity)
+		world.targets.add(component: .none, to: entity)
 
 		world.loot.add(component: LootComponent(crystal: .orange, count: 3), to: entity)
 

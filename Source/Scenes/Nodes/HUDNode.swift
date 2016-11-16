@@ -2,19 +2,23 @@ import SpriteKit
 
 final class HUDNode: SKNode {
 
-	let playerArmor = HPNode()
+	let playerHP = HPNode()
+	let targetHP = HPNode()
 
 	override init() {
 		super.init()
 
-		addChild(playerArmor)
+		addChild(playerHP)
+		addChild(targetHP)
 	}
 
 	required init?(coder aDecoder: NSCoder) { fatalError("init(coder:) has not been implemented") }
 
 	func layout(size: CGSize) {
-		playerArmor.layout(size: size)
-		playerArmor.position = CGPoint(x: 0 - 300, y: 0 - 180)
+		playerHP.layout(size: size)
+		playerHP.position = CGPoint(x: 0 - 300, y: 0 - 180)
+		targetHP.layout(size: size)
+		targetHP.position = CGPoint(x: 0 - 300, y: 0 + 140)
 	}
 }
 

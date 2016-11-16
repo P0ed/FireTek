@@ -13,6 +13,7 @@ final class World {
 	let vehicleStats: Store<VehicleStats>
 	let primaryWpn: Store<WeaponComponent>
 	let secondaryWpn: Store<WeaponComponent>
+	let targets: Store<TargetComponent>
 
 	let loot: Store<LootComponent>
 	let crystals: Store<CrystalComponent>
@@ -45,6 +46,7 @@ final class World {
 		vehicleStats = core.createStore()
 		primaryWpn = core.createStore()
 		secondaryWpn = core.createStore()
+		targets = core.createStore()
 
 		shipInput = core.createStore()
 		vehicleInput = core.createStore()
