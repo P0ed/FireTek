@@ -43,6 +43,7 @@ final class HUDSystem {
 
 			for (index, armor) in hp.structure.enumerated() {
 				node.armorCells[index].colorBlendFactor = 1 - CGFloat(armor) / CGFloat(UInt8.max)
+				node.armorCells[index].alpha = hp.armor == 0 ? 0.2 : 1
 			}
 		} else {
 			node.alpha = 0

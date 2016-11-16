@@ -19,7 +19,7 @@ final class DamageSystem {
 
 		let eIndexes = indexes(at: angle, bound: 7)
 		let eArmor = hpComponent[eIndexes.x, eIndexes.y]
-		if eArmor > 0 {
+		if hpComponent.armor > 0 && eArmor > 0 {
 			let capacity = Float(hpComponent.armor) * (Float(eArmor) / Float(UInt8.max))
 			let n = max(0, capacity - damage) / Float(hpComponent.armor)
 			let r = UInt8(n * Float(UInt8.max))
@@ -29,7 +29,7 @@ final class DamageSystem {
 
 		let iIndexes = indexes(at: angle, bound: 5)
 		let iArmor = hpComponent[iIndexes.x + 1, iIndexes.y + 1]
-		if iArmor > 0 {
+		if hpComponent.armor > 0 && iArmor > 0 {
 			let capacity = Float(hpComponent.armor) * (Float(iArmor) / Float(UInt8.max))
 			let n = max(0, capacity - damage) / Float(hpComponent.armor)
 			let r = UInt8(n * Float(UInt8.max))

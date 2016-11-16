@@ -35,14 +35,14 @@ extension LevelSystem.State {
 		UnitFactory.createAIPlayer(world: world, position: Point(x: 40, y: 220))
 
 		let buildings: [Point] = [
-//			Point(x: 140, y: 120),
-//			Point(x: 220, y: 140),
-//			Point(x: 280, y: 120),
-//			Point(x: 360, y: 140),
-//			Point(x: 140, y: 320),
-//			Point(x: 220, y: 340),
-//			Point(x: 280, y: 320),
-//			Point(x: 360, y: 340)
+			Point(x: 140, y: 120),
+			Point(x: 220, y: 140),
+			Point(x: 280, y: 120),
+			Point(x: 360, y: 140),
+			Point(x: 140, y: 320),
+			Point(x: 220, y: 340),
+			Point(x: 280, y: 320),
+			Point(x: 360, y: 340)
 		]
 
 		buildings.forEach {
