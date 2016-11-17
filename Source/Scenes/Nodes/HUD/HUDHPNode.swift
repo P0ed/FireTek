@@ -1,27 +1,5 @@
 import SpriteKit
 
-final class HUDNode: SKNode {
-
-	let playerHP = HPNode()
-	let targetHP = HPNode()
-
-	override init() {
-		super.init()
-
-		addChild(playerHP)
-		addChild(targetHP)
-	}
-
-	required init?(coder aDecoder: NSCoder) { fatalError("init(coder:) has not been implemented") }
-
-	func layout(size: CGSize) {
-		playerHP.layout(size: size)
-		playerHP.position = CGPoint(x: 0 - 300, y: 0 - 180)
-		targetHP.layout(size: size)
-		targetHP.position = CGPoint(x: 0 - 300, y: 0 + 140)
-	}
-}
-
 final class HPNode: SKNode {
 
 	static let spacing: CGFloat = 1

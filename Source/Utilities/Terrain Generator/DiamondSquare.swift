@@ -31,7 +31,7 @@ final class HeightMapGenerator {
 	}
 
 	private static func randomWithSeed(_ seed: Int) -> () -> Float {
-		var seedValue = seed
+//		var seedValue = seed
 //		let seedData = Data(bytes: UnsafePointer<UInt8>(&seedValue), count: sizeof(type(of: seedValue)))
 		let randomSource = GKARC4RandomSource(seed: /*seedData*/Data())
 		return randomWithSource(randomSource)

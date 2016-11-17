@@ -47,7 +47,7 @@ final class DamageSystem {
 			world.dead.add(component: dead, to: hp.entity)
 		}
 
-		if let index = world.targets.indexOf(projectile.source) {
+		if let index = world.targets.indexOf(projectile.source), projectile.source != hp.entity {
 			world.targets[index].target = hp.entity
 		}
 	}
