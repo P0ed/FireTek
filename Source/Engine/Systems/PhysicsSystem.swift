@@ -47,7 +47,7 @@ struct PhysicsSystem {
 		let strafe = CGVector(dx: CGFloat(input.strafe), dy: 0).rotate(physics.body.node!.zRotation)
 		physics.body.applyImpulse(strafe * CGFloat(stats.speed) * 4)
 
-		physics.body.velocity = physics.body.velocity * 0.96
-		physics.body.angularVelocity = physics.body.angularVelocity * 0.84
+		physics.body.velocity = physics.body.velocity * 0.99
+		physics.body.angularVelocity = physics.body.angularVelocity * 0.8
 	}
 }

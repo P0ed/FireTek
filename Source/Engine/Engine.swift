@@ -28,6 +28,7 @@ final class Engine {
 	private let lifetimeSystem: LifetimeSystem
 	private let lootSystem: LootSystem
 	private let hudSystem: HUDSystem
+	private let planetarySystem: PlanetarySystem
 
 	init(_ model: Model) {
 		self.model = model
@@ -41,7 +42,7 @@ final class Engine {
 		targetSystem = TargetSystem(targets: world.targets)
 		projectileSystem = ProjectileSystem(world: world, collisionsSystem: collisionsSystem, damageSystem: damageSystem)
 
-		levelSystem = LevelSystem(world: world, level: Level())
+		levelSystem = LevelSystem(world: world, level: .default)
 		inputSystem = InputSystem(world: world, player: levelSystem.state.value.player, inputController: model.inputController)
 		aiSystem = AISystem(world: world)
 
@@ -53,11 +54,15 @@ final class Engine {
 		cameraSystem.update()
 
 		hudSystem = HUDSystem(world: world, player: levelSystem.state.value.player, hudNode: model.scene().hud)
+
+		planetarySystem = PlanetarySystem(planets: world.planets)
 	}
 
 	func simulate() {
 		inputSystem.update()
 		physicsSystem.update()
+		planetarySystem.update()
+
 		weaponSystem.update()
 		targetSystem.update()
 

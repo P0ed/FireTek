@@ -35,25 +35,25 @@ struct Vector {
 	var dy: Float
 }
 
-struct Closure<A> {
-	let get: () -> A
-	let set: (A) -> ()
-
-	var value: A {
-		get {
-			return get()
-		}
-		nonmutating set {
-			set(newValue)
-		}
-	}
-
-	func update(_ f: (inout A) -> ()) {
-		var value = get()
-		f(&value)
-		set(value)
-	}
-}
+//struct Closure<A> {
+//	let get: () -> A
+//	let set: (A) -> ()
+//
+//	var value: A {
+//		get {
+//			return get()
+//		}
+//		nonmutating set {
+//			set(newValue)
+//		}
+//	}
+//
+//	func update(_ f: (inout A) -> ()) {
+//		var value = get()
+//		f(&value)
+//		set(value)
+//	}
+//}
 
 extension Store {
 

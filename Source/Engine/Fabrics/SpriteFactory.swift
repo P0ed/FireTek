@@ -4,13 +4,13 @@ import PowerCore
 enum SpriteFactory {
 
 	static let effects = SKTextureAtlas(named: "Effects")
+	static let space = SKTextureAtlas(named: "Space")
 
 	static func createShipSprite(_ entity: Entity, at position: Point) -> SpriteComponent {
 		let texture = SKTexture(imageNamed: "Intruder")
 		texture.filteringMode = .nearest
 
 		let spriteNode = SKSpriteNode(texture: texture)
-		spriteNode.setScale(1.2)
 		spriteNode.position = position.cgPoint
 		spriteNode.entity = entity
 
@@ -65,6 +65,48 @@ extension SpriteFactory {
 	static func vehiceExplosionTextures() -> [SKTexture] {
 		return (0...6).map { index in
 			effects.textureNamed("vehicle-explosion-\(index)")
+		}
+	}
+}
+
+// MARK: Stars & Planets
+extension SpriteFactory {
+
+	static func createStar(entity: Entity, data: StarSystemData.Star) -> SKSpriteNode {
+		let node = SKSpriteNode(texture: space.textureNamed("Planet"))
+		node.size = CGSize(width: CGFloat(data.radius * 2), height: CGFloat(data.radius * 2))
+		node.color = data.color.color
+		node.colorBlendFactor = 0.5
+		node.entity = entity
+		return node
+	}
+
+	static func createPlanet(entity: Entity, data: StarSystemData.Planet) -> SKSpriteNode {
+		let node = SKSpriteNode(texture: space.textureNamed("Planet"))
+		node.size = CGSize(width: CGFloat(data.radius * 2), height: CGFloat(data.radius * 2))
+		node.color = data.color.color
+		node.colorBlendFactor = 0.5
+		node.entity = entity
+		return node
+	}
+}
+
+extension StarSystemData.StarColor {
+	var color: SKColor {
+		switch self {
+		case .red:		return SKColor(hex: 0xee0000)
+		case .blue:		return SKColor(hex: 0x0000ee)
+		}
+	}
+}
+
+extension StarSystemData.PlanetColor {
+	var color: SKColor {
+		switch self {
+		case .yellow:	return SKColor(hex: 0xeeee00)
+		case .orange:	return SKColor(hex: 0xff7700)
+		case .green:	return SKColor(hex: 0x00cc00)
+		case .cyan:		return SKColor(hex: 0x00ccaa)
 		}
 	}
 }

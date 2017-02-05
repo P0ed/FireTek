@@ -23,7 +23,6 @@ final class GameScene: SKScene {
 		world = SKNode()
 		addChild(world)
 
-
 		SoundsFabric.preheat()
 
 		engine = Engine(Engine.Model(
@@ -31,22 +30,20 @@ final class GameScene: SKScene {
 			inputController: InputController(hidController.eventsController)
 		))
 
-		renderTileMap(Level())
-
 		camera.addChild(hud)
 		hud.zPosition = 1000
 		hud.layout(size: size)
 	}
 
-	func renderTileMap(_ level: Level) {
-		let tileSize = 64
-		level.tileMap.forEach { position, tile in
-			let node = SKSpriteNode(color: tile.color, size: CGSize(width: tileSize, height: tileSize))
-			node.position = CGPoint(x: position.x * tileSize, y: position.y * tileSize)
-			node.anchorPoint = .zero
-			world.addChild(node)
-		}
-	}
+//	func renderTileMap(_ level: PlanetLevel) {
+//		let tileSize = 64
+//		level.tileMap.forEach { position, tile in
+//			let node = SKSpriteNode(color: tile.color, size: CGSize(width: tileSize, height: tileSize))
+//			node.position = CGPoint(x: position.x * tileSize, y: position.y * tileSize)
+//			node.anchorPoint = .zero
+//			world.addChild(node)
+//		}
+//	}
 
     override func update(_ currentTime: TimeInterval) {
 		if lastUpdate != 0 {

@@ -12,7 +12,12 @@
 		5F039FA61DC6284400AC45C8 /* Effects.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 5F039FA51DC6284400AC45C8 /* Effects.atlas */; };
 		5F039FB31DC6481100AC45C8 /* SoundsFabric.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F039FB21DC6481100AC45C8 /* SoundsFabric.swift */; };
 		5F082FEF1D60D8B400DE34DC /* TileMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F082FEE1D60D8B400DE34DC /* TileMap.swift */; };
-		5F082FF11D60DE3700DE34DC /* Level.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F082FF01D60DE3700DE34DC /* Level.swift */; };
+		5F082FF11D60DE3700DE34DC /* PlanetLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F082FF01D60DE3700DE34DC /* PlanetLevel.swift */; };
+		5F0F8B861E476A1F001EF757 /* PlanetarySystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F0F8B851E476A1F001EF757 /* PlanetarySystem.swift */; };
+		5F0F8B881E476E5B001EF757 /* PlanetarySystemData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F0F8B871E476E5B001EF757 /* PlanetarySystemData.swift */; };
+		5F0F8B8A1E477C20001EF757 /* StarSystemFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F0F8B891E477C20001EF757 /* StarSystemFactory.swift */; };
+		5F0F8B8C1E4784D6001EF757 /* SpaceLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F0F8B8B1E4784D6001EF757 /* SpaceLevel.swift */; };
+		5F0F8B8E1E47A7F6001EF757 /* Space.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 5F0F8B8D1E47A7F6001EF757 /* Space.atlas */; };
 		5F2B51E91D6F71BC00AF62A1 /* InputSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F2B51E81D6F71BC00AF62A1 /* InputSystem.swift */; };
 		5F2F9F3B1D7328380016AA2F /* AISystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F2F9F3A1D7328380016AA2F /* AISystem.swift */; };
 		5F2F9F3D1D7331E60016AA2F /* Math.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F2F9F3C1D7331E60016AA2F /* Math.swift */; };
@@ -128,7 +133,12 @@
 		5F039FA51DC6284400AC45C8 /* Effects.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = Effects.atlas; sourceTree = "<group>"; };
 		5F039FB21DC6481100AC45C8 /* SoundsFabric.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SoundsFabric.swift; sourceTree = "<group>"; };
 		5F082FEE1D60D8B400DE34DC /* TileMap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TileMap.swift; sourceTree = "<group>"; };
-		5F082FF01D60DE3700DE34DC /* Level.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Level.swift; sourceTree = "<group>"; };
+		5F082FF01D60DE3700DE34DC /* PlanetLevel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlanetLevel.swift; sourceTree = "<group>"; };
+		5F0F8B851E476A1F001EF757 /* PlanetarySystem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlanetarySystem.swift; sourceTree = "<group>"; };
+		5F0F8B871E476E5B001EF757 /* PlanetarySystemData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlanetarySystemData.swift; sourceTree = "<group>"; };
+		5F0F8B891E477C20001EF757 /* StarSystemFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StarSystemFactory.swift; sourceTree = "<group>"; };
+		5F0F8B8B1E4784D6001EF757 /* SpaceLevel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpaceLevel.swift; sourceTree = "<group>"; };
+		5F0F8B8D1E47A7F6001EF757 /* Space.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = Space.atlas; sourceTree = "<group>"; };
 		5F2B51E81D6F71BC00AF62A1 /* InputSystem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputSystem.swift; sourceTree = "<group>"; };
 		5F2F9F3A1D7328380016AA2F /* AISystem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AISystem.swift; sourceTree = "<group>"; };
 		5F2F9F3C1D7331E60016AA2F /* Math.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Math.swift; sourceTree = "<group>"; };
@@ -224,7 +234,8 @@
 			isa = PBXGroup;
 			children = (
 				5F082FEE1D60D8B400DE34DC /* TileMap.swift */,
-				5F082FF01D60DE3700DE34DC /* Level.swift */,
+				5F082FF01D60DE3700DE34DC /* PlanetLevel.swift */,
+				5F0F8B8B1E4784D6001EF757 /* SpaceLevel.swift */,
 			);
 			path = Level;
 			sourceTree = "<group>";
@@ -237,6 +248,7 @@
 				5F6EECAF1D776CA10089A0AB /* ProjectileFactory.swift */,
 				5F039FA31DC6227200AC45C8 /* EffectsFabric.swift */,
 				5F039FB21DC6481100AC45C8 /* SoundsFabric.swift */,
+				5F0F8B891E477C20001EF757 /* StarSystemFactory.swift */,
 			);
 			path = Fabrics;
 			sourceTree = "<group>";
@@ -338,6 +350,7 @@
 			isa = PBXGroup;
 			children = (
 				5F039FA71DC645A300AC45C8 /* SFX */,
+				5F0F8B8D1E47A7F6001EF757 /* Space.atlas */,
 				5FCE00901DD12F8B009DD942 /* HUD.atlas */,
 				5F039FA51DC6284400AC45C8 /* Effects.atlas */,
 				5FE124231D5FA4EC00C41BAC /* Assets.xcassets */,
@@ -380,6 +393,7 @@
 				5F428C801D688DB00075FA6B /* AIComponents.swift */,
 				5F6EECAD1D775E360089A0AB /* WeaponComponents.swift */,
 				5F039F9F1DC61FFB00AC45C8 /* LifetimeComponent.swift */,
+				5F0F8B871E476E5B001EF757 /* PlanetarySystemData.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -402,6 +416,7 @@
 				5F4CCCA51DCE6D3500E3DB58 /* HUDSystem.swift */,
 				5FEFFC3F1DCF89C300685419 /* DamageSystem.swift */,
 				5FCD334A1DD3B9F000815476 /* TargetSysyem.swift */,
+				5F0F8B851E476A1F001EF757 /* PlanetarySystem.swift */,
 			);
 			path = Systems;
 			sourceTree = "<group>";
@@ -538,6 +553,7 @@
 			files = (
 				5FFF82E31DCC8636007EFAAD /* CrystalCollected.wav in Resources */,
 				5F039FA61DC6284400AC45C8 /* Effects.atlas in Resources */,
+				5F0F8B8E1E47A7F6001EF757 /* Space.atlas in Resources */,
 				5FCE00911DD12F8B009DD942 /* HUD.atlas in Resources */,
 				5FE124391D5FA4EC00C41BAC /* MainMenu.xib in Resources */,
 				5FFF82EB1DCC863D007EFAAD /* Boom1.wav in Resources */,
@@ -565,7 +581,8 @@
 				5F2F9F3D1D7331E60016AA2F /* Math.swift in Sources */,
 				5F5D31E51DC61E6300BC0969 /* LifetimeSystem.swift in Sources */,
 				5F428C871D68B2D30075FA6B /* SpriteFactory.swift in Sources */,
-				5F082FF11D60DE3700DE34DC /* Level.swift in Sources */,
+				5F082FF11D60DE3700DE34DC /* PlanetLevel.swift in Sources */,
+				5F0F8B8A1E477C20001EF757 /* StarSystemFactory.swift in Sources */,
 				5F082FEF1D60D8B400DE34DC /* TileMap.swift in Sources */,
 				5FE124411D5FA4ED00C41BAC /* InputComponents.swift in Sources */,
 				5F428C901D6909EE0075FA6B /* InputController.swift in Sources */,
@@ -588,13 +605,16 @@
 				5F428C9B1D690A250075FA6B /* DSExtensions.swift in Sources */,
 				5F53F3BA1D6F83570077B2A0 /* PhysicsSystem.swift in Sources */,
 				5F428C811D688DB00075FA6B /* AIComponents.swift in Sources */,
+				5F0F8B881E476E5B001EF757 /* PlanetarySystemData.swift in Sources */,
 				5F2F9F3F1D7333C40016AA2F /* CameraSystem.swift in Sources */,
 				5F428C9C1D690A250075FA6B /* EventsController.swift in Sources */,
+				5F0F8B8C1E4784D6001EF757 /* SpaceLevel.swift in Sources */,
 				5FEF36611DC68A4F00B52FB9 /* LootSystem.swift in Sources */,
 				5FE124541D5FA81700C41BAC /* DiamondSquare.swift in Sources */,
 				5FEFFC401DCF89C300685419 /* DamageSystem.swift in Sources */,
 				5FFFB44E1DDD925300DAD69A /* HUDNode.swift in Sources */,
 				5F428C9A1D690A250075FA6B /* DeviceConfiguration.swift in Sources */,
+				5F0F8B861E476A1F001EF757 /* PlanetarySystem.swift in Sources */,
 				5F6EECB01D776CA10089A0AB /* ProjectileFactory.swift in Sources */,
 				5F039FB31DC6481100AC45C8 /* SoundsFabric.swift in Sources */,
 				5F6EECAC1D775C120089A0AB /* WeaponSystem.swift in Sources */,
@@ -742,10 +762,12 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/Mac",
 				);
+				GCC_OPTIMIZATION_LEVEL = 0;
 				INFOPLIST_FILE = macOS/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.github.p0ed.FireTek;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;

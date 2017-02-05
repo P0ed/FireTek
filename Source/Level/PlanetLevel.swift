@@ -4,13 +4,13 @@ struct Tile {
 	let color: SKColor
 }
 
-final class Level {
+final class PlanetLevel {
 
 	let tileMap: TileMap<Tile>
 	let spawnPosition: Point
 
 	init() {
-		tileMap = Level.generateTileMap()
+		tileMap = PlanetLevel.generateTileMap()
 		spawnPosition = Point(x: 32, y: 32)
 	}
 

@@ -100,8 +100,9 @@ enum UnitFactory {
 	}
 
 	static func vehiclePhysics(_ sprite: SKSpriteNode) -> PhysicsComponent {
-		let body = SKPhysicsBody(rectangleOf: CGSize(width: 32, height: 64))
+		let body = SKPhysicsBody(rectangleOf: sprite.size)
 		body.mass = 40
+		body.angularDamping = 1
 
 		body.categoryBitMask = 0x1
 

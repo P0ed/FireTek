@@ -32,7 +32,8 @@ enum ProjectileFactory {
 		body.mass = 0.01
 
 		body.categoryBitMask = 0x1 << 1
-		body.collisionBitMask = ~0 ^ (0x1 << 1 | 0x1 << 2)
+		let collideExcept: UInt32 = 0x1 << 1 | 0x1 << 2
+		body.collisionBitMask = ~0 ^ collideExcept
 		body.contactTestBitMask = 0x1
 
 		sprite.physicsBody = body
