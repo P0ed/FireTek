@@ -56,6 +56,10 @@ final class GameScene: SKScene {
 		}
     }
 
+	override func didFinishUpdate() {
+		engine.didFinishUpdate()
+	}
+
 	override func keyDown(with event: NSEvent) {}
 	override func keyUp(with event: NSEvent) {}
 }

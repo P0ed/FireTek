@@ -71,10 +71,13 @@ final class Engine {
 		levelSystem.update()
 //		aiSystem.update()
 
-		cameraSystem.update()
 		hudSystem.update()
 
 		lootSystem.update()
 		lifetimeSystem.update()
+	}
+
+	func didFinishUpdate() {
+		cameraSystem.update()
 	}
 }
