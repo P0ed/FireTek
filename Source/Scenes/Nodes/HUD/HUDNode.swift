@@ -7,11 +7,12 @@ final class HUDNode: SKNode {
 	let targetHP = HPNode()
 	let weapon1 = WeaponNode()
 	let weapon2 = WeaponNode()
+	let map = HUDMapNode()
 
 	override init() {
 		super.init()
 
-		_ = addChild <^> [playerHP, targetHP, weapon1, weapon2]
+		_ = addChild <^> [playerHP, targetHP, weapon1, weapon2, map]
 	}
 
 	required init?(coder aDecoder: NSCoder) { fatalError("init(coder:) has not been implemented") }
@@ -27,5 +28,7 @@ final class HUDNode: SKNode {
 		weapon2.layout(size: weaponSize)
 		weapon1.position = CGPoint(x: 0, y: 16 - size.height / 2)
 		weapon2.position = CGPoint(x: 0, y: 16 + 16 - size.height / 2)
+
+		map.position = CGPoint(x: size.width / 2 - 44 - 16, y: size.height / 2 - 44 - 16)
 	}
 }

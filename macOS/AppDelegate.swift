@@ -15,8 +15,9 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 
 			self.skView!.ignoresSiblingOrder = true
 
-//            self.skView!.showsFPS = true
-//            self.skView!.showsNodeCount = true
+			self.skView!.showsFPS = true
+			self.skView!.showsNodeCount = true
+//			self.skView!.showsFields = true
         }
     }
 

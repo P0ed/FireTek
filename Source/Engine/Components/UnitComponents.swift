@@ -1,5 +1,6 @@
 import Fx
 import PowerCore
+import SpriteKit
 
 struct ShipComponent {
 	let sprite: Box<Int>
@@ -65,4 +66,17 @@ struct OwnerComponent {
 
 struct DeadComponent {
 	let killedBy: Entity
+}
+
+struct MapItem {
+
+	enum ItemType {
+		case star
+		case planet
+		case ally
+		case enemy
+	}
+
+	let type: ItemType
+	let node: SKNode
 }

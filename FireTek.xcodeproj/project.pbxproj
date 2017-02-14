@@ -18,6 +18,7 @@
 		5F0F8B8A1E477C20001EF757 /* StarSystemFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F0F8B891E477C20001EF757 /* StarSystemFactory.swift */; };
 		5F0F8B8C1E4784D6001EF757 /* SpaceLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F0F8B8B1E4784D6001EF757 /* SpaceLevel.swift */; };
 		5F0F8B8E1E47A7F6001EF757 /* Space.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 5F0F8B8D1E47A7F6001EF757 /* Space.atlas */; };
+		5F0F8B901E48ECE2001EF757 /* HUDMapNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F0F8B8F1E48ECE2001EF757 /* HUDMapNode.swift */; };
 		5F2B51E91D6F71BC00AF62A1 /* InputSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F2B51E81D6F71BC00AF62A1 /* InputSystem.swift */; };
 		5F2F9F3B1D7328380016AA2F /* AISystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F2F9F3A1D7328380016AA2F /* AISystem.swift */; };
 		5F2F9F3D1D7331E60016AA2F /* Math.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F2F9F3C1D7331E60016AA2F /* Math.swift */; };
@@ -139,6 +140,7 @@
 		5F0F8B891E477C20001EF757 /* StarSystemFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StarSystemFactory.swift; sourceTree = "<group>"; };
 		5F0F8B8B1E4784D6001EF757 /* SpaceLevel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpaceLevel.swift; sourceTree = "<group>"; };
 		5F0F8B8D1E47A7F6001EF757 /* Space.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = Space.atlas; sourceTree = "<group>"; };
+		5F0F8B8F1E48ECE2001EF757 /* HUDMapNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HUDMapNode.swift; sourceTree = "<group>"; };
 		5F2B51E81D6F71BC00AF62A1 /* InputSystem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputSystem.swift; sourceTree = "<group>"; };
 		5F2F9F3A1D7328380016AA2F /* AISystem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AISystem.swift; sourceTree = "<group>"; };
 		5F2F9F3C1D7331E60016AA2F /* Math.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Math.swift; sourceTree = "<group>"; };
@@ -456,6 +458,7 @@
 				5FFFB44D1DDD925300DAD69A /* HUDNode.swift */,
 				5FFFB44F1DDD926000DAD69A /* HUDHPNode.swift */,
 				5FFFB4511DDD929500DAD69A /* HUDWeaponNode.swift */,
+				5F0F8B8F1E48ECE2001EF757 /* HUDMapNode.swift */,
 			);
 			path = HUD;
 			sourceTree = "<group>";
@@ -604,6 +607,7 @@
 				5FE124451D5FA4ED00C41BAC /* GameScene.swift in Sources */,
 				5F428C9B1D690A250075FA6B /* DSExtensions.swift in Sources */,
 				5F53F3BA1D6F83570077B2A0 /* PhysicsSystem.swift in Sources */,
+				5F0F8B901E48ECE2001EF757 /* HUDMapNode.swift in Sources */,
 				5F428C811D688DB00075FA6B /* AIComponents.swift in Sources */,
 				5F0F8B881E476E5B001EF757 /* PlanetarySystemData.swift in Sources */,
 				5F2F9F3F1D7333C40016AA2F /* CameraSystem.swift in Sources */,

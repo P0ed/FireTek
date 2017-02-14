@@ -43,9 +43,16 @@ enum UnitFactory {
 			primaryWpn: world.primaryWpn.sharedIndexAt § world.primaryWpn.add(component: primary, to: entity),
 			secondaryWpn: world.secondaryWpn.sharedIndexAt § world.secondaryWpn.add(component: secondary, to: entity)
 		)
+
+		let mapItem = MapItem(
+			type: team == .blue ? .ally : .enemy,
+			node: sprite.sprite
+		)
+
 		world.ships.add(component: ship, to: entity)
 		world.team.add(component: team, to: entity)
 		world.targets.add(component: .none, to: entity)
+		world.mapItems.add(component: mapItem, to: entity)
 
 		world.loot.add(component: LootComponent(crystal: .orange, count: 3), to: entity)
 

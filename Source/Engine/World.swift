@@ -34,6 +34,7 @@ final class World {
 	let team: Store<Team>
 
 	let planets: Store<PlanetComponent>
+	let mapItems: Store<MapItem>
 
 	init() {
 		let core = PowerCore.World()
@@ -67,6 +68,7 @@ final class World {
 		owners = core.createStore()
 
 		planets = core.createStore()
+		mapItems = core.createStore()
 	}
 }
 

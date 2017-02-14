@@ -8,7 +8,7 @@ extension SpaceLevel {
 	static var `default`: SpaceLevel {
 		return SpaceLevel(
 			starSystem: .generate(),
-			spawnPosition: Point(x: 0, y: 150)
+			spawnPosition: Point(x: 0, y: 250)
 		)
 	}
 }
@@ -22,30 +22,30 @@ extension StarSystemData {
 				Planet(
 					radius: 30,
 					color: .cyan,
-					orbit: 120,
-					velocity: 0.01,
-					position: 0
+					orbit: 280,
+					velocity: 0.0021,
+					position: 0.2
 				),
 				Planet(
 					radius: 40,
 					color: .yellow,
-					orbit: 270,
-					velocity: 0.005,
-					position: 0
+					orbit: 470,
+					velocity: 0.0012,
+					position: 2.5
 				),
 				Planet(
 					radius: 36,
 					color: .green,
-					orbit: 390,
-					velocity: 0.002,
-					position: 0
+					orbit: 690,
+					velocity: 0.00051,
+					position: 1.1
 				),
 				Planet(
 					radius: 34,
 					color: .orange,
-					orbit: 480,
-					velocity: 0.001,
-					position: 0
+					orbit: 980,
+					velocity: 0.00017,
+					position: 2.9
 				)
 			]
 		)

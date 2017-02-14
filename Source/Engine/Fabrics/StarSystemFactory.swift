@@ -16,7 +16,10 @@ enum StarSystemFactory {
 		sprite.addChild(createField(radius: data.radius))
 		sprite.physicsBody = createPhysics(radius: data.radius)
 
+		let mapItem = MapItem(type: .star, node: sprite)
+
 		world.sprites.add(component: SpriteComponent(sprite: sprite), to: entity)
+		world.mapItems.add(component: mapItem, to: entity)
 
 		return entity
 	}
@@ -36,8 +39,11 @@ enum StarSystemFactory {
 			position: data.position
 		)
 
+		let mapItem = MapItem(type: .planet, node: sprite)
+
 		world.sprites.add(component: SpriteComponent(sprite: sprite), to: entity)
 		world.planets.add(component: planet, to: entity)
+		world.mapItems.add(component: mapItem, to: entity)
 
 		return entity
 	}

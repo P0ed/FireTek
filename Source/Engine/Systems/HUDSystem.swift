@@ -1,11 +1,15 @@
 import PowerCore
 import Fx
 import Runes
+import SpriteKit
 
 final class HUDSystem {
 
 	private let world: World
 	private let hudNode: HUDNode
+
+	private var playerSprite: Component<SpriteComponent>?
+	private var mapNodes: [(SKNode, SKNode)] = []
 
 	private var playerHP: Component<HPComponent>?
 	private var playerTarget: Component<TargetComponent>?
@@ -14,14 +18,45 @@ final class HUDSystem {
 	private var primaryWeapon: Component<WeaponComponent>?
 	private var secondaryWeapon: Component<WeaponComponent>?
 
+	private let disposable = SerialDisposable()
+
 	init(world: World, player: Entity, hudNode: HUDNode) {
 		self.world = world
 		self.hudNode = hudNode
 
+		playerSprite = world.sprites.instanceAt <^> world.sprites.indexOf(player)
 		playerHP = world.hp.instanceAt <^> world.hp.indexOf(player)
 		playerTarget = world.targets.instanceAt <^> world.targets.indexOf(player)
 		primaryWeapon = world.primaryWpn.instanceAt <^> world.primaryWpn.indexOf(player)
 		secondaryWeapon = world.secondaryWpn.instanceAt <^> world.primaryWpn.indexOf(player)
+
+		disposable.innerDisposable = observeMap(mapItems: world.mapItems)
+	}
+
+	private func observeMap(mapItems: Store<MapItem>) -> Disposable {
+		let d = CompositeDisposable()
+		let map = hudNode.map
+
+		let add = { [unowned self] (idx: Int) in
+			let item = mapItems[idx]
+			let mapSprite = SKShapeNode(circleOfRadius: 2)
+			mapSprite.fillColor = item.type.color
+			mapSprite.strokeColor = .clear
+			map.addChild(mapSprite)
+			self.mapNodes.append((item.node, mapSprite))
+		}
+
+		mapItems.indices.forEach(add)
+
+		d += mapItems.newComponents.observe(add)
+
+		d += mapItems.removedComponents.observe { [unowned self] _, item in
+			if let idx = self.mapNodes.index(where: { $0.0 === item.node }) {
+				self.mapNodes.remove(at: idx).1.removeFromParent()
+			}
+		}
+
+		return d
 	}
 
 	func update() {
@@ -32,6 +67,8 @@ final class HUDSystem {
 
 		updateWeaponNode(node: hudNode.weapon1, weapon: primaryWeapon?.value)
 		updateWeaponNode(node: hudNode.weapon2, weapon: secondaryWeapon?.value)
+
+		updateMap()
 	}
 
 	private func fillHud() {
@@ -77,6 +114,39 @@ final class HUDSystem {
 			}
 		} else {
 			node.alpha = 0
+		}
+	}
+
+	private func updateMap() {
+		let playerNode = playerSprite?.value?.sprite
+		guard let center = playerNode?.position else { return mapNodes.forEach { $0.1.isHidden = true } }
+
+		let scale = 24 as CGFloat
+		let r = 42 * scale	/// mapRadius - itemRadius
+
+		let isInside = { (p: CGPoint) -> Bool in
+			let x = (p.x - center.x) * (p.x - center.x) + (p.y - center.y) * (p.y - center.y)
+			let y = r * r
+			return x < y
+		}
+
+		for (node, mapNode) in mapNodes {
+			let pos = node.position
+			let x = (pos.x - center.x) / scale
+			let y = (pos.y - center.y) / scale
+			mapNode.position = CGPoint(x: x, y: y)
+			mapNode.isHidden = !isInside(pos)
+		}
+	}
+}
+
+extension MapItem.ItemType {
+	var color: SKColor {
+		switch self {
+		case .star: return SKColor(hex: 0xaaaa11)
+		case .planet: return SKColor(hex: 0x11aa44)
+		case .ally: return SKColor(hex: 0x1122cc)
+		case .enemy: return SKColor(hex: 0xee1111)
 		}
 	}
 }
