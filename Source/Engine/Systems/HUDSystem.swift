@@ -1,6 +1,5 @@
 import PowerCore
 import Fx
-import Runes
 import SpriteKit
 
 final class HUDSystem {
@@ -8,15 +7,15 @@ final class HUDSystem {
 	private let world: World
 	private let hudNode: HUDNode
 
-	private var playerSprite: Component<SpriteComponent>?
+	private var playerSprite: WeakRef<SpriteComponent>?
 	private var mapNodes: [(SKNode, SKNode)] = []
 
-	private var playerHP: Component<HPComponent>?
-	private var playerTarget: Component<TargetComponent>?
-	private var targetHP: Component<HPComponent>?
+	private var playerHP: WeakRef<HPComponent>?
+	private var playerTarget: WeakRef<TargetComponent>?
+	private var targetHP: WeakRef<HPComponent>?
 
-	private var primaryWeapon: Component<WeaponComponent>?
-	private var secondaryWeapon: Component<WeaponComponent>?
+	private var primaryWeapon: WeakRef<WeaponComponent>?
+	private var secondaryWeapon: WeakRef<WeaponComponent>?
 
 	private let disposable = SerialDisposable()
 
@@ -24,11 +23,11 @@ final class HUDSystem {
 		self.world = world
 		self.hudNode = hudNode
 
-		playerSprite = world.sprites.instanceAt <^> world.sprites.indexOf(player)
-		playerHP = world.hp.instanceAt <^> world.hp.indexOf(player)
-		playerTarget = world.targets.instanceAt <^> world.targets.indexOf(player)
-		primaryWeapon = world.primaryWpn.instanceAt <^> world.primaryWpn.indexOf(player)
-		secondaryWeapon = world.secondaryWpn.instanceAt <^> world.primaryWpn.indexOf(player)
+		playerSprite = world.sprites.weakRefOf(player)
+		playerHP = world.hp.weakRefOf(player)
+		playerTarget = world.targets.weakRefOf(player)
+		primaryWeapon = world.primaryWpn.weakRefOf(player)
+		secondaryWeapon = world.primaryWpn.weakRefOf(player)
 
 		disposable.innerDisposable = observeMap(mapItems: world.mapItems)
 	}
@@ -74,7 +73,7 @@ final class HUDSystem {
 	private func fillHud() {
 		if let target = playerTarget?.value?.target {
 			if targetHP?.entity != target {
-				targetHP = world.hp.instanceAt <^> world.hp.indexOf(target)
+				targetHP = world.hp.weakRefOf(target)
 			}
 		} else {
 			targetHP = nil
@@ -121,7 +120,7 @@ final class HUDSystem {
 		let playerNode = playerSprite?.value?.sprite
 		guard let center = playerNode?.position else { return mapNodes.forEach { $0.1.isHidden = true } }
 
-		let scale = 24 as CGFloat
+		let scale = 48 as CGFloat
 		let r = 42 * scale	/// mapRadius - itemRadius
 
 		let isInside = { (p: CGPoint) -> Bool in

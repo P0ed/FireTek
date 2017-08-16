@@ -22,29 +22,29 @@ extension StarSystemData {
 				Planet(
 					radius: 30,
 					color: .cyan,
-					orbit: 280,
-					velocity: 0.0021,
+					orbit: 580,
+					velocity: 0.0015,
 					position: 0.2
 				),
 				Planet(
 					radius: 40,
 					color: .yellow,
-					orbit: 470,
-					velocity: 0.0012,
+					orbit: 970,
+					velocity: 0.00081,
 					position: 2.5
 				),
 				Planet(
 					radius: 36,
 					color: .green,
-					orbit: 690,
-					velocity: 0.00051,
+					orbit: 1390,
+					velocity: 0.00021,
 					position: 1.1
 				),
 				Planet(
 					radius: 34,
 					color: .orange,
-					orbit: 980,
-					velocity: 0.00017,
+					orbit: 1980,
+					velocity: 0.00011,
 					position: 2.9
 				)
 			]

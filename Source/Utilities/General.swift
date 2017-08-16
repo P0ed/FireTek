@@ -1,17 +1,6 @@
 import PowerCore
 import CoreGraphics.CGBase
 import Fx
-import Runes
-
-extension Store {
-
-	func getComponentAt(_ index: Int) -> () -> C {
-		let sharedIndex = sharedIndexAt(index)
-		return {
-			self[sharedIndex.value]
-		}
-	}
-}
 
 struct Transform {
 	var x: Float
@@ -35,44 +24,34 @@ struct Vector {
 	var dy: Float
 }
 
-//struct Closure<A> {
-//	let get: () -> A
-//	let set: (A) -> ()
-//
-//	var value: A {
-//		get {
-//			return get()
-//		}
-//		nonmutating set {
-//			set(newValue)
-//		}
-//	}
-//
-//	func update(_ f: (inout A) -> ()) {
-//		var value = get()
-//		f(&value)
-//		set(value)
-//	}
-//}
-
 extension Store {
 
-	subscript(sharedIndex: Box<Int>) -> C {
-		get {
-			return self[sharedIndex.value]
+	func first(_ f: (C) -> Bool) -> Ref<C>? {
+		for (idx, c) in enumerated() where f(c) {
+			return refAt(idx)
 		}
-		set {
-			self[sharedIndex.value] = newValue
-		}
+		return nil
 	}
 
-	func find(_ f: (C) -> Bool) -> Int? {
-		for (index, component) in self.enumerated() {
-			if f(component) {
-				return .some(index)
-			}
+	func first(_ entities: Entity...) -> Ref<C>? {
+		for e in entities {
+			if let idx = indexOf(e) { return refAt(idx) }
 		}
-		return .none
+		return nil
+	}
+
+	func refOf(_ e: Entity) -> Ref<C>? {
+		if let idx = indexOf(e) {
+			return refAt(idx)
+		}
+		return nil
+	}
+
+	func weakRefOf(_ e: Entity) -> WeakRef<C>? {
+		if let idx = indexOf(e) {
+			return weakRefAt(idx)
+		}
+		return nil
 	}
 }
 

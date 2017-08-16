@@ -34,9 +34,11 @@ final class Engine {
 		self.model = model
 		let world = World()
 		self.world = world
+
 		spriteSpawnSystem = SpriteSpawnSystem(scene: model.scene(), store: world.sprites)
 		physicsSystem = PhysicsSystem(world: world)
 		collisionsSystem = CollisionsSystem(scene: model.scene())
+
 		weaponSystem = WeaponSystem(world: world)
 		damageSystem = DamageSystem(world: world)
 		targetSystem = TargetSystem(targets: world.targets)

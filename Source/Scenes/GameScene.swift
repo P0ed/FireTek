@@ -26,7 +26,7 @@ final class GameScene: SKScene {
 		SoundsFabric.preheat()
 
 		engine = Engine(Engine.Model(
-			scene: unown(self, const),
+			scene: unowned(self),
 			inputController: InputController(hidController.eventsController)
 		))
 

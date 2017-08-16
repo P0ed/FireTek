@@ -27,9 +27,9 @@ struct WeaponSystem {
 
 		vehicles.enumerated().forEach { index, vehicle in
 			let entity = vehicles.entityAt(index)
-			let input = inputs[vehicle.input]
+			let input = inputs[vehicle.input.value]
 
-			if input.fire && primaryWpn[vehicle.weapon].remainingCooldown == 0 {
+			if input.fire && primaryWpn[vehicle.weapon.value].remainingCooldown == 0 {
 				primaryFiringEntities.insert(entity)
 			}
 		}
@@ -43,12 +43,12 @@ struct WeaponSystem {
 
 		ships.enumerated().forEach { index, ship in
 			let entity = ships.entityAt(index)
-			let input = inputs[ship.input]
+			let input = inputs[ship.input.value]
 
-			if input.primaryFire && primaryWpn[ship.primaryWpn].remainingCooldown == 0 {
+			if input.primaryFire && primaryWpn[ship.primaryWpn.value].remainingCooldown == 0 {
 				primaryFiringEntities.insert(entity)
 			}
-			if input.secondaryFire && secondaryWpn[ship.secondaryWpn].remainingCooldown == 0 {
+			if input.secondaryFire && secondaryWpn[ship.secondaryWpn.value].remainingCooldown == 0 {
 				secondaryFiringEntities.insert(entity)
 			}
 		}

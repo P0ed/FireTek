@@ -39,7 +39,7 @@ final class ProjectileSystem {
 		}
 
 		disposable += collisionsSystem.didBeginContact
-			.observe(unown(self, type(of: self).processContact))
+			.observe(unown(self) {$0.processContact})
 	}
 
 	func update() {
@@ -61,44 +61,24 @@ final class ProjectileSystem {
 private extension ProjectileSystem {
 
 	func processContact(_ contact: SKPhysicsContact) {
-		if let entityA = contact.bodyA.node?.entity,
+		guard let entityA = contact.bodyA.node?.entity,
 			let entityB = contact.bodyB.node?.entity,
-			let projectile = getProjectile(entityA: entityA, entityB: entityB) {
+			let projectile = world.projectiles.first(entityA, entityB)
+			else { return }
 
-			let projectileComponent = world.projectiles[projectile.index]
-			world.entityManager.removeEntity(projectile.entity)
+		let projectileComponent = projectile.value
+		world.entityManager.removeEntity(projectile.entity)
 
-			let transform = Transform(point: contact.contactPoint, vector: contact.contactNormal)
-			EffectsFabric.createShellExplosion(world: world, at: transform)
+		let transform = Transform(point: contact.contactPoint, vector: contact.contactNormal)
+		EffectsFabric.createShellExplosion(world: world, at: transform)
 
-			if let hp = getHP(entityA: entityA, entityB: entityB) {
-				damageSystem.damage(
-					hp: hp,
-					projectile: projectileComponent,
-					point: contact.contactPoint,
-					normal: contact.contactNormal
-				)
-			}
-		}
-	}
-
-	private func getProjectile(entityA: Entity, entityB: Entity) -> (index: Int, entity: Entity)? {
-		if let index = world.projectiles.indexOf(entityA) {
-			return (index, entityA)
-		} else if let index = world.projectiles.indexOf(entityB) {
-			return (index, entityB)
-		} else {
-			return nil
-		}
-	}
-
-	private func getHP(entityA: Entity, entityB: Entity) -> (index: Int, entity: Entity)? {
-		if let index = world.hp.indexOf(entityB) {
-			return (index, entityB)
-		} else if let index = world.hp.indexOf(entityA) {
-			return (index, entityA)
-		} else {
-			return nil
+		if let hp = world.hp.first(entityA, entityB) {
+			damageSystem.damage(
+				hp: hp,
+				projectile: projectileComponent,
+				point: contact.contactPoint,
+				normal: contact.contactNormal
+			)
 		}
 	}
 }

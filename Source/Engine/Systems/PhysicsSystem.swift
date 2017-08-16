@@ -15,9 +15,9 @@ struct PhysicsSystem {
 
 	private func applyVehicleInputs() {
 		world.vehicles.forEach { vehicle in
-			let input = world.vehicleInput[vehicle.input]
-			let physics = world.physics[vehicle.physics]
-			applyVehicleInput(input, to: physics, stats: world.vehicleStats[vehicle.stats])
+			let input = world.vehicleInput[vehicle.input.value]
+			let physics = world.physics[vehicle.physics.value]
+			applyVehicleInput(input, to: physics, stats: world.vehicleStats[vehicle.stats.value])
 		}
 	}
 
@@ -31,9 +31,9 @@ struct PhysicsSystem {
 
 	private func applyShipInputs() {
 		world.ships.forEach { ship in
-			let input = world.shipInput[ship.input]
-			let physics = world.physics[ship.physics]
-			applyShipInput(input, to: physics, stats: world.vehicleStats[ship.stats])
+			let input = world.shipInput[ship.input.value]
+			let physics = world.physics[ship.physics.value]
+			applyShipInput(input, to: physics, stats: world.vehicleStats[ship.stats.value])
 		}
 	}
 

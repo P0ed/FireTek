@@ -30,7 +30,7 @@ struct AISystem {
 				var ai = ai
 				var input = .empty as VehicleInputComponent
 				if ai.target == nil {
-					ai.target = { world.team.entityAt($0) } <^> world.team.find{ (team: Team) in team == .blue }
+					ai.target = world.team.first({ $0 == .blue })?.entity
 				}
 
 				if let target = ai.target, let targetSprite = world.sprites.indexOf(target) {

@@ -9,10 +9,10 @@ final class DamageSystem {
 		self.world = world
 	}
 
-	func damage(hp: (index: Int, entity: Entity), projectile: ProjectileComponent, point: CGPoint, normal: CGVector) {
+	func damage(hp: Ref<HPComponent>, projectile: ProjectileComponent, point: CGPoint, normal: CGVector) {
 		let spriteIndex = world.sprites.indexOf(hp.entity)!
 		let sprite = world.sprites[spriteIndex].sprite
-		var hpComponent = world.hp[hp.index]
+		var hpComponent = hp.value
 		var damage = projectile.damage
 
 		let angle = (point - sprite.position).asVector.angle - sprite.zRotation
@@ -39,7 +39,7 @@ final class DamageSystem {
 
 		hpComponent.currentHP -= damage
 
-		world.hp[hp.index] = hpComponent
+		hp.value = hpComponent
 
 		if hpComponent.currentHP < 0 {
 			EffectsFabric.createVehilceExplosion(world: world, at: sprite.transform)
