@@ -19,6 +19,9 @@
 		5F0F8B8C1E4784D6001EF757 /* SpaceLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F0F8B8B1E4784D6001EF757 /* SpaceLevel.swift */; };
 		5F0F8B8E1E47A7F6001EF757 /* Space.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 5F0F8B8D1E47A7F6001EF757 /* Space.atlas */; };
 		5F0F8B901E48ECE2001EF757 /* HUDMapNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F0F8B8F1E48ECE2001EF757 /* HUDMapNode.swift */; };
+		5F115F491F6D3411004509D0 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F115F481F6D3411004509D0 /* Router.swift */; };
+		5F115F4F1F6D378C004509D0 /* LandScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F115F4E1F6D378C004509D0 /* LandScene.swift */; };
+		5F115F511F6D37A2004509D0 /* OutfitScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F115F501F6D37A2004509D0 /* OutfitScene.swift */; };
 		5F2B51E91D6F71BC00AF62A1 /* InputSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F2B51E81D6F71BC00AF62A1 /* InputSystem.swift */; };
 		5F2F9F3B1D7328380016AA2F /* AISystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F2F9F3A1D7328380016AA2F /* AISystem.swift */; };
 		5F2F9F3D1D7331E60016AA2F /* Math.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F2F9F3C1D7331E60016AA2F /* Math.swift */; };
@@ -61,8 +64,8 @@
 		5FE124411D5FA4ED00C41BAC /* InputComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FE1242E1D5FA4EC00C41BAC /* InputComponents.swift */; };
 		5FE124421D5FA4ED00C41BAC /* Engine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FE1242F1D5FA4EC00C41BAC /* Engine.swift */; };
 		5FE124431D5FA4ED00C41BAC /* SpriteSpawnSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FE124311D5FA4EC00C41BAC /* SpriteSpawnSystem.swift */; };
-		5FE124441D5FA4ED00C41BAC /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 5FE124331D5FA4EC00C41BAC /* GameScene.sks */; };
-		5FE124451D5FA4ED00C41BAC /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FE124341D5FA4EC00C41BAC /* GameScene.swift */; };
+		5FE124441D5FA4ED00C41BAC /* SpaceScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 5FE124331D5FA4EC00C41BAC /* SpaceScene.sks */; };
+		5FE124451D5FA4ED00C41BAC /* SpaceScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FE124341D5FA4EC00C41BAC /* SpaceScene.swift */; };
 		5FE124461D5FA4ED00C41BAC /* General.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FE124361D5FA4EC00C41BAC /* General.swift */; };
 		5FE124501D5FA5CB00C41BAC /* Fx.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5FE123971D5E398C00C41BAC /* Fx.framework */; };
 		5FE124541D5FA81700C41BAC /* DiamondSquare.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FE124531D5FA81700C41BAC /* DiamondSquare.swift */; };
@@ -137,6 +140,9 @@
 		5F0F8B8B1E4784D6001EF757 /* SpaceLevel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpaceLevel.swift; sourceTree = "<group>"; };
 		5F0F8B8D1E47A7F6001EF757 /* Space.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = Space.atlas; sourceTree = "<group>"; };
 		5F0F8B8F1E48ECE2001EF757 /* HUDMapNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HUDMapNode.swift; sourceTree = "<group>"; };
+		5F115F481F6D3411004509D0 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
+		5F115F4E1F6D378C004509D0 /* LandScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandScene.swift; sourceTree = "<group>"; };
+		5F115F501F6D37A2004509D0 /* OutfitScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutfitScene.swift; sourceTree = "<group>"; };
 		5F2B51E81D6F71BC00AF62A1 /* InputSystem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputSystem.swift; sourceTree = "<group>"; };
 		5F2F9F3A1D7328380016AA2F /* AISystem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AISystem.swift; sourceTree = "<group>"; };
 		5F2F9F3C1D7331E60016AA2F /* Math.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Math.swift; sourceTree = "<group>"; };
@@ -183,8 +189,8 @@
 		5FE1242E1D5FA4EC00C41BAC /* InputComponents.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputComponents.swift; sourceTree = "<group>"; };
 		5FE1242F1D5FA4EC00C41BAC /* Engine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Engine.swift; sourceTree = "<group>"; };
 		5FE124311D5FA4EC00C41BAC /* SpriteSpawnSystem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpriteSpawnSystem.swift; sourceTree = "<group>"; };
-		5FE124331D5FA4EC00C41BAC /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
-		5FE124341D5FA4EC00C41BAC /* GameScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
+		5FE124331D5FA4EC00C41BAC /* SpaceScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = SpaceScene.sks; sourceTree = "<group>"; };
+		5FE124341D5FA4EC00C41BAC /* SpaceScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpaceScene.swift; sourceTree = "<group>"; };
 		5FE124361D5FA4EC00C41BAC /* General.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = General.swift; sourceTree = "<group>"; };
 		5FE124531D5FA81700C41BAC /* DiamondSquare.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiamondSquare.swift; sourceTree = "<group>"; };
 		5FEF36601DC68A4F00B52FB9 /* LootSystem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LootSystem.swift; sourceTree = "<group>"; };
@@ -233,6 +239,46 @@
 				5F0F8B8B1E4784D6001EF757 /* SpaceLevel.swift */,
 			);
 			path = Level;
+			sourceTree = "<group>";
+		};
+		5F115F471F6D3404004509D0 /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				5F115F481F6D3411004509D0 /* Router.swift */,
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
+		5F115F4A1F6D373F004509D0 /* Space */ = {
+			isa = PBXGroup;
+			children = (
+				5FE124331D5FA4EC00C41BAC /* SpaceScene.sks */,
+				5FE124341D5FA4EC00C41BAC /* SpaceScene.swift */,
+			);
+			path = Space;
+			sourceTree = "<group>";
+		};
+		5F115F4B1F6D3746004509D0 /* MainMenu */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = MainMenu;
+			sourceTree = "<group>";
+		};
+		5F115F4C1F6D3753004509D0 /* Outfit */ = {
+			isa = PBXGroup;
+			children = (
+				5F115F501F6D37A2004509D0 /* OutfitScene.swift */,
+			);
+			path = Outfit;
+			sourceTree = "<group>";
+		};
+		5F115F4D1F6D375A004509D0 /* Land */ = {
+			isa = PBXGroup;
+			children = (
+				5F115F4E1F6D378C004509D0 /* LandScene.swift */,
+			);
+			path = Land;
 			sourceTree = "<group>";
 		};
 		5F428C831D68A4D60075FA6B /* Fabrics */ = {
@@ -355,6 +401,7 @@
 		5FE124291D5FA4EC00C41BAC /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				5F115F471F6D3404004509D0 /* Router */,
 				5F428C8E1D6909DD0075FA6B /* IO */,
 				5F082FED1D60D8AC00DE34DC /* Level */,
 				5FE1242A1D5FA4EC00C41BAC /* Engine */,
@@ -417,9 +464,11 @@
 		5FE124321D5FA4EC00C41BAC /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				5F115F4B1F6D3746004509D0 /* MainMenu */,
+				5F115F4C1F6D3753004509D0 /* Outfit */,
+				5F115F4A1F6D373F004509D0 /* Space */,
+				5F115F4D1F6D375A004509D0 /* Land */,
 				5F655F711DCF4E7A001E22AA /* Nodes */,
-				5FE124331D5FA4EC00C41BAC /* GameScene.sks */,
-				5FE124341D5FA4EC00C41BAC /* GameScene.swift */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -553,7 +602,7 @@
 				5FFF82EB1DCC863D007EFAAD /* Boom1.wav in Resources */,
 				5FFF82EC1DCC863D007EFAAD /* Boom2.wav in Resources */,
 				5F428C981D690A250075FA6B /* Controller-Database.plist in Resources */,
-				5FE124441D5FA4ED00C41BAC /* GameScene.sks in Resources */,
+				5FE124441D5FA4ED00C41BAC /* SpaceScene.sks in Resources */,
 				5FFF82ED1DCC863D007EFAAD /* Cannon0.wav in Resources */,
 				5FE1243B1D5FA4EC00C41BAC /* Assets.xcassets in Resources */,
 				5FFF82EA1DCC863D007EFAAD /* Boom0.wav in Resources */,
@@ -579,6 +628,7 @@
 				5F0F8B8A1E477C20001EF757 /* StarSystemFactory.swift in Sources */,
 				5F082FEF1D60D8B400DE34DC /* TileMap.swift in Sources */,
 				5FE124411D5FA4ED00C41BAC /* InputComponents.swift in Sources */,
+				5F115F491F6D3411004509D0 /* Router.swift in Sources */,
 				5F428C901D6909EE0075FA6B /* InputController.swift in Sources */,
 				5FFFB4501DDD926000DAD69A /* HUDHPNode.swift in Sources */,
 				5FE124401D5FA4EC00C41BAC /* UnitComponents.swift in Sources */,
@@ -587,6 +637,7 @@
 				5F039FA41DC6227200AC45C8 /* EffectsFabric.swift in Sources */,
 				5F428C9D1D690A250075FA6B /* HIDController.swift in Sources */,
 				5FE124381D5FA4EC00C41BAC /* AppDelegate.swift in Sources */,
+				5F115F4F1F6D378C004509D0 /* LandScene.swift in Sources */,
 				5FCD334B1DD3B9F000815476 /* TargetSysyem.swift in Sources */,
 				5F428C7F1D6886160075FA6B /* HPComponent.swift in Sources */,
 				5F53F3BC1D6F94610077B2A0 /* PhysicsComponent.swift in Sources */,
@@ -594,7 +645,7 @@
 				5F6EECAE1D775E360089A0AB /* WeaponComponents.swift in Sources */,
 				5F428C991D690A250075FA6B /* DeviceAction.swift in Sources */,
 				5F428C8B1D68EC6C0075FA6B /* LevelSystem.swift in Sources */,
-				5FE124451D5FA4ED00C41BAC /* GameScene.swift in Sources */,
+				5FE124451D5FA4ED00C41BAC /* SpaceScene.swift in Sources */,
 				5F428C9B1D690A250075FA6B /* DSExtensions.swift in Sources */,
 				5F53F3BA1D6F83570077B2A0 /* PhysicsSystem.swift in Sources */,
 				5F0F8B901E48ECE2001EF757 /* HUDMapNode.swift in Sources */,
@@ -614,6 +665,7 @@
 				5F6EECAC1D775C120089A0AB /* WeaponSystem.swift in Sources */,
 				5FDF95CF1DBEA1DE009E11DA /* ProjectileSystem.swift in Sources */,
 				5FE124461D5FA4ED00C41BAC /* General.swift in Sources */,
+				5F115F511F6D37A2004509D0 /* OutfitScene.swift in Sources */,
 				5FD551061D7978AE0092A187 /* SpriteKitExtensions.swift in Sources */,
 				5F428C851D68A4EC0075FA6B /* UnitFactory.swift in Sources */,
 				5FE124421D5FA4ED00C41BAC /* Engine.swift in Sources */,

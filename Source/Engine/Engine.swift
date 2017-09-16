@@ -5,7 +5,7 @@ import Fx
 final class Engine {
 
 	struct Model {
-		let scene: () -> GameScene
+		unowned let scene: SpaceScene
 		let inputController: InputController
 	}
 
@@ -35,9 +35,9 @@ final class Engine {
 		let world = World()
 		self.world = world
 
-		spriteSpawnSystem = SpriteSpawnSystem(scene: model.scene(), store: world.sprites)
+		spriteSpawnSystem = SpriteSpawnSystem(scene: model.scene, store: world.sprites)
 		physicsSystem = PhysicsSystem(world: world)
-		collisionsSystem = CollisionsSystem(scene: model.scene())
+		collisionsSystem = CollisionsSystem(scene: model.scene)
 
 		weaponSystem = WeaponSystem(world: world)
 		damageSystem = DamageSystem(world: world)
@@ -52,10 +52,10 @@ final class Engine {
 
 		lootSystem = LootSystem(world: world, collisionsSystem: collisionsSystem)
 
-		cameraSystem = CameraSystem(player: world.sprites[0].sprite, camera: model.scene().camera!)
+		cameraSystem = CameraSystem(player: world.sprites[0].sprite, camera: model.scene.camera!)
 		cameraSystem.update()
 
-		hudSystem = HUDSystem(world: world, player: levelSystem.state.value.player, hudNode: model.scene().hud)
+		hudSystem = HUDSystem(world: world, player: levelSystem.state.value.player, hudNode: model.scene.hud)
 
 		planetarySystem = PlanetarySystem(planets: world.planets)
 	}

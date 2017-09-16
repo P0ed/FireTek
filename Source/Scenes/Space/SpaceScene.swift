@@ -1,7 +1,9 @@
 import SpriteKit
 import Fx
 
-final class GameScene: SKScene {
+final class SpaceScene: SKScene, Routable {
+
+	weak var router: Router?
 
 	private var engine: Engine!
 	private var world: SKNode!
@@ -9,6 +11,12 @@ final class GameScene: SKScene {
 	private let hidController = HIDController()
 
 	let hud = HUDNode()
+
+	static func create() -> SpaceScene {
+		let scene = SpaceScene(fileNamed: "SpaceScene")!
+		scene.scaleMode = .aspectFill
+		return scene
+	}
 
 	override func didMove(to view: SKView) {
 		super.didMove(to: view)
@@ -26,7 +34,7 @@ final class GameScene: SKScene {
 		SoundsFabric.preheat()
 
 		engine = Engine(Engine.Model(
-			scene: unowned(self),
+			scene: self,
 			inputController: InputController(hidController.eventsController)
 		))
 

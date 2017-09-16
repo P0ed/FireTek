@@ -6,19 +6,16 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 
     @IBOutlet weak var window: NSWindow!
     @IBOutlet weak var skView: SKView!
+	var router: Router!
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        if let scene = GameScene(fileNamed:"GameScene") {
-            scene.scaleMode = .aspectFill
+		skView!.ignoresSiblingOrder = true
+		skView!.showsFPS = true
+		skView!.showsNodeCount = true
+//		skView!.showsFields = true
 
-            self.skView!.presentScene(scene)
-
-			self.skView!.ignoresSiblingOrder = true
-
-			self.skView!.showsFPS = true
-			self.skView!.showsNodeCount = true
-//			self.skView!.showsFields = true
-        }
+		router = Router(view: skView)
+		router.push(SpaceScene.create())
     }
 
     func applicationShouldTerminateAfterLastWindowClosed(_ sender: NSApplication) -> Bool {
