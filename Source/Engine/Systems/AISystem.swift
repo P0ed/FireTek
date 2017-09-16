@@ -1,7 +1,6 @@
 import PowerCore
 import Fx
 import SpriteKit
-import Runes
 
 struct AISystem {
 

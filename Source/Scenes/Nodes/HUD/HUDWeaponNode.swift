@@ -1,5 +1,4 @@
 import SpriteKit
-import Runes
 
 final class WeaponNode: SKNode {
 
@@ -18,7 +17,7 @@ final class WeaponNode: SKNode {
 
 		super.init()
 
-		_ = addChild <^> [cooldownNode, roundsLabel]
+		[cooldownNode, roundsLabel].forEach(addChild)
 	}
 
 	required init?(coder aDecoder: NSCoder) { fatalError("init(coder:) has not been implemented") }
@@ -49,7 +48,7 @@ final class CooldownNode: SKNode {
 
 		super.init()
 
-		_ = addChild <^> [background, progress]
+		[background, progress].forEach(addChild)
 	}
 	
 	required init?(coder aDecoder: NSCoder) { fatalError("init(coder:) has not been implemented") }

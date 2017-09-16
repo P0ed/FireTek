@@ -1,8 +1,7 @@
 import Foundation
 import OpenEmuSystem
-import Runes
 
-class HIDController {
+final class HIDController {
 
 	let eventsController = EventsController()
 	private var eventMonitors: [UInt: Any] = [:]
@@ -16,7 +15,9 @@ class HIDController {
 		notificationCenter.addObserver(forName: didAddDeviceKey, object: nil, queue: OperationQueue.main) { [unowned self] note in
 			let deviceHandler = (note as NSNotification).userInfo![OEDeviceManagerDeviceHandlerUserInfoKey] as! OEDeviceHandler
 			self.eventMonitors[deviceHandler.deviceIdentifier] = deviceManager?.addEventMonitor(for: deviceHandler) { _, event in
-				_ = self.eventsController.handleEvent <^> event
+				if let event = event {
+					self.eventsController.handleEvent(event)
+				}
 			}
 		}
 

@@ -1,5 +1,4 @@
 import SpriteKit
-import Runes
 
 final class HUDNode: SKNode {
 
@@ -12,7 +11,7 @@ final class HUDNode: SKNode {
 	override init() {
 		super.init()
 
-		_ = addChild <^> [playerHP, targetHP, weapon1, weapon2, map]
+		[playerHP, targetHP, weapon1, weapon2, map].forEach(addChild)
 	}
 
 	required init?(coder aDecoder: NSCoder) { fatalError("init(coder:) has not been implemented") }

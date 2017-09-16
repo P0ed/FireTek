@@ -27,6 +27,6 @@ final class LifetimeSystem {
 	}
 
 	private func removeDead() {
-		world.dead.removeEntities(where: const(true))
+		world.dead.removeEntities(where: { _, _ in true })
 	}
 }

@@ -1,7 +1,6 @@
 import SpriteKit
 import PowerCore
 import Fx
-import Runes
 
 struct InputSystem {
 
@@ -12,7 +11,7 @@ struct InputSystem {
 	init(world: World, player: Entity, inputController: InputController) {
 		self.world = world
 		self.inputController = inputController
-		playerInput = world.shipInput.weakRefAt <^> world.shipInput.indexOf(player)
+		playerInput = world.shipInput.weakRefOf(player)
 	}
 
 	func update() {

@@ -51,8 +51,6 @@
 		5FCD334B1DD3B9F000815476 /* TargetSysyem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FCD334A1DD3B9F000815476 /* TargetSysyem.swift */; };
 		5FCE00911DD12F8B009DD942 /* HUD.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 5FCE00901DD12F8B009DD942 /* HUD.atlas */; };
 		5FD551061D7978AE0092A187 /* SpriteKitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FD551051D7978AE0092A187 /* SpriteKitExtensions.swift */; };
-		5FDF95CA1DBE82AE009E11DA /* Runes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FDF95C81DBE82AE009E11DA /* Runes.framework */; };
-		5FDF95CD1DBE9CB3009E11DA /* Runes.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5FDF95C81DBE82AE009E11DA /* Runes.framework */; };
 		5FDF95CF1DBEA1DE009E11DA /* ProjectileSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FDF95CE1DBEA1DE009E11DA /* ProjectileSystem.swift */; };
 		5FE123981D5E398C00C41BAC /* Fx.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FE123971D5E398C00C41BAC /* Fx.framework */; };
 		5FE124381D5FA4EC00C41BAC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FE1241E1D5FA4EC00C41BAC /* AppDelegate.swift */; };
@@ -118,7 +116,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 16;
 			files = (
-				5FDF95CD1DBE9CB3009E11DA /* Runes.framework in CopyFiles */,
 				5F428CA81D690C6E0075FA6B /* OpenEmuBase.framework in CopyFiles */,
 				5F428CA91D690C6E0075FA6B /* OpenEmuSystem.framework in CopyFiles */,
 				5FE124501D5FA5CB00C41BAC /* Fx.framework in CopyFiles */,
@@ -175,7 +172,6 @@
 		5FCEA7B91DC3C6B1005F72B0 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		5FD28A561D5B091E00BAFC0F /* File.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = File.md; sourceTree = "<group>"; };
 		5FD551051D7978AE0092A187 /* SpriteKitExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpriteKitExtensions.swift; sourceTree = "<group>"; };
-		5FDF95C81DBE82AE009E11DA /* Runes.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Runes.framework; sourceTree = "<group>"; };
 		5FDF95CE1DBEA1DE009E11DA /* ProjectileSystem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectileSystem.swift; sourceTree = "<group>"; };
 		5FE123971D5E398C00C41BAC /* Fx.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fx.framework; sourceTree = "<group>"; };
 		5FE1241E1D5FA4EC00C41BAC /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -211,7 +207,6 @@
 				5FE123981D5E398C00C41BAC /* Fx.framework in Frameworks */,
 				5F428CA41D690C4F0075FA6B /* OpenEmuSystem.framework in Frameworks */,
 				5F428CA21D690C4F0075FA6B /* OpenEmuBase.framework in Frameworks */,
-				5FDF95CA1DBE82AE009E11DA /* Runes.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -291,7 +286,6 @@
 				5F428C9E1D690C4F0075FA6B /* OpenEmuBase.framework */,
 				5F428CA01D690C4F0075FA6B /* OpenEmuSystem.framework */,
 				5FE123971D5E398C00C41BAC /* Fx.framework */,
-				5FDF95C81DBE82AE009E11DA /* Runes.framework */,
 			);
 			path = Mac;
 			sourceTree = "<group>";
@@ -699,6 +693,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
@@ -745,6 +740,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = macosx;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
 		};
@@ -761,7 +757,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.github.p0ed.FireTek;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
@@ -780,7 +776,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.github.p0ed.FireTek;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
 		};
