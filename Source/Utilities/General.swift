@@ -8,7 +8,7 @@ struct Transform {
 	var zRotation: Float
 }
 
-struct Point {
+struct Point: Codable {
 	var x: Float
 	var y: Float
 }

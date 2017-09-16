@@ -33,4 +33,10 @@ final class Router {
 
 		view.presentScene(stack.last?.rootScene)
 	}
+
+	func updateScene() {
+		if let scene = stack.last?.rootScene, view.scene != scene {
+			view.presentScene(scene)
+		}
+	}
 }
