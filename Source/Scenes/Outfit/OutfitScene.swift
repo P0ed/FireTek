@@ -1,6 +1,5 @@
 import SpriteKit
 
-final class OutfitScene: SKScene, Routable {
+final class OutfitScene: Scene {
 
-	weak var router: Router?
 }

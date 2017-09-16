@@ -1,9 +1,7 @@
 import SpriteKit
 import Fx
 
-final class SpaceScene: SKScene, Routable {
-
-	weak var router: Router?
+final class SpaceScene: Scene {
 
 	private var engine: Engine!
 	private var world: SKNode!
