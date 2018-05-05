@@ -27,7 +27,7 @@ final class HUDSystem {
 		playerHP = world.hp.weakRefOf(player)
 		playerTarget = world.targets.weakRefOf(player)
 		primaryWeapon = world.primaryWpn.weakRefOf(player)
-		secondaryWeapon = world.primaryWpn.weakRefOf(player)
+		secondaryWeapon = world.secondaryWpn.weakRefOf(player)
 
 		disposable.innerDisposable = observeMap(mapItems: world.mapItems)
 	}

@@ -31,45 +31,78 @@ extension GameState {
 	// MARK: Ship
 	struct Ship: Codable {
 		let name: String
-		var stats: ShipStats
-	}
-
-	struct ShipStats: Codable {
-		let type: ShipType
-		let components: ShipComponents
+		let hull: ShipHull
+		var propulsion: ShipPropulsion
+		var reactor: ShipReactor
+		var shield: ShipShield
+		var primaryWeapon: Weapon
+		var secondaryWeapon: Weapon
 	}
 
 	enum ShipType: Int, Codable {
 		case corvette
-		case fregate
+		case frigate
+		case destroyer
 	}
 
-	struct ShipComponents: Codable {
-		let propulsion: ShipPropulsion
+	struct ShipHull: Codable {
+		let rarity: Rarity
+		let type: ShipType
+		let armor: Float
+		let structure: Float
+		let size: Int
 	}
 
 	struct ShipPropulsion: Codable {
 		let rarity: Rarity
+		let slots: Int
 		let impulse: Float
+		let warp: Float
+		let efficency: Float
 	}
 
 	struct ShipReactor: Codable {
 		let rarity: Rarity
-		let recharge: Float
+		let slots: Int
 		let capacity: Float
+		let recharge: Float
 	}
 
 	struct ShipShield: Codable {
 		let rarity: Rarity
+		let slots: Int
 		let capacity: Float
+		let recharge: Float
+		let delay: Float
+		let efficency: Float
+	}
+
+	struct MissleDefence: Codable {
+		let rarity: Rarity
+		let slots: Int
+		let rate: Float
+	}
+
+	enum WeaponType: UInt8, Codable {
+		case missle
+		case laser
+		case shell
 	}
 
 	struct Weapon: Codable {
-		
+		let rarity: Rarity
+		let slots: Int
+		let type: WeaponType
+		let damage: Float
+		let velocity: Float
+		let cooldown: Float
+		let perShotCooldown: Float
+		let roundsPerShot: Int
+		let energyConsumption: Float
 	}
 
 	enum Rarity: UInt8, Codable {
-		case common, uncommon, rare, legendary
+		case common, uncommon, rare, epic
 	}
 
 	// MARK: Crew
@@ -93,5 +126,34 @@ extension GameState {
 		var yellow: Int
 		var magenta: Int
 		var cyan: Int
+	}
+}
+
+extension GameState.Rarity {
+	var k: Float {
+		switch self {
+		case .common: return 1
+		case .uncommon: return 1.2
+		case .rare: return 1.4
+		case .epic: return 1.7
+		}
+	}
+
+	var lower: GameState.Rarity {
+		switch self {
+		case .common: return .common
+		case .uncommon: return .common
+		case .rare: return .uncommon
+		case .epic: return .rare
+		}
+	}
+
+	var higher: GameState.Rarity {
+		switch self {
+		case .common: return .uncommon
+		case .uncommon: return .rare
+		case .rare: return .epic
+		case .epic: return .epic
+		}
 	}
 }

@@ -1,6 +1,7 @@
 import PowerCore
 import CoreGraphics.CGBase
 import Fx
+import GameplayKit
 
 struct Transform {
 	var x: Float
@@ -72,5 +73,29 @@ extension Array {
 	mutating func fastRemove(at index: Int) {
 		self[index] = self[count - 1]
 		self.removeLast()
+	}
+}
+
+struct RandomGenerator {
+	private let randomSource = GKARC4RandomSource()
+
+	func bool() -> Bool {
+		return randomSource.nextBool()
+	}
+
+	func int(upperBound: Int) -> Int {
+		return randomSource.nextInt(upperBound: upperBound)
+	}
+
+	func int(_ range: ClosedRange<Int>) -> Int {
+		return range.lowerBound + int(upperBound: range.upperBound - range.lowerBound)
+	}
+
+	func float(upperBound: Float = 1) -> Float {
+		return randomSource.nextUniform() * upperBound
+	}
+
+	func float(_ range: ClosedRange<Float>) -> Float {
+		return range.lowerBound + float(upperBound: range.upperBound - range.lowerBound)
 	}
 }
