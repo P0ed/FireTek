@@ -1,24 +1,26 @@
 Weapon projectiles:
 
 Missles:
-• Burst 1-3
-• Sequence 3-5
 • Homing sequence 1-2
 
 Ballistic:
 • AC 1
 • UAC 3
 
+Laser:
+• No projectile, damage over time
+
 Hitbox:
 
-• • • • • • •
-• • • • • • •
-• • * * * • •
-• • * * * • •
-• • * * * • •
-• • • • • • •
-• • • • • • •
+º º º º º º º
+º • • • • • º
+º • * * * • º
+º • * * * • º
+º • * * * • º
+º • • • • • º
+º º º º º º º
 
+º — shield
 • — armor
 * — structure
 

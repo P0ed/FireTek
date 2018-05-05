@@ -13,26 +13,10 @@ struct WeaponSystem {
 	}
 
 	mutating func update() {
-		applyVehicleInputs()
 		applyShipsInputs()
 		updateCooldowns()
 		primaryFiringEntities = updateFiring(firing: primaryFiringEntities, weapons: world.primaryWpn)
 		secondaryFiringEntities = updateFiring(firing: secondaryFiringEntities, weapons: world.secondaryWpn)
-	}
-
-	private mutating func applyVehicleInputs() {
-		let vehicles = world.vehicles
-		let inputs = world.vehicleInput
-		let primaryWpn = world.primaryWpn
-
-		vehicles.enumerated().forEach { index, vehicle in
-			let entity = vehicles.entityAt(index)
-			let input = inputs[vehicle.input.value]
-
-			if input.fire && primaryWpn[vehicle.weapon.value].remainingCooldown == 0 {
-				primaryFiringEntities.insert(entity)
-			}
-		}
 	}
 
 	private mutating func applyShipsInputs() {
@@ -43,12 +27,12 @@ struct WeaponSystem {
 
 		ships.enumerated().forEach { index, ship in
 			let entity = ships.entityAt(index)
-			let input = inputs[ship.input.value]
+			let input = inputs[ship.input]
 
-			if input.primaryFire && primaryWpn[ship.primaryWpn.value].remainingCooldown == 0 {
+			if input.primaryFire && primaryWpn[ship.primaryWpn].remainingCooldown == 0 {
 				primaryFiringEntities.insert(entity)
 			}
-			if input.secondaryFire && secondaryWpn[ship.secondaryWpn.value].remainingCooldown == 0 {
+			if input.secondaryFire && secondaryWpn[ship.secondaryWpn].remainingCooldown == 0 {
 				secondaryFiringEntities.insert(entity)
 			}
 		}
@@ -65,7 +49,7 @@ struct WeaponSystem {
 
 	private func updateWeaponCooldown(_ weapon: inout WeaponComponent) {
 		if weapon.remainingCooldown != 0 {
-			weapon.remainingCooldown = max(0, weapon.remainingCooldown - Float(Engine.timeStep))
+			weapon.remainingCooldown = max(0, weapon.remainingCooldown - Float(SpaceEngine.timeStep))
 			if weapon.remainingCooldown == 0 && weapon.rounds == 0 {
 				weapon.rounds = min(weapon.roundsPerShot, weapon.ammo)
 			}

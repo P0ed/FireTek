@@ -9,6 +9,6 @@ final class GameController: Routable {
 
 	init(state: GameState) {
 		self.state = state
-		rootScene = OutfitScene()
+		rootScene = SpaceScene.create()
 	}
 }

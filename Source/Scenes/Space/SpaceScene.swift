@@ -3,7 +3,7 @@ import Fx
 
 final class SpaceScene: Scene {
 
-	private var engine: Engine!
+	private var engine: SpaceEngine!
 	private var world: SKNode!
 	private var lastUpdate = 0 as CFTimeInterval
 	private let hidController = HIDController()
@@ -12,7 +12,7 @@ final class SpaceScene: Scene {
 
 	static func create() -> SpaceScene {
 		let scene = SpaceScene(fileNamed: "SpaceScene")!
-		scene.scaleMode = .aspectFill
+		scene.scaleMode = .aspectFit
 		return scene
 	}
 
@@ -31,7 +31,7 @@ final class SpaceScene: Scene {
 
 		SoundsFabric.preheat()
 
-		engine = Engine(Engine.Model(
+		engine = SpaceEngine(SpaceEngine.Model(
 			scene: self,
 			inputController: InputController(hidController.eventsController)
 		))
@@ -53,8 +53,8 @@ final class SpaceScene: Scene {
 
     override func update(_ currentTime: TimeInterval) {
 		if lastUpdate != 0 {
-			while currentTime - lastUpdate > Engine.timeStep {
-				lastUpdate += Engine.timeStep
+			while currentTime - lastUpdate > SpaceEngine.timeStep {
+				lastUpdate += SpaceEngine.timeStep
 				engine.simulate()
 			}
 		} else {

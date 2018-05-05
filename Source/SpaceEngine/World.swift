@@ -7,11 +7,10 @@ final class World {
 	let physics: Store<PhysicsComponent>
 
 	let ships: Store<ShipComponent>
-	let vehicles: Store<VehicleComponent>
 	let buildings: Store<BuildingComponent>
 
 	let hp: Store<HPComponent>
-	let vehicleStats: Store<VehicleStats>
+	let shipStats: Store<ShipStats>
 	let primaryWpn: Store<WeaponComponent>
 	let secondaryWpn: Store<WeaponComponent>
 	let targets: Store<TargetComponent>
@@ -25,7 +24,6 @@ final class World {
 	let towerInput: Store<TowerInputComponent>
 
 	let towerAI: Store<TowerAIComponent>
-	let vehicleAI: Store<VehicleAIComponent>
 
 	let projectiles: Store<ProjectileComponent>
 	let lifetime: Store<LifetimeComponent>
@@ -43,11 +41,10 @@ final class World {
 		physics = core.createStore()
 
 		ships = core.createStore()
-		vehicles = core.createStore()
 		buildings = core.createStore()
 
 		hp = core.createStore()
-		vehicleStats = core.createStore()
+		shipStats = core.createStore()
 		primaryWpn = core.createStore()
 		secondaryWpn = core.createStore()
 		targets = core.createStore()
@@ -57,7 +54,6 @@ final class World {
 		towerInput = core.createStore()
 
 		towerAI = core.createStore()
-		vehicleAI = core.createStore()
 
 		team = core.createStore()
 		projectiles = core.createStore()

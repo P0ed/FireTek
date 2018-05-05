@@ -1,13 +1,12 @@
 import PowerCore
 
-enum ProjectileType {
+enum ProjectileType: UInt8, Codable {
 	case shell
 	case missle
-	case homingMissle(Entity)
+	case laser
 }
 
 struct WeaponComponent {
-
 	let type: ProjectileType
 	let damage: Float
 	let velocity: Float

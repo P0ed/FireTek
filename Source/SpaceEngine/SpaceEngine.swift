@@ -2,7 +2,7 @@ import PowerCore
 import SpriteKit
 import Fx
 
-final class Engine {
+final class SpaceEngine {
 
 	struct Model {
 		unowned let scene: SpaceScene

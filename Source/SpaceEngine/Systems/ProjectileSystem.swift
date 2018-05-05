@@ -6,12 +6,12 @@ final class ProjectileSystem {
 
 	struct Unit {
 		let entity: Entity
-		let projectile: Box<Int>
-		let sprite: Box<Int>
+		let projectile: ComponentIdx<ProjectileComponent>
+		let sprite: ComponentIdx<SpriteComponent>
 	}
 
-	fileprivate let world: World
-	fileprivate let damageSystem: DamageSystem
+	private let world: World
+	private let damageSystem: DamageSystem
 
 	private var units = [] as [Unit]
 	private let disposable = CompositeDisposable()

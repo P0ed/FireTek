@@ -21,7 +21,7 @@ struct LevelSystem {
 	}
 
 	mutating func update() {
-		if world.vehicles.indexOf(state.value.player) == nil {
+		if !world.entityManager.isAlive(state.value.player) {
 			/// Game over
 		}
 	}

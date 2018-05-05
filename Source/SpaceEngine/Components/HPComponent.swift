@@ -7,8 +7,8 @@ struct HPComponent {
 	init(maxHP: Int, armor: Int = 0) {
 		self.maxHP = maxHP
 		self.armor = armor
-		currentHP = .init(maxHP)
-		structure = .init(repeating: .max, count: 40)
+		currentHP = Float(maxHP)
+		structure = Array(repeating: .max, count: 40)
 	}
 }
 
