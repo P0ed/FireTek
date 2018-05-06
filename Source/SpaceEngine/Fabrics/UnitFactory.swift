@@ -13,7 +13,7 @@ enum UnitFactory {
 		let physics = shipPhysics(sprite.sprite)
 
 		let primary = WeaponComponent(
-			type: .shell,
+			type: .blaster,
 			damage: 12,
 			velocity: 340,
 			cooldown: 1.2,
@@ -23,7 +23,7 @@ enum UnitFactory {
 		)
 
 		let secondary = WeaponComponent(
-			type: .shell,
+			type: .blaster,
 			damage: 36,
 			velocity: 260,
 			cooldown: 0.9,

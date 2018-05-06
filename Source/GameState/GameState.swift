@@ -32,9 +32,11 @@ extension GameState {
 	struct Ship: Codable {
 		let name: String
 		let hull: ShipHull
+		var computer: ShipComputer
 		var propulsion: ShipPropulsion
 		var reactor: ShipReactor
 		var shield: ShipShield
+		var countermeasures: ShipCountermeasures
 		var primaryWeapon: Weapon
 		var secondaryWeapon: Weapon
 	}
@@ -53,9 +55,14 @@ extension GameState {
 		let size: Int
 	}
 
+	struct ShipComputer: Codable {
+		let rarity: Rarity
+		let engineering: Int
+		let hacking: Int
+	}
+
 	struct ShipPropulsion: Codable {
 		let rarity: Rarity
-		let slots: Int
 		let impulse: Float
 		let warp: Float
 		let efficency: Float
@@ -63,35 +70,32 @@ extension GameState {
 
 	struct ShipReactor: Codable {
 		let rarity: Rarity
-		let slots: Int
 		let capacity: Float
 		let recharge: Float
 	}
 
 	struct ShipShield: Codable {
 		let rarity: Rarity
-		let slots: Int
 		let capacity: Float
 		let recharge: Float
 		let delay: Float
 		let efficency: Float
 	}
 
-	struct MissleDefence: Codable {
+	struct ShipCountermeasures: Codable {
 		let rarity: Rarity
-		let slots: Int
-		let rate: Float
+		let cooldown: Float
+		let guidance: Float
 	}
 
 	enum WeaponType: UInt8, Codable {
-		case missle
+		case torpedo
 		case laser
-		case shell
+		case blaster
 	}
 
 	struct Weapon: Codable {
 		let rarity: Rarity
-		let slots: Int
 		let type: WeaponType
 		let damage: Float
 		let velocity: Float

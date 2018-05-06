@@ -1,9 +1,9 @@
 import PowerCore
 
-enum ProjectileType: UInt8, Codable {
-	case shell
-	case missle
+enum ProjectileType {
+	case torpedo
 	case laser
+	case blaster
 }
 
 struct WeaponComponent {
