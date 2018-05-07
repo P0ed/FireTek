@@ -1,9 +1,8 @@
 import SpriteKit
 
 final class GameController: Routable {
-
 	weak var router: Router?
-	var rootScene: SKScene
+	let rootScene: SKScene
 
 	private var state: GameState
 

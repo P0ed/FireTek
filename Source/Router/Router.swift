@@ -8,6 +8,11 @@ protocol Routable: class {
 class Scene: SKScene, Routable {
 	weak var router: Router?
 	var rootScene: SKScene { return self }
+
+//	override init(size: CGSize) {
+//		super.init(size: size)
+//		scaleMode = .aspectFit
+//	}
 }
 
 final class Router {
@@ -32,11 +37,5 @@ final class Router {
 		routable.router = nil
 
 		view.presentScene(stack.last?.rootScene)
-	}
-
-	func updateScene() {
-		if let scene = stack.last?.rootScene, view.scene != scene {
-			view.presentScene(scene)
-		}
 	}
 }
