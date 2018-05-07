@@ -2,7 +2,7 @@ import SpriteKit
 
 final class HUDMapNode: SKNode {
 
-	let circle = SKShapeNode(circleOfRadius: 44)
+	private let circle = SKShapeNode(circleOfRadius: 44)
 
 	override init() {
 		super.init()

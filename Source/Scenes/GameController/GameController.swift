@@ -8,6 +8,7 @@ final class GameController: Routable {
 
 	init(state: GameState) {
 		self.state = state
-		rootScene = SpaceScene.create()
+//		rootScene = SpaceScene.create()
+		rootScene = MainMenuScene(size: CGSize(width: 640, height: 400))
 	}
 }

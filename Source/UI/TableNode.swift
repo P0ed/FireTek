@@ -1,6 +1,18 @@
 import SpriteKit
 import Fx
 
+struct TableItem {
+	let create: () -> TableItemUI
+	let height: () -> CGFloat
+	let select: VoidFunc
+}
+
+struct TableItemUI {
+	let node: SKNode
+	let layout: Sink<CGFloat>
+	let setHighlighted: Sink<Bool>
+}
+
 private struct TableState {
 	var items: [TableItem]
 	var highlighted: Int?
@@ -16,35 +28,39 @@ final class TableUI {
 	let io = TableIOController()
 
 	var items: [TableItem] { return state.items }
-	let node: SKNode
+	let node: SKCropNode
 
 	init(items: [TableItem]) {
 		state = TableState(items: items)
-		node = SKNode()
+		node = SKCropNode()
 	}
 
 	required init?(coder aDecoder: NSCoder) { fatalError() }
 
 	func layout(size: CGSize) {
+		node.maskNode = SKShapeNode(rectOf: size)
 		state.size = size
 	}
 
 	func highlightPrev() {
-		guard let idx = state.highlighted, idx > 0 else { return }
-		state.highlighted = idx - 1
+		state.highlightPrev()
 	}
 
 	func highlightNext() {
-		guard let idx = state.highlighted, idx < items.count - 1 else { return }
-		state.highlighted = idx + 1
+		state.highlightNext()
 	}
 
 	func select() {
-		guard let idx = state.highlighted else { return }
-		items[idx].select()
+		if let idx = state.highlighted { state.items[idx].select() }
 	}
+}
 
-	private func render() {
+private extension TableUI {
+
+	func render() {
+		guard let size = state.size else { return }
+
+		let idx = state.visibleIndices
 
 	}
 }
@@ -56,11 +72,7 @@ extension TableUI {
 	}
 
 	func insertItem(_ item: TableItem, at idx: Int) {
-		modify(&state) { state in
-			state.items.insert(item, at: idx)
-			let delta = item.height()
-			state.heights.insert(delta, at: idx)
-		}
+		state.insertItem(item, at: idx)
 	}
 
 	func appendItem(_ item: TableItem) {
@@ -68,37 +80,15 @@ extension TableUI {
 	}
 
 	func removeItem(at idx: Int) {
-		modify(&state) { state in
-			state.items.remove(at: idx)
-			let delta = state.heights.remove(at: idx)
-			state.height -= delta
-		}
+		state.removeItem(at: idx)
 	}
 
 	func updateItem(_ item: TableItem, at idx: Int) {
-		modify(&state) { state in
-
-		}
+		state.updateItem(item, at: idx)
 	}
 }
 
-struct TableItem {
-	let create: () -> TableItemUI
-	let height: () -> CGFloat
-	let select: VoidFunc
-}
-
-struct TableItemUI {
-	let node: SKNode
-	let layout: Sink<CGFloat>
-	let setHighlighted: Sink<Bool>
-}
-
-final class TableIOController {
-
-}
-
-extension TableState {
+private extension TableState {
 
 	init(items: [TableItem]) {
 		self.items = items
@@ -108,4 +98,56 @@ extension TableState {
 		height = heights.reduce(0, +)
 		rendered = []
 	}
+
+	func offsetTo(_ idx: Int) -> CGFloat {
+		return heights.prefix(upTo: idx).reduce(0, +)
+	}
+
+	var visibleIndices: [Int] {
+		guard let boundsHeight = size?.height, !heights.isEmpty else { return [] }
+		let visibleBounds = offset...(offset + boundsHeight)
+
+		let itemsBounds = heights.dropLast().reduce(into: [0...heights.first!], {
+			$0.append($0.last!.upperBound...($0.last!.upperBound + $1))
+		})
+
+		return itemsBounds.enumerated()
+			.filter { idx, itemBounds in visibleBounds.overlaps(itemBounds) }
+			.map { idx, _ in idx }
+	}
+
+	mutating func highlightPrev() {
+		highlighted = highlighted.map { max($0 - 1, 0) }
+	}
+
+	mutating func highlightNext() {
+		highlighted = highlighted.map { min($0 + 1, items.count - 1) }
+	}
+
+	mutating func insertItem(_ item: TableItem, at idx: Int) {
+		items.insert(item, at: idx)
+		let delta = item.height()
+		heights.insert(delta, at: idx)
+		highlighted = highlighted.map { idx < $0 ? $0 + 1 : $0 }
+	}
+
+	mutating func removeItem(at idx: Int) {
+		items.remove(at: idx)
+		let delta = heights.remove(at: idx)
+		height -= delta
+		highlighted = items.isEmpty ? nil : highlighted.map {
+			min(max(idx < $0 ? $0 - 1 : $0, 0), items.count - 1)
+		}
+	}
+
+	mutating func updateItem(_ item: TableItem, at idx: Int) {
+		items[idx] = item
+		let delta = item.height() - heights[idx]
+		heights[idx] += delta
+		height += delta
+	}
+}
+
+final class TableIOController {
+
 }

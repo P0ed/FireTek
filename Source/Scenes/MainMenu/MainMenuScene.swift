@@ -4,7 +4,7 @@ import Fx
 final class MainMenuScene: Scene {
 	private let table: TableUI
 
-	override init() {
+	override init(size: CGSize) {
 
 		let menuItems = [
 			MenuItem(text: "New game", action: {}),
@@ -13,12 +13,13 @@ final class MainMenuScene: Scene {
 
 		table = TableUI(items: menuItems.map { $0.asTableItem })
 
-		super.init()
+		super.init(size: size)
 
 		with(table.node) { node in
 			addChild(node)
 		}
-		table.layout(size: size)
+
+		table.layout(size: modify(size) { $0.width = 400; return })
 	}
 
 	required init?(coder aDecoder: NSCoder) { fatalError() }
