@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -20,12 +20,13 @@
 		5F0F8B8E1E47A7F6001EF757 /* Space.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 5F0F8B8D1E47A7F6001EF757 /* Space.atlas */; };
 		5F0F8B901E48ECE2001EF757 /* HUDMapNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F0F8B8F1E48ECE2001EF757 /* HUDMapNode.swift */; };
 		5F115F491F6D3411004509D0 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F115F481F6D3411004509D0 /* Router.swift */; };
-		5F115F4F1F6D378C004509D0 /* LandScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F115F4E1F6D378C004509D0 /* LandScene.swift */; };
 		5F115F511F6D37A2004509D0 /* OutfitScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F115F501F6D37A2004509D0 /* OutfitScene.swift */; };
 		5F2B51E91D6F71BC00AF62A1 /* InputSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F2B51E81D6F71BC00AF62A1 /* InputSystem.swift */; };
 		5F2F9F3B1D7328380016AA2F /* AISystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F2F9F3A1D7328380016AA2F /* AISystem.swift */; };
 		5F2F9F3D1D7331E60016AA2F /* Math.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F2F9F3C1D7331E60016AA2F /* Math.swift */; };
 		5F2F9F3F1D7333C40016AA2F /* CameraSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F2F9F3E1D7333C40016AA2F /* CameraSystem.swift */; };
+		5F35E89D2BE50A3E00EF3CA0 /* Fx in Frameworks */ = {isa = PBXBuildFile; productRef = 5F35E89C2BE50A3E00EF3CA0 /* Fx */; };
+		5F35E8A12BE6322500EF3CA0 /* Core.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F35E8A02BE6322500EF3CA0 /* Core.swift */; };
 		5F428C7F1D6886160075FA6B /* HPComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F428C7E1D6886160075FA6B /* HPComponent.swift */; };
 		5F428C811D688DB00075FA6B /* AIComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F428C801D688DB00075FA6B /* AIComponents.swift */; };
 		5F428C851D68A4EC0075FA6B /* UnitFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F428C841D68A4EC0075FA6B /* UnitFactory.swift */; };
@@ -33,16 +34,9 @@
 		5F428C8B1D68EC6C0075FA6B /* LevelSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F428C8A1D68EC6C0075FA6B /* LevelSystem.swift */; };
 		5F428C8D1D69039C0075FA6B /* World.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F428C8C1D69039C0075FA6B /* World.swift */; };
 		5F428C901D6909EE0075FA6B /* InputController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F428C8F1D6909EE0075FA6B /* InputController.swift */; };
-		5F428C981D690A250075FA6B /* Controller-Database.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5F428C921D690A250075FA6B /* Controller-Database.plist */; };
-		5F428C991D690A250075FA6B /* DeviceAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F428C931D690A250075FA6B /* DeviceAction.swift */; };
-		5F428C9A1D690A250075FA6B /* DeviceConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F428C941D690A250075FA6B /* DeviceConfiguration.swift */; };
 		5F428C9B1D690A250075FA6B /* DSExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F428C951D690A250075FA6B /* DSExtensions.swift */; };
 		5F428C9C1D690A250075FA6B /* EventsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F428C961D690A250075FA6B /* EventsController.swift */; };
 		5F428C9D1D690A250075FA6B /* HIDController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F428C971D690A250075FA6B /* HIDController.swift */; };
-		5F428CA21D690C4F0075FA6B /* OpenEmuBase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F428C9E1D690C4F0075FA6B /* OpenEmuBase.framework */; };
-		5F428CA41D690C4F0075FA6B /* OpenEmuSystem.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F428CA01D690C4F0075FA6B /* OpenEmuSystem.framework */; };
-		5F428CA81D690C6E0075FA6B /* OpenEmuBase.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5F428C9E1D690C4F0075FA6B /* OpenEmuBase.framework */; };
-		5F428CA91D690C6E0075FA6B /* OpenEmuSystem.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5F428CA01D690C4F0075FA6B /* OpenEmuSystem.framework */; };
 		5F440ACF1F6D52BC0036189E /* GameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F440ACE1F6D52BC0036189E /* GameController.swift */; };
 		5F440AD11F6D54220036189E /* GameState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F440AD01F6D54220036189E /* GameState.swift */; };
 		5F4CCCA61DCE6D3500E3DB58 /* HUDSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F4CCCA51DCE6D3500E3DB58 /* HUDSystem.swift */; };
@@ -61,19 +55,17 @@
 		5FCE00911DD12F8B009DD942 /* HUD.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 5FCE00901DD12F8B009DD942 /* HUD.atlas */; };
 		5FD551061D7978AE0092A187 /* SpriteKitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FD551051D7978AE0092A187 /* SpriteKitExtensions.swift */; };
 		5FDF95CF1DBEA1DE009E11DA /* ProjectileSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FDF95CE1DBEA1DE009E11DA /* ProjectileSystem.swift */; };
-		5FE123981D5E398C00C41BAC /* Fx.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FE123971D5E398C00C41BAC /* Fx.framework */; };
 		5FE124381D5FA4EC00C41BAC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FE1241E1D5FA4EC00C41BAC /* AppDelegate.swift */; };
 		5FE124391D5FA4EC00C41BAC /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5FE1241F1D5FA4EC00C41BAC /* MainMenu.xib */; };
 		5FE1243B1D5FA4EC00C41BAC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5FE124231D5FA4EC00C41BAC /* Assets.xcassets */; };
 		5FE1243F1D5FA4EC00C41BAC /* SpriteComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FE1242C1D5FA4EC00C41BAC /* SpriteComponent.swift */; };
 		5FE124401D5FA4EC00C41BAC /* UnitComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FE1242D1D5FA4EC00C41BAC /* UnitComponents.swift */; };
 		5FE124411D5FA4ED00C41BAC /* InputComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FE1242E1D5FA4EC00C41BAC /* InputComponents.swift */; };
-		5FE124421D5FA4ED00C41BAC /* SpaceEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FE1242F1D5FA4EC00C41BAC /* SpaceEngine.swift */; };
+		5FE124421D5FA4ED00C41BAC /* Engine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FE1242F1D5FA4EC00C41BAC /* Engine.swift */; };
 		5FE124431D5FA4ED00C41BAC /* SpriteSpawnSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FE124311D5FA4EC00C41BAC /* SpriteSpawnSystem.swift */; };
-		5FE124441D5FA4ED00C41BAC /* SpaceScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 5FE124331D5FA4EC00C41BAC /* SpaceScene.sks */; };
-		5FE124451D5FA4ED00C41BAC /* SpaceScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FE124341D5FA4EC00C41BAC /* SpaceScene.swift */; };
+		5FE124441D5FA4ED00C41BAC /* BattleScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 5FE124331D5FA4EC00C41BAC /* BattleScene.sks */; };
+		5FE124451D5FA4ED00C41BAC /* BattleScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FE124341D5FA4EC00C41BAC /* BattleScene.swift */; };
 		5FE124461D5FA4ED00C41BAC /* General.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FE124361D5FA4EC00C41BAC /* General.swift */; };
-		5FE124501D5FA5CB00C41BAC /* Fx.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5FE123971D5E398C00C41BAC /* Fx.framework */; };
 		5FE124541D5FA81700C41BAC /* DiamondSquare.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FE124531D5FA81700C41BAC /* DiamondSquare.swift */; };
 		5FEF36611DC68A4F00B52FB9 /* LootSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FEF36601DC68A4F00B52FB9 /* LootSystem.swift */; };
 		5FEFFC401DCF89C300685419 /* DamageSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FEFFC3F1DCF89C300685419 /* DamageSystem.swift */; };
@@ -87,37 +79,6 @@
 		5FFFB4521DDD929500DAD69A /* HUDWeaponNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FFFB4511DDD929500DAD69A /* HUDWeaponNode.swift */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		5FCEA7AB1DC2A09D005F72B0 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 5FCEA7A51DC2A09D005F72B0 /* PowerCore.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 5FE123A81D5F3AEB00C41BAC;
-			remoteInfo = PowerCore_macOS;
-		};
-		5FCEA7AD1DC2A09D005F72B0 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 5FCEA7A51DC2A09D005F72B0 /* PowerCore.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 5FE123B91D5F3BAC00C41BAC;
-			remoteInfo = PowerCore_iOS;
-		};
-		5FCEA7AF1DC2A09D005F72B0 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 5FCEA7A51DC2A09D005F72B0 /* PowerCore.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 5FE123D11D5F3C0100C41BAC;
-			remoteInfo = PowerCore_tvOS;
-		};
-		5FCEA7B71DC2A199005F72B0 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 5FCEA7A51DC2A09D005F72B0 /* PowerCore.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 5FE123A71D5F3AEB00C41BAC;
-			remoteInfo = PowerCore_macOS;
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXCopyFilesBuildPhase section */
 		5FE123991D5E3AAE00C41BAC /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
@@ -125,9 +86,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 16;
 			files = (
-				5F428CA81D690C6E0075FA6B /* OpenEmuBase.framework in CopyFiles */,
-				5F428CA91D690C6E0075FA6B /* OpenEmuSystem.framework in CopyFiles */,
-				5FE124501D5FA5CB00C41BAC /* Fx.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -147,12 +105,12 @@
 		5F0F8B8D1E47A7F6001EF757 /* Space.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = Space.atlas; sourceTree = "<group>"; };
 		5F0F8B8F1E48ECE2001EF757 /* HUDMapNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HUDMapNode.swift; sourceTree = "<group>"; };
 		5F115F481F6D3411004509D0 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
-		5F115F4E1F6D378C004509D0 /* LandScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandScene.swift; sourceTree = "<group>"; };
 		5F115F501F6D37A2004509D0 /* OutfitScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutfitScene.swift; sourceTree = "<group>"; };
 		5F2B51E81D6F71BC00AF62A1 /* InputSystem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputSystem.swift; sourceTree = "<group>"; };
 		5F2F9F3A1D7328380016AA2F /* AISystem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AISystem.swift; sourceTree = "<group>"; };
 		5F2F9F3C1D7331E60016AA2F /* Math.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Math.swift; sourceTree = "<group>"; };
 		5F2F9F3E1D7333C40016AA2F /* CameraSystem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraSystem.swift; sourceTree = "<group>"; };
+		5F35E8A02BE6322500EF3CA0 /* Core.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Core.swift; sourceTree = "<group>"; };
 		5F428C7E1D6886160075FA6B /* HPComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HPComponent.swift; sourceTree = "<group>"; };
 		5F428C801D688DB00075FA6B /* AIComponents.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AIComponents.swift; sourceTree = "<group>"; };
 		5F428C841D68A4EC0075FA6B /* UnitFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnitFactory.swift; sourceTree = "<group>"; };
@@ -160,14 +118,9 @@
 		5F428C8A1D68EC6C0075FA6B /* LevelSystem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelSystem.swift; sourceTree = "<group>"; };
 		5F428C8C1D69039C0075FA6B /* World.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = World.swift; sourceTree = "<group>"; };
 		5F428C8F1D6909EE0075FA6B /* InputController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputController.swift; sourceTree = "<group>"; };
-		5F428C921D690A250075FA6B /* Controller-Database.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Controller-Database.plist"; sourceTree = "<group>"; };
-		5F428C931D690A250075FA6B /* DeviceAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceAction.swift; sourceTree = "<group>"; };
-		5F428C941D690A250075FA6B /* DeviceConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceConfiguration.swift; sourceTree = "<group>"; };
 		5F428C951D690A250075FA6B /* DSExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DSExtensions.swift; sourceTree = "<group>"; };
 		5F428C961D690A250075FA6B /* EventsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventsController.swift; sourceTree = "<group>"; };
 		5F428C971D690A250075FA6B /* HIDController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HIDController.swift; sourceTree = "<group>"; };
-		5F428C9E1D690C4F0075FA6B /* OpenEmuBase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = OpenEmuBase.framework; sourceTree = "<group>"; };
-		5F428CA01D690C4F0075FA6B /* OpenEmuSystem.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = OpenEmuSystem.framework; sourceTree = "<group>"; };
 		5F440ACE1F6D52BC0036189E /* GameController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameController.swift; sourceTree = "<group>"; };
 		5F440AD01F6D54220036189E /* GameState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameState.swift; sourceTree = "<group>"; };
 		5F4CCCA51DCE6D3500E3DB58 /* HUDSystem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HUDSystem.swift; sourceTree = "<group>"; };
@@ -183,15 +136,12 @@
 		5F83F14A20A0E99000B0C3D4 /* TableNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableNode.swift; sourceTree = "<group>"; };
 		5F83F14C20A0FC9500B0C3D4 /* MenuItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItem.swift; sourceTree = "<group>"; };
 		5F9104981D3BA19500C2C519 /* FireTek.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FireTek.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		5FB51C541D587D7100F9FFA4 /* Cartfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Cartfile; sourceTree = "<group>"; };
 		5FCD334A1DD3B9F000815476 /* TargetSysyem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TargetSysyem.swift; sourceTree = "<group>"; };
 		5FCE00901DD12F8B009DD942 /* HUD.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = HUD.atlas; sourceTree = "<group>"; };
-		5FCEA7A51DC2A09D005F72B0 /* PowerCore.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = PowerCore.xcodeproj; path = Carthage/Checkouts/PowerCore/PowerCore.xcodeproj; sourceTree = SOURCE_ROOT; };
 		5FCEA7B91DC3C6B1005F72B0 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		5FD28A561D5B091E00BAFC0F /* File.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = File.md; sourceTree = "<group>"; };
 		5FD551051D7978AE0092A187 /* SpriteKitExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpriteKitExtensions.swift; sourceTree = "<group>"; };
 		5FDF95CE1DBEA1DE009E11DA /* ProjectileSystem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectileSystem.swift; sourceTree = "<group>"; };
-		5FE123971D5E398C00C41BAC /* Fx.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fx.framework; sourceTree = "<group>"; };
 		5FE1241E1D5FA4EC00C41BAC /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5FE124201D5FA4EC00C41BAC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		5FE124211D5FA4EC00C41BAC /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -199,10 +149,10 @@
 		5FE1242C1D5FA4EC00C41BAC /* SpriteComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpriteComponent.swift; sourceTree = "<group>"; };
 		5FE1242D1D5FA4EC00C41BAC /* UnitComponents.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnitComponents.swift; sourceTree = "<group>"; };
 		5FE1242E1D5FA4EC00C41BAC /* InputComponents.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputComponents.swift; sourceTree = "<group>"; };
-		5FE1242F1D5FA4EC00C41BAC /* SpaceEngine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpaceEngine.swift; sourceTree = "<group>"; };
+		5FE1242F1D5FA4EC00C41BAC /* Engine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Engine.swift; sourceTree = "<group>"; };
 		5FE124311D5FA4EC00C41BAC /* SpriteSpawnSystem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpriteSpawnSystem.swift; sourceTree = "<group>"; };
-		5FE124331D5FA4EC00C41BAC /* SpaceScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = SpaceScene.sks; sourceTree = "<group>"; };
-		5FE124341D5FA4EC00C41BAC /* SpaceScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpaceScene.swift; sourceTree = "<group>"; };
+		5FE124331D5FA4EC00C41BAC /* BattleScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = BattleScene.sks; sourceTree = "<group>"; };
+		5FE124341D5FA4EC00C41BAC /* BattleScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BattleScene.swift; sourceTree = "<group>"; };
 		5FE124361D5FA4EC00C41BAC /* General.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = General.swift; sourceTree = "<group>"; };
 		5FE124531D5FA81700C41BAC /* DiamondSquare.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiamondSquare.swift; sourceTree = "<group>"; };
 		5FEF36601DC68A4F00B52FB9 /* LootSystem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LootSystem.swift; sourceTree = "<group>"; };
@@ -222,9 +172,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5FE123981D5E398C00C41BAC /* Fx.framework in Frameworks */,
-				5F428CA41D690C4F0075FA6B /* OpenEmuSystem.framework in Frameworks */,
-				5F428CA21D690C4F0075FA6B /* OpenEmuBase.framework in Frameworks */,
+				5F35E89D2BE50A3E00EF3CA0 /* Fx in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -261,14 +209,14 @@
 			path = Router;
 			sourceTree = "<group>";
 		};
-		5F115F4A1F6D373F004509D0 /* Space */ = {
+		5F115F4A1F6D373F004509D0 /* Battle */ = {
 			isa = PBXGroup;
 			children = (
 				5FFFB44A1DDD924100DAD69A /* HUD */,
-				5FE124331D5FA4EC00C41BAC /* SpaceScene.sks */,
-				5FE124341D5FA4EC00C41BAC /* SpaceScene.swift */,
+				5FE124331D5FA4EC00C41BAC /* BattleScene.sks */,
+				5FE124341D5FA4EC00C41BAC /* BattleScene.swift */,
 			);
-			path = Space;
+			path = Battle;
 			sourceTree = "<group>";
 		};
 		5F115F4B1F6D3746004509D0 /* MainMenu */ = {
@@ -286,14 +234,6 @@
 				5F115F501F6D37A2004509D0 /* OutfitScene.swift */,
 			);
 			path = Outfit;
-			sourceTree = "<group>";
-		};
-		5F115F4D1F6D375A004509D0 /* Land */ = {
-			isa = PBXGroup;
-			children = (
-				5F115F4E1F6D378C004509D0 /* LandScene.swift */,
-			);
-			path = Land;
 			sourceTree = "<group>";
 		};
 		5F428C831D68A4D60075FA6B /* Fabrics */ = {
@@ -321,9 +261,6 @@
 		5F428C911D690A250075FA6B /* GamepadKit */ = {
 			isa = PBXGroup;
 			children = (
-				5F428C921D690A250075FA6B /* Controller-Database.plist */,
-				5F428C931D690A250075FA6B /* DeviceAction.swift */,
-				5F428C941D690A250075FA6B /* DeviceConfiguration.swift */,
 				5F428C951D690A250075FA6B /* DSExtensions.swift */,
 				5F428C961D690A250075FA6B /* EventsController.swift */,
 				5F428C971D690A250075FA6B /* HIDController.swift */,
@@ -337,33 +274,6 @@
 				5F440ACE1F6D52BC0036189E /* GameController.swift */,
 			);
 			path = GameController;
-			sourceTree = "<group>";
-		};
-		5F543A6F1D5BD00B0039FB0B /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				5FCEA7A51DC2A09D005F72B0 /* PowerCore.xcodeproj */,
-				5F543A701D5BD0380039FB0B /* Mac */,
-			);
-			name = Frameworks;
-			path = Carthage/Build;
-			sourceTree = "<group>";
-		};
-		5F543A701D5BD0380039FB0B /* Mac */ = {
-			isa = PBXGroup;
-			children = (
-				5F428C9E1D690C4F0075FA6B /* OpenEmuBase.framework */,
-				5F428CA01D690C4F0075FA6B /* OpenEmuSystem.framework */,
-				5FE123971D5E398C00C41BAC /* Fx.framework */,
-			);
-			path = Mac;
-			sourceTree = "<group>";
-		};
-		5F655F711DCF4E7A001E22AA /* Nodes */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Nodes;
 			sourceTree = "<group>";
 		};
 		5F83F142209E123600B0C3D4 /* GameState */ = {
@@ -389,8 +299,6 @@
 			children = (
 				5FCEA7B91DC3C6B1005F72B0 /* README.md */,
 				5FD28A561D5B091E00BAFC0F /* File.md */,
-				5FB51C541D587D7100F9FFA4 /* Cartfile */,
-				5F543A6F1D5BD00B0039FB0B /* Frameworks */,
 				5FE124291D5FA4EC00C41BAC /* Source */,
 				5FE124221D5FA4EC00C41BAC /* Resources */,
 				5FE1241D1D5FA4EC00C41BAC /* macOS */,
@@ -402,16 +310,6 @@
 			isa = PBXGroup;
 			children = (
 				5F9104981D3BA19500C2C519 /* FireTek.app */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		5FCEA7A61DC2A09D005F72B0 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				5FCEA7AC1DC2A09D005F72B0 /* PowerCore.framework */,
-				5FCEA7AE1DC2A09D005F72B0 /* PowerCore.framework */,
-				5FCEA7B01DC2A09D005F72B0 /* PowerCore.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -458,7 +356,8 @@
 				5FE1242B1D5FA4EC00C41BAC /* Components */,
 				5FE124301D5FA4EC00C41BAC /* Systems */,
 				5F428C831D68A4D60075FA6B /* Fabrics */,
-				5FE1242F1D5FA4EC00C41BAC /* SpaceEngine.swift */,
+				5FE1242F1D5FA4EC00C41BAC /* Engine.swift */,
+				5F35E8A02BE6322500EF3CA0 /* Core.swift */,
 				5F428C8C1D69039C0075FA6B /* World.swift */,
 			);
 			path = SpaceEngine;
@@ -508,9 +407,7 @@
 				5F115F4B1F6D3746004509D0 /* MainMenu */,
 				5F440ACD1F6D52A70036189E /* GameController */,
 				5F115F4C1F6D3753004509D0 /* Outfit */,
-				5F115F4A1F6D373F004509D0 /* Space */,
-				5F115F4D1F6D375A004509D0 /* Land */,
-				5F655F711DCF4E7A001E22AA /* Nodes */,
+				5F115F4A1F6D373F004509D0 /* Battle */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -560,9 +457,11 @@
 			buildRules = (
 			);
 			dependencies = (
-				5FCEA7B81DC2A199005F72B0 /* PBXTargetDependency */,
 			);
 			name = FireTek;
+			packageProductDependencies = (
+				5F35E89C2BE50A3E00EF3CA0 /* Fx */,
+			);
 			productName = FireTek;
 			productReference = 5F9104981D3BA19500C2C519 /* FireTek.app */;
 			productType = "com.apple.product-type.application";
@@ -573,63 +472,37 @@
 		5F9104901D3BA19500C2C519 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				BuildIndependentTargetsInParallel = YES;
 				LastSwiftUpdateCheck = 0730;
-				LastUpgradeCheck = 0900;
+				LastUpgradeCheck = 1530;
 				ORGANIZATIONNAME = P0ed;
 				TargetAttributes = {
 					5F9104971D3BA19500C2C519 = {
 						CreatedOnToolsVersion = 7.3.1;
-						LastSwiftMigration = 0800;
+						LastSwiftMigration = 1530;
 					};
 				};
 			};
 			buildConfigurationList = 5F9104931D3BA19500C2C519 /* Build configuration list for PBXProject "FireTek" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 				Base,
 			);
 			mainGroup = 5F91048F1D3BA19500C2C519;
+			packageReferences = (
+				5F35E89B2BE50A3E00EF3CA0 /* XCRemoteSwiftPackageReference "Fx" */,
+			);
 			productRefGroup = 5F9104991D3BA19500C2C519 /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = 5FCEA7A61DC2A09D005F72B0 /* Products */;
-					ProjectRef = 5FCEA7A51DC2A09D005F72B0 /* PowerCore.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				5F9104971D3BA19500C2C519 /* FireTek */,
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		5FCEA7AC1DC2A09D005F72B0 /* PowerCore.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = PowerCore.framework;
-			remoteRef = 5FCEA7AB1DC2A09D005F72B0 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		5FCEA7AE1DC2A09D005F72B0 /* PowerCore.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = PowerCore.framework;
-			remoteRef = 5FCEA7AD1DC2A09D005F72B0 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		5FCEA7B01DC2A09D005F72B0 /* PowerCore.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = PowerCore.framework;
-			remoteRef = 5FCEA7AF1DC2A09D005F72B0 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		5F9104961D3BA19500C2C519 /* Resources */ = {
@@ -643,8 +516,7 @@
 				5FE124391D5FA4EC00C41BAC /* MainMenu.xib in Resources */,
 				5FFF82EB1DCC863D007EFAAD /* Boom1.wav in Resources */,
 				5FFF82EC1DCC863D007EFAAD /* Boom2.wav in Resources */,
-				5F428C981D690A250075FA6B /* Controller-Database.plist in Resources */,
-				5FE124441D5FA4ED00C41BAC /* SpaceScene.sks in Resources */,
+				5FE124441D5FA4ED00C41BAC /* BattleScene.sks in Resources */,
 				5FFF82ED1DCC863D007EFAAD /* Cannon0.wav in Resources */,
 				5FE1243B1D5FA4EC00C41BAC /* Assets.xcassets in Resources */,
 				5FFF82EA1DCC863D007EFAAD /* Boom0.wav in Resources */,
@@ -682,16 +554,15 @@
 				5F039FA41DC6227200AC45C8 /* EffectsFabric.swift in Sources */,
 				5F428C9D1D690A250075FA6B /* HIDController.swift in Sources */,
 				5FE124381D5FA4EC00C41BAC /* AppDelegate.swift in Sources */,
-				5F115F4F1F6D378C004509D0 /* LandScene.swift in Sources */,
 				5FCD334B1DD3B9F000815476 /* TargetSysyem.swift in Sources */,
 				5F428C7F1D6886160075FA6B /* HPComponent.swift in Sources */,
 				5F53F3BC1D6F94610077B2A0 /* PhysicsComponent.swift in Sources */,
 				5F2F9F3B1D7328380016AA2F /* AISystem.swift in Sources */,
 				5F6EECAE1D775E360089A0AB /* WeaponComponents.swift in Sources */,
-				5F428C991D690A250075FA6B /* DeviceAction.swift in Sources */,
 				5F428C8B1D68EC6C0075FA6B /* LevelSystem.swift in Sources */,
-				5FE124451D5FA4ED00C41BAC /* SpaceScene.swift in Sources */,
+				5FE124451D5FA4ED00C41BAC /* BattleScene.swift in Sources */,
 				5F428C9B1D690A250075FA6B /* DSExtensions.swift in Sources */,
+				5F35E8A12BE6322500EF3CA0 /* Core.swift in Sources */,
 				5F53F3BA1D6F83570077B2A0 /* PhysicsSystem.swift in Sources */,
 				5F0F8B901E48ECE2001EF757 /* HUDMapNode.swift in Sources */,
 				5F428C811D688DB00075FA6B /* AIComponents.swift in Sources */,
@@ -704,7 +575,6 @@
 				5FEFFC401DCF89C300685419 /* DamageSystem.swift in Sources */,
 				5F440ACF1F6D52BC0036189E /* GameController.swift in Sources */,
 				5FFFB44E1DDD925300DAD69A /* HUDNode.swift in Sources */,
-				5F428C9A1D690A250075FA6B /* DeviceConfiguration.swift in Sources */,
 				5F0F8B861E476A1F001EF757 /* PlanetarySystem.swift in Sources */,
 				5F6EECB01D776CA10089A0AB /* ProjectileFactory.swift in Sources */,
 				5F039FB31DC6481100AC45C8 /* SoundsFabric.swift in Sources */,
@@ -716,20 +586,12 @@
 				5FD551061D7978AE0092A187 /* SpriteKitExtensions.swift in Sources */,
 				5F428C851D68A4EC0075FA6B /* UnitFactory.swift in Sources */,
 				5F440AD11F6D54220036189E /* GameState.swift in Sources */,
-				5FE124421D5FA4ED00C41BAC /* SpaceEngine.swift in Sources */,
+				5FE124421D5FA4ED00C41BAC /* Engine.swift in Sources */,
 				5F039FA01DC61FFB00AC45C8 /* LifetimeComponent.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		5FCEA7B81DC2A199005F72B0 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = PowerCore_macOS;
-			targetProxy = 5FCEA7B71DC2A199005F72B0 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		5FE1241F1D5FA4EC00C41BAC /* MainMenu.xib */ = {
@@ -747,6 +609,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -756,14 +619,17 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -771,9 +637,11 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "-";
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -801,6 +669,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -810,14 +679,17 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -825,9 +697,11 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "-";
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -839,7 +713,8 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = macosx;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
@@ -849,15 +724,16 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/Mac",
-				);
+				DEAD_CODE_STRIPPING = YES;
 				INFOPLIST_FILE = macOS/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.github.p0ed.FireTek;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -866,17 +742,19 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/Mac",
-				);
+				DEAD_CODE_STRIPPING = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				INFOPLIST_FILE = macOS/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.github.p0ed.FireTek;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 4.0;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
@@ -902,6 +780,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		5F35E89B2BE50A3E00EF3CA0 /* XCRemoteSwiftPackageReference "Fx" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/P0ed/Fx";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.2.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		5F35E89C2BE50A3E00EF3CA0 /* Fx */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5F35E89B2BE50A3E00EF3CA0 /* XCRemoteSwiftPackageReference "Fx" */;
+			productName = Fx;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 5F9104901D3BA19500C2C519 /* Project object */;
 }

@@ -1,11 +1,10 @@
-import PowerCore
 import SpriteKit
 import Fx
 
-final class SpaceEngine {
+final class Engine {
 
 	struct Model {
-		unowned let scene: SpaceScene
+		unowned let scene: BattleScene
 		let inputController: InputController
 	}
 
@@ -71,7 +70,7 @@ final class SpaceEngine {
 		projectileSystem.update()
 
 		levelSystem.update()
-//		aiSystem.update()
+		aiSystem.update()
 
 		hudSystem.update()
 

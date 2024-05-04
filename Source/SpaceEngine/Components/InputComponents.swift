@@ -1,38 +1,12 @@
-struct ShipInputComponent {
-	var accelerate: Float
-	var turnHull: Float
-	var strafe: Float
-
-	var primaryFire: Bool
-	var secondaryFire: Bool
-	var special: Bool
-
-	static var empty: ShipInputComponent {
-		return ShipInputComponent(
-			accelerate: 0,
-			turnHull: 0,
-			strafe: 0,
-			primaryFire: false,
-			secondaryFire: false,
-			special: false
-		)
-	}
-}
-
 struct VehicleInputComponent {
-	var accelerate: Float
-	var turnHull: Float
-	var turnTurret: Float
-	var fire: Bool
+	var accelerate: Float = 0
+	var turnHull: Float = 0
+	var turnTurret: Float = 0
 
-	static var empty: VehicleInputComponent {
-		return VehicleInputComponent(
-			accelerate: 0,
-			turnHull: 0,
-			turnTurret: 0,
-			fire: false
-		)
-	}
+	var primary: Bool = false
+	var secondary: Bool = false
+
+	static let empty = VehicleInputComponent()
 }
 
 struct TowerInputComponent {

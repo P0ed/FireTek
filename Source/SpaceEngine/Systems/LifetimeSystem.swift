@@ -1,4 +1,3 @@
-import PowerCore
 import Fx
 
 final class LifetimeSystem {

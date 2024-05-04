@@ -1,7 +1,7 @@
 import SpriteKit
 
-protocol Routable: class {
-	weak var router: Router? { get set }
+protocol Routable: AnyObject {
+	var router: Router? { get set }
 	var rootScene: SKScene { get }
 }
 

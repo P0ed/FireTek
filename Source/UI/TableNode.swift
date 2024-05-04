@@ -4,13 +4,13 @@ import Fx
 struct TableItem {
 	let create: () -> TableItemUI
 	let height: () -> CGFloat
-	let select: VoidFunc
+	let select: () -> Void
 }
 
 struct TableItemUI {
 	let node: SKNode
-	let layout: Sink<CGFloat>
-	let setHighlighted: Sink<Bool>
+	let layout: (CGFloat) -> Void
+	let setHighlighted: (Bool) -> Void
 }
 
 private struct TableState {

@@ -1,0 +1,15 @@
+{
+  "originHash" : "d16cf01189c5e4aa4b9fc4f9951fdeda4504d3f716761120785cbc64c44e7feb",
+  "pins" : [
+    {
+      "identity" : "fx",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/P0ed/Fx",
+      "state" : {
+        "revision" : "08da99251d5e5905d8761a2c7be2a7e8cc98eacc",
+        "version" : "3.2.0"
+      }
+    }
+  ],
+  "version" : 3
+}

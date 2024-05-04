@@ -1,52 +1,38 @@
-import Carbon.HIToolbox
+import Fx
 
 final class InputController {
+	let hid: HIDController
 
-	let eventsController: EventsController
-
+	@IO private var ls = Point(x: 0, y: 0)
+	@IO private var rs = Point(x: 0, y: 0)
 	private var buttonsState: Int = 0
 
-	init(_ eventsController: EventsController) {
-		self.eventsController = eventsController
+	init(_ hid: HIDController) {
+		self.hid = hid
 
-		let buttonAction: (DSButton) -> DeviceAction = { button in
-			return DeviceAction { pressed in
-				if pressed {
-					self.buttonsState |= 1 << button.rawValue
-				} else {
-					self.buttonsState &= ~(1 << button.rawValue)
-				}
+		let buttonAction: (DSButton) -> (Bool) -> Void = { button in { pressed in
+			if pressed {
+				self.buttonsState |= 1 << button.rawValue
+			} else {
+				self.buttonsState &= ~(1 << button.rawValue)
 			}
-		}
+		}}
 
-		let buttonActions: [DSButton: DeviceAction] = [
-			.square: buttonAction(.square),
-			.cross: buttonAction(.cross),
-			.circle: buttonAction(.circle)
-		]
-
-		let keyboardActions: [Int: DeviceAction] = [
-			DeviceConfiguration.keyCode(forVirtualKey: kVK_ANSI_Q): buttonAction(.square),
-			DeviceConfiguration.keyCode(forVirtualKey: kVK_ANSI_W): buttonAction(.cross),
-			DeviceConfiguration.keyCode(forVirtualKey: kVK_ANSI_E): buttonAction(.circle),
-			DeviceConfiguration.keyCode(forVirtualKey: kVK_UpArrow): DeviceAction { pressed in
-				eventsController.leftJoystick.dy = pressed ? 1 : 0
-			},
-			DeviceConfiguration.keyCode(forVirtualKey: kVK_DownArrow): DeviceAction { pressed in
-				eventsController.leftJoystick.dy = pressed ? -1 : 0
-			},
-			DeviceConfiguration.keyCode(forVirtualKey: kVK_LeftArrow): DeviceAction { pressed in
-				eventsController.leftJoystick.dx = pressed ? -1 : 0
-			},
-			DeviceConfiguration.keyCode(forVirtualKey: kVK_RightArrow): DeviceAction { pressed in
-				eventsController.leftJoystick.dx = pressed ? 1 : 0
-			}
-		]
-
-		eventsController.deviceConfiguration = DeviceConfiguration(
-			buttonsMapTable: buttonActions,
+		hid.map = ControlsMap(
+			buttonsMapTable: [
+				.square: buttonAction(.square),
+				.triangle: buttonAction(.triangle),
+				.cross: buttonAction(.cross),
+				.circle: buttonAction(.circle),
+				.l1: buttonAction(.l1),
+				.r1: buttonAction(.r1)
+			],
 			dPadMapTable: [:],
-			keyboardMapTable: keyboardActions
+			sticksMapTable: [
+				.left: _ls.set,
+				.right: _rs.set
+			],
+			keyboardMapTable: [:]
 		)
 	}
 
@@ -56,14 +42,14 @@ final class InputController {
 }
 
 extension InputController {
-	func currentInput() -> ShipInputComponent {
-		return ShipInputComponent(
-			accelerate: .init(eventsController.leftJoystick.dy),
-			turnHull: .init(eventsController.leftJoystick.dx),
-			strafe: .init(eventsController.rightTrigger - eventsController.leftTrigger),
-			primaryFire: buttonPressed(.square),
-			secondaryFire: buttonPressed(.cross),
-			special: buttonPressed(.circle)
+
+	var currentInput: VehicleInputComponent {
+		VehicleInputComponent(
+			accelerate: .init(ls.y),
+			turnHull: .init(ls.x),
+			turnTurret: .init(rs.x),
+			primary: buttonPressed(.r1),
+			secondary: buttonPressed(.l1)
 		)
 	}
 }

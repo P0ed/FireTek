@@ -1,17 +1,16 @@
 import SpriteKit
 import Fx
 
-final class SpaceScene: Scene {
+final class BattleScene: Scene {
 
-	private var engine: SpaceEngine!
-	private var world: SKNode!
+	private var engine: Engine!
 	private var lastUpdate = 0 as CFTimeInterval
-	private let hidController = HIDController()
+	private let hid = HIDController()
 
 	let hud = HUDNode()
 
-	static func create() -> SpaceScene {
-		let scene = SpaceScene(fileNamed: "SpaceScene")!
+	static func make() -> BattleScene {
+		let scene = BattleScene(fileNamed: "BattleScene")!
 		scene.scaleMode = .aspectFit
 		return scene
 	}
@@ -26,14 +25,11 @@ final class SpaceScene: Scene {
 		addChild(camera)
 		self.camera = camera
 
-		world = SKNode()
-		addChild(world)
-
 		SoundsFabric.preheat()
 
-		engine = SpaceEngine(SpaceEngine.Model(
+		engine = Engine(.init(
 			scene: self,
-			inputController: InputController(hidController.eventsController)
+			inputController: InputController(hid)
 		))
 
 		camera.addChild(hud)
@@ -53,8 +49,8 @@ final class SpaceScene: Scene {
 
     override func update(_ currentTime: TimeInterval) {
 		if lastUpdate != 0 {
-			while currentTime - lastUpdate > SpaceEngine.timeStep {
-				lastUpdate += SpaceEngine.timeStep
+			while currentTime - lastUpdate > Engine.timeStep {
+				lastUpdate += Engine.timeStep
 				engine.simulate()
 			}
 		} else {

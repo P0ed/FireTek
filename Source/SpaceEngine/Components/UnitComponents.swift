@@ -1,12 +1,11 @@
 import Fx
-import PowerCore
 import SpriteKit
 
 struct ShipComponent {
 	let sprite: ComponentIdx<SpriteComponent>
 	let physics: ComponentIdx<PhysicsComponent>
 	let hp: ComponentIdx<HPComponent>
-	let input: ComponentIdx<ShipInputComponent>
+	let input: ComponentIdx<VehicleInputComponent>
 	let stats: ComponentIdx<ShipStats>
 	let primaryWpn: ComponentIdx<WeaponComponent>
 	let secondaryWpn: ComponentIdx<WeaponComponent>

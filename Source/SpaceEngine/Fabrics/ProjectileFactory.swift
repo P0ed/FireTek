@@ -1,5 +1,4 @@
 import SpriteKit
-import PowerCore
 
 enum ProjectileFactory {
 
@@ -10,7 +9,7 @@ enum ProjectileFactory {
 		let sprite = SpriteFactory.createProjectileSprite(entity, type: projectile.type)
 		sprite.sprite.transform = position
 
-//		sprite.sprite.run(SoundsFabric.cannon)
+		sprite.sprite.run(SoundsFabric.cannon)
 
 		let physics = projectilePhysics(sprite.sprite)
 		physics.body.velocity = CGVector(dx: 0, dy: CGFloat(velocity))

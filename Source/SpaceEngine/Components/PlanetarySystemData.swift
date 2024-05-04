@@ -1,4 +1,3 @@
-import PowerCore
 import SpriteKit
 
 struct StarSystemData {

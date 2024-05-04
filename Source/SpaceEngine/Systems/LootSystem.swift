@@ -1,5 +1,4 @@
 import SpriteKit
-import PowerCore
 import Fx
 
 final class LootSystem {

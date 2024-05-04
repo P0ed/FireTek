@@ -1,4 +1,3 @@
-import PowerCore
 import Fx
 
 final class World {
@@ -19,10 +18,10 @@ final class World {
 	let crystals: Store<CrystalComponent>
 	let dead: Store<DeadComponent>
 
-	let shipInput: Store<ShipInputComponent>
 	let vehicleInput: Store<VehicleInputComponent>
 	let towerInput: Store<TowerInputComponent>
 
+	let vehicleAI: Store<VehicleAIComponent>
 	let towerAI: Store<TowerAIComponent>
 
 	let projectiles: Store<ProjectileComponent>
@@ -35,35 +34,35 @@ final class World {
 	let mapItems: Store<MapItem>
 
 	init() {
-		let core = PowerCore.World()
+		let core = Core()
 		entityManager = core.entityManager
-		sprites = core.createStore()
-		physics = core.createStore()
+		sprites = core.makeStore()
+		physics = core.makeStore()
 
-		ships = core.createStore()
-		buildings = core.createStore()
+		ships = core.makeStore()
+		buildings = core.makeStore()
 
-		hp = core.createStore()
-		shipStats = core.createStore()
-		primaryWpn = core.createStore()
-		secondaryWpn = core.createStore()
-		targets = core.createStore()
+		hp = core.makeStore()
+		shipStats = core.makeStore()
+		primaryWpn = core.makeStore()
+		secondaryWpn = core.makeStore()
+		targets = core.makeStore()
 
-		shipInput = core.createStore()
-		vehicleInput = core.createStore()
-		towerInput = core.createStore()
+		vehicleInput = core.makeStore()
+		towerInput = core.makeStore()
 
-		towerAI = core.createStore()
+		vehicleAI = core.makeStore()
+		towerAI = core.makeStore()
 
-		team = core.createStore()
-		projectiles = core.createStore()
-		lifetime = core.createStore()
-		loot = core.createStore()
-		dead = core.createStore()
-		crystals = core.createStore()
-		owners = core.createStore()
+		team = core.makeStore()
+		projectiles = core.makeStore()
+		lifetime = core.makeStore()
+		loot = core.makeStore()
+		dead = core.makeStore()
+		crystals = core.makeStore()
+		owners = core.makeStore()
 
-		planets = core.createStore()
-		mapItems = core.createStore()
+		planets = core.makeStore()
+		mapItems = core.makeStore()
 	}
 }

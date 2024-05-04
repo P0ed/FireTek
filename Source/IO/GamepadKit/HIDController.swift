@@ -1,29 +1,62 @@
 import Foundation
-import OpenEmuSystem
+import GameController
+import Fx
+
+struct ControlsMap {
+	var buttonsMapTable: [DSButton: (Bool) -> Void] = [:]
+	var dPadMapTable: [DSHatDirection: (Bool) -> Void] = [:]
+	var sticksMapTable: [DSStick: (Point) -> Void] = [:]
+	var keyboardMapTable: [UInt16: (Bool) -> Void] = [:]
+}
 
 final class HIDController {
+	private let lifetime: Any
 
-	let eventsController = EventsController()
-	private var eventMonitors: [UInt: Any] = [:]
+	@IO var map = ControlsMap()
 
 	init() {
-		let deviceManager = OEDeviceManager.shared()
-		let notificationCenter = NotificationCenter.default
-		let didAddDeviceKey = NSNotification.Name.OEDeviceManagerDidAddDeviceHandler
-		let didRemoveDeviceKey = NSNotification.Name.OEDeviceManagerDidRemoveDeviceHandler
-
-		notificationCenter.addObserver(forName: didAddDeviceKey, object: nil, queue: OperationQueue.main) { [unowned self] note in
-			let deviceHandler = (note as NSNotification).userInfo![OEDeviceManagerDeviceHandlerUserInfoKey] as! OEDeviceHandler
-			self.eventMonitors[deviceHandler.deviceIdentifier] = deviceManager?.addEventMonitor(for: deviceHandler) { _, event in
-				if let event = event {
-					self.eventsController.handleEvent(event)
+		lifetime = [
+			NSEvent.addLocalMonitorForEvents(matching: [.keyDown, .keyUp]) { [_map] e in
+				if let action = _map.value.keyboardMapTable[e.keyCode] {
+					action(e.type == .keyDown)
+					return nil
+				} else {
+					return e
 				}
-			}
-		}
+			} as Any,
+			NotificationCenter.default.addObserver(
+				forName: .GCControllerDidBecomeCurrent,
+				object: nil,
+				queue: .main,
+				using: { [_map] notification in
+					guard let gamepad = (notification.object as? GCController)?.extendedGamepad else { return }
 
-		notificationCenter.addObserver(forName: didRemoveDeviceKey, object: nil, queue: OperationQueue.main) { [unowned self] note in
-			let deviceHandler = (note as NSNotification).userInfo![OEDeviceManagerDeviceHandlerUserInfoKey] as! OEDeviceHandler
-			self.eventMonitors.removeValue(forKey: deviceHandler.deviceIdentifier)
-		}
+					gamepad.leftThumbstick.valueChangedHandler = { _, x, y in
+						_map.value.sticksMapTable[.left]?(Point(x: x, y: y))
+					}
+					gamepad.rightThumbstick.valueChangedHandler = { _, x, y in
+						_map.value.sticksMapTable[.right]?(Point(x: x, y: y))
+					}
+					gamepad.leftShoulder.pressedChangedHandler = { _, _, pressed in
+						_map.value.buttonsMapTable[.l1]?(pressed)
+					}
+					gamepad.rightShoulder.pressedChangedHandler = { _, _, pressed in
+						_map.value.buttonsMapTable[.r1]?(pressed)
+					}
+					gamepad.buttonA.pressedChangedHandler = { _, _, pressed in
+						_map.value.buttonsMapTable[.cross]?(pressed)
+					}
+					gamepad.buttonB.pressedChangedHandler = { _, _, pressed in
+						_map.value.buttonsMapTable[.circle]?(pressed)
+					}
+					gamepad.buttonX.pressedChangedHandler = { _, _, pressed in
+						_map.value.buttonsMapTable[.square]?(pressed)
+					}
+					gamepad.buttonY.pressedChangedHandler = { _, _, pressed in
+						_map.value.buttonsMapTable[.triangle]?(pressed)
+					}
+				}
+			)
+		]
 	}
 }

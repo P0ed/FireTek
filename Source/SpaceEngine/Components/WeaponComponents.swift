@@ -1,4 +1,3 @@
-import PowerCore
 
 enum ProjectileType {
 	case torpedo

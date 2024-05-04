@@ -1,5 +1,4 @@
 import SpriteKit
-import PowerCore
 import Fx
 
 struct WeaponSystem {
@@ -21,7 +20,7 @@ struct WeaponSystem {
 
 	private mutating func applyShipsInputs() {
 		let ships = world.ships
-		let inputs = world.shipInput
+		let inputs = world.vehicleInput
 		let primaryWpn = world.primaryWpn
 		let secondaryWpn = world.secondaryWpn
 
@@ -29,10 +28,10 @@ struct WeaponSystem {
 			let entity = ships.entityAt(index)
 			let input = inputs[ship.input]
 
-			if input.primaryFire && primaryWpn[ship.primaryWpn].remainingCooldown == 0 {
+			if input.primary && primaryWpn[ship.primaryWpn].remainingCooldown == 0 {
 				primaryFiringEntities.insert(entity)
 			}
-			if input.secondaryFire && secondaryWpn[ship.secondaryWpn].remainingCooldown == 0 {
+			if input.secondary && secondaryWpn[ship.secondaryWpn].remainingCooldown == 0 {
 				secondaryFiringEntities.insert(entity)
 			}
 		}
@@ -49,7 +48,7 @@ struct WeaponSystem {
 
 	private func updateWeaponCooldown(_ weapon: inout WeaponComponent) {
 		if weapon.remainingCooldown != 0 {
-			weapon.remainingCooldown = max(0, weapon.remainingCooldown - Float(SpaceEngine.timeStep))
+			weapon.remainingCooldown = max(0, weapon.remainingCooldown - Float(Engine.timeStep))
 			if weapon.remainingCooldown == 0 && weapon.rounds == 0 {
 				weapon.rounds = min(weapon.roundsPerShot, weapon.ammo)
 			}

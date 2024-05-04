@@ -3,7 +3,7 @@ import Fx
 
 struct MenuItem {
 	let text: String
-	let action: VoidFunc
+	let action: () -> Void
 }
 
 extension MenuItem {

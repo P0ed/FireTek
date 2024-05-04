@@ -1,5 +1,4 @@
 import SpriteKit
-import PowerCore
 import Fx
 
 final class ProjectileSystem {
@@ -32,7 +31,7 @@ final class ProjectileSystem {
 		}
 
 		disposable += world.projectiles.removedComponents.observe { [unowned self] entity, _ in
-			if let index = self.units.index(where: { $0.entity == entity }) {
+			if let index = self.units.firstIndex(where: { $0.entity == entity }) {
 				self.units.fastRemove(at: index)
 			}
 		}

@@ -1,4 +1,3 @@
-import PowerCore
 import SpriteKit
 
 enum EffectsFabric {
@@ -13,7 +12,7 @@ enum EffectsFabric {
 
 		sprite.run(.group([
 			.animate(with: textures, timePerFrame: 0.1),
-//			SoundsFabric.explosion
+			SoundsFabric.explosion
 		]))
 
 		world.sprites.add(component: SpriteComponent(sprite: sprite), to: entity)
@@ -33,7 +32,7 @@ enum EffectsFabric {
 
 		sprite.run(.group([
 			.animate(with: textures, timePerFrame: 0.1),
-//			SoundsFabric.vehicleExplosion
+			SoundsFabric.vehicleExplosion
 		]))
 
 		world.sprites.add(component: SpriteComponent(sprite: sprite), to: entity)

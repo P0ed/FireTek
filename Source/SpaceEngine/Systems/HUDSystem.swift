@@ -1,4 +1,3 @@
-import PowerCore
 import Fx
 import SpriteKit
 
@@ -50,7 +49,7 @@ final class HUDSystem {
 		d += mapItems.newComponents.observe(add)
 
 		d += mapItems.removedComponents.observe { [unowned self] _, item in
-			if let idx = self.mapNodes.index(where: { $0.0 === item.node }) {
+			if let idx = self.mapNodes.firstIndex(where: { $0.0 === item.node }) {
 				self.mapNodes.remove(at: idx).1.removeFromParent()
 			}
 		}
