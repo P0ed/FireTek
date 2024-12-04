@@ -10,11 +10,11 @@ final class PlanetLevel {
 	let spawnPosition: Point
 
 	init() {
-		tileMap = PlanetLevel.generateTileMap()
+		tileMap = Self.generateTileMap()
 		spawnPosition = Point(x: 32, y: 32)
 	}
 
-	static func generateTileMap() -> TileMap<Tile> {
+	private static func generateTileMap() -> TileMap<Tile> {
 
 		let generator = HeightMapGenerator(detail: 6)
 		generator.diamondSquare(0.7)

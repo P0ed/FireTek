@@ -15,7 +15,7 @@ final class World {
 	let targets: Store<TargetComponent>
 
 	let loot: Store<LootComponent>
-	let crystals: Store<CrystalComponent>
+	let crystals: Store<Crystal>
 	let dead: Store<DeadComponent>
 
 	let vehicleInput: Store<VehicleInputComponent>

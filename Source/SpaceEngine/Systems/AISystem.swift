@@ -16,7 +16,7 @@ struct AISystem {
 			updateVehicles()
 		}
 
-		currentTick = (currentTick + 1) % 8
+		currentTick = (currentTick + 1) % 4
 	}
 
 	private func updateVehicles() {
@@ -54,7 +54,7 @@ struct AISystem {
 						input.accelerate = Float(ca)
 					}
 				}
-				
+
 				world.vehicleAI[index] = ai
 
 				return input

@@ -1,6 +1,6 @@
 struct HPComponent {
-	let maxHP: Int
-	let armor: Int
+	var maxHP: Int
+	var armor: Int
 	var currentHP: Float
 	var structure: Array<UInt8>
 

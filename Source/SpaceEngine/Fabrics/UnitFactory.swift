@@ -128,7 +128,7 @@ enum UnitFactory {
 
 		world.sprites.add(component: sprite, to: entity)
 		world.lifetime.add(component: LifetimeComponent(lifetime: 600), to: entity)
-		world.crystals.add(component: CrystalComponent(crystal: crystal), to: entity)
+		world.crystals.add(component: crystal, to: entity)
 
 		return entity
 	}

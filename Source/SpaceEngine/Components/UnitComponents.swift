@@ -1,7 +1,8 @@
 import Fx
 import SpriteKit
+import RealityKit
 
-struct ShipComponent {
+struct ShipComponent: Component {
 	let sprite: ComponentIdx<SpriteComponent>
 	let physics: ComponentIdx<PhysicsComponent>
 	let hp: ComponentIdx<HPComponent>
@@ -37,12 +38,8 @@ enum Team {
 	case red
 }
 
-enum Crystal {
+enum Crystal: Component {
 	case blue, red, purple, cyan, yellow, green, orange
-}
-
-struct CrystalComponent {
-	let crystal: Crystal
 }
 
 struct LootComponent {
