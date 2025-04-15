@@ -1,11 +1,17 @@
 struct GameState: Codable {
 	var location: Location
-	var player: Player
+	var ship: Ship
+	var crystals: Crystals
+}
+
+enum WeaponType: UInt8, Codable {
+	case torpedo
+	case laser
+	case blaster
 }
 
 extension GameState {
 
-	// MARK: Location
 	struct Location: Codable {
 		var position: Point
 		var system: SystemLocation?
@@ -14,122 +20,99 @@ extension GameState {
 	struct SystemLocation: Codable {
 		var position: Point
 		var systemID: Int
-		var landed: LandedLocation?
 	}
 
-	struct LandedLocation: Codable {
-		var planetID: Int
-	}
-
-	// MARK: Player
-	struct Player: Codable {
-		var ship: Ship
-		var crew: [CrewMember]
-		var crystals: Crystals
-	}
-
-	// MARK: Ship
 	struct Ship: Codable {
-		let name: String
-		let hull: ShipHull
-		var computer: ShipComputer
-		var propulsion: ShipPropulsion
+		var name: String
+		var crew: [Crew]
+		var hull: ShipHull
 		var reactor: ShipReactor
+		var propulsion: ShipPropulsion
 		var shield: ShipShield
-		var countermeasures: ShipCountermeasures
 		var primaryWeapon: Weapon
 		var secondaryWeapon: Weapon
 	}
 
-	enum ShipType: Int, Codable {
-		case corvette
-		case frigate
-		case destroyer
-	}
-
 	struct ShipHull: Codable {
-		let rarity: Rarity
-		let type: ShipType
-		let armor: Float
-		let structure: Float
-		let size: Int
-	}
-
-	struct ShipComputer: Codable {
-		let rarity: Rarity
-		let engineering: Int
-		let hacking: Int
+		var rarity: Rarity
+		var armor: UInt16
+		var structure: UInt16
+		var size: UInt16
 	}
 
 	struct ShipPropulsion: Codable {
-		let rarity: Rarity
-		let impulse: Float
-		let warp: Float
-		let efficency: Float
+		var rarity: Rarity
+		var impulse: UInt16
+		var warp: UInt16
+		var efficency: UInt16
 	}
 
 	struct ShipReactor: Codable {
-		let rarity: Rarity
-		let capacity: Float
-		let recharge: Float
+		var rarity: Rarity
+		var capacity: UInt16
+		var recharge: UInt16
 	}
 
 	struct ShipShield: Codable {
-		let rarity: Rarity
-		let capacity: Float
-		let recharge: Float
-		let delay: Float
-		let efficency: Float
-	}
-
-	struct ShipCountermeasures: Codable {
-		let rarity: Rarity
-		let cooldown: Float
-		let guidance: Float
-	}
-
-	enum WeaponType: UInt8, Codable {
-		case torpedo
-		case laser
-		case blaster
+		var rarity: Rarity
+		var capacity: UInt16
+		var recharge: UInt16
+		var delay: UInt16
+		var efficency: UInt16
 	}
 
 	struct Weapon: Codable {
-		let rarity: Rarity
-		let type: WeaponType
-		let damage: Float
-		let velocity: Float
-		let cooldown: Float
-		let perShotCooldown: Float
-		let roundsPerShot: Int
-		let energyConsumption: Float
+		var rarity: Rarity
+		var type: WeaponType
+		var damage: UInt16
+		var velocity: UInt16
+		var cooldown: UInt16
+		var perShotCooldown: UInt16
+		var roundsPerShot: UInt16
+		var charge: UInt16
 	}
 
 	enum Rarity: UInt8, Codable {
-		case common, uncommon, rare, epic
+		case common, uncommon, rare, epic, unknown
 	}
 
-	// MARK: Crew
-	struct CrewMember: Codable {
-		let name: String
-		var rank: Int
-		var stats: CrewStats
+	struct Crew: Codable {
+		var name: String
+		var combat: UInt16
+		var engineering: UInt16
+		var science: UInt16
+		var traits: UInt16 = 0
 	}
 
-	struct CrewStats: Codable {
-		var attack: Int
-		var defence: Int
-		var engineering: Int
-	}
-
-	// MARK: Resources
 	struct Crystals: Codable {
-		var red: Int
-		var green: Int
-		var blue: Int
-		var yellow: Int
-		var magenta: Int
-		var cyan: Int
+		var red: UInt16
+		var green: UInt16
+		var blue: UInt16
+		var yellow: UInt16
+		var magenta: UInt16
+		var cyan: UInt16
+	}
+}
+
+extension GameState.Ship {
+	func weaponComponent(_ path: KeyPath<Self, GameState.Weapon>) -> WeaponComponent {
+		let wpn = self[keyPath: path]
+
+		return WeaponComponent(
+			type: wpn.type,
+			damage: wpn.damage,
+			velocity: wpn.velocity,
+			charge: wpn.charge,
+			cooldown: wpn.cooldown,
+			perShotCooldown: wpn.perShotCooldown,
+			roundsPerShot: wpn.roundsPerShot
+		)
+	}
+}
+
+extension [GameState.Crew] {
+	func n(_ path: KeyPath<GameState.Crew, UInt16>) -> UInt16 {
+		reduce(0, { $0 + $1[keyPath: path] })
 	}
 }
 
@@ -137,27 +120,37 @@ extension GameState.Rarity {
 	var k: Float {
 		switch self {
 		case .common: return 1
-		case .uncommon: return 1.2
-		case .rare: return 1.4
-		case .epic: return 1.7
+		case .uncommon: return 1.4
+		case .rare: return 1.7
+		case .epic: return 2
+		case .unknown: return 2.2
 		}
 	}
-
+	var n: UInt16 {
+		switch self {
+		case .common: return 2
+		case .uncommon: return 3
+		case .rare: return 5
+		case .epic: return 8
+		case .unknown: return 13
+		}
+	}
 	var lower: GameState.Rarity {
 		switch self {
-		case .common: return .common
-		case .uncommon: return .common
-		case .rare: return .uncommon
-		case .epic: return .rare
+		case .common: .common
+		case .uncommon: .common
+		case .rare: .uncommon
+		case .epic: .rare
+		case .unknown: .epic
 		}
 	}
-
 	var higher: GameState.Rarity {
 		switch self {
-		case .common: return .uncommon
-		case .uncommon: return .rare
-		case .rare: return .epic
-		case .epic: return .epic
+		case .common: .uncommon
+		case .uncommon: .rare
+		case .rare: .epic
+		case .epic: .unknown
+		case .unknown: .unknown
 		}
 	}
 }

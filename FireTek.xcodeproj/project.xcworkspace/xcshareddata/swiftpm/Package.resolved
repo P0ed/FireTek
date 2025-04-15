@@ -6,8 +6,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/P0ed/Fx",
       "state" : {
-        "revision" : "08da99251d5e5905d8761a2c7be2a7e8cc98eacc",
-        "version" : "3.2.0"
+        "branch" : "master",
+        "revision" : "78c47921e02193dace3e2b8bb6efe0ce8f104165"
       }
     }
   ],

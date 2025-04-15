@@ -1,23 +1,34 @@
 import SpriteKit
 
 final class PlanetarySystem {
+	private let planets: Store<PlanetComponent>
+	private let physics: Store<PhysicsComponent>
 
-	let planets: Store<PlanetComponent>
-
-	init(planets: Store<PlanetComponent>) {
+	init(planets: Store<PlanetComponent>, physics: Store<PhysicsComponent>) {
 		self.planets = planets
+		self.physics = physics
 	}
 
 	func update() {
 		for index in planets.indices {
 			var planet = planets[index]
-			planet.position += planet.velocity
-			planet.sprite.position = position(orbit: planet.orbit, angle: planet.position)
-			planets[index] = planet
-		}
-	}
+			let planetPosition = planet.position
 
-	func position(orbit: Float, angle: Float) -> CGPoint {
-		return CGPoint(x: CGFloat(orbit * cos(angle)), y: CGFloat(orbit * sin(angle)))
+			if planet.orbit != 0 {
+				planet.angle += planet.velocity
+				planet.sprite.position = planetPosition
+				planets[index] = planet
+			}
+
+			for idx in physics.indices {
+				let p = physics[idx]
+				let r = planetPosition.distance(to: p.position)
+				if r > 40.0, r < 600.0 {
+					let dv = 96.0 / r / r
+					let v = (planetPosition - p.position).vector.normalized()
+					physics[idx].momentum += v * dv
+				}
+			}
+		}
 	}
 }

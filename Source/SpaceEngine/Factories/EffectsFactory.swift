@@ -1,6 +1,6 @@
 import SpriteKit
 
-enum EffectsFabric {
+enum EffectsFactory {
 
 	@discardableResult
 	static func createShellExplosion(world: World, at transform: Transform) -> Entity {
@@ -12,7 +12,7 @@ enum EffectsFabric {
 
 		sprite.run(.group([
 			.animate(with: textures, timePerFrame: 0.1),
-			SoundsFabric.explosion
+			SoundsFactory.explosion
 		]))
 
 		world.sprites.add(component: SpriteComponent(sprite: sprite), to: entity)
@@ -27,12 +27,12 @@ enum EffectsFabric {
 
 		let textures = SpriteFactory.vehiceExplosionTextures()
 		let sprite = SKSpriteNode(texture: textures.first)
-		sprite.setScale(1.5)
+		sprite.setScale(2)
 		sprite.transform = transform
 
 		sprite.run(.group([
 			.animate(with: textures, timePerFrame: 0.1),
-			SoundsFabric.vehicleExplosion
+			SoundsFactory.vehicleExplosion
 		]))
 
 		world.sprites.add(component: SpriteComponent(sprite: sprite), to: entity)

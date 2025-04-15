@@ -14,6 +14,7 @@ final class HPNode: SKNode {
 
 	let hpCell: SKSpriteNode
 	let armorCells: [SKSpriteNode]
+	let label: SKLabelNode
 
 	override init() {
 		hpCell = SKSpriteNode(color: HPNode.cellColor, size: .square(side: HPNode.side * 3 + HPNode.spacing * 2))
@@ -25,6 +26,8 @@ final class HPNode: SKNode {
 			return cell
 		}
 
+		label = SKLabelNode()
+
 		super.init()
 
 		hpCell.anchorPoint = .zero
@@ -32,6 +35,12 @@ final class HPNode: SKNode {
 
 		armorCells.forEach { $0.anchorPoint = .zero }
 		armorCells.forEach(addChild)
+
+		label.horizontalAlignmentMode = .center
+		label.verticalAlignmentMode = .center
+		label.fontSize = 6
+		label.fontName = "Menlo"
+		addChild(label)
 	}
 
 	required init?(coder aDecoder: NSCoder) { fatalError("init(coder:) has not been implemented") }
@@ -52,5 +61,7 @@ final class HPNode: SKNode {
 				y: side - CGFloat(position.y) * (HPNode.side + HPNode.spacing)
 			)
 		}
+
+		label.position = hpCell.position + .init(x: 24, y: 48)
 	}
 }

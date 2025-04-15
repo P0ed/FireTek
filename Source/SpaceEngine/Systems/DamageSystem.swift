@@ -1,7 +1,6 @@
 import SpriteKit
 
 final class DamageSystem {
-
 	let world: World
 
 	init(world: World) {
@@ -14,41 +13,39 @@ final class DamageSystem {
 		var hpComponent = hp.value
 		var damage = projectile.damage
 
-		let angle = (point - sprite.position).asVector.angle - sprite.zRotation
+		let angle = (point - sprite.position).vector.angle - sprite.zRotation
 
 		let eIndexes = indexes(at: angle, bound: 7)
 		let eArmor = hpComponent[eIndexes.x, eIndexes.y]
 		if hpComponent.armor > 0 && eArmor > 0 {
-			let capacity = Float(hpComponent.armor) * (Float(eArmor) / Float(UInt8.max))
-			let n = max(0, capacity - damage) / Float(hpComponent.armor)
-			let r = UInt8(n * Float(UInt8.max))
-			damage = max(0, damage - capacity)
-			hpComponent[eIndexes.x, eIndexes.y] = r
+			let capacity = UInt16(Float(hpComponent.armor) * Float(eArmor) / Float(UInt8.max))
+			let norm = Float(capacity > damage ? capacity - damage : 0) / Float(hpComponent.armor)
+			let rem = UInt8(norm * Float(UInt8.max))
+			damage = damage > capacity ? damage - capacity : 0
+			hpComponent[eIndexes.x, eIndexes.y] = rem
 		}
 
 		let iIndexes = indexes(at: angle, bound: 5)
 		let iArmor = hpComponent[iIndexes.x + 1, iIndexes.y + 1]
 		if hpComponent.armor > 0 && iArmor > 0 {
-			let capacity = Float(hpComponent.armor) * (Float(iArmor) / Float(UInt8.max))
-			let n = max(0, capacity - damage) / Float(hpComponent.armor)
-			let r = UInt8(n * Float(UInt8.max))
-			damage = max(0, damage - capacity)
-			hpComponent[iIndexes.x + 1, iIndexes.y + 1] = r
+			let capacity = UInt16(Float(hpComponent.armor) * Float(iArmor) / Float(UInt8.max))
+			let norm = Float(capacity > damage ? capacity - damage : 0) / Float(hpComponent.armor)
+			let rem = UInt8(norm * Float(UInt8.max))
+			damage = damage > capacity ? damage - capacity : 0
+			hpComponent[iIndexes.x + 1, iIndexes.y + 1] = rem
 		}
 
-		hpComponent.currentHP -= damage
+		if hpComponent.currentHP > damage {
+			hpComponent.currentHP -= damage
+		} else {
+			hpComponent.currentHP = 0
 
-		hp.value = hpComponent
-
-		if hpComponent.currentHP < 0 {
-			EffectsFabric.createVehilceExplosion(world: world, at: sprite.transform)
+			EffectsFactory.createVehilceExplosion(world: world, at: sprite.transform)
 			let dead = DeadComponent(killedBy: projectile.source)
 			world.dead.add(component: dead, to: hp.entity)
 		}
 
-		if let index = world.targets.indexOf(projectile.source), projectile.source != hp.entity {
-			world.targets[index].target = hp.entity
-		}
+		hp.value = hpComponent
 	}
 }
 

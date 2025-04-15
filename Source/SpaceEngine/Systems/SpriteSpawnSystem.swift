@@ -7,7 +7,7 @@ struct SpriteSpawnSystem {
 
 	init(scene: SKScene, store: Store<SpriteComponent>) {
 
-		disposable += store.newComponents.observe { index in
+		disposable += store.newComponents.observe { [unowned scene] index in
 			scene.addChild(store[index].sprite)
 		}
 

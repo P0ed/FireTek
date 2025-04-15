@@ -1,38 +1,30 @@
-
-enum ProjectileType {
-	case torpedo
-	case laser
-	case blaster
-}
-
 struct WeaponComponent {
-	let type: ProjectileType
-	let damage: Float
-	let velocity: Float
-	let cooldown: Float
-	let perShotCooldown: Float
-	var remainingCooldown: Float
-	let maxAmmo: Int
-	var ammo: Int
-	let roundsPerShot: Int
-	var rounds: Int
+	let type: WeaponType
+	let damage: UInt16
+	let velocity: UInt16
+	let charge: UInt16
+	let cooldown: UInt16
+	let perShotCooldown: UInt16
+	let roundsPerShot: UInt16
+	var remainingCooldown: UInt16
+	var rounds: UInt16
 
-	init(type: ProjectileType, damage: Float, velocity: Float, cooldown: Float, perShotCooldown: Float, roundsPerShot: Int, maxAmmo: Int) {
+	init(type: WeaponType, damage: UInt16, velocity: UInt16, charge: UInt16, cooldown: UInt16, perShotCooldown: UInt16, roundsPerShot: UInt16) {
 		self.type = type
 		self.damage = damage
 		self.velocity = velocity
+		self.charge = charge
 		self.cooldown = cooldown
 		self.perShotCooldown = perShotCooldown
-		remainingCooldown = 0
-		self.maxAmmo = maxAmmo
-		ammo = maxAmmo
 		self.roundsPerShot = roundsPerShot
-		rounds = roundsPerShot
+		remainingCooldown = cooldown
+		rounds = 0
 	}
 }
 
 struct ProjectileComponent {
-	let source: Entity
-	let type: ProjectileType
-	let damage: Float
+	var source: Entity
+	var target: Entity?
+	var type: WeaponType
+	var damage: UInt16
 }

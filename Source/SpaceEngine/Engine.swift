@@ -3,17 +3,17 @@ import Fx
 
 final class Engine {
 
-	struct Model {
-		unowned let scene: BattleScene
-		let inputController: InputController
-	}
-
 	static let timeStep = 1.0 / 60.0 as CFTimeInterval
 
-	private let model: Model
-	let world: World
+	private unowned let scene: BattleScene
+	private let world: World
 
-	private var levelSystem: LevelSystem
+	var restart: () -> Void {
+		get { levelSystem.restart }
+		set { levelSystem.restart = newValue }
+	}
+
+	private let levelSystem: LevelSystem
 	private let spriteSpawnSystem: SpriteSpawnSystem
 	private let inputSystem: InputSystem
 	private let physicsSystem: PhysicsSystem
@@ -28,35 +28,41 @@ final class Engine {
 	private let lootSystem: LootSystem
 	private let hudSystem: HUDSystem
 	private let planetarySystem: PlanetarySystem
+	private let particleSystem: ParticleSystem
 
-	init(_ model: Model) {
-		self.model = model
+	init(scene: BattleScene, input: InputController) {
+		self.scene = scene
 		let world = World()
 		self.world = world
+		let cam = scene.camera!
 
-		spriteSpawnSystem = SpriteSpawnSystem(scene: model.scene, store: world.sprites)
+		spriteSpawnSystem = SpriteSpawnSystem(scene: scene, store: world.sprites)
+		levelSystem = LevelSystem(world: world, level: .default)
 		physicsSystem = PhysicsSystem(world: world)
-		collisionsSystem = CollisionsSystem(scene: model.scene)
+		collisionsSystem = CollisionsSystem(scene: scene)
 
 		weaponSystem = WeaponSystem(world: world)
 		damageSystem = DamageSystem(world: world)
-		targetSystem = TargetSystem(targets: world.targets)
 		projectileSystem = ProjectileSystem(world: world, collisionsSystem: collisionsSystem, damageSystem: damageSystem)
 
-		levelSystem = LevelSystem(world: world, level: .default)
-		inputSystem = InputSystem(world: world, player: levelSystem.state.value.player, inputController: model.inputController)
+		inputSystem = InputSystem(world: world, player: levelSystem.state.player, inputController: input)
+		targetSystem = TargetSystem(world: world, player: levelSystem.state.player, inputController: input)
 		aiSystem = AISystem(world: world)
 
 		lifetimeSystem = LifetimeSystem(world: world)
 
 		lootSystem = LootSystem(world: world, collisionsSystem: collisionsSystem)
 
-		cameraSystem = CameraSystem(player: world.sprites[0].sprite, camera: model.scene.camera!)
+		cameraSystem = CameraSystem(player: world.sprites[0].sprite, camera: cam)
 		cameraSystem.update()
 
-		hudSystem = HUDSystem(world: world, player: levelSystem.state.value.player, hudNode: model.scene.hud)
+		hudSystem = HUDSystem(world: world, player: levelSystem.state.player, hudNode: scene.hud)
 
-		planetarySystem = PlanetarySystem(planets: world.planets)
+		planetarySystem = PlanetarySystem(planets: world.planets, physics: world.physics)
+		particleSystem = ParticleSystem(
+			camera: cam,
+			ref: world.physics.weakRefOf(levelSystem.state.player)
+		)
 	}
 
 	func simulate() {
@@ -73,6 +79,7 @@ final class Engine {
 		aiSystem.update()
 
 		hudSystem.update()
+		particleSystem.update()
 
 		lootSystem.update()
 		lifetimeSystem.update()
@@ -81,4 +88,8 @@ final class Engine {
 	func didFinishUpdate() {
 		cameraSystem.update()
 	}
+}
+
+extension MutableProperty {
+	var io: IO<A> { .init(get: { self.value }, set: { self.value = $0 }) }
 }

@@ -1,14 +1,14 @@
 Weapon projectiles:
 
 Missles:
-• Homing sequence 1-2
+* Homing sequence 1-2
 
 Ballistic:
-• AC 1
-• UAC 3
+* AC 1
+* UAC 3
 
 Laser:
-• No projectile, damage over time
+* No projectile, damage over time
 
 Hitbox:
 

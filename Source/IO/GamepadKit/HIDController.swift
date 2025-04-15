@@ -4,8 +4,7 @@ import Fx
 
 struct ControlsMap {
 	var buttonsMapTable: [DSButton: (Bool) -> Void] = [:]
-	var dPadMapTable: [DSHatDirection: (Bool) -> Void] = [:]
-	var sticksMapTable: [DSStick: (Point) -> Void] = [:]
+	var dhat: (DHat) -> Void = { _ in }
 	var keyboardMapTable: [UInt16: (Bool) -> Void] = [:]
 }
 
@@ -31,11 +30,8 @@ final class HIDController {
 				using: { [_map] notification in
 					guard let gamepad = (notification.object as? GCController)?.extendedGamepad else { return }
 
-					gamepad.leftThumbstick.valueChangedHandler = { _, x, y in
-						_map.value.sticksMapTable[.left]?(Point(x: x, y: y))
-					}
-					gamepad.rightThumbstick.valueChangedHandler = { _, x, y in
-						_map.value.sticksMapTable[.right]?(Point(x: x, y: y))
+					gamepad.dpad.valueChangedHandler = { dpad, _, _ in
+						_map.value.dhat(dpad.dhat)
 					}
 					gamepad.leftShoulder.pressedChangedHandler = { _, _, pressed in
 						_map.value.buttonsMapTable[.l1]?(pressed)
@@ -61,58 +57,13 @@ final class HIDController {
 	}
 }
 
-//import Foundation
-//
-//class EventsController {
-//
-//	lazy var deviceConfiguration = ControllerMap()
-//
-//	var leftJoystick = DSVector.zeroVector
-//	var rightJoystick = DSVector.zeroVector
-//	var leftTrigger = 0.0
-//	var rightTrigger = 0.0
-//	var hatDirection = DSHatDirection.null
-//
-//	func handleEvent(_ event: Any) {
-//		switch event.type.rawValue {
-//		case OEHIDEventTypeHatSwitch.rawValue:
-//			if let hatDirection = DSHatDirection(rawValue: Int(event.hatDirection.rawValue)) {
-//				let buttons = changedStateDPadButtons(self.hatDirection, current: hatDirection)
-//				self.hatDirection = hatDirection
-//
-//				func performActions(_ buttons: [DSHatDirection], pressed: Bool) {
-//					buttons.forEach { button in
-//						if let action = deviceConfiguration.dPadMapTable[button] {
-//							action.performAction(pressed)
-//						}
-//					}
-//				}
-//
-//				performActions(buttons.up, pressed: false)
-//				performActions(buttons.down, pressed: true)
-//			}
-//		default: break
-//		}
-//	}
-//}
-//
-//private func changedStateDPadButtons(_ previous: DSHatDirection, current: DSHatDirection) -> (up: [DSHatDirection], down: [DSHatDirection]) {
-//	var up: [DSHatDirection] = []
-//	var down: [DSHatDirection] = []
-//
-//	for i in 0...3 {
-//		let bit = 1 << i
-//		let was = previous.rawValue & bit
-//		let now = current.rawValue & bit
-//
-//		if was != now {
-//			if was != 0 {
-//				up.append(DSHatDirection(rawValue: bit)!)
-//			} else {
-//				down.append(DSHatDirection(rawValue: bit)!)
-//			}
-//		}
-//	}
-//
-//	return (up, down)
-//}
+extension GCControllerDirectionPad {
+	var dhat: DHat {
+		var dhat = DHat.null
+		dhat.up = up.isPressed
+		dhat.right = `right`.isPressed
+		dhat.down = down.isPressed
+		dhat.left = `left`.isPressed
+		return dhat
+	}
+}

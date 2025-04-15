@@ -1,13 +1,13 @@
 struct HPComponent {
-	var maxHP: Int
-	var armor: Int
-	var currentHP: Float
-	var structure: Array<UInt8>
+	var maxHP: UInt16
+	var currentHP: UInt16
+	var armor: UInt16
+	var structure: [UInt8]
 
-	init(maxHP: Int, armor: Int = 0) {
+	init(maxHP: UInt16, armor: UInt16 = 0) {
 		self.maxHP = maxHP
 		self.armor = armor
-		currentHP = Float(maxHP)
+		currentHP = maxHP
 		structure = Array(repeating: .max, count: 40)
 	}
 }

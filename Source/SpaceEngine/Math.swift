@@ -28,32 +28,18 @@ extension CGVector {
 		)
 	}
 
-	public var lengthSquared: CGFloat {
-		return dx * dx + dy * dy
-	}
+	public var lengthSquared: CGFloat { dx * dx + dy * dy }
+	public var length: CGFloat { sqrt(lengthSquared) }
+	public var angle: CGFloat { atan2(dy, dx) }
+	public var point: CGPoint { CGPoint(x: dx, y: dy) }
 
-	public var length: CGFloat {
-		return sqrt(lengthSquared)
-	}
-
-	public var angle: CGFloat {
-		return atan2(dy, dx)
-	}
-
-	public var asPoint: CGPoint {
-		return CGPoint(x: dx, y: dy)
-	}
-
-	func normalized() -> CGVector {
-		return self / sqrt(lengthSquared)
-	}
+	func normalized() -> CGVector { self / sqrt(lengthSquared) }
 
 	public func dot(_ vector: CGVector) -> CGFloat {
-		return dx * vector.dx + dy * vector.dy
+		dx * vector.dx + dy * vector.dy
 	}
-
 	public func cross(_ vector: CGVector) -> CGFloat {
-		return dx * vector.dy - dy * vector.dx
+		dx * vector.dy - dy * vector.dx
 	}
 
 	public func angle(with vector: CGVector) -> CGFloat {
@@ -63,6 +49,11 @@ extension CGVector {
 		let dot = max(-1, min(1, t1.dot(t2)))
 
 		return atan2(cross, dot)
+	}
+
+	static func += (lhs: inout CGVector, rhs: CGVector) {
+		lhs.dx += rhs.dx
+		lhs.dy += rhs.dy
 	}
 }
 
@@ -90,16 +81,19 @@ public func - (lhs: CGPoint, rhs: CGPoint) -> CGPoint {
 	return CGPoint(x: lhs.x - rhs.x, y: lhs.y - rhs.y)
 }
 
-extension CGPoint {
+public extension CGPoint {
 
-	public func distance(to point: CGPoint) -> CGFloat {
+	func distance(to point: CGPoint) -> CGFloat {
 		let dx = abs(x - point.x)
 		let dy = abs(y - point.y)
 		return sqrt(dx * dx + dy * dy)
 	}
 
-	public var asVector: CGVector {
-		return CGVector(dx: x, dy: y)
+	var vector: CGVector { CGVector(dx: x, dy: y) }
+
+	static func += (lhs: inout CGPoint, rhs: CGVector) {
+		lhs.x += rhs.dx
+		lhs.y += rhs.dy
 	}
 }
 
@@ -115,4 +109,15 @@ extension SKNode {
 	public var orientation: CGVector {
 		return CGVector(dx: 0, dy: 1).rotate(zRotation)
 	}
+}
+
+struct Angle {
+	var value: UInt16
+}
+
+extension Angle {
+	static var zero: Angle = .init(value: 0)
+	var vector: CGVector { .init(dx: 0, dy: 1).rotate(radians) }
+	var radians: CGFloat { CGFloat(spriteIdx) / 16 * .pi }
+	var spriteIdx: UInt { UInt(value >> 11) }
 }

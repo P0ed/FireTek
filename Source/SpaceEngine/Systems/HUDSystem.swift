@@ -2,11 +2,12 @@ import Fx
 import SpriteKit
 
 final class HUDSystem {
-
 	private let world: World
 	private let hudNode: HUDNode
 
 	private var playerSprite: WeakRef<SpriteComponent>?
+	private var playerPhysics: WeakRef<PhysicsComponent>?
+
 	private var mapNodes: [(SKNode, SKNode)] = []
 
 	private var playerHP: WeakRef<HPComponent>?
@@ -23,6 +24,7 @@ final class HUDSystem {
 		self.hudNode = hudNode
 
 		playerSprite = world.sprites.weakRefOf(player)
+		playerPhysics = world.physics.weakRefOf(player)
 		playerHP = world.hp.weakRefOf(player)
 		playerTarget = world.targets.weakRefOf(player)
 		primaryWeapon = world.primaryWpn.weakRefOf(player)
@@ -37,9 +39,10 @@ final class HUDSystem {
 
 		let add = { [unowned self] (idx: Int) in
 			let item = mapItems[idx]
-			let mapSprite = SKShapeNode(circleOfRadius: 2)
+			let mapSprite = SKShapeNode(circleOfRadius: 1.2)
 			mapSprite.fillColor = item.type.color
 			mapSprite.strokeColor = .clear
+			mapSprite.zPosition = item.type == .ally ? 2 : item.type == .enemy ? 1 : 0
 			map.addChild(mapSprite)
 			self.mapNodes.append((item.node, mapSprite))
 		}
@@ -60,7 +63,7 @@ final class HUDSystem {
 	func update() {
 		fillHud()
 
-		updateHPNode(node: hudNode.playerHP, hp: playerHP?.value)
+		updateHPNode(node: hudNode.playerHP, hp: playerHP?.value, physics: playerPhysics?.value)
 		updateHPNode(node: hudNode.targetHP, hp: targetHP?.value)
 
 		updateWeaponNode(node: hudNode.weapon1, weapon: primaryWeapon?.value)
@@ -79,7 +82,7 @@ final class HUDSystem {
 		}
 	}
 
-	private func updateHPNode(node: HPNode, hp: HPComponent?) {
+	private func updateHPNode(node: HPNode, hp: HPComponent?, physics: PhysicsComponent? = nil) {
 		if let hp = hp {
 			node.alpha = 0.9
 			node.hpCell.colorBlendFactor = 1 - CGFloat(hp.currentHP) / CGFloat(hp.maxHP)
@@ -87,6 +90,14 @@ final class HUDSystem {
 			for (index, armor) in hp.structure.enumerated() {
 				node.armorCells[index].colorBlendFactor = 1 - CGFloat(armor) / CGFloat(UInt8.max)
 				node.armorCells[index].alpha = hp.armor == 0 ? 0.2 : 1
+			}
+			if let physics {
+				let x = Int(physics.position.x)
+				let y = Int(physics.position.y)
+				let dx = Int(physics.momentum.dx * 60)
+				let dy = Int(physics.momentum.dy * 60)
+
+				node.label.text = "x: \(x), y: \(y), dx: \(dx), dy: \(dy)"
 			}
 		} else {
 			node.alpha = 0
@@ -97,17 +108,14 @@ final class HUDSystem {
 		if let weapon = weapon {
 			node.alpha = 1
 
-			node.roundsLabel.text = "\(weapon.ammo)"
-
-			if weapon.remainingCooldown > 0 || weapon.ammo == 0 {
-				if weapon.rounds == 0 && weapon.ammo != 0 {
-					let c = 1 - weapon.remainingCooldown / weapon.cooldown
-					node.cooldownNode.progress.size.width = WeaponNode.cooldownSize.width * CGFloat(c)
+			if weapon.remainingCooldown > 0 {
+				if weapon.rounds == 0 {
+					let c: CGFloat = 1 - CGFloat(weapon.remainingCooldown) / CGFloat(weapon.cooldown)
+					node.cooldownNode.progress.size.width = WeaponNode.cooldownSize.width * c
 				} else {
 					node.cooldownNode.progress.size.width = 0
 				}
-			}
-			else {
+			} else {
 				node.cooldownNode.progress.size.width = WeaponNode.cooldownSize.width
 			}
 		} else {
@@ -119,8 +127,8 @@ final class HUDSystem {
 		let playerNode = playerSprite?.value?.sprite
 		guard let center = playerNode?.position else { return mapNodes.forEach { $0.1.isHidden = true } }
 
-		let scale = 48 as CGFloat
-		let r = 42 * scale	/// mapRadius - itemRadius
+		let scale = 56 as CGFloat
+		let r = 31 * scale
 
 		let isInside = { (p: CGPoint) -> Bool in
 			let x = (p.x - center.x) * (p.x - center.x) + (p.y - center.y) * (p.y - center.y)
@@ -141,10 +149,10 @@ final class HUDSystem {
 extension MapItem.ItemType {
 	var color: SKColor {
 		switch self {
-		case .star: return SKColor(hex: 0xaaaa11)
-		case .planet: return SKColor(hex: 0x11aa44)
-		case .ally: return SKColor(hex: 0x1122cc)
-		case .enemy: return SKColor(hex: 0xee1111)
+		case .star: return SKColor(hex: 0x999911)
+		case .planet: return SKColor(hex: 0x119944)
+		case .ally: return SKColor(hex: 0x1122AA)
+		case .enemy: return SKColor(hex: 0xCC1111)
 		}
 	}
 }

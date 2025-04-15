@@ -7,20 +7,17 @@ protocol Routable: AnyObject {
 
 class Scene: SKScene, Routable {
 	weak var router: Router?
-	var rootScene: SKScene { return self }
-
-//	override init(size: CGSize) {
-//		super.init(size: size)
-//		scaleMode = .aspectFit
-//	}
+	var rootScene: SKScene { self }
 }
 
 final class Router {
 	let view: SKView
+	let control: HIDController
 	private(set) var stack: [Routable] = []
 
 	init(view: SKView) {
 		self.view = view
+		control = HIDController()
 	}
 
 	func push(_ routable: Routable) {
@@ -37,5 +34,13 @@ final class Router {
 		routable.router = nil
 
 		view.presentScene(stack.last?.rootScene)
+	}
+}
+
+extension Router {
+
+	func startNewGame() {
+		if !stack.isEmpty { pop() }
+		push(BattleScene.make())
 	}
 }

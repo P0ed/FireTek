@@ -1,27 +1,28 @@
 import Fx
 
-struct LevelSystem {
+final class LevelSystem {
 
 	struct State {
-		let player: Entity
+		var player: Entity
+		var game: GameState
 	}
 
-	private let mutableState: MutableProperty<State>
+	@MutableProperty
+	private(set) var state: State
 	private let world: World
 	private let level: SpaceLevel
 
-	let state: Property<State>
+	var restart = {}
 
 	init(world: World, level: SpaceLevel) {
 		self.world = world
 		self.level = level
-		mutableState = MutableProperty(.initialState(world: world, level: level))
-		state = mutableState.map(id)
+		state = .initialState(world: world, level: level)
 	}
 
-	mutating func update() {
-		if !world.entityManager.isAlive(state.value.player) {
-			/// Game over
+	func update() {
+		if !world.entityManager.isAlive(state.player) {
+			restart()
 		}
 	}
 }
@@ -29,30 +30,17 @@ struct LevelSystem {
 extension LevelSystem.State {
 
 	static func initialState(world: World, level: SpaceLevel) -> LevelSystem.State {
-		let player = UnitFactory.createTank(world: world, position: level.spawnPosition, team: .blue)
-		
-		UnitFactory.createAIPlayer(world: world, position: Point(x: -64, y: 512))
-		UnitFactory.createAIPlayer(world: world, position: Point(x: 64, y: 512))
+		let game = GameState.make()
+		let player = UnitFactory.createTank(world: world, ship: game.ship, position: level.spawnPosition, team: .blue)
 
-//		let buildings: [Point] = [
-//			Point(x: 140, y: 120),
-//			Point(x: 220, y: 140),
-//			Point(x: 280, y: 120),
-//			Point(x: 360, y: 140),
-//			Point(x: 140, y: 320),
-//			Point(x: 220, y: 340),
-//			Point(x: 280, y: 320),
-//			Point(x: 360, y: 340)
-//		]
-//
-//		buildings.forEach {
-//			UnitFactory.createBuilding(world: world, position: $0)
-//		}
+		UnitFactory.createAIPlayer(world: world, position: Point(x: 0, y: 1500))
+		UnitFactory.createAIPlayer(world: world, position: Point(x: 200, y: 1500))
 
 		StarSystemFactory.createSystem(world: world, data: level.starSystem)
 
-		return LevelSystem.State(
-			player: player
+		return .init(
+			player: player,
+			game: game
 		)
 	}
 }

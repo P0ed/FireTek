@@ -34,35 +34,34 @@ final class World {
 	let mapItems: Store<MapItem>
 
 	init() {
-		let core = Core()
-		entityManager = core.entityManager
-		sprites = core.makeStore()
-		physics = core.makeStore()
+		entityManager = EntityManager()
+		sprites = entityManager.makeStore()
+		physics = entityManager.makeStore()
 
-		ships = core.makeStore()
-		buildings = core.makeStore()
+		ships = entityManager.makeStore()
+		buildings = entityManager.makeStore()
 
-		hp = core.makeStore()
-		shipStats = core.makeStore()
-		primaryWpn = core.makeStore()
-		secondaryWpn = core.makeStore()
-		targets = core.makeStore()
+		hp = entityManager.makeStore()
+		shipStats = entityManager.makeStore()
+		primaryWpn = entityManager.makeStore()
+		secondaryWpn = entityManager.makeStore()
+		targets = entityManager.makeStore()
 
-		vehicleInput = core.makeStore()
-		towerInput = core.makeStore()
+		vehicleInput = entityManager.makeStore()
+		towerInput = entityManager.makeStore()
 
-		vehicleAI = core.makeStore()
-		towerAI = core.makeStore()
+		vehicleAI = entityManager.makeStore()
+		towerAI = entityManager.makeStore()
 
-		team = core.makeStore()
-		projectiles = core.makeStore()
-		lifetime = core.makeStore()
-		loot = core.makeStore()
-		dead = core.makeStore()
-		crystals = core.makeStore()
-		owners = core.makeStore()
+		team = entityManager.makeStore()
+		projectiles = entityManager.makeStore()
+		lifetime = entityManager.makeStore()
+		loot = entityManager.makeStore()
+		dead = entityManager.makeStore()
+		crystals = entityManager.makeStore()
+		owners = entityManager.makeStore()
 
-		planets = core.makeStore()
-		mapItems = core.makeStore()
+		planets = entityManager.makeStore()
+		mapItems = entityManager.makeStore()
 	}
 }

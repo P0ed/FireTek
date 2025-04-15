@@ -30,28 +30,34 @@ final class ProjectileSystem {
 			}
 		}
 
-		disposable += world.projectiles.removedComponents.observe { [unowned self] entity, _ in
-			if let index = self.units.firstIndex(where: { $0.entity == entity }) {
-				self.units.fastRemove(at: index)
+		disposable += world.projectiles.removedComponents
+			.observe { [unowned self] entity, _ in
+				if let index = self.units.firstIndex(where: { $0.entity == entity }) {
+					self.units.fastRemove(at: index)
+				}
 			}
-		}
 
 		disposable += collisionsSystem.didBeginContact
-			.observe(unown(self) {$0.processContact})
+			.observe { [unowned self] in processContact($0) }
 	}
 
 	func update() {
-//		let sprites = world.sprites
-//		let projectiles = world.projectiles
-//
-//		for unit in units {
-//			let projectile = projectiles[unit.projectile]
-//
-//			if case .homingMissle = projectile.type {
-//
-//			}
-//
-//		}
+		let sprites = world.sprites
+		let projectiles = world.projectiles
+
+		for unit in units {
+			let projectile = projectiles[unit.projectile]
+
+			if case .torpedo = projectile.type,
+			   let target = projectile.target,
+			   let idx = sprites.indexOf(target) {
+				let t = sprites[idx].sprite.position
+				let pSprite = sprites[unit.sprite].sprite
+				let p = pSprite.position
+				let dv = (t - p).vector.normalized() * 4
+				pSprite.position = p + dv.point
+			}
+		}
 	}
 }
 
@@ -68,7 +74,7 @@ private extension ProjectileSystem {
 		world.entityManager.removeEntity(projectile.entity)
 
 		let transform = Transform(point: contact.contactPoint, vector: contact.contactNormal)
-		EffectsFabric.createShellExplosion(world: world, at: transform)
+		EffectsFactory.createShellExplosion(world: world, at: transform)
 
 		if let hp = world.hp.first(entityA, entityB) {
 			damageSystem.damage(

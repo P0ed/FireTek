@@ -14,7 +14,7 @@ final class HUDNode: SKNode {
 		[playerHP, targetHP, weapon1, weapon2, map].forEach(addChild)
 	}
 
-	required init?(coder aDecoder: NSCoder) { fatalError("init(coder:) has not been implemented") }
+	required init?(coder aDecoder: NSCoder) { fatalError() }
 
 	func layout(size: CGSize) {
 		playerHP.layout(size: size)

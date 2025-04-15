@@ -1,7 +1,6 @@
 import SpriteKit
 
 enum SpriteFactory {
-
 	static let effects = SKTextureAtlas(named: "Effects")
 	static let space = SKTextureAtlas(named: "Space")
 
@@ -12,31 +11,13 @@ enum SpriteFactory {
 		let spriteNode = SKSpriteNode(texture: texture)
 		spriteNode.position = position.cgPoint
 		spriteNode.entity = entity
+		spriteNode.setScale(0.66)
+		spriteNode.zPosition = 1
 
 		return SpriteComponent(sprite: spriteNode)
 	}
 
-	static func createTankSprite(_ entity: Entity, at position: Point) -> SpriteComponent {
-		let texture = SKTexture(imageNamed: "Tank")
-		texture.filteringMode = .nearest
-
-		let spriteNode = SKSpriteNode(texture: texture)
-		spriteNode.setScale(2)
-		spriteNode.position = position.cgPoint
-		spriteNode.entity = entity
-
-		return SpriteComponent(sprite: spriteNode)
-	}
-
-	static func createBuildingSprite(_ entity: Entity, at position: Point) -> SpriteComponent {
-		let color = SKColor(red: 0.2, green: 0.3, blue: 0.2, alpha: 1)
-		let spriteNode = SKSpriteNode(color: color, size: CGSize(width: 32, height: 32))
-		spriteNode.position = position.cgPoint
-		spriteNode.entity = entity
-		return SpriteComponent(sprite: spriteNode)
-	}
-
-	static func createProjectileSprite(_ entity: Entity, type: ProjectileType) -> SpriteComponent {
+	static func createProjectileSprite(_ entity: Entity, type: WeaponType) -> SpriteComponent {
 		let spriteNode = SKSpriteNode(texture: effects.textureNamed("shell"))
 		spriteNode.entity = entity
 		return SpriteComponent(sprite: spriteNode)
@@ -44,7 +25,7 @@ enum SpriteFactory {
 
 	static func createCrystal(entity: Entity, at position: CGPoint, crystal: Crystal) -> SpriteComponent {
 		let node = SKSpriteNode(texture: effects.textureNamed("crystal"))
-		node.setScale(0.3)
+		node.setScale(0.25)
 		node.entity = entity
 		node.position = position
 		node.entity = entity
@@ -71,41 +52,27 @@ extension SpriteFactory {
 // MARK: Stars & Planets
 extension SpriteFactory {
 
-	static func createStar(entity: Entity, data: StarSystemData.Star) -> SKSpriteNode {
-		let node = SKSpriteNode(texture: space.textureNamed("Planet"))
-		node.size = CGSize(width: CGFloat(data.radius * 2), height: CGFloat(data.radius * 2))
-		node.color = data.color.color
-		node.colorBlendFactor = 0.5
-		node.entity = entity
-		return node
-	}
-
 	static func createPlanet(entity: Entity, data: StarSystemData.Planet) -> SKSpriteNode {
 		let node = SKSpriteNode(texture: space.textureNamed("Planet"))
 		node.size = CGSize(width: CGFloat(data.radius * 2), height: CGFloat(data.radius * 2))
 		node.color = data.color.color
 		node.colorBlendFactor = 0.5
+		node.zPosition = -1
 		node.entity = entity
-		return node
-	}
-}
 
-extension StarSystemData.StarColor {
-	var color: SKColor {
-		switch self {
-		case .red:		return SKColor(hex: 0xee0000)
-		case .blue:		return SKColor(hex: 0x0000ee)
-		}
+		return node
 	}
 }
 
 extension StarSystemData.PlanetColor {
 	var color: SKColor {
 		switch self {
-		case .yellow:	return SKColor(hex: 0xeeee00)
-		case .orange:	return SKColor(hex: 0xff7700)
-		case .green:	return SKColor(hex: 0x00cc00)
-		case .cyan:		return SKColor(hex: 0x00ccaa)
+		case .red:		return SKColor(hex: 0xAA0000)
+		case .green:	return SKColor(hex: 0x00AA00)
+		case .blue:		return SKColor(hex: 0x0000AA)
+		case .yellow:	return SKColor(hex: 0xCCCC00)
+		case .orange:	return SKColor(hex: 0xCC7700)
+		case .cyan:		return SKColor(hex: 0x00AA99)
 		}
 	}
 }

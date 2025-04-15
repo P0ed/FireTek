@@ -4,34 +4,33 @@ import SpriteKit
 enum UnitFactory {
 
 	@discardableResult
-	static func createTank(world: World, position: Point, team: Team) -> Entity {
+	static func createTank(world: World, ship data: GameState.Ship, position: Point, team: Team) -> Entity {
 		let entity = world.entityManager.create()
 
 		let sprite = SpriteFactory.createShipSprite(entity, at: position)
 		let hp = HPComponent(maxHP: 80, armor: 40)
-		let physics = shipPhysics(sprite.sprite)
+		let physics = shipPhysics(sprite.sprite, team: team)
 
 		let primary = WeaponComponent(
 			type: .blaster,
-			damage: 12,
-			velocity: 340,
-			cooldown: 1.2,
-			perShotCooldown: 0.18,
-			roundsPerShot: 3,
-			maxAmmo: 60
+			damage: 14,
+			velocity: 400,
+			charge: 12,
+			cooldown: 18,
+			perShotCooldown: 6,
+			roundsPerShot: 2
 		)
-
 		let secondary = WeaponComponent(
-			type: .blaster,
-			damage: 36,
-			velocity: 260,
-			cooldown: 0.9,
+			type: .torpedo,
+			damage: 90,
+			velocity: 180,
+			charge: 33,
+			cooldown: 40,
 			perShotCooldown: 0,
-			roundsPerShot: 1,
-			maxAmmo: 20
+			roundsPerShot: 1
 		)
 
-		let stats = ShipStats(speed: 36)
+		let stats = ShipStats(speed: 24)
 
 		let ship = ShipComponent(
 			sprite: world.sprites.sharedIndexAt § world.sprites.add(component: sprite, to: entity),
@@ -50,7 +49,7 @@ enum UnitFactory {
 
 		world.ships.add(component: ship, to: entity)
 		world.team.add(component: team, to: entity)
-		world.targets.add(component: .none, to: entity)
+		world.targets.add(component: .init(), to: entity)
 		world.mapItems.add(component: mapItem, to: entity)
 
 		world.loot.add(component: LootComponent(crystal: .orange, count: 3), to: entity)
@@ -60,7 +59,8 @@ enum UnitFactory {
 
 	@discardableResult
 	static func createAIPlayer(world: World, position: Point) -> Entity {
-		let entity = createTank(world: world, position: position, team: .red)
+		let ship = GameState.makeShip(rarity: .common)
+		let entity = createTank(world: world, ship: ship, position: position, team: .red)
 		let vehicle = world.ships.sharedIndexAt § world.ships.indexOf(entity)!
 
 		let ai = VehicleAIComponent(vehicle: vehicle, state: .hold(Point(x: 0, y: 0)), target: nil)
@@ -69,44 +69,12 @@ enum UnitFactory {
 		return entity
 	}
 
-	static func shipPhysics(_ sprite: SKSpriteNode) -> PhysicsComponent {
+	static func shipPhysics(_ sprite: SKSpriteNode, team: Team) -> PhysicsComponent {
 		let body = SKPhysicsBody(rectangleOf: sprite.size)
-		body.mass = 40
-		body.angularDamping = 1
-
-		body.categoryBitMask = 0x1
-
+		body.collision = .zero
+		body.category = team == .blue ? .blueShips : .redShips
 		sprite.physicsBody = body
-		return PhysicsComponent(body: body)
-	}
-
-	@discardableResult
-	static func createBuilding(world: World, position: Point) -> Entity {
-		let entity = world.entityManager.create()
-		let sprite = SpriteFactory.createBuildingSprite(entity, at: position)
-		let hp = HPComponent(maxHP: 40)
-
-		let building = BuildingComponent(
-			sprite: world.sprites.sharedIndexAt § world.sprites.add(component: sprite, to: entity),
-			hp: world.hp.sharedIndexAt § world.hp.add(component: hp, to: entity)
-		)
-		world.buildings.add(component: building, to: entity)
-
-		let physics = buildingPhysics(sprite.sprite)
-		world.physics.add(component: physics, to: entity)
-		world.loot.add(component: LootComponent(crystal: .blue, count: 1), to: entity)
-
-		return entity
-	}
-
-	static func buildingPhysics(_ sprite: SKSpriteNode) -> PhysicsComponent {
-		let body = SKPhysicsBody(rectangleOf: sprite.size)
-		body.isDynamic = false
-
-		body.categoryBitMask = 0x1
-
-		sprite.physicsBody = body
-		return PhysicsComponent(body: body)
+		return PhysicsComponent(body: body, position: sprite.position)
 	}
 
 	@discardableResult
@@ -116,9 +84,9 @@ enum UnitFactory {
 		let sprite = SpriteFactory.createCrystal(entity: entity, at: position, crystal: crystal)
 
 		let body = SKPhysicsBody(rectangleOf: sprite.sprite.size)
-		body.categoryBitMask = 0x1 << 2
-		body.collisionBitMask = 0x1
-		body.contactTestBitMask = 0x1
+		body.category = .crystal
+		body.collision = [.blueShips, .redShips]
+		body.contactTest = [.blueShips, .redShips]
 		sprite.sprite.physicsBody = body
 
 		sprite.sprite.run(.group([

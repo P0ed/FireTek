@@ -3,18 +3,17 @@ import Fx
 final class InputController {
 	let hid: HIDController
 
-	@IO private var ls = Point(x: 0, y: 0)
-	@IO private var rs = Point(x: 0, y: 0)
-	private var buttonsState: Int = 0
+	@IO private var pressedButtons: Int = 0
+	@IO private var dhat: DHat = .null
 
 	init(_ hid: HIDController) {
 		self.hid = hid
 
-		let buttonAction: (DSButton) -> (Bool) -> Void = { button in { pressed in
+		let buttonAction: (DSButton) -> (Bool) -> Void = { [_pressedButtons] button in { pressed in
 			if pressed {
-				self.buttonsState |= 1 << button.rawValue
+				_pressedButtons.value |= 1 << button.rawValue
 			} else {
-				self.buttonsState &= ~(1 << button.rawValue)
+				_pressedButtons.value &= ~(1 << button.rawValue)
 			}
 		}}
 
@@ -27,29 +26,27 @@ final class InputController {
 				.l1: buttonAction(.l1),
 				.r1: buttonAction(.r1)
 			],
-			dPadMapTable: [:],
-			sticksMapTable: [
-				.left: _ls.set,
-				.right: _rs.set
-			],
+			dhat: _dhat.set,
 			keyboardMapTable: [:]
 		)
-	}
-
-	func buttonPressed(_ button: DSButton) -> Bool {
-		return buttonsState & 1 << button.rawValue != 0
 	}
 }
 
 extension InputController {
 
+	private func buttonPressed(_ button: DSButton) -> Bool {
+		pressedButtons & 1 << button.rawValue != 0
+	}
+
 	var currentInput: VehicleInputComponent {
 		VehicleInputComponent(
-			accelerate: .init(ls.y),
-			turnHull: .init(ls.x),
-			turnTurret: .init(rs.x),
+			dhat: dhat,
 			primary: buttonPressed(.r1),
-			secondary: buttonPressed(.l1)
+			secondary: buttonPressed(.l1),
+			impulse: buttonPressed(.cross),
+			target: buttonPressed(.circle),
+			action: buttonPressed(.square),
+			warp: buttonPressed(.triangle)
 		)
 	}
 }

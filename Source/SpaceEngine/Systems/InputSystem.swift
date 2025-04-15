@@ -1,11 +1,11 @@
 import SpriteKit
 import Fx
 
-struct InputSystem {
-
+final class InputSystem {
 	private let playerInput: WeakRef<VehicleInputComponent>?
 	private let inputController: InputController
 	private let world: World
+	private var action = false
 
 	init(world: World, player: Entity, inputController: InputController) {
 		self.world = world
@@ -14,6 +14,14 @@ struct InputSystem {
 	}
 
 	func update() {
-		playerInput?.value = inputController.currentInput
+		let input = inputController.currentInput
+		playerInput?.value = input
+
+		if input.action, !action {
+			action.toggle()
+			
+		} else if !input.action, action {
+			action.toggle()
+		}
 	}
 }

@@ -2,38 +2,35 @@ import SpriteKit
 
 struct StarSystemData {
 
-	struct Star {
-		let radius: Float
-		let color: StarColor
-	}
-
-	enum StarColor {
-		case red
-		case blue
-	}
-
 	struct Planet {
-		let radius: Float
-		let color: PlanetColor
-		let orbit: Float
-		let velocity: Float
-		let position: Float
+		var radius: Float
+		var color: PlanetColor
+		var orbit: Float
+		var velocity: Float
+		var angle: Float
 	}
 
 	enum PlanetColor {
+		case red
 		case green
+		case blue
 		case cyan
 		case yellow
 		case orange
 	}
 
-	let star: Star
-	let planets: [Planet]
+	var planets: [Planet]
 }
 
 struct PlanetComponent {
-	let sprite: SKSpriteNode
-	let orbit: Float
-	let velocity: Float
-	var position: Float
+	var sprite: SKSpriteNode
+	var orbit: Float
+	var velocity: Float
+	var angle: Float
+}
+
+extension PlanetComponent {
+	var position: CGPoint {
+		CGPoint(x: CGFloat(orbit * cos(angle)), y: CGFloat(orbit * sin(angle)))
+	}
 }

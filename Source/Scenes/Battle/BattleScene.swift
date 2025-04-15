@@ -2,10 +2,8 @@ import SpriteKit
 import Fx
 
 final class BattleScene: Scene {
-
 	private var engine: Engine!
 	private var lastUpdate = 0 as CFTimeInterval
-	private let hid = HIDController()
 
 	let hud = HUDNode()
 
@@ -18,34 +16,23 @@ final class BattleScene: Scene {
 	override func didMove(to view: SKView) {
 		super.didMove(to: view)
 
-		backgroundColor = SKColor(red: 0.01, green: 0.02, blue: 0.06, alpha: 1)
+		backgroundColor = SKColor(red: 0.01, green: 0.02, blue: 0.05, alpha: 1)
 
 		let camera = SKCameraNode()
 		camera.position = CGPoint(x: 128, y: 128)
 		addChild(camera)
 		self.camera = camera
 
-		SoundsFabric.preheat()
+		SoundsFactory.preheat()
 
-		engine = Engine(.init(
-			scene: self,
-			inputController: InputController(hid)
-		))
+		let input = InputController(router!.control)
+		engine = Engine(scene: self, input: input)
+		engine.restart = { [weak self] in self?.router?.startNewGame() }
 
 		camera.addChild(hud)
-		hud.zPosition = 1000
+		hud.zPosition = 2000
 		hud.layout(size: size)
 	}
-
-//	func renderTileMap(_ level: PlanetLevel) {
-//		let tileSize = 64
-//		level.tileMap.forEach { position, tile in
-//			let node = SKSpriteNode(color: tile.color, size: CGSize(width: tileSize, height: tileSize))
-//			node.position = CGPoint(x: position.x * tileSize, y: position.y * tileSize)
-//			node.anchorPoint = .zero
-//			world.addChild(node)
-//		}
-//	}
 
     override func update(_ currentTime: TimeInterval) {
 		if lastUpdate != 0 {

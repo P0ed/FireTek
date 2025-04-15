@@ -97,4 +97,8 @@ struct RandomGenerator {
 	func float(_ range: ClosedRange<Float>) -> Float {
 		return range.lowerBound + float(upperBound: range.upperBound - range.lowerBound)
 	}
+
+	func element<A>(_ array: [A]) -> A {
+		array[int(upperBound: array.count - 1)]
+	}
 }
