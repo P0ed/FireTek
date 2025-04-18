@@ -58,7 +58,6 @@ extension GameState {
 		var rarity: Rarity
 		var capacity: UInt16
 		var recharge: UInt16
-		var delay: UInt16
 	}
 
 	struct Weapon: Codable {

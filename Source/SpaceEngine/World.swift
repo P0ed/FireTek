@@ -7,16 +7,14 @@ final class World {
 
 	let shipRefs: Store<ShipRef>
 
-	let shipStats: Store<Ship>
+	let ships: Store<Ship>
 	let targets: Store<TargetComponent>
 
 	let loot: Store<LootComponent>
 	let crystals: Store<Crystal>
 	let dead: Store<DeadComponent>
 
-	let vehicleInput: Store<VehicleInputComponent>
-	let towerInput: Store<TowerInputComponent>
-
+	let input: Store<InputComponent>
 	let vehicleAI: Store<VehicleAIComponent>
 
 	let projectiles: Store<ProjectileComponent>
@@ -34,11 +32,10 @@ final class World {
 
 		shipRefs = entityManager.makeStore()
 
-		shipStats = entityManager.makeStore()
+		ships = entityManager.makeStore()
 		targets = entityManager.makeStore()
 
-		vehicleInput = entityManager.makeStore()
-		towerInput = entityManager.makeStore()
+		input = entityManager.makeStore()
 
 		vehicleAI = entityManager.makeStore()
 

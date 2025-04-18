@@ -13,8 +13,8 @@ enum UnitFactory {
 		let shipRef = ShipRef(
 			sprite: world.sprites.sharedIndexAt § world.sprites.add(component: sprite, to: entity),
 			physics: world.physics.sharedIndexAt § world.physics.add(component: physics, to: entity),
-			input: world.vehicleInput.sharedIndexAt § world.vehicleInput.add(component: .empty, to: entity),
-			ship: world.shipStats.sharedIndexAt § world.shipStats.add(component: data.stats, to: entity)
+			input: world.input.sharedIndexAt § world.input.add(component: .empty, to: entity),
+			ship: world.ships.sharedIndexAt § world.ships.add(component: data.stats, to: entity)
 		)
 		let mapItem = MapItem(
 			type: team == .blue ? .ally : .enemy,

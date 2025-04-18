@@ -2,7 +2,7 @@ import SpriteKit
 import Fx
 
 final class InputSystem {
-	private let playerInput: WeakRef<VehicleInputComponent>?
+	private let playerInput: WeakRef<InputComponent>?
 	private let inputController: InputController
 	private let world: World
 	private var action = false
@@ -10,7 +10,7 @@ final class InputSystem {
 	init(world: World, player: Entity, inputController: InputController) {
 		self.world = world
 		self.inputController = inputController
-		playerInput = world.vehicleInput.weakRefOf(player)
+		playerInput = world.input.weakRefOf(player)
 	}
 
 	func update() {

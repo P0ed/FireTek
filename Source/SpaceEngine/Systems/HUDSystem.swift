@@ -23,7 +23,7 @@ final class HUDSystem {
 		playerSprite = world.sprites.weakRefOf(player)
 		playerPhysics = world.physics.weakRefOf(player)
 		playerTarget = world.targets.weakRefOf(player)
-		playerStats = world.shipStats.weakRefOf(player)
+		playerStats = world.ships.weakRefOf(player)
 
 		disposable.innerDisposable = observeMap(mapItems: world.mapItems)
 	}
@@ -82,7 +82,7 @@ final class HUDSystem {
 	private func fillHud() {
 		if let target = playerTarget?.value?.target {
 			if targetStats?.entity != target {
-				targetStats = world.shipStats.weakRefOf(target)
+				targetStats = world.ships.weakRefOf(target)
 			}
 		} else {
 			targetStats = nil

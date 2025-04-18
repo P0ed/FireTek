@@ -14,8 +14,8 @@ final class WeaponSystem {
 
 	private func applyInput() {
 		let refs = world.shipRefs
-		let inputs = world.vehicleInput
-		let ships = world.shipStats
+		let inputs = world.input
+		let ships = world.ships
 
 		refs.enumerated().forEach { index, ref in
 			let entity = refs.entityAt(index)

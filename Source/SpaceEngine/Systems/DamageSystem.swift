@@ -11,7 +11,7 @@ final class DamageSystem {
 		let entity = shipRef.entity
 		let shipRef = shipRef.value
 		let sprite = world.sprites[shipRef.sprite].sprite
-		var ship = world.shipStats[shipRef.ship]
+		var ship = world.ships[shipRef.ship]
 		var damage = projectile.damage
 
 		let shield = ship.shield.value
@@ -40,7 +40,7 @@ final class DamageSystem {
 			world.dead.add(component: dead, to: entity)
 		}
 
-		world.shipStats[shipRef.ship] = ship
+		world.ships[shipRef.ship] = ship
 	}
 }
 

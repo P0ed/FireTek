@@ -70,7 +70,7 @@ extension GameState {
 	static func createShipReactor(rarity: Rarity) -> ShipReactor {
 		ShipReactor(
 			rarity: rarity,
-			capacity: random.int(1200...1600) * rarity.n,
+			capacity: random.int(2200...3000) * rarity.n,
 			recharge: random.int(5...7) + rarity.n
 		)
 	}
@@ -78,9 +78,8 @@ extension GameState {
 	static func createShipShield(rarity: Rarity) -> ShipShield {
 		ShipShield(
 			rarity: rarity,
-			capacity: random.int(400...640) * rarity.n,
-			recharge: random.int(0...1) + rarity.n,
-			delay: random.int(50...120)
+			capacity: random.int(1600...2100) * rarity.n,
+			recharge: random.int(0...1) + rarity.n
 		)
 	}
 

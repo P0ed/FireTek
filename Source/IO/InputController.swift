@@ -38,8 +38,8 @@ extension InputController {
 		pressedButtons & 1 << button.rawValue != 0
 	}
 
-	var currentInput: VehicleInputComponent {
-		VehicleInputComponent(
+	var currentInput: InputComponent {
+		InputComponent(
 			dhat: dhat,
 			primary: buttonPressed(.r1),
 			secondary: buttonPressed(.l1),

@@ -15,6 +15,7 @@ final class LevelSystem {
 
 		UnitFactory.createAIPlayer(world: world, position: CGPoint(x: 0, y: 1500))
 //		UnitFactory.createAIPlayer(world: world, position: CGPoint(x: 200, y: 1500))
+//		UnitFactory.createAIPlayer(world: world, position: CGPoint(x: -200, y: 1500))
 
 		StarSystemFactory.createSystem(world: world, data: starSystem)
 	}

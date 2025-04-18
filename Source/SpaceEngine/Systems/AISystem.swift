@@ -22,24 +22,25 @@ struct AISystem {
 	private func updateVehicles() {
 		let ai = world.vehicleAI
 		ai.enumerated().forEach { index, ai in
-			let vehicle = world.shipRefs[ai.vehicle.box.value]
-			world.vehicleInput[vehicle.input.box.value] = {
+			let ref = world.shipRefs[ai.vehicle.box.value]
+			world.input[ref.input.box.value] = {
 
+				let ship = world.ships[ref.ship]
 				var ai = ai as VehicleAIComponent
-				var input = .empty as VehicleInputComponent
+				var input = .empty as InputComponent
 				if ai.target == nil {
 					ai.target = world.team.first({ $0 == .blue })?.entity
 				}
 
-				if let target = ai.target, let targetSprite = world.sprites.indexOf(target) {
-					let sprite = world.sprites[vehicle.sprite.box.value].sprite
-					let position = sprite.position
-					let targetPosition = world.sprites[targetSprite].sprite.position
-					let distance = position.distance(to: targetPosition)
+				if let target = ai.target, let targetPhysics = world.physics.indexOf(target) {
+					let physics = world.physics[ref.physics]
+					let tPhysics = world.physics[targetPhysics]
+					let energy = ship.reactor.normalized
 
-					let toTarget = (targetPosition - position).vector
+					let vector = (tPhysics.position - physics.position).vector
+					let distance = vector.length
 
-					let angle = sprite.orientation.angle(with: toTarget)
+					let angle = physics.rotation.vector.angle(with: vector)
 					let (sa, ca) = (sin(angle), cos(angle))
 
 					if abs(sa) > 0.1 || ca < 0 {
@@ -49,13 +50,13 @@ struct AISystem {
 					} else {
 						input.dhat = .null
 						input.primary = distance < 400
-						input.secondary = distance < 800
+						input.secondary = distance < 800 && energy > 0.6
 					}
 
 					if cos(angle) > 0.1 && distance > 180 {
 						if distance > 500 {
-							input.warp = ca > 0.5
-							input.impulse = false
+							input.warp = ca > 0.5 && energy > 0.4
+							input.impulse = !input.warp
 						} else {
 							input.impulse = ca > 0.5
 							input.warp = false

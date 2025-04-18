@@ -1,4 +1,4 @@
-struct VehicleInputComponent {
+struct InputComponent {
 	var dhat: DHat = .null
 
 	var primary: Bool = false
@@ -8,7 +8,7 @@ struct VehicleInputComponent {
 	var action: Bool = false
 	var warp: Bool = false
 
-	static let empty = VehicleInputComponent()
+	static let empty = InputComponent()
 }
 
 typealias DHat = DSHatDirection

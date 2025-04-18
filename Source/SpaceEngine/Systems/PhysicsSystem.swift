@@ -1,7 +1,6 @@
 import SpriteKit
 
 struct PhysicsSystem {
-
 	private let world: World
 
 	init(world: World) {
@@ -14,15 +13,15 @@ struct PhysicsSystem {
 
 	private func applyShipInputs() {
 		world.shipRefs.forEach { shipRef in
-			let input: VehicleInputComponent = world.vehicleInput[shipRef.input]
-			var ship = world.shipStats[shipRef.ship]
+			let input: InputComponent = world.input[shipRef.input]
+			var ship = world.ships[shipRef.ship]
 			apply(input: input, ship: &ship, to: &world.physics[shipRef.physics])
 			chargeBanks(ship: &ship)
-			world.shipStats[shipRef.ship] = ship
+			world.ships[shipRef.ship] = ship
 		}
 	}
 
-	private func apply(input: VehicleInputComponent, ship: inout Ship, to physics: inout PhysicsComponent) {
+	private func apply(input: InputComponent, ship: inout Ship, to physics: inout PhysicsComponent) {
 		if input.impulse, ship.reactor.drain(ship.engine.impulse / 4) {
 			physics.momentum += physics.rotation.vector * CGFloat(ship.engine.impulse) / 1024
 
@@ -32,7 +31,7 @@ struct PhysicsSystem {
 		} else if input.warp, ship.reactor.drain(ship.engine.warp / 2) {
 			let mul = CGFloat(min(24, physics.driving)) / 48
 			physics.position += physics.rotation.vector * CGFloat(ship.engine.warp) * mul
-			physics.momentum = physics.momentum * 0.96
+			physics.momentum = physics.momentum * 0.97
 
 			if physics.driving & 0x1F == 0 { physics.body.node?.run(SoundsFactory.warp) }
 			physics.driving &+= 1
