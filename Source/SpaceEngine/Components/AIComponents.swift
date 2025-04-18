@@ -13,8 +13,3 @@ struct VehicleAIComponent {
 	var state: State
 	var target: Entity?
 }
-
-struct TowerAIComponent {
-	let tower: ComponentIdx<TowerComponent>
-	var target: Entity?
-}

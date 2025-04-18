@@ -4,12 +4,12 @@ enum SpriteFactory {
 	static let effects = SKTextureAtlas(named: "Effects")
 	static let space = SKTextureAtlas(named: "Space")
 
-	static func createShipSprite(_ entity: Entity, at position: Point) -> SpriteComponent {
+	static func createShipSprite(_ entity: Entity, at position: CGPoint) -> SpriteComponent {
 		let texture = SKTexture(imageNamed: "Intruder")
 		texture.filteringMode = .nearest
 
 		let spriteNode = SKSpriteNode(texture: texture)
-		spriteNode.position = position.cgPoint
+		spriteNode.position = position
 		spriteNode.entity = entity
 		spriteNode.setScale(0.66)
 		spriteNode.zPosition = 1

@@ -15,21 +15,23 @@ struct PhysicsSystem {
 	private func applyShipInputs() {
 		world.ships.forEach { ship in
 			let input: VehicleInputComponent = world.vehicleInput[ship.input]
-			let stats: ShipStats = world.shipStats[ship.stats]
-			apply(input: input, stats: stats, to: &world.physics[ship.physics])
+			var stats = world.shipStats[ship.stats]
+			apply(input: input, stats: &stats, to: &world.physics[ship.physics])
+			chargeBanks(stats: &stats)
+			world.shipStats[ship.stats] = stats
 		}
 	}
 
-	private func apply(input: VehicleInputComponent, stats: ShipStats, to physics: inout PhysicsComponent) {
-		if input.impulse {
-			physics.momentum += physics.rotation.vector * CGFloat(stats.speed) / 1024
+	private func apply(input: VehicleInputComponent, stats: inout ShipStats, to physics: inout PhysicsComponent) {
+		if input.impulse, stats.reactor.drain(stats.engine.impulse / 4) {
+			physics.momentum += physics.rotation.vector * CGFloat(stats.engine.impulse) / 1024
 
 			if physics.driving & 0xF == 0 { physics.body.node?.run(SoundsFactory.impulse) }
 			physics.driving &+= 1
 			physics.warping = false
-		} else if input.warp {
+		} else if input.warp, stats.reactor.drain(stats.engine.warp * 2) {
 			let mul = CGFloat(min(24, physics.driving)) / 48
-			physics.position += physics.rotation.vector * CGFloat(stats.speed) * mul
+			physics.position += physics.rotation.vector * CGFloat(stats.engine.warp) * mul
 			physics.momentum = physics.momentum * 0.96
 
 			if physics.driving & 0x1F == 0 { physics.body.node?.run(SoundsFactory.warp) }
@@ -41,9 +43,9 @@ struct PhysicsSystem {
 		}
 
 		if input.dhat.left {
-			physics.rotation.value &+= UInt16(stats.speed * 24)
+			physics.rotation.value &+= stats.engine.impulse * 24
 		} else if input.dhat.right {
-			physics.rotation.value &-= UInt16(stats.speed * 24)
+			physics.rotation.value &-= stats.engine.impulse * 24
 		}
 
 		physics.position += physics.momentum
@@ -52,5 +54,10 @@ struct PhysicsSystem {
 		if physics.momentum.length > 3 {
 			physics.momentum = physics.momentum.normalized() * 3
 		}
+	}
+
+	private func chargeBanks(stats: inout ShipStats) {
+		stats.reactor.charge()
+		stats.shield.charge(from: &stats.reactor)
 	}
 }

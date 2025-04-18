@@ -4,42 +4,25 @@ import SpriteKit
 enum UnitFactory {
 
 	@discardableResult
-	static func createTank(world: World, ship data: GameState.Ship, position: Point, team: Team) -> Entity {
+	static func createTank(world: World, ship data: GameState.Ship, position: CGPoint, team: Team) -> Entity {
 		let entity = world.entityManager.create()
 
 		let sprite = SpriteFactory.createShipSprite(entity, at: position)
-		let hp = HPComponent(maxHP: 80, armor: 40)
 		let physics = shipPhysics(sprite.sprite, team: team)
-
-		let primary = WeaponComponent(
-			type: .blaster,
-			damage: 14,
-			velocity: 400,
-			charge: 12,
-			cooldown: 18,
-			perShotCooldown: 6,
-			roundsPerShot: 2
-		)
-		let secondary = WeaponComponent(
-			type: .torpedo,
-			damage: 90,
-			velocity: 180,
-			charge: 33,
-			cooldown: 40,
-			perShotCooldown: 0,
-			roundsPerShot: 1
-		)
-
-		let stats = ShipStats(speed: 24)
 
 		let ship = ShipComponent(
 			sprite: world.sprites.sharedIndexAt § world.sprites.add(component: sprite, to: entity),
 			physics: world.physics.sharedIndexAt § world.physics.add(component: physics, to: entity),
-			hp: world.hp.sharedIndexAt § world.hp.add(component: hp, to: entity),
 			input: world.vehicleInput.sharedIndexAt § world.vehicleInput.add(component: .empty, to: entity),
-			stats: world.shipStats.sharedIndexAt § world.shipStats.add(component: stats, to: entity),
-			primaryWpn: world.primaryWpn.sharedIndexAt § world.primaryWpn.add(component: primary, to: entity),
-			secondaryWpn: world.secondaryWpn.sharedIndexAt § world.secondaryWpn.add(component: secondary, to: entity)
+			stats: world.shipStats.sharedIndexAt § world.shipStats.add(component: data.stats, to: entity),
+			primaryWpn: world.primaryWpn.sharedIndexAt § world.primaryWpn.add(
+				component: data.weaponComponent(\.primaryWeapon),
+				to: entity
+			),
+			secondaryWpn: world.secondaryWpn.sharedIndexAt § world.secondaryWpn.add(
+				component: data.weaponComponent(\.secondaryWeapon),
+				to: entity
+			)
 		)
 
 		let mapItem = MapItem(
@@ -58,7 +41,7 @@ enum UnitFactory {
 	}
 
 	@discardableResult
-	static func createAIPlayer(world: World, position: Point) -> Entity {
+	static func createAIPlayer(world: World, position: CGPoint) -> Entity {
 		let ship = GameState.makeShip(rarity: .common)
 		let entity = createTank(world: world, ship: ship, position: position, team: .red)
 		let vehicle = world.ships.sharedIndexAt § world.ships.indexOf(entity)!

@@ -58,7 +58,6 @@ extension GameState {
 		var capacity: UInt16
 		var recharge: UInt16
 		var delay: UInt16
-		var efficency: UInt16
 	}
 
 	struct Weapon: Codable {
@@ -69,7 +68,7 @@ extension GameState {
 		var cooldown: UInt16
 		var perShotCooldown: UInt16
 		var roundsPerShot: UInt16
-		var charge: UInt16
+		var recharge: UInt16
 	}
 
 	enum Rarity: UInt8, Codable {
@@ -95,6 +94,7 @@ extension GameState {
 }
 
 extension GameState.Ship {
+
 	func weaponComponent(_ path: KeyPath<Self, GameState.Weapon>) -> WeaponComponent {
 		let wpn = self[keyPath: path]
 
@@ -102,10 +102,32 @@ extension GameState.Ship {
 			type: wpn.type,
 			damage: wpn.damage,
 			velocity: wpn.velocity,
-			charge: wpn.charge,
+			recharge: wpn.recharge,
 			cooldown: wpn.cooldown,
 			perShotCooldown: wpn.perShotCooldown,
 			roundsPerShot: wpn.roundsPerShot
+		)
+	}
+
+	var stats: ShipStats {
+		ShipStats(
+			hp: HP(
+				armor: hull.armor,
+				structure: hull.structure
+			),
+			engine: ShipEngine(
+				impulse: propulsion.impulse,
+				warp: propulsion.warp,
+				efficiency: propulsion.efficency
+			),
+			reactor: Capacitor(
+				value: reactor.capacity,
+				recharge: reactor.recharge
+			),
+			shield: Capacitor(
+				value: shield.capacity,
+				recharge: shield.recharge
+			)
 		)
 	}
 }

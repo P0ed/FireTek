@@ -14,9 +14,7 @@ struct Point: Codable {
 }
 
 extension Point {
-	var cgPoint: CGPoint {
-		return CGPoint(x: Double(x), y: Double(y))
-	}
+	var cgPoint: CGPoint { CGPoint(x: Double(x), y: Double(y)) }
 }
 
 struct Vector {
@@ -88,6 +86,14 @@ struct RandomGenerator {
 
 	func int(_ range: ClosedRange<Int>) -> Int {
 		return range.lowerBound + int(upperBound: range.upperBound - range.lowerBound)
+	}
+
+	func int(upperBound: Int) -> UInt16 {
+		UInt16(randomSource.nextInt(upperBound: upperBound))
+	}
+
+	func int(_ range: ClosedRange<Int>) -> UInt16 {
+		UInt16(range.lowerBound) + int(upperBound: range.upperBound - range.lowerBound)
 	}
 
 	func float(upperBound: Float = 1) -> Float {

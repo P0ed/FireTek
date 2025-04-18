@@ -6,9 +6,7 @@ final class World {
 	let physics: Store<PhysicsComponent>
 
 	let ships: Store<ShipComponent>
-	let buildings: Store<BuildingComponent>
 
-	let hp: Store<HPComponent>
 	let shipStats: Store<ShipStats>
 	let primaryWpn: Store<WeaponComponent>
 	let secondaryWpn: Store<WeaponComponent>
@@ -22,11 +20,9 @@ final class World {
 	let towerInput: Store<TowerInputComponent>
 
 	let vehicleAI: Store<VehicleAIComponent>
-	let towerAI: Store<TowerAIComponent>
 
 	let projectiles: Store<ProjectileComponent>
 	let lifetime: Store<LifetimeComponent>
-	let owners: Store<OwnerComponent>
 
 	let team: Store<Team>
 
@@ -39,9 +35,7 @@ final class World {
 		physics = entityManager.makeStore()
 
 		ships = entityManager.makeStore()
-		buildings = entityManager.makeStore()
 
-		hp = entityManager.makeStore()
 		shipStats = entityManager.makeStore()
 		primaryWpn = entityManager.makeStore()
 		secondaryWpn = entityManager.makeStore()
@@ -51,7 +45,6 @@ final class World {
 		towerInput = entityManager.makeStore()
 
 		vehicleAI = entityManager.makeStore()
-		towerAI = entityManager.makeStore()
 
 		team = entityManager.makeStore()
 		projectiles = entityManager.makeStore()
@@ -59,7 +52,6 @@ final class World {
 		loot = entityManager.makeStore()
 		dead = entityManager.makeStore()
 		crystals = entityManager.makeStore()
-		owners = entityManager.makeStore()
 
 		planets = entityManager.makeStore()
 		mapItems = entityManager.makeStore()

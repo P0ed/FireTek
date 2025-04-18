@@ -36,8 +36,8 @@ final class BattleScene: Scene {
 
     override func update(_ currentTime: TimeInterval) {
 		if lastUpdate != 0 {
-			while currentTime - lastUpdate > Engine.timeStep {
-				lastUpdate += Engine.timeStep
+			while currentTime - lastUpdate > .timeStep {
+				lastUpdate += .timeStep
 				engine.simulate()
 			}
 		} else {

@@ -18,10 +18,10 @@ final class InputSystem {
 		playerInput?.value = input
 
 		if input.action, !action {
-			action.toggle()
-			
+			action = true
+
 		} else if !input.action, action {
-			action.toggle()
+			action = false
 		}
 	}
 }

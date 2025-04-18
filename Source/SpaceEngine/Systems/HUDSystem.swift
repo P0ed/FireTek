@@ -10,10 +10,10 @@ final class HUDSystem {
 
 	private var mapNodes: [(SKNode, SKNode)] = []
 
-	private var playerHP: WeakRef<HPComponent>?
 	private var playerTarget: WeakRef<TargetComponent>?
-	private var targetHP: WeakRef<HPComponent>?
+	private var targetStats: WeakRef<ShipStats>?
 
+	private var playerStats: WeakRef<ShipStats>?
 	private var primaryWeapon: WeakRef<WeaponComponent>?
 	private var secondaryWeapon: WeakRef<WeaponComponent>?
 
@@ -25,8 +25,8 @@ final class HUDSystem {
 
 		playerSprite = world.sprites.weakRefOf(player)
 		playerPhysics = world.physics.weakRefOf(player)
-		playerHP = world.hp.weakRefOf(player)
 		playerTarget = world.targets.weakRefOf(player)
+		playerStats = world.shipStats.weakRefOf(player)
 		primaryWeapon = world.primaryWpn.weakRefOf(player)
 		secondaryWeapon = world.secondaryWpn.weakRefOf(player)
 
@@ -39,7 +39,7 @@ final class HUDSystem {
 
 		let add = { [unowned self] (idx: Int) in
 			let item = mapItems[idx]
-			let mapSprite = SKShapeNode(circleOfRadius: 1.2)
+			let mapSprite = SKShapeNode(circleOfRadius: 1)
 			mapSprite.fillColor = item.type.color
 			mapSprite.strokeColor = .clear
 			mapSprite.zPosition = item.type == .ally ? 2 : item.type == .enemy ? 1 : 0
@@ -63,85 +63,85 @@ final class HUDSystem {
 	func update() {
 		fillHud()
 
-		updateHPNode(node: hudNode.playerHP, hp: playerHP?.value, physics: playerPhysics?.value)
-		updateHPNode(node: hudNode.targetHP, hp: targetHP?.value)
+		let stats = playerStats?.value
+		updateHPNode(node: hudNode.playerHP, hp: stats?.hp)
+		updateHPNode(node: hudNode.targetHP, hp: targetStats?.value?.hp)
 
 		updateWeaponNode(node: hudNode.weapon1, weapon: primaryWeapon?.value)
 		updateWeaponNode(node: hudNode.weapon2, weapon: secondaryWeapon?.value)
 
+		updateBar(node: hudNode.capacitor, progress: stats?.reactor.normalized ?? 1)
+		updateBar(node: hudNode.shield, progress: stats?.shield.normalized ?? 1)
+
 		updateMap()
+
+		if let physics = playerPhysics?.value {
+			let x = Int(physics.position.x)
+			let y = Int(physics.position.y)
+			let dx = Int(physics.momentum.dx * 60)
+			let dy = Int(physics.momentum.dy * 60)
+
+			hudNode.playerHP.label.text = "x: \(x), y: \(y), dx: \(dx), dy: \(dy)"
+		}
 	}
 
 	private func fillHud() {
 		if let target = playerTarget?.value?.target {
-			if targetHP?.entity != target {
-				targetHP = world.hp.weakRefOf(target)
+			if targetStats?.entity != target {
+				targetStats = world.shipStats.weakRefOf(target)
 			}
 		} else {
-			targetHP = nil
+			targetStats = nil
 		}
 	}
 
-	private func updateHPNode(node: HPNode, hp: HPComponent?, physics: PhysicsComponent? = nil) {
+	private func updateHPNode(node: HPNode, hp: HP?) {
 		if let hp = hp {
-			node.alpha = 0.9
-			node.hpCell.colorBlendFactor = 1 - CGFloat(hp.currentHP) / CGFloat(hp.maxHP)
+			node.alpha = 0.8
+			node.hpCell.colorBlendFactor = 1 - CGFloat(hp.core) / CGFloat(hp.maxStructure)
 
-			for (index, armor) in hp.structure.enumerated() {
-				node.armorCells[index].colorBlendFactor = 1 - CGFloat(armor) / CGFloat(UInt8.max)
-				node.armorCells[index].alpha = hp.armor == 0 ? 0.2 : 1
-			}
-			if let physics {
-				let x = Int(physics.position.x)
-				let y = Int(physics.position.y)
-				let dx = Int(physics.momentum.dx * 60)
-				let dy = Int(physics.momentum.dy * 60)
-
-				node.label.text = "x: \(x), y: \(y), dx: \(dx), dy: \(dy)"
+			(0..<40).forEach { idx in
+				node.armorCells[idx].colorBlendFactor = 1 - CGFloat(min(hp.front, hp.side)) / CGFloat(hp.maxArmor)
 			}
 		} else {
 			node.alpha = 0
 		}
 	}
 
-	private func updateWeaponNode(node: WeaponNode, weapon: WeaponComponent?) {
+	private func updateWeaponNode(node: BarNode, weapon: WeaponComponent?) {
 		if let weapon = weapon {
 			node.alpha = 1
 
 			if weapon.remainingCooldown > 0 {
 				if weapon.rounds == 0 {
 					let c: CGFloat = 1 - CGFloat(weapon.remainingCooldown) / CGFloat(weapon.cooldown)
-					node.cooldownNode.progress.size.width = WeaponNode.cooldownSize.width * c
+					node.progress.size.width = BarNode.size.width * c
 				} else {
-					node.cooldownNode.progress.size.width = 0
+					node.progress.size.width = 0
 				}
 			} else {
-				node.cooldownNode.progress.size.width = WeaponNode.cooldownSize.width
+				node.progress.size.width = BarNode.size.width
 			}
 		} else {
 			node.alpha = 0
 		}
 	}
 
+	private func updateBar(node: BarNode, progress: CGFloat) {
+		node.progress.size.width = BarNode.size.width * progress
+	}
+
 	private func updateMap() {
 		let playerNode = playerSprite?.value?.sprite
 		guard let center = playerNode?.position else { return mapNodes.forEach { $0.1.isHidden = true } }
 
-		let scale = 56 as CGFloat
-		let r = 31 * scale
-
-		let isInside = { (p: CGPoint) -> Bool in
-			let x = (p.x - center.x) * (p.x - center.x) + (p.y - center.y) * (p.y - center.y)
-			let y = r * r
-			return x < y
-		}
-
 		for (node, mapNode) in mapNodes {
 			let pos = node.position
-			let x = (pos.x - center.x) / scale
-			let y = (pos.y - center.y) / scale
-			mapNode.position = CGPoint(x: x, y: y)
-			mapNode.isHidden = !isInside(pos)
+			let v = (pos - center).vector
+			let l = v.length
+			let s = max(48, l / 32)
+			mapNode.position = (v / s).point
+			mapNode.isHidden = l > 8000
 		}
 	}
 }

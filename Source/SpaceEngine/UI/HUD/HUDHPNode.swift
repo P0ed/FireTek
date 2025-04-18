@@ -36,14 +36,14 @@ final class HPNode: SKNode {
 		armorCells.forEach { $0.anchorPoint = .zero }
 		armorCells.forEach(addChild)
 
-		label.horizontalAlignmentMode = .center
+		label.horizontalAlignmentMode = .left
 		label.verticalAlignmentMode = .center
 		label.fontSize = 6
 		label.fontName = "Menlo"
 		addChild(label)
 	}
 
-	required init?(coder aDecoder: NSCoder) { fatalError("init(coder:) has not been implemented") }
+	required init?(coder aDecoder: NSCoder) { fatalError() }
 
 	func layout(size: CGSize) {
 
@@ -55,13 +55,13 @@ final class HPNode: SKNode {
 		)
 
 		for (index, cell) in armorCells.enumerated() {
-			let position = HPComponent.convert(i: index)
+			let position = HP.convert(i: index)
 			cell.position = CGPoint(
 				x: CGFloat(position.x) * (HPNode.side + HPNode.spacing),
 				y: side - CGFloat(position.y) * (HPNode.side + HPNode.spacing)
 			)
 		}
 
-		label.position = hpCell.position + .init(x: 24, y: 48)
+		label.position = hpCell.position + .init(x: 2, y: 48)
 	}
 }

@@ -1,4 +1,3 @@
-
 final class TargetSystem {
 	let world: World
 	let player: Entity
@@ -31,7 +30,7 @@ final class TargetSystem {
 
 		let input = inputController.currentInput
 		if !pressed, input.target {
-			pressed.toggle()
+			pressed = true
 
 			let target = world.ships.first { ship in
 				let e = world.sprites.entityAt(ship.sprite.box.value)
@@ -44,8 +43,8 @@ final class TargetSystem {
 				world.targets[idx].target = target
 			}
 
-		} else if pressed, !input.dhat.down {
-			pressed.toggle()
+		} else if pressed, !input.target {
+			pressed = false
 		}
 	}
 }

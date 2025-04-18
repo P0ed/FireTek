@@ -1,46 +1,28 @@
 import Fx
+import Foundation
 
 final class LevelSystem {
-
-	struct State {
-		var player: Entity
-		var game: GameState
-	}
-
-	@MutableProperty
-	private(set) var state: State
-	private let world: World
-	private let level: SpaceLevel
+	let player: Entity
+	private let entityManager: EntityManager
 
 	var restart = {}
 
-	init(world: World, level: SpaceLevel) {
-		self.world = world
-		self.level = level
-		state = .initialState(world: world, level: level)
+	init(world: World, state: GameState) {
+		entityManager = world.entityManager
+
+		let starSystem = StarSystemData.generate()
+		let spawn = starSystem.planets.last!.position + .init(x: 30, y: 30)
+		player = UnitFactory.createTank(world: world, ship: state.ship, position: spawn, team: .blue)
+
+		UnitFactory.createAIPlayer(world: world, position: CGPoint(x: 0, y: 1500))
+		UnitFactory.createAIPlayer(world: world, position: CGPoint(x: 200, y: 1500))
+
+		StarSystemFactory.createSystem(world: world, data: starSystem)
 	}
 
 	func update() {
-		if !world.entityManager.isAlive(state.player) {
+		if !entityManager.isAlive(player) {
 			restart()
 		}
-	}
-}
-
-extension LevelSystem.State {
-
-	static func initialState(world: World, level: SpaceLevel) -> LevelSystem.State {
-		let game = GameState.make()
-		let player = UnitFactory.createTank(world: world, ship: game.ship, position: level.spawnPosition, team: .blue)
-
-		UnitFactory.createAIPlayer(world: world, position: Point(x: 0, y: 1500))
-		UnitFactory.createAIPlayer(world: world, position: Point(x: 200, y: 1500))
-
-		StarSystemFactory.createSystem(world: world, data: level.starSystem)
-
-		return .init(
-			player: player,
-			game: game
-		)
 	}
 }

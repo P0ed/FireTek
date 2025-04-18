@@ -39,7 +39,7 @@ extension GameState {
 			.random(friendly: false, random: random)
 		]
 		return Ship(
-			name: "\(name) \(random.int(upperBound: 2000))",
+			name: name,
 			crew: crew,
 			hull: createShipHull(rarity: rarity),
 			reactor: createShipReactor(rarity: vararity(rarity)),
@@ -55,12 +55,12 @@ extension GameState {
 			rarity: rarity,
 			armor: UInt16(random.float(20...24) * rarity.k),
 			structure: UInt16(random.float(10...14) * rarity.k),
-			size: UInt16(random.int(21...26))
+			size: random.int(21...26)
 		)
 	}
 
 	static func createShipPropulsion(rarity: Rarity) -> ShipPropulsion {
-		return ShipPropulsion(
+		ShipPropulsion(
 			rarity: rarity,
 			impulse: UInt16(random.float(10...12) * rarity.k),
 			warp: UInt16(random.float(5...7) * rarity.k.squareRoot()),
@@ -69,20 +69,19 @@ extension GameState {
 	}
 
 	static func createShipReactor(rarity: Rarity) -> ShipReactor {
-		return ShipReactor(
+		ShipReactor(
 			rarity: rarity,
-			capacity: UInt16(random.float(38...56) * rarity.k),
-			recharge: UInt16(random.float(2...3) * rarity.k)
+			capacity: random.int(380...560) * rarity.n,
+			recharge: random.int(4...7) + rarity.n
 		)
 	}
 
 	static func createShipShield(rarity: Rarity) -> ShipShield {
-		return ShipShield(
+		ShipShield(
 			rarity: rarity,
 			capacity: UInt16(random.float(20...25) * rarity.k),
 			recharge: UInt16(random.float(1.5...2) * rarity.k),
-			delay: UInt16(random.float(4...6) / rarity.k),
-			efficency: UInt16((1 - random.float(0.2...0.35) / rarity.k) * 32)
+			delay: UInt16(random.float(4...6) / rarity.k)
 		)
 	}
 
@@ -90,12 +89,12 @@ extension GameState {
 		Weapon(
 			rarity: rarity,
 			type: .laser,
-			damage: 4,
-			velocity: 0,
-			cooldown: 2,
+			damage: 8,
+			velocity: 300,
+			cooldown: 12,
 			perShotCooldown: 0,
 			roundsPerShot: 1,
-			charge: 2
+			recharge: 10
 		)
 	}
 
@@ -108,7 +107,20 @@ extension GameState {
 			cooldown: 40,
 			perShotCooldown: 0,
 			roundsPerShot: 1,
-			charge: 30
+			recharge: 30
+		)
+	}
+
+	static func makeBlaster(rarity: Rarity) -> Weapon {
+		Weapon(
+			rarity: rarity,
+			type: .blaster,
+			damage: 12,
+			velocity: 400,
+			cooldown: 50,
+			perShotCooldown: 6,
+			roundsPerShot: 2,
+			recharge: 16
 		)
 	}
 
@@ -150,9 +162,9 @@ extension GameState.Crew {
 	static func random(friendly: Bool, random: RandomGenerator) -> Self {
 		.init(
 			name: random.element(friendly ? friendlyNames : hostileNames),
-			combat: UInt16(random.int(2...6)),
-			engineering: UInt16(random.int(2...6)),
-			science: UInt16(random.int(2...6))
+			combat: random.int(2...6),
+			engineering: random.int(2...6),
+			science: random.int(2...6)
 		)
 	}
 
@@ -191,4 +203,77 @@ extension GameState.Crew {
 		"Thessa of the Blight",
 		"Voidbringer Selix"
 	]
+}
+
+extension StarSystemData {
+
+	static func generate() -> StarSystemData {
+		StarSystemData(
+			planets: [
+				Planet(
+					radius: 20,
+					color: .red,
+					orbit: 0,
+					velocity: 0,
+					angle: 0
+				),
+				Planet(
+					radius: 10,
+					color: .cyan,
+					orbit: 800,
+					velocity: 0.00006,
+					angle: 0.2
+				),
+				Planet(
+					radius: 12,
+					color: .yellow,
+					orbit: 1100,
+					velocity: 0.00005,
+					angle: 2.5
+				),
+				Planet(
+					radius: 16,
+					color: .green,
+					orbit: 1400,
+					velocity: 0.00004,
+					angle: 4.1
+				),
+				Planet(
+					radius: 14,
+					color: .orange,
+					orbit: 1700,
+					velocity: 0.00003,
+					angle: 2.9
+				),
+				Planet(
+					radius: 12,
+					color: .cyan,
+					orbit: 1900,
+					velocity: 0.00003,
+					angle: 5.9
+				),
+				Planet(
+					radius: 10,
+					color: .blue,
+					orbit: 2200,
+					velocity: 0.00002,
+					angle: 4.4
+				),
+				Planet(
+					radius: 14,
+					color: .orange,
+					orbit: 2500,
+					velocity: 0.00002,
+					angle: 8.0
+				),
+				Planet(
+					radius: 12,
+					color: .green,
+					orbit: 2800,
+					velocity: 0.00002,
+					angle: 2.3
+				)
+			]
+		)
+	}
 }

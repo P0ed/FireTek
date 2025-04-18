@@ -1,55 +1,35 @@
 import SpriteKit
 
-final class WeaponNode: SKNode {
-
-	static let cooldownSize = CGSize(width: 32, height: 8)
-
-	let cooldownNode: CooldownNode
-	let roundsLabel: SKLabelNode
-
-	override init() {
-		cooldownNode = CooldownNode()
-		roundsLabel = SKLabelNode()
-		roundsLabel.horizontalAlignmentMode = .right
-		roundsLabel.verticalAlignmentMode = .center
-		roundsLabel.fontSize = 6
-		roundsLabel.fontName = "Menlo"
-
-		super.init()
-
-		[cooldownNode, roundsLabel].forEach(addChild)
-	}
-
-	required init?(coder aDecoder: NSCoder) { fatalError("init(coder:) has not been implemented") }
-
-	func layout(size: CGSize) {
-		cooldownNode.position = CGPoint(
-			x: size.width - WeaponNode.cooldownSize.width,
-			y: (size.height - WeaponNode.cooldownSize.height) / 2
-		)
-		roundsLabel.position = CGPoint(
-			x: size.width - WeaponNode.cooldownSize.width - 2,
-			y: size.height / 2
-		)
-	}
-}
-
-final class CooldownNode: SKNode {
+final class BarNode: SKNode {
+	static let size = CGSize(width: 44, height: 5.7)
 
 	let background: SKSpriteNode
 	let progress: SKSpriteNode
+	let label: SKLabelNode
 
 	override init() {
-		background = SKSpriteNode(color: SKColor(white: 0.5, alpha: 0.5), size: WeaponNode.cooldownSize)
-		progress = SKSpriteNode(color: SKColor(white: 0.9, alpha: 0.9), size: WeaponNode.cooldownSize)
+		background = SKSpriteNode(color: SKColor(white: 0.44, alpha: 0.55), size: Self.size)
+		progress = SKSpriteNode(color: SKColor(white: 0.87, alpha: 0.87), size: Self.size)
+		label = SKLabelNode()
+		label.horizontalAlignmentMode = .right
+		label.verticalAlignmentMode = .center
+		label.fontSize = 6
+		label.fontName = "Menlo"
 
 		background.anchorPoint = .zero
 		progress.anchorPoint = .zero
 
 		super.init()
 
-		[background, progress].forEach(addChild)
+		[background, progress, label].forEach(addChild)
 	}
 	
-	required init?(coder aDecoder: NSCoder) { fatalError("init(coder:) has not been implemented") }
+	required init?(coder aDecoder: NSCoder) { fatalError() }
+
+	func layout(size: CGSize) {
+		label.position = CGPoint(
+			x: -2,
+			y: Self.size.height / 2
+		)
+	}
 }

@@ -29,6 +29,12 @@ struct PlanetComponent {
 	var angle: Float
 }
 
+extension StarSystemData.Planet {
+	var position: CGPoint {
+		CGPoint(x: CGFloat(orbit * cos(angle)), y: CGFloat(orbit * sin(angle)))
+	}
+}
+
 extension PlanetComponent {
 	var position: CGPoint {
 		CGPoint(x: CGFloat(orbit * cos(angle)), y: CGFloat(orbit * sin(angle)))
