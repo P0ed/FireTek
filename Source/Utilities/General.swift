@@ -3,24 +3,14 @@ import Fx
 import GameplayKit
 
 struct Transform {
-	var x: Float
-	var y: Float
-	var zRotation: Float
+	var x: CGFloat
+	var y: CGFloat
+	var zRotation: CGFloat
 }
 
-struct Point: Codable {
-	var x: Float
-	var y: Float
-}
-
-extension Point {
-	var cgPoint: CGPoint { CGPoint(x: Double(x), y: Double(y)) }
-}
-
-struct Vector {
-	var dx: Float
-	var dy: Float
-}
+typealias CGFloat = CoreGraphics.CGFloat
+typealias CGPoint = CoreGraphics.CGPoint
+typealias CGVector = CoreGraphics.CGVector
 
 extension Store {
 

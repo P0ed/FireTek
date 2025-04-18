@@ -32,7 +32,7 @@ final class TargetSystem {
 		if !pressed, input.target {
 			pressed = true
 
-			let target = world.ships.first { ship in
+			let target = world.shipRefs.first { ship in
 				let e = world.sprites.entityAt(ship.sprite.box.value)
 				return e != player && e != playerTarget?.target
 			}

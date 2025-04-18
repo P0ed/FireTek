@@ -1,20 +1,20 @@
 import Fx
 import SpriteKit
 
-struct ShipComponent {
+struct ShipRef {
 	let sprite: ComponentIdx<SpriteComponent>
 	let physics: ComponentIdx<PhysicsComponent>
 	let input: ComponentIdx<VehicleInputComponent>
-	let stats: ComponentIdx<ShipStats>
-	let primaryWpn: ComponentIdx<WeaponComponent>
-	let secondaryWpn: ComponentIdx<WeaponComponent>
+	let ship: ComponentIdx<Ship>
 }
 
-struct ShipStats {
+struct Ship {
 	var hp: HP
 	var engine: ShipEngine
 	var reactor: Capacitor
 	var shield: Capacitor
+	var primary: Weapon
+	var secondary: Weapon
 }
 
 struct HP {
@@ -54,11 +54,13 @@ struct Capacitor {
 
 	var normalized: CGFloat { CGFloat(value) / CGFloat(maxValue) }
 
+	var isCharged: Bool { value == maxValue }
+
 	mutating func charge() {
 		value = min(maxValue, value + recharge)
 	}
 	mutating func charge(from capacitor: inout Capacitor) {
-		if capacitor.drain(recharge) == true { charge() }
+		if !isCharged, capacitor.drain(recharge) == true { charge() }
 	}
 	mutating func drain(_ amount: UInt16) -> Bool {
 		if value >= amount {
@@ -67,6 +69,7 @@ struct Capacitor {
 		}
 		return false
 	}
+	mutating func discharge() { value = 0 }
 }
 
 struct TargetComponent {
@@ -102,4 +105,22 @@ struct MapItem {
 
 	let type: ItemType
 	let node: SKNode
+}
+
+struct Weapon {
+	var type: WeaponType
+	var damage: UInt16
+	var velocity: UInt16
+	var capacitor: Capacitor
+}
+
+struct ProjectileComponent {
+	var source: Entity
+	var target: Entity?
+	var type: WeaponType
+	var damage: UInt16
+}
+
+struct LifetimeComponent {
+	var lifetime: UInt16
 }

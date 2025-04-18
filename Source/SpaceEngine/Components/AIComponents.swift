@@ -1,15 +1,13 @@
-import Fx
-
 struct VehicleAIComponent {
 
 	enum State {
-		case move(Point)
-		case hold(Point)
-		case attack(Point)
-		case patrol(Point, Point)
+		case move(CGPoint)
+		case hold(CGPoint)
+		case attack(CGPoint)
+		case patrol(CGPoint, CGPoint)
 	}
 
-	let vehicle: ComponentIdx<ShipComponent>
+	let vehicle: ComponentIdx<ShipRef>
 	var state: State
 	var target: Entity?
 }

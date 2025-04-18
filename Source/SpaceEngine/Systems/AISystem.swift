@@ -13,7 +13,7 @@ struct AISystem {
 
 	mutating func update() {
 		if currentTick & 0x7 == 0 {
-//			updateVehicles()
+			updateVehicles()
 		}
 
 		currentTick &+= 1
@@ -22,7 +22,7 @@ struct AISystem {
 	private func updateVehicles() {
 		let ai = world.vehicleAI
 		ai.enumerated().forEach { index, ai in
-			let vehicle = world.ships[ai.vehicle.box.value]
+			let vehicle = world.shipRefs[ai.vehicle.box.value]
 			world.vehicleInput[vehicle.input.box.value] = {
 
 				var ai = ai as VehicleAIComponent
@@ -48,8 +48,8 @@ struct AISystem {
 						input.secondary = false
 					} else {
 						input.dhat = .null
-						input.primary = true
-						input.secondary = true
+						input.primary = distance < 400
+						input.secondary = distance < 800
 					}
 
 					if cos(angle) > 0.1 && distance > 180 {

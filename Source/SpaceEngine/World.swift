@@ -5,11 +5,9 @@ final class World {
 	let sprites: Store<SpriteComponent>
 	let physics: Store<PhysicsComponent>
 
-	let ships: Store<ShipComponent>
+	let shipRefs: Store<ShipRef>
 
-	let shipStats: Store<ShipStats>
-	let primaryWpn: Store<WeaponComponent>
-	let secondaryWpn: Store<WeaponComponent>
+	let shipStats: Store<Ship>
 	let targets: Store<TargetComponent>
 
 	let loot: Store<LootComponent>
@@ -34,11 +32,9 @@ final class World {
 		sprites = entityManager.makeStore()
 		physics = entityManager.makeStore()
 
-		ships = entityManager.makeStore()
+		shipRefs = entityManager.makeStore()
 
 		shipStats = entityManager.makeStore()
-		primaryWpn = entityManager.makeStore()
-		secondaryWpn = entityManager.makeStore()
 		targets = entityManager.makeStore()
 
 		vehicleInput = entityManager.makeStore()

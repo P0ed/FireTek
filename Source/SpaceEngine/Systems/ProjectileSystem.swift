@@ -76,9 +76,9 @@ private extension ProjectileSystem {
 		let transform = Transform(point: contact.contactPoint, vector: contact.contactNormal)
 		EffectsFactory.createShellExplosion(world: world, at: transform)
 
-		if let ship = world.ships.first(entityA, entityB) {
+		if let shipRef = world.shipRefs.first(entityA, entityB) {
 			damageSystem.damage(
-				ship: ship,
+				shipRef: shipRef,
 				projectile: projectileComponent,
 				point: contact.contactPoint,
 				normal: contact.contactNormal

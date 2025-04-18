@@ -11,11 +11,8 @@ final class HUDSystem {
 	private var mapNodes: [(SKNode, SKNode)] = []
 
 	private var playerTarget: WeakRef<TargetComponent>?
-	private var targetStats: WeakRef<ShipStats>?
-
-	private var playerStats: WeakRef<ShipStats>?
-	private var primaryWeapon: WeakRef<WeaponComponent>?
-	private var secondaryWeapon: WeakRef<WeaponComponent>?
+	private var targetStats: WeakRef<Ship>?
+	private var playerStats: WeakRef<Ship>?
 
 	private let disposable = SerialDisposable()
 
@@ -27,8 +24,6 @@ final class HUDSystem {
 		playerPhysics = world.physics.weakRefOf(player)
 		playerTarget = world.targets.weakRefOf(player)
 		playerStats = world.shipStats.weakRefOf(player)
-		primaryWeapon = world.primaryWpn.weakRefOf(player)
-		secondaryWeapon = world.secondaryWpn.weakRefOf(player)
 
 		disposable.innerDisposable = observeMap(mapItems: world.mapItems)
 	}
@@ -67,9 +62,8 @@ final class HUDSystem {
 		updateHPNode(node: hudNode.playerHP, hp: stats?.hp)
 		updateHPNode(node: hudNode.targetHP, hp: targetStats?.value?.hp)
 
-		updateWeaponNode(node: hudNode.weapon1, weapon: primaryWeapon?.value)
-		updateWeaponNode(node: hudNode.weapon2, weapon: secondaryWeapon?.value)
-
+		updateBar(node: hudNode.weapon1, progress: stats?.primary.capacitor.normalized ?? 1)
+		updateBar(node: hudNode.weapon2, progress: stats?.secondary.capacitor.normalized ?? 1)
 		updateBar(node: hudNode.capacitor, progress: stats?.reactor.normalized ?? 1)
 		updateBar(node: hudNode.shield, progress: stats?.shield.normalized ?? 1)
 
@@ -102,25 +96,6 @@ final class HUDSystem {
 
 			(0..<40).forEach { idx in
 				node.armorCells[idx].colorBlendFactor = 1 - CGFloat(min(hp.front, hp.side)) / CGFloat(hp.maxArmor)
-			}
-		} else {
-			node.alpha = 0
-		}
-	}
-
-	private func updateWeaponNode(node: BarNode, weapon: WeaponComponent?) {
-		if let weapon = weapon {
-			node.alpha = 1
-
-			if weapon.remainingCooldown > 0 {
-				if weapon.rounds == 0 {
-					let c: CGFloat = 1 - CGFloat(weapon.remainingCooldown) / CGFloat(weapon.cooldown)
-					node.progress.size.width = BarNode.size.width * c
-				} else {
-					node.progress.size.width = 0
-				}
-			} else {
-				node.progress.size.width = BarNode.size.width
 			}
 		} else {
 			node.alpha = 0

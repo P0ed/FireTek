@@ -7,34 +7,40 @@ final class DamageSystem {
 		self.world = world
 	}
 
-	func damage(ship: Ref<ShipComponent>, projectile: ProjectileComponent, point: CGPoint, normal: CGVector) {
-		let shipc = ship.value
-		let sprite = world.sprites[shipc.sprite].sprite
-		var stats = world.shipStats[shipc.stats]
+	func damage(shipRef: Ref<ShipRef>, projectile: ProjectileComponent, point: CGPoint, normal: CGVector) {
+		let entity = shipRef.entity
+		let shipRef = shipRef.value
+		let sprite = world.sprites[shipRef.sprite].sprite
+		var ship = world.shipStats[shipRef.ship]
 		var damage = projectile.damage
+
+		let shield = ship.shield.value
+		let shieldMul = 16 as UInt16
+		ship.shield.value = damage * shieldMul >= shield ? 0 : shield - damage * shieldMul
+		damage = damage * shieldMul > shield ? damage - shield / shieldMul : 0
 
 		let sa = sin((point - sprite.position).vector.angle - sprite.zRotation)
 		if sa > 0.5 {
-			let front = stats.hp.front
-			stats.hp.front = damage >= front ? 0 : front - damage
+			let front = ship.hp.front
+			ship.hp.front = damage >= front ? 0 : front - damage
 			damage = damage > front ? damage - front : 0
 		} else {
-			let side = stats.hp.side
-			stats.hp.side = damage >= side ? 0 : side - damage
+			let side = ship.hp.side
+			ship.hp.side = damage >= side ? 0 : side - damage
 			damage = damage > side ? damage - side : 0
 		}
 
-		if stats.hp.core > damage {
-			stats.hp.core -= damage
+		if ship.hp.core > damage {
+			ship.hp.core -= damage
 		} else {
-			stats.hp.core = 0
+			ship.hp.core = 0
 
 			EffectsFactory.createVehilceExplosion(world: world, at: sprite.transform)
 			let dead = DeadComponent(killedBy: projectile.source)
-			world.dead.add(component: dead, to: ship.entity)
+			world.dead.add(component: dead, to: entity)
 		}
 
-		world.shipStats[shipc.stats] = stats
+		world.shipStats[shipRef.ship] = ship
 	}
 }
 

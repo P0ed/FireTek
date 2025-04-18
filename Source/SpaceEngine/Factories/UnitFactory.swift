@@ -10,27 +10,18 @@ enum UnitFactory {
 		let sprite = SpriteFactory.createShipSprite(entity, at: position)
 		let physics = shipPhysics(sprite.sprite, team: team)
 
-		let ship = ShipComponent(
+		let shipRef = ShipRef(
 			sprite: world.sprites.sharedIndexAt § world.sprites.add(component: sprite, to: entity),
 			physics: world.physics.sharedIndexAt § world.physics.add(component: physics, to: entity),
 			input: world.vehicleInput.sharedIndexAt § world.vehicleInput.add(component: .empty, to: entity),
-			stats: world.shipStats.sharedIndexAt § world.shipStats.add(component: data.stats, to: entity),
-			primaryWpn: world.primaryWpn.sharedIndexAt § world.primaryWpn.add(
-				component: data.weaponComponent(\.primaryWeapon),
-				to: entity
-			),
-			secondaryWpn: world.secondaryWpn.sharedIndexAt § world.secondaryWpn.add(
-				component: data.weaponComponent(\.secondaryWeapon),
-				to: entity
-			)
+			ship: world.shipStats.sharedIndexAt § world.shipStats.add(component: data.stats, to: entity)
 		)
-
 		let mapItem = MapItem(
 			type: team == .blue ? .ally : .enemy,
 			node: sprite.sprite
 		)
 
-		world.ships.add(component: ship, to: entity)
+		world.shipRefs.add(component: shipRef, to: entity)
 		world.team.add(component: team, to: entity)
 		world.targets.add(component: .init(), to: entity)
 		world.mapItems.add(component: mapItem, to: entity)
@@ -44,9 +35,9 @@ enum UnitFactory {
 	static func createAIPlayer(world: World, position: CGPoint) -> Entity {
 		let ship = GameState.makeShip(rarity: .common)
 		let entity = createTank(world: world, ship: ship, position: position, team: .red)
-		let vehicle = world.ships.sharedIndexAt § world.ships.indexOf(entity)!
+		let vehicle = world.shipRefs.sharedIndexAt § world.shipRefs.indexOf(entity)!
 
-		let ai = VehicleAIComponent(vehicle: vehicle, state: .hold(Point(x: 0, y: 0)), target: nil)
+		let ai = VehicleAIComponent(vehicle: vehicle, state: .hold(CGPoint(x: 0, y: 0)), target: nil)
 		world.vehicleAI.add(component: ai, to: entity)
 
 		return entity

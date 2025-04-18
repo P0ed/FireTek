@@ -1,12 +1,3 @@
-import Foundation
-
-struct DSVector {
-	var dx: Double
-	var dy: Double
-
-	static let zeroVector = DSVector(dx: 0.0, dy: 0.0)
-}
-
 enum DSButton: Int {
 	case square = 1
 	case cross = 2

@@ -13,25 +13,25 @@ struct PhysicsSystem {
 	}
 
 	private func applyShipInputs() {
-		world.ships.forEach { ship in
-			let input: VehicleInputComponent = world.vehicleInput[ship.input]
-			var stats = world.shipStats[ship.stats]
-			apply(input: input, stats: &stats, to: &world.physics[ship.physics])
-			chargeBanks(stats: &stats)
-			world.shipStats[ship.stats] = stats
+		world.shipRefs.forEach { shipRef in
+			let input: VehicleInputComponent = world.vehicleInput[shipRef.input]
+			var ship = world.shipStats[shipRef.ship]
+			apply(input: input, ship: &ship, to: &world.physics[shipRef.physics])
+			chargeBanks(ship: &ship)
+			world.shipStats[shipRef.ship] = ship
 		}
 	}
 
-	private func apply(input: VehicleInputComponent, stats: inout ShipStats, to physics: inout PhysicsComponent) {
-		if input.impulse, stats.reactor.drain(stats.engine.impulse / 4) {
-			physics.momentum += physics.rotation.vector * CGFloat(stats.engine.impulse) / 1024
+	private func apply(input: VehicleInputComponent, ship: inout Ship, to physics: inout PhysicsComponent) {
+		if input.impulse, ship.reactor.drain(ship.engine.impulse / 4) {
+			physics.momentum += physics.rotation.vector * CGFloat(ship.engine.impulse) / 1024
 
 			if physics.driving & 0xF == 0 { physics.body.node?.run(SoundsFactory.impulse) }
 			physics.driving &+= 1
 			physics.warping = false
-		} else if input.warp, stats.reactor.drain(stats.engine.warp * 2) {
+		} else if input.warp, ship.reactor.drain(ship.engine.warp / 2) {
 			let mul = CGFloat(min(24, physics.driving)) / 48
-			physics.position += physics.rotation.vector * CGFloat(stats.engine.warp) * mul
+			physics.position += physics.rotation.vector * CGFloat(ship.engine.warp) * mul
 			physics.momentum = physics.momentum * 0.96
 
 			if physics.driving & 0x1F == 0 { physics.body.node?.run(SoundsFactory.warp) }
@@ -43,9 +43,9 @@ struct PhysicsSystem {
 		}
 
 		if input.dhat.left {
-			physics.rotation.value &+= stats.engine.impulse * 24
+			physics.rotation.value &+= ship.engine.impulse * 24
 		} else if input.dhat.right {
-			physics.rotation.value &-= stats.engine.impulse * 24
+			physics.rotation.value &-= ship.engine.impulse * 24
 		}
 
 		physics.position += physics.momentum
@@ -56,8 +56,10 @@ struct PhysicsSystem {
 		}
 	}
 
-	private func chargeBanks(stats: inout ShipStats) {
-		stats.reactor.charge()
-		stats.shield.charge(from: &stats.reactor)
+	private func chargeBanks(ship: inout Ship) {
+		ship.reactor.charge()
+		ship.shield.charge(from: &ship.reactor)
+		ship.primary.capacitor.charge(from: &ship.reactor)
+		ship.secondary.capacitor.charge(from: &ship.reactor)
 	}
 }

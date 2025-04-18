@@ -16,16 +16,16 @@ extension SKNode {
 
 	var transform: Transform {
 		set {
-			self.position = CGPoint(x: CGFloat(newValue.x), y: CGFloat(newValue.y))
+			self.position = CGPoint(x: newValue.x, y: newValue.y)
 			self.zRotation = CGFloat(newValue.zRotation)
 		}
 		get {
 			let position = self.position
 			let zRotation = self.zRotation
 			return Transform(
-				x: Float(position.x),
-				y: Float(position.y),
-				zRotation: Float(zRotation)
+				x: position.x,
+				y: position.y,
+				zRotation: zRotation
 			)
 		}
 	}

@@ -1,3 +1,5 @@
+import Foundation
+
 struct GameState: Codable {
 	var location: Location
 	var ship: Ship
@@ -13,12 +15,12 @@ enum WeaponType: UInt8, Codable {
 extension GameState {
 
 	struct Location: Codable {
-		var position: Point
+		var position: CGPoint
 		var system: SystemLocation?
 	}
 
 	struct SystemLocation: Codable {
-		var position: Point
+		var position: CGPoint
 		var systemID: Int
 	}
 
@@ -37,7 +39,6 @@ extension GameState {
 		var rarity: Rarity
 		var armor: UInt16
 		var structure: UInt16
-		var size: UInt16
 	}
 
 	struct ShipPropulsion: Codable {
@@ -66,8 +67,6 @@ extension GameState {
 		var damage: UInt16
 		var velocity: UInt16
 		var cooldown: UInt16
-		var perShotCooldown: UInt16
-		var roundsPerShot: UInt16
 		var recharge: UInt16
 	}
 
@@ -95,22 +94,22 @@ extension GameState {
 
 extension GameState.Ship {
 
-	func weaponComponent(_ path: KeyPath<Self, GameState.Weapon>) -> WeaponComponent {
+	func weaponComponent(_ path: KeyPath<Self, GameState.Weapon>) -> Weapon {
 		let wpn = self[keyPath: path]
 
-		return WeaponComponent(
+		return Weapon(
 			type: wpn.type,
 			damage: wpn.damage,
 			velocity: wpn.velocity,
-			recharge: wpn.recharge,
-			cooldown: wpn.cooldown,
-			perShotCooldown: wpn.perShotCooldown,
-			roundsPerShot: wpn.roundsPerShot
+			capacitor: Capacitor(
+				value: wpn.cooldown * wpn.recharge,
+				recharge: wpn.recharge
+			)
 		)
 	}
 
-	var stats: ShipStats {
-		ShipStats(
+	var stats: Ship {
+		Ship(
 			hp: HP(
 				armor: hull.armor,
 				structure: hull.structure
@@ -127,12 +126,15 @@ extension GameState.Ship {
 			shield: Capacitor(
 				value: shield.capacity,
 				recharge: shield.recharge
-			)
+			),
+			primary: weaponComponent(\.primaryWeapon),
+			secondary: weaponComponent(\.secondaryWeapon)
 		)
 	}
 }
 
 extension [GameState.Crew] {
+	var traits: UInt16 { reduce(0, { $0 | $1.traits }) }
 	func n(_ path: KeyPath<GameState.Crew, UInt16>) -> UInt16 {
 		reduce(0, { $0 + $1[keyPath: path] })
 	}

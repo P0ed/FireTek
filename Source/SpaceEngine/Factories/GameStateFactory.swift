@@ -12,11 +12,11 @@ extension GameState {
 	private static func createLocation() -> Location {
 
 		let systemLocation = SystemLocation(
-			position: Point(x: 0, y: 0),
+			position: CGPoint(x: 0, y: 0),
 			systemID: 0
 		)
 		let location = Location(
-			position: Point(x: 0, y: 0),
+			position: CGPoint(x: 0, y: 0),
 			system: systemLocation
 		)
 
@@ -42,46 +42,45 @@ extension GameState {
 			name: name,
 			crew: crew,
 			hull: createShipHull(rarity: rarity),
-			reactor: createShipReactor(rarity: vararity(rarity)),
-			propulsion: createShipPropulsion(rarity: vararity(rarity)),
-			shield: createShipShield(rarity: vararity(rarity)),
-			primaryWeapon: makeLaser(rarity: vararity(rarity)),
-			secondaryWeapon: makeLaser(rarity: vararity(rarity))
+			reactor: createShipReactor(rarity: rarity),
+			propulsion: createShipPropulsion(rarity: rarity),
+			shield: createShipShield(rarity: rarity),
+			primaryWeapon: makeBlaster(rarity: rarity),
+			secondaryWeapon: makeTorpedo(rarity: rarity)
 		)
 	}
 
 	static func createShipHull(rarity: Rarity) -> ShipHull {
 		ShipHull(
 			rarity: rarity,
-			armor: UInt16(random.float(20...24) * rarity.k),
-			structure: UInt16(random.float(10...14) * rarity.k),
-			size: random.int(21...26)
+			armor: random.int(40...50) * rarity.n,
+			structure: random.int(30...40) * rarity.n
 		)
 	}
 
 	static func createShipPropulsion(rarity: Rarity) -> ShipPropulsion {
 		ShipPropulsion(
 			rarity: rarity,
-			impulse: UInt16(random.float(10...12) * rarity.k),
-			warp: UInt16(random.float(5...7) * rarity.k.squareRoot()),
-			efficency: UInt16((1 - random.float(0.1...0.2) / rarity.k) * 32)
+			impulse: random.int(16...18) + rarity.n,
+			warp: random.int(12...20) + rarity.n * 2,
+			efficency: rarity.n - 1
 		)
 	}
 
 	static func createShipReactor(rarity: Rarity) -> ShipReactor {
 		ShipReactor(
 			rarity: rarity,
-			capacity: random.int(380...560) * rarity.n,
-			recharge: random.int(4...7) + rarity.n
+			capacity: random.int(1200...1600) * rarity.n,
+			recharge: random.int(5...7) + rarity.n
 		)
 	}
 
 	static func createShipShield(rarity: Rarity) -> ShipShield {
 		ShipShield(
 			rarity: rarity,
-			capacity: UInt16(random.float(20...25) * rarity.k),
-			recharge: UInt16(random.float(1.5...2) * rarity.k),
-			delay: UInt16(random.float(4...6) / rarity.k)
+			capacity: random.int(400...640) * rarity.n,
+			recharge: random.int(0...1) + rarity.n,
+			delay: random.int(50...120)
 		)
 	}
 
@@ -89,12 +88,10 @@ extension GameState {
 		Weapon(
 			rarity: rarity,
 			type: .laser,
-			damage: 8,
+			damage: 8 + rarity.n,
 			velocity: 300,
-			cooldown: 12,
-			perShotCooldown: 0,
-			roundsPerShot: 1,
-			recharge: 10
+			cooldown: 20,
+			recharge: 6
 		)
 	}
 
@@ -102,12 +99,10 @@ extension GameState {
 		Weapon(
 			rarity: rarity,
 			type: .torpedo,
-			damage: 80,
+			damage: 40 + rarity.n * 2,
 			velocity: 200,
 			cooldown: 40,
-			perShotCooldown: 0,
-			roundsPerShot: 1,
-			recharge: 30
+			recharge: 20
 		)
 	}
 
@@ -115,12 +110,10 @@ extension GameState {
 		Weapon(
 			rarity: rarity,
 			type: .blaster,
-			damage: 12,
+			damage: 16 + rarity.n,
 			velocity: 400,
-			cooldown: 50,
-			perShotCooldown: 6,
-			roundsPerShot: 2,
-			recharge: 16
+			cooldown: 12,
+			recharge: 8
 		)
 	}
 

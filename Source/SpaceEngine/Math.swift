@@ -1,19 +1,18 @@
-import Foundation
 import SpriteKit
 
 extension Transform {
 
 	init(point: CGPoint, vector: CGVector) {
-		x = Float(point.x)
-		y = Float(point.y)
-		zRotation = Float(vector.angle)
+		x = point.x
+		y = point.y
+		zRotation = vector.angle
 	}
 
 	func move(by vector: CGVector) -> Transform {
 		let rotated = vector.rotate(CGFloat(zRotation))
 		return Transform(
-			x: x + Float(rotated.dx),
-			y: y + Float(rotated.dy),
+			x: x + rotated.dx,
+			y: y + rotated.dy,
 			zRotation: zRotation
 		)
 	}
@@ -21,28 +20,28 @@ extension Transform {
 
 extension CGVector {
 
-	public func rotate(_ angle: CGFloat) -> CGVector {
+	func rotate(_ angle: CGFloat) -> CGVector {
 		return CGVector(
 			dx: dx * cos(angle) - dy * sin(angle),
 			dy: dx * sin(angle) + dy * cos(angle)
 		)
 	}
 
-	public var lengthSquared: CGFloat { dx * dx + dy * dy }
-	public var length: CGFloat { sqrt(lengthSquared) }
-	public var angle: CGFloat { atan2(dy, dx) }
-	public var point: CGPoint { CGPoint(x: dx, y: dy) }
+	var lengthSquared: CGFloat { dx * dx + dy * dy }
+	var length: CGFloat { sqrt(lengthSquared) }
+	var angle: CGFloat { atan2(dy, dx) }
+	var point: CGPoint { CGPoint(x: dx, y: dy) }
 
 	func normalized() -> CGVector { self / sqrt(lengthSquared) }
 
-	public func dot(_ vector: CGVector) -> CGFloat {
+	func dot(_ vector: CGVector) -> CGFloat {
 		dx * vector.dx + dy * vector.dy
 	}
-	public func cross(_ vector: CGVector) -> CGFloat {
+	func cross(_ vector: CGVector) -> CGFloat {
 		dx * vector.dy - dy * vector.dx
 	}
 
-	public func angle(with vector: CGVector) -> CGFloat {
+	func angle(with vector: CGVector) -> CGFloat {
 		let t1 = normalized()
 		let t2 = vector.normalized()
 		let cross = t1.cross(t2)
@@ -57,31 +56,31 @@ extension CGVector {
 	}
 }
 
-public func * (vector: CGVector, scale: CGFloat) -> CGVector {
+func * (vector: CGVector, scale: CGFloat) -> CGVector {
 	return CGVector(dx: vector.dx * scale, dy: vector.dy * scale)
 }
 
-public func / (vector: CGVector, scale: CGFloat) -> CGVector {
+func / (vector: CGVector, scale: CGFloat) -> CGVector {
 	return CGVector(dx: vector.dx / scale, dy: vector.dy / scale)
 }
 
-public func + (lhs: CGVector, rhs: CGVector) -> CGVector {
+func + (lhs: CGVector, rhs: CGVector) -> CGVector {
 	return CGVector(dx: lhs.dx + rhs.dx, dy: lhs.dy + rhs.dy)
 }
 
-public func - (lhs: CGVector, rhs: CGVector) -> CGVector {
+func - (lhs: CGVector, rhs: CGVector) -> CGVector {
 	return CGVector(dx: lhs.dx - rhs.dx, dy: lhs.dy - rhs.dy)
 }
 
-public func + (lhs: CGPoint, rhs: CGPoint) -> CGPoint {
+func + (lhs: CGPoint, rhs: CGPoint) -> CGPoint {
 	return CGPoint(x: lhs.x + rhs.x, y: lhs.y + rhs.y)
 }
 
-public func - (lhs: CGPoint, rhs: CGPoint) -> CGPoint {
+func - (lhs: CGPoint, rhs: CGPoint) -> CGPoint {
 	return CGPoint(x: lhs.x - rhs.x, y: lhs.y - rhs.y)
 }
 
-public extension CGPoint {
+extension CGPoint {
 
 	func distance(to point: CGPoint) -> CGFloat {
 		let dx = abs(x - point.x)
@@ -106,7 +105,7 @@ extension CGSize {
 
 extension SKNode {
 
-	public var orientation: CGVector {
+	var orientation: CGVector {
 		return CGVector(dx: 0, dy: 1).rotate(zRotation)
 	}
 }

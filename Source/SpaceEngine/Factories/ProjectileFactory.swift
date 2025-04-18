@@ -3,7 +3,7 @@ import SpriteKit
 enum ProjectileFactory {
 
 	@discardableResult
-	static func createProjectile(_ world: World, at position: Transform, velocity: Float, projectile: ProjectileComponent, team: Team?) -> Entity {
+	static func createProjectile(_ world: World, at position: Transform, velocity: CGFloat, projectile: ProjectileComponent, team: Team?) -> Entity {
 		let entity = world.entityManager.create()
 
 		let sprite = SpriteFactory.createProjectileSprite(entity, type: projectile.type)
@@ -13,7 +13,7 @@ enum ProjectileFactory {
 		sprite.sprite.run(SoundsFactory.cannon)
 
 		let physics = projectilePhysics(sprite.sprite, projectile.type, team)
-		physics.body.velocity = CGVector(dx: 0, dy: CGFloat(velocity))
+		physics.body.velocity = CGVector(dx: 0, dy: velocity)
 			.rotate(CGFloat(position.zRotation))
 
 		let lifetime = LifetimeComponent(lifetime: 128)
