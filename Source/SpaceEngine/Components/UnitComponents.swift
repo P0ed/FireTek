@@ -39,6 +39,7 @@ struct ShipEngine {
 	var impulse: UInt16
 	var warp: UInt16
 	var efficiency: UInt16
+	var driving: UInt16 = 0
 }
 
 struct Capacitor {

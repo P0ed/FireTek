@@ -9,10 +9,6 @@ final class WeaponSystem {
 	}
 
 	func update() {
-		applyInput()
-	}
-
-	private func applyInput() {
 		let refs = world.shipRefs
 		let inputs = world.input
 		let ships = world.ships
@@ -21,35 +17,29 @@ final class WeaponSystem {
 			let entity = refs.entityAt(index)
 			let input = inputs[ref.input]
 
-			var ship = ships[ref.ship]
-
 			if input.primary && ships[ref.ship].primary.capacitor.isCharged {
-				let offset = CGVector(dx: 0, dy: 12)
-				let transform = world.sprites[ref.sprite].sprite.transform.move(by: offset)
-				fire(&ship.primary, at: transform, source: entity)
-				ships[ref.ship] = ship
+				fire(&ships[ref.ship].primary, at: world.physics[ref.physics], source: entity)
 			}
 			if input.secondary && ships[ref.ship].secondary.capacitor.isCharged {
-				let offset = CGVector(dx: 0, dy: 12)
-				let transform = world.sprites[ref.sprite].sprite.transform.move(by: offset)
-				fire(&ship.secondary, at: transform, source: entity)
-				ships[ref.ship] = ship
+				fire(&ships[ref.ship].secondary, at: world.physics[ref.physics], source: entity)
 			}
 		}
 	}
 
-	private func fire(_ weapon: inout Weapon, at transform: Transform, source: Entity) {
+	private func fire(_ weapon: inout Weapon, at physics: PhysicsComponent, source: Entity) {
 		weapon.capacitor.discharge()
 
 		let target = world.targets.indexOf(source).map { world.targets[$0] }?.target
 		let team = world.team.indexOf(source).map { world.team[$0] }
-		let physics = world.physics.indexOf(source).map { world.physics[$0] }
-		let velocity = CGFloat(weapon.velocity) + (physics.map { CGFloat($0.momentum.length * 64) } ?? 0)
+		let angle = physics.rotation.radians
+		let velocity = CGVector(dx: 0, dy: CGFloat(weapon.velocity)).rotate(angle) + physics.momentum
+		let offset = CGVector(dx: 0, dy: 14).rotate(angle)
 
 		ProjectileFactory.createProjectile(
 			world,
-			at: transform,
+			at: physics.position + offset.point,
 			velocity: velocity,
+			angle: physics.rotation,
 			projectile: ProjectileComponent(
 				source: source,
 				target: target,

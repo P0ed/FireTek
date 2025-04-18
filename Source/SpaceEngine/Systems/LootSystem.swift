@@ -11,9 +11,9 @@ final class LootSystem {
 		self.world = world
 		self.collisionsSystem = collisionsSystem
 
-		disposable += collisionsSystem.didBeginContact.observe(
-			unown(self) {$0.processContact}
-		)
+		disposable += collisionsSystem.didBeginContact.observe {
+			[weak self] in self?.processContact($0)
+		}
 	}
 
 	func update() {
@@ -66,15 +66,12 @@ final class LootSystem {
 
 private extension LootSystem {
 
-	func processContact(_ contact: SKPhysicsContact) {
-		guard let entityA = contact.bodyA.node?.entity,
-			let entityB = contact.bodyB.node?.entity,
-			let loot = world.crystals.first(entityA, entityB)
-			else { return }
+	func processContact(_ contact: Contact) {
+		guard let loot = world.crystals.first(contact.a, contact.b) else { return }
 
 		world.entityManager.removeEntity(loot.entity)
 
-		let e = loot.entity == entityA ? entityB : entityA
+		let e = loot.entity == contact.a ? contact.b : contact.a
 		world.sprites.refOf(e)?.value.sprite.run(SoundsFactory.crystalCollected)
 	}
 }

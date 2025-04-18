@@ -1,23 +1,47 @@
 import SpriteKit
 import Fx
 
-struct CollisionsSystem {
+final class CollisionsSystem {
+	private let world: World
 
-	private let contactDelegate: SceneDelegate
+	let didBeginContact: Signal<Contact>
+	private let send: (Contact) -> Void
 
-	let didBeginContact: Signal<SKPhysicsContact>
-	let didEndContact: Signal<SKPhysicsContact>
+	init(world: World) {
+		self.world = world
 
-	init(scene: SKScene) {
-
-		let (beginContactStream, beginContactPipe) = Signal<SKPhysicsContact>.pipe()
+		let (beginContactStream, beginContactPipe) = Signal<Contact>.pipe()
 		didBeginContact = beginContactStream
+		send = beginContactPipe
+	}
 
-		let (endContactStream, endContactPipe) = Signal<SKPhysicsContact>.pipe()
-		didEndContact = endContactStream
+	func update() {
+		let phy = world.physics
+		let idx = phy.indices
+		var contacts = [] as [Contact]
 
-		contactDelegate = SceneDelegate(didBeginContact: beginContactPipe, didEndContact: endContactPipe)
-		scene.physicsWorld.contactDelegate = contactDelegate
+		for i in idx {
+			let ip = phy[i]
+
+			for j in idx.dropFirst(1 + i) {
+				let jp = phy[j]
+
+				if !ip.category.intersection(jp.category).isEmpty {
+					let v = (jp.position - ip.position).vector
+
+					if v.length < 10 {
+						let p = ip.position + (v / 2).point
+						contacts.append(Contact(
+							a: phy.entityAt(i),
+							b: phy.entityAt(j),
+							point: p,
+							normal: v
+						))
+					}
+				}
+			}
+		}
+		contacts.forEach(send)
 	}
 
 	@objc
@@ -39,4 +63,11 @@ struct CollisionsSystem {
 			didEndContact(contact)
 		}
 	}
+}
+
+struct Contact {
+	var a: Entity
+	var b: Entity
+	var point: CGPoint
+	var normal: CGVector
 }

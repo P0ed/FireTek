@@ -28,7 +28,7 @@ final class Engine {
 	private let lootSystem: LootSystem
 	private let hudSystem: HUDSystem
 	private let planetarySystem: PlanetarySystem
-	private let particleSystem: ParticleSystem
+	private let renderingSystem: RenderingSystem
 
 	init(scene: BattleScene, input: InputController) {
 		let state = GameState.make()
@@ -41,7 +41,7 @@ final class Engine {
 		spriteSpawnSystem = SpriteSpawnSystem(scene: scene, store: world.sprites)
 		levelSystem = LevelSystem(world: world, state: state)
 		physicsSystem = PhysicsSystem(world: world)
-		collisionsSystem = CollisionsSystem(scene: scene)
+		collisionsSystem = CollisionsSystem(world: world)
 
 		weaponSystem = WeaponSystem(world: world)
 		damageSystem = DamageSystem(world: world)
@@ -61,7 +61,8 @@ final class Engine {
 		hudSystem = HUDSystem(world: world, player: levelSystem.player, hudNode: scene.hud)
 
 		planetarySystem = PlanetarySystem(planets: world.planets, physics: world.physics)
-		particleSystem = ParticleSystem(
+		renderingSystem = RenderingSystem(
+			world: world,
 			camera: cam,
 			ref: world.physics.weakRefOf(levelSystem.player)
 		)
@@ -69,8 +70,9 @@ final class Engine {
 
 	func simulate() {
 		inputSystem.update()
-		physicsSystem.update()
 		planetarySystem.update()
+		physicsSystem.update()
+		collisionsSystem.update()
 
 		weaponSystem.update()
 		targetSystem.update()
@@ -81,7 +83,7 @@ final class Engine {
 		aiSystem.update()
 
 		hudSystem.update()
-		particleSystem.update()
+		renderingSystem.update()
 
 		lootSystem.update()
 		lifetimeSystem.update()

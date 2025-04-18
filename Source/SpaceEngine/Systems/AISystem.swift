@@ -13,7 +13,7 @@ struct AISystem {
 
 	mutating func update() {
 		if currentTick & 0x7 == 0 {
-			updateVehicles()
+//			updateVehicles()
 		}
 
 		currentTick &+= 1

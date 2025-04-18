@@ -99,14 +99,7 @@ extension CGPoint {
 extension CGSize {
 
 	static func square(side: CGFloat) -> CGSize {
-		return CGSize(width: side, height: side)
-	}
-}
-
-extension SKNode {
-
-	var orientation: CGVector {
-		return CGVector(dx: 0, dy: 1).rotate(zRotation)
+		CGSize(width: side, height: side)
 	}
 }
 

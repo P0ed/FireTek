@@ -11,8 +11,6 @@ enum StarSystemFactory {
 		let entity = world.entityManager.create()
 		let sprite = SpriteFactory.createPlanet(entity: entity, data: data)
 
-		sprite.physicsBody = createPhysics(radius: data.radius)
-
 		let planet = PlanetComponent(
 			sprite: sprite,
 			orbit: data.orbit,
@@ -26,13 +24,5 @@ enum StarSystemFactory {
 		world.mapItems.add(component: mapItem, to: entity)
 
 		return entity
-	}
-
-	private static func createPhysics(radius: Float) -> SKPhysicsBody {
-		let physics = SKPhysicsBody(circleOfRadius: CGFloat(radius))
-		physics.isDynamic = false
-		physics.collision = .zero
-		physics.category = .zero
-		return physics
 	}
 }

@@ -110,12 +110,8 @@ final class Store<C> {
 	}
 
 	subscript(index: Int) -> C {
-		get {
-			return components[index]
-		}
-		set(component) {
-			components[index] = component
-		}
+		get { components[index] }
+		set(component) { components[index] = component }
 	}
 
 	subscript(index: ComponentIdx<C>) -> C {
@@ -185,16 +181,14 @@ final class Store<C> {
 		removedComponentsPipe((entity, component))
 	}
 
-	var indices: CountableRange<Int> {
-		return 0..<entities.count
-	}
+	var indices: CountableRange<Int> { 0..<entities.count }
 }
 
 extension Store: Sequence {
 	typealias Iterator = Array<C>.Iterator
 
 	func makeIterator() -> Store.Iterator {
-		return components.makeIterator()
+		components.makeIterator()
 	}
 }
 

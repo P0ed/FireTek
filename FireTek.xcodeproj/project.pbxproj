@@ -42,7 +42,7 @@
 		5F77832D1D7A04F50027FFED /* CollisionsSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F77832C1D7A04F50027FFED /* CollisionsSystem.swift */; };
 		5F83F144209E14C300B0C3D4 /* GameStateFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F83F143209E14C300B0C3D4 /* GameStateFactory.swift */; };
 		5F9C497C2DAEF0E3000336D8 /* warp.wav in Resources */ = {isa = PBXBuildFile; fileRef = 5F9C497B2DAEF0E3000336D8 /* warp.wav */; };
-		5F9C497E2DB009F5000336D8 /* ParticleSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F9C497D2DB009F0000336D8 /* ParticleSystem.swift */; };
+		5F9C497E2DB009F5000336D8 /* RenderingSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F9C497D2DB009F0000336D8 /* RenderingSystem.swift */; };
 		5F9C49862DB01014000336D8 /* Dust.sks in Resources */ = {isa = PBXBuildFile; fileRef = 5F9C49852DB01014000336D8 /* Dust.sks */; };
 		5F9C498B2DB012F2000336D8 /* BattleScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 5FE124331D5FA4EC00C41BAC /* BattleScene.sks */; };
 		5F9C498D2DB01377000336D8 /* Particles.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5F9C498C2DB01377000336D8 /* Particles.xcassets */; };
@@ -121,7 +121,7 @@
 		5F83F143209E14C300B0C3D4 /* GameStateFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameStateFactory.swift; sourceTree = "<group>"; };
 		5F9104981D3BA19500C2C519 /* FireTek.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FireTek.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5F9C497B2DAEF0E3000336D8 /* warp.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = warp.wav; sourceTree = "<group>"; };
-		5F9C497D2DB009F0000336D8 /* ParticleSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParticleSystem.swift; sourceTree = "<group>"; };
+		5F9C497D2DB009F0000336D8 /* RenderingSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RenderingSystem.swift; sourceTree = "<group>"; };
 		5F9C49852DB01014000336D8 /* Dust.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Dust.sks; sourceTree = "<group>"; };
 		5F9C498C2DB01377000336D8 /* Particles.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Particles.xcassets; sourceTree = "<group>"; };
 		5FCD334A1DD3B9F000815476 /* TargetSysyem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TargetSysyem.swift; sourceTree = "<group>"; };
@@ -327,7 +327,7 @@
 			children = (
 				5F428C8A1D68EC6C0075FA6B /* LevelSystem.swift */,
 				5F53F3B91D6F83570077B2A0 /* PhysicsSystem.swift */,
-				5F9C497D2DB009F0000336D8 /* ParticleSystem.swift */,
+				5F9C497D2DB009F0000336D8 /* RenderingSystem.swift */,
 				5FE124311D5FA4EC00C41BAC /* SpriteSpawnSystem.swift */,
 				5F77832C1D7A04F50027FFED /* CollisionsSystem.swift */,
 				5F6EECAB1D775C120089A0AB /* WeaponSystem.swift */,
@@ -475,7 +475,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5F9C497E2DB009F5000336D8 /* ParticleSystem.swift in Sources */,
+				5F9C497E2DB009F5000336D8 /* RenderingSystem.swift in Sources */,
 				5FE1243F1D5FA4EC00C41BAC /* SpriteComponent.swift in Sources */,
 				5FFFB4521DDD929500DAD69A /* HUDWeaponNode.swift in Sources */,
 				5F77832D1D7A04F50027FFED /* CollisionsSystem.swift in Sources */,

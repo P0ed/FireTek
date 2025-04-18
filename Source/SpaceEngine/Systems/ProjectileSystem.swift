@@ -61,27 +61,23 @@ final class ProjectileSystem {
 	}
 }
 
-/// Projectile collisions
 private extension ProjectileSystem {
 
-	func processContact(_ contact: SKPhysicsContact) {
-		guard let entityA = contact.bodyA.node?.entity,
-			let entityB = contact.bodyB.node?.entity,
-			let projectile = world.projectiles.first(entityA, entityB)
-			else { return }
+	func processContact(_ contact: Contact) {
+		guard let projectile = world.projectiles.first(contact.a, contact.b) else { return }
 
 		let projectileComponent = projectile.value
 		world.entityManager.removeEntity(projectile.entity)
 
-		let transform = Transform(point: contact.contactPoint, vector: contact.contactNormal)
+		let transform = Transform(point: contact.point, vector: contact.normal)
 		EffectsFactory.createShellExplosion(world: world, at: transform)
 
-		if let shipRef = world.shipRefs.first(entityA, entityB) {
+		if let shipRef = world.shipRefs.first(contact.a, contact.b) {
 			damageSystem.damage(
 				shipRef: shipRef,
 				projectile: projectileComponent,
-				point: contact.contactPoint,
-				normal: contact.contactNormal
+				point: contact.point,
+				normal: contact.normal
 			)
 		}
 	}

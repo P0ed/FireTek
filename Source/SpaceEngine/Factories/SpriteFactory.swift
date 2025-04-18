@@ -20,6 +20,7 @@ enum SpriteFactory {
 	static func createProjectileSprite(_ entity: Entity, type: WeaponType) -> SpriteComponent {
 		let spriteNode = SKSpriteNode(texture: effects.textureNamed("shell"))
 		spriteNode.entity = entity
+		spriteNode.setScale(0.33)
 		return SpriteComponent(sprite: spriteNode)
 	}
 
