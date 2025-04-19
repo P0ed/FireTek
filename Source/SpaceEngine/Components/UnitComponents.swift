@@ -23,7 +23,7 @@ struct HP {
 	var front: UInt16
 	var side: UInt16
 	var core: UInt16
-	var damaged: UInt16 = 0
+	var damaged: Damaged = []
 
 	init(armor: UInt16, structure: UInt16) {
 		maxArmor = armor
@@ -110,4 +110,15 @@ struct ProjectileComponent {
 
 struct LifetimeComponent {
 	var lifetime: UInt16
+}
+
+struct Damaged: OptionSet {
+	var rawValue: UInt8
+
+	static var wrp: Damaged { .init(rawValue: 1 << 1) }
+	static var imp: Damaged { .init(rawValue: 1 << 2) }
+	static var shl: Damaged { .init(rawValue: 1 << 3) }
+	static var cap: Damaged { .init(rawValue: 1 << 4) }
+	static var prm: Damaged { .init(rawValue: 1 << 5) }
+	static var sec: Damaged { .init(rawValue: 1 << 6) }
 }

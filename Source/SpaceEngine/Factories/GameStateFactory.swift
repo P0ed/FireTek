@@ -61,8 +61,8 @@ extension GameState {
 	static func createShipPropulsion(rarity: Rarity) -> ShipPropulsion {
 		ShipPropulsion(
 			rarity: rarity,
-			impulse: random.int(16...18) + rarity.n,
-			warp: random.int(12...20) + rarity.n * 2,
+			impulse: random.int(18...22) + rarity.n,
+			warp: random.int(12...20) + rarity.n,
 			efficency: rarity.n - 1
 		)
 	}
@@ -70,15 +70,15 @@ extension GameState {
 	static func createShipReactor(rarity: Rarity) -> ShipReactor {
 		ShipReactor(
 			rarity: rarity,
-			capacity: random.int(2200...3000) * rarity.n,
-			recharge: random.int(5...7) + rarity.n
+			capacity: random.int(2400...3200) * rarity.n,
+			recharge: random.int(6...8) + rarity.n
 		)
 	}
 
 	static func createShipShield(rarity: Rarity) -> ShipShield {
 		ShipShield(
 			rarity: rarity,
-			capacity: random.int(1600...2100) * rarity.n,
+			capacity: random.int(1600...1800) * rarity.n,
 			recharge: random.int(0...1) + rarity.n
 		)
 	}
@@ -98,8 +98,8 @@ extension GameState {
 		Weapon(
 			rarity: rarity,
 			type: .torpedo,
-			damage: 64 + rarity.n * 2,
-			velocity: 280,
+			damage: 85 + rarity.n * 6,
+			velocity: 300,
 			cooldown: 40,
 			recharge: 20
 		)
@@ -109,10 +109,10 @@ extension GameState {
 		Weapon(
 			rarity: rarity,
 			type: .blaster,
-			damage: 18 + rarity.n,
+			damage: 45 + rarity.n * 3,
 			velocity: 500,
-			cooldown: 12,
-			recharge: 8
+			cooldown: 32,
+			recharge: 16
 		)
 	}
 

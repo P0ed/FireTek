@@ -14,7 +14,6 @@ final class Engine {
 	private let world: World
 
 	private let levelSystem: LevelSystem
-	private let spriteSpawnSystem: SpriteSpawnSystem
 	private let inputSystem: InputSystem
 	private let physicsSystem: PhysicsSystem
 	private let collisionsSystem: CollisionsSystem
@@ -36,8 +35,10 @@ final class Engine {
 		self.world = world
 		self.scene = scene
 
-		spriteSpawnSystem = SpriteSpawnSystem(scene: scene, store: world.physics)
+		renderingSystem = RenderingSystem(world: world, scene: scene)
 		levelSystem = LevelSystem(world: world, state: state)
+		renderingSystem.ref = world.physics.weakRefOf(levelSystem.player)
+
 		planetarySystem = PlanetarySystem(planets: world.planets, physics: world.physics)
 		physicsSystem = PhysicsSystem(world: world)
 		collisionsSystem = CollisionsSystem(world: world)
@@ -51,15 +52,9 @@ final class Engine {
 		aiSystem = AISystem(world: world)
 
 		lifetimeSystem = LifetimeSystem(world: world)
-
 		lootSystem = LootSystem(world: world, collisionsSystem: collisionsSystem)
 
 		hudSystem = HUDSystem(world: world, player: levelSystem.player, hudNode: scene.hud)
-
-		renderingSystem = RenderingSystem(
-			world: world,
-			ref: world.physics.weakRefOf(levelSystem.player)
-		)
 	}
 
 	private var currentTick: Int = 0

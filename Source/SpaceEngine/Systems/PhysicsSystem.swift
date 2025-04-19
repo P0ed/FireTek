@@ -29,7 +29,7 @@ struct PhysicsSystem {
 
 			ship.engine.driving &+= 1
 		} else if input.warp, ship.reactor.drain(ship.engine.warp / 2) {
-			let mul = CGFloat(min(24, ship.engine.driving)) / 48
+			let mul = CGFloat(min(32, ship.engine.driving)) / 128
 			physics.position += physics.rotation.vector * CGFloat(ship.engine.warp) * mul
 			physics.momentum = physics.momentum * 0.97
 
@@ -47,7 +47,7 @@ struct PhysicsSystem {
 	}
 
 	private func apply(physics: inout PhysicsComponent) {
-		if physics.momentum.length > 3.3 {
+		if !physics.category.contains(.projectile), physics.momentum.length > 3.3 {
 			physics.momentum = physics.momentum.normalized * 3.3
 		}
 		physics.position += physics.momentum

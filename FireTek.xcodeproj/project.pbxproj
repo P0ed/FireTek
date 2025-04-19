@@ -53,7 +53,6 @@
 		5FE124401D5FA4EC00C41BAC /* UnitComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FE1242D1D5FA4EC00C41BAC /* UnitComponents.swift */; };
 		5FE124411D5FA4ED00C41BAC /* InputComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FE1242E1D5FA4EC00C41BAC /* InputComponents.swift */; };
 		5FE124421D5FA4ED00C41BAC /* Engine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FE1242F1D5FA4EC00C41BAC /* Engine.swift */; };
-		5FE124431D5FA4ED00C41BAC /* SpriteSpawnSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FE124311D5FA4EC00C41BAC /* SpriteSpawnSystem.swift */; };
 		5FE124451D5FA4ED00C41BAC /* SpaceScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FE124341D5FA4EC00C41BAC /* SpaceScene.swift */; };
 		5FE124461D5FA4ED00C41BAC /* General.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FE124361D5FA4EC00C41BAC /* General.swift */; };
 		5FE124541D5FA81700C41BAC /* DiamondSquare.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FE124531D5FA81700C41BAC /* DiamondSquare.swift */; };
@@ -65,7 +64,6 @@
 		5FFF82EC1DCC863D007EFAAD /* Boom2.wav in Resources */ = {isa = PBXBuildFile; fileRef = 5FFF82E81DCC863D007EFAAD /* Boom2.wav */; };
 		5FFF82ED1DCC863D007EFAAD /* Cannon0.wav in Resources */ = {isa = PBXBuildFile; fileRef = 5FFF82E91DCC863D007EFAAD /* Cannon0.wav */; };
 		5FFFB44E1DDD925300DAD69A /* HUDNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FFFB44D1DDD925300DAD69A /* HUDNode.swift */; };
-		5FFFB4501DDD926000DAD69A /* HPNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FFFB44F1DDD926000DAD69A /* HPNode.swift */; };
 		5FFFB4521DDD929500DAD69A /* BarNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FFFB4511DDD929500DAD69A /* BarNode.swift */; };
 /* End PBXBuildFile section */
 
@@ -131,7 +129,6 @@
 		5FE1242D1D5FA4EC00C41BAC /* UnitComponents.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnitComponents.swift; sourceTree = "<group>"; };
 		5FE1242E1D5FA4EC00C41BAC /* InputComponents.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputComponents.swift; sourceTree = "<group>"; };
 		5FE1242F1D5FA4EC00C41BAC /* Engine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Engine.swift; sourceTree = "<group>"; };
-		5FE124311D5FA4EC00C41BAC /* SpriteSpawnSystem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpriteSpawnSystem.swift; sourceTree = "<group>"; };
 		5FE124341D5FA4EC00C41BAC /* SpaceScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpaceScene.swift; sourceTree = "<group>"; };
 		5FE124361D5FA4EC00C41BAC /* General.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = General.swift; sourceTree = "<group>"; };
 		5FE124531D5FA81700C41BAC /* DiamondSquare.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiamondSquare.swift; sourceTree = "<group>"; };
@@ -143,7 +140,6 @@
 		5FFF82E81DCC863D007EFAAD /* Boom2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Boom2.wav; sourceTree = "<group>"; };
 		5FFF82E91DCC863D007EFAAD /* Cannon0.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Cannon0.wav; sourceTree = "<group>"; };
 		5FFFB44D1DDD925300DAD69A /* HUDNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HUDNode.swift; sourceTree = "<group>"; };
-		5FFFB44F1DDD926000DAD69A /* HPNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HPNode.swift; sourceTree = "<group>"; };
 		5FFFB4511DDD929500DAD69A /* BarNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BarNode.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -319,7 +315,6 @@
 				5F428C8A1D68EC6C0075FA6B /* LevelSystem.swift */,
 				5F53F3B91D6F83570077B2A0 /* PhysicsSystem.swift */,
 				5F9C497D2DB009F0000336D8 /* RenderingSystem.swift */,
-				5FE124311D5FA4EC00C41BAC /* SpriteSpawnSystem.swift */,
 				5F77832C1D7A04F50027FFED /* CollisionsSystem.swift */,
 				5F6EECAB1D775C120089A0AB /* WeaponSystem.swift */,
 				5F2B51E81D6F71BC00AF62A1 /* InputSystem.swift */,
@@ -358,7 +353,6 @@
 			isa = PBXGroup;
 			children = (
 				5FFFB44D1DDD925300DAD69A /* HUDNode.swift */,
-				5FFFB44F1DDD926000DAD69A /* HPNode.swift */,
 				5FFFB4511DDD929500DAD69A /* BarNode.swift */,
 			);
 			path = HUD;
@@ -468,9 +462,7 @@
 				5FE124411D5FA4ED00C41BAC /* InputComponents.swift in Sources */,
 				5F115F491F6D3411004509D0 /* Router.swift in Sources */,
 				5F428C901D6909EE0075FA6B /* InputController.swift in Sources */,
-				5FFFB4501DDD926000DAD69A /* HPNode.swift in Sources */,
 				5FE124401D5FA4EC00C41BAC /* UnitComponents.swift in Sources */,
-				5FE124431D5FA4ED00C41BAC /* SpriteSpawnSystem.swift in Sources */,
 				5F4CCCA61DCE6D3500E3DB58 /* HUDSystem.swift in Sources */,
 				5F039FA41DC6227200AC45C8 /* EffectsFactory.swift in Sources */,
 				5F428C9D1D690A250075FA6B /* HIDController.swift in Sources */,

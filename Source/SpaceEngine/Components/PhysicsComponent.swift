@@ -1,7 +1,7 @@
 import SpriteKit
 
 struct PhysicsComponent {
-	var node: SKNode
+	unowned var node: SKNode
 	var position: CGPoint
 	var momentum: CGVector = .zero
 	var rotation: CGFloat = 0
@@ -11,7 +11,7 @@ struct PhysicsComponent {
 }
 
 struct Category: OptionSet {
-	var rawValue: UInt16
+	var rawValue: UInt8
 
 	static var zero: Category { .init(rawValue: 0) }
 

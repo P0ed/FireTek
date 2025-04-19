@@ -45,17 +45,18 @@ enum UnitFactory {
 		let entity = world.entityManager.create()
 
 		let sprite = SpriteFactory.createCrystal(entity: entity, crystal: crystal)
-
 		sprite.run(.group([
 			.repeatForever(.rotate(byAngle: 1, duration: 0.6)),
 			.move(by: offset, duration: 0.6)
 		]))
 
+		let node = SKNode()
+		node.addChild(sprite)
+
 		let physics = PhysicsComponent(
-			node: sprite,
+			node: node,
 			position: position,
-			category: .crystal,
-			contacts: .ships
+			category: .crystal
 		)
 
 		world.physics.add(component: physics, to: entity)

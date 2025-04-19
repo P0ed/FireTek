@@ -2,11 +2,20 @@ import SpriteKit
 
 final class RenderingSystem {
 	let world: World
-	let ref: WeakRef<PhysicsComponent>?
+	var ref: WeakRef<PhysicsComponent>?
+	private var disposable = [] as [Any]
 
-	init(world: World, ref: WeakRef<PhysicsComponent>?) {
+	init(world: World, scene: SKScene) {
 		self.world = world
-		self.ref = ref
+
+		disposable = [
+			world.physics.newComponents.observe { [unowned scene] index in
+				scene.addChild(world.physics[index].node)
+			},
+			world.physics.removedComponents.observe { _, c in
+				c.node.removeFromParent()
+			}
+		]
 	}
 
 	func update() {

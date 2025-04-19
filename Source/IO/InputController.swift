@@ -43,9 +43,9 @@ extension InputController {
 			primary: buttonPressed(.r1),
 			secondary: buttonPressed(.l1),
 			impulse: buttonPressed(.cross),
-			target: buttonPressed(.circle),
+			target: buttonPressed(.triangle),
 			action: buttonPressed(.square),
-			warp: buttonPressed(.triangle)
+			warp: buttonPressed(.circle)
 		)
 	}
 }

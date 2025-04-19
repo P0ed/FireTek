@@ -1,20 +1,23 @@
 import SpriteKit
 
 final class BarNode: SKNode {
-	static let size = CGSize(width: 34, height: 12)
+	static let size = CGSize(width: 88, height: 16)
 
 	let background: SKSpriteNode
 	let progress: SKSpriteNode
 	let label: SKLabelNode
+	let alignment: SKLabelHorizontalAlignmentMode
 
-	override init() {
-		background = SKSpriteNode(color: SKColor(white: 0.44, alpha: 0.55), size: Self.size)
-		progress = SKSpriteNode(color: SKColor(white: 0.87, alpha: 0.87), size: Self.size)
+	init(alignment: SKLabelHorizontalAlignmentMode, text: String) {
+		self.alignment = alignment
+		background = SKSpriteNode(color: SKColor(white: 0.3, alpha: 0.4), size: Self.size)
+		progress = SKSpriteNode(color: SKColor(white: 0.7, alpha: 0.8), size: Self.size)
 		label = SKLabelNode()
-		label.horizontalAlignmentMode = .right
+		label.horizontalAlignmentMode = alignment
 		label.verticalAlignmentMode = .center
 		label.fontSize = 8
 		label.fontName = "Menlo"
+		label.text = text
 
 		background.anchorPoint = .zero
 		progress.anchorPoint = .zero
@@ -28,7 +31,7 @@ final class BarNode: SKNode {
 
 	func layout(size: CGSize) {
 		label.position = CGPoint(
-			x: -3,
+			x: alignment == .right ? -3 : Self.size.width + 3,
 			y: Self.size.height / 2
 		)
 	}
