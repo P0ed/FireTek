@@ -98,7 +98,7 @@ extension GameState {
 		Weapon(
 			rarity: rarity,
 			type: .torpedo,
-			damage: 40 + rarity.n * 2,
+			damage: 48 + rarity.n * 2,
 			velocity: 200,
 			cooldown: 40,
 			recharge: 20
@@ -109,8 +109,8 @@ extension GameState {
 		Weapon(
 			rarity: rarity,
 			type: .blaster,
-			damage: 16 + rarity.n,
-			velocity: 400,
+			damage: 18 + rarity.n,
+			velocity: 500,
 			cooldown: 12,
 			recharge: 8
 		)

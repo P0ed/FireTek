@@ -103,13 +103,6 @@ extension CGSize {
 	}
 }
 
-struct Angle {
-	var value: UInt16
-}
-
-extension Angle {
-	static var zero: Angle = .init(value: 0)
-	var vector: CGVector { .init(dx: 0, dy: 1).rotate(radians) }
-	var radians: CGFloat { CGFloat(spriteIdx) / 16 * .pi }
-	var spriteIdx: UInt { UInt(value >> 11) }
+extension CGFloat {
+	var vector: CGVector { .init(dx: 0, dy: 1).rotate(self) }
 }

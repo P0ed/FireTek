@@ -4,7 +4,7 @@ struct PhysicsComponent {
 	var node: SKNode
 	var position: CGPoint
 	var momentum: CGVector = .zero
-	var rotation: Angle = .zero
+	var rotation: CGFloat = 0
 	var category: Category = .zero
 	var contacts: Category = .zero
 	var size: CGFloat = 1

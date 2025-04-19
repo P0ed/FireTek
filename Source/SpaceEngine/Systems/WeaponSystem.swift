@@ -31,7 +31,7 @@ final class WeaponSystem {
 
 		let target = world.targets.indexOf(source).map { world.targets[$0] }?.target
 		let team = world.team.indexOf(source).map { world.team[$0] }
-		let angle = physics.rotation.radians
+		let angle = physics.rotation
 		let velocity = CGVector(dx: 0, dy: CGFloat(weapon.velocity)).rotate(angle) + physics.momentum
 		let offset = CGVector(dx: 0, dy: 14).rotate(angle)
 

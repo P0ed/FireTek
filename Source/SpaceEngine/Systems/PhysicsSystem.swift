@@ -41,9 +41,9 @@ struct PhysicsSystem {
 		}
 
 		if input.dhat.left {
-			physics.rotation.value &+= ship.engine.impulse * 24
+			physics.rotation += CGFloat(ship.engine.impulse) / 1024
 		} else if input.dhat.right {
-			physics.rotation.value &-= ship.engine.impulse * 24
+			physics.rotation -= CGFloat(ship.engine.impulse) / 1024
 		}
 	}
 

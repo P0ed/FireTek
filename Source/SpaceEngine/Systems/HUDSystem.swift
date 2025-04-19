@@ -43,7 +43,7 @@ final class HUDSystem {
 			let dx = Int(physics.momentum.dx * 60)
 			let dy = Int(physics.momentum.dy * 60)
 
-			hudNode.message.text = "x: \(x), y: \(y), dx: \(dx), dy: \(dy) \(physics.rotation.radians)"
+			hudNode.message.text = "x: \(x), y: \(y), dx: \(dx), dy: \(dy) \(physics.rotation)"
 		}
 	}
 

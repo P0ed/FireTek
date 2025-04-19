@@ -10,8 +10,9 @@ final class RenderingSystem {
 	}
 
 	func update() {
-		let maxR = 160 as CGFloat
+		let maxR = 192 as CGFloat
 		let position = ref?.value?.position ?? .zero
+		let rotation = ref?.value?.rotation ?? 0
 		world.physics.forEach { physics in
 			let v = (physics.position - position).vector
 			let len = v.length
@@ -20,12 +21,12 @@ final class RenderingSystem {
 				max(0, min(maxR, r)) - maxR / max(1, r / maxR) + maxR
 			}
 
-			let scaled: CGVector = v == .zero ? .zero : v.normalized() * f(len)
+			let scaled: CGVector = v == .zero ? .zero : v.normalized().rotate(-rotation) * f(len)
 			physics.node.position = scaled.point
 
 			let scale: CGFloat = len > maxR ? maxR / len : 1
 			physics.node.setScale(scale)
-			physics.node.zRotation = physics.rotation.radians
+			physics.node.zRotation = physics.rotation - rotation
 		}
 	}
 }
