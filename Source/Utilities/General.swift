@@ -2,12 +2,6 @@ import CoreGraphics.CGBase
 import Fx
 import GameplayKit
 
-struct Transform {
-	var x: CGFloat
-	var y: CGFloat
-	var zRotation: CGFloat
-}
-
 typealias CGFloat = CoreGraphics.CGFloat
 typealias CGPoint = CoreGraphics.CGPoint
 typealias CGVector = CoreGraphics.CGVector

@@ -4,7 +4,7 @@ final class InputController {
 	let hid: HIDController
 
 	@IO private var pressedButtons: Int = 0
-	@IO private var dhat: DHat = .null
+	@IO private var dpad: DPad = .null
 
 	init(_ hid: HIDController) {
 		self.hid = hid
@@ -26,8 +26,7 @@ final class InputController {
 				.l1: buttonAction(.l1),
 				.r1: buttonAction(.r1)
 			],
-			dhat: _dhat.set,
-			keyboardMapTable: [:]
+			dpad: _dpad.set
 		)
 	}
 }
@@ -40,7 +39,7 @@ extension InputController {
 
 	var currentInput: InputComponent {
 		InputComponent(
-			dhat: dhat,
+			dpad: dpad,
 			primary: buttonPressed(.r1),
 			secondary: buttonPressed(.l1),
 			impulse: buttonPressed(.cross),

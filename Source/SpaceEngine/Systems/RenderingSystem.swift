@@ -21,7 +21,7 @@ final class RenderingSystem {
 				max(0, min(maxR, r)) - maxR / max(1, r / maxR) + maxR
 			}
 
-			let scaled: CGVector = v == .zero ? .zero : v.normalized().rotate(-rotation) * f(len)
+			let scaled: CGVector = v == .zero ? .zero : v.normalized.rotate(-rotation) * f(len)
 			physics.node.position = scaled.point
 
 			let scale: CGFloat = len > maxR ? maxR / len : 1

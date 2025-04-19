@@ -13,7 +13,7 @@ final class BarNode: SKNode {
 		label = SKLabelNode()
 		label.horizontalAlignmentMode = .right
 		label.verticalAlignmentMode = .center
-		label.fontSize = 6
+		label.fontSize = 8
 		label.fontName = "Menlo"
 
 		background.anchorPoint = .zero
@@ -28,7 +28,7 @@ final class BarNode: SKNode {
 
 	func layout(size: CGSize) {
 		label.position = CGPoint(
-			x: -2,
+			x: -3,
 			y: Self.size.height / 2
 		)
 	}

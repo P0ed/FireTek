@@ -54,7 +54,7 @@ final class ProjectileSystem {
 				let tpos = physics[idx].position
 				let pos = physics[unit.physics].position
 				let v = (tpos - pos).vector
-				let dv = (v + physics[idx].momentum * min(1, v.length)).normalized() / 4
+				let dv = (v + physics[idx].momentum * min(1, v.length)).normalized / 4
 				physics[unit.physics].momentum += dv
 			}
 		}

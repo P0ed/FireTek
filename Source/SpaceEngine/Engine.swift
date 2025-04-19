@@ -38,6 +38,7 @@ final class Engine {
 
 		spriteSpawnSystem = SpriteSpawnSystem(scene: scene, store: world.physics)
 		levelSystem = LevelSystem(world: world, state: state)
+		planetarySystem = PlanetarySystem(planets: world.planets, physics: world.physics)
 		physicsSystem = PhysicsSystem(world: world)
 		collisionsSystem = CollisionsSystem(world: world)
 
@@ -55,7 +56,6 @@ final class Engine {
 
 		hudSystem = HUDSystem(world: world, player: levelSystem.player, hudNode: scene.hud)
 
-		planetarySystem = PlanetarySystem(planets: world.planets, physics: world.physics)
 		renderingSystem = RenderingSystem(
 			world: world,
 			ref: world.physics.weakRefOf(levelSystem.player)

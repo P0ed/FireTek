@@ -39,16 +39,16 @@ struct PhysicsSystem {
 			ship.engine.driving = 0
 		}
 
-		if input.dhat.left {
+		if input.dpad.left {
 			physics.rotation += CGFloat(ship.engine.impulse) / 1024
-		} else if input.dhat.right {
+		} else if input.dpad.right {
 			physics.rotation -= CGFloat(ship.engine.impulse) / 1024
 		}
 	}
 
 	private func apply(physics: inout PhysicsComponent) {
 		if physics.momentum.length > 3.3 {
-			physics.momentum = physics.momentum.normalized() * 3.3
+			physics.momentum = physics.momentum.normalized * 3.3
 		}
 		physics.position += physics.momentum
 	}

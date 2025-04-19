@@ -1,5 +1,5 @@
 struct InputComponent {
-	var dhat: DHat = .null
+	var dpad: DPad = .null
 
 	var primary: Bool = false
 	var secondary: Bool = false
@@ -11,8 +11,8 @@ struct InputComponent {
 	static let empty = InputComponent()
 }
 
-typealias DHat = DSHatDirection
-extension DHat {
+typealias DPad = DSHatDirection
+extension DPad {
 
 	var up: Bool {
 		get { rawValue & Self.up.rawValue != 0 }

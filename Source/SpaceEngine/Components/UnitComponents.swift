@@ -60,7 +60,7 @@ struct Capacitor {
 		value = min(maxValue, value + recharge)
 	}
 	mutating func charge(from capacitor: inout Capacitor) {
-		if !isCharged, capacitor.drain(recharge) == true { charge() }
+		if !isCharged, capacitor.drain(recharge) { charge() }
 	}
 	mutating func drain(_ amount: UInt16) -> Bool {
 		if value >= amount {

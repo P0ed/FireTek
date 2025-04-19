@@ -3,7 +3,7 @@ import Fx
 
 struct ControlsMap {
 	var buttonsMapTable: [DSButton: (Bool) -> Void] = [:]
-	var dhat: (DHat) -> Void = { _ in }
+	var dpad: (DPad) -> Void = { _ in }
 	var keyboardMapTable: [UInt16: (Bool) -> Void] = [:]
 }
 
@@ -30,7 +30,7 @@ final class HIDController {
 					guard let gamepad = (notification.object as? GCController)?.extendedGamepad else { return }
 
 					gamepad.dpad.valueChangedHandler = { dpad, _, _ in
-						_map.value.dhat(dpad.dhat)
+						_map.value.dpad(dpad.dpad)
 					}
 					gamepad.leftShoulder.pressedChangedHandler = { _, _, pressed in
 						_map.value.buttonsMapTable[.l1]?(pressed)
@@ -57,12 +57,12 @@ final class HIDController {
 }
 
 extension GCControllerDirectionPad {
-	var dhat: DHat {
-		var dhat = DHat.null
-		dhat.up = up.isPressed
-		dhat.right = `right`.isPressed
-		dhat.down = down.isPressed
-		dhat.left = `left`.isPressed
-		return dhat
+	var dpad: DPad {
+		var dpad = DPad.null
+		dpad.up = up.isPressed
+		dpad.right = `right`.isPressed
+		dpad.down = down.isPressed
+		dpad.left = `left`.isPressed
+		return dpad
 	}
 }

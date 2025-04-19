@@ -1,7 +1,6 @@
 import SpriteKit
 
 final class HUDNode: SKNode {
-
 	let playerHP = HPNode()
 	let targetHP = HPNode()
 	let targetShield = BarNode()
@@ -20,9 +19,9 @@ final class HUDNode: SKNode {
 		message.numberOfLines = 8
 		message.fontName = "Menlo"
 
-		capacitor.label.text = "||"
-		weapon1.label.text = "W1"
-		weapon2.label.text = "W2"
+		capacitor.label.text = "CAP"
+		weapon1.label.text = "PRM"
+		weapon2.label.text = "SEC"
 
 		[playerHP, targetHP, targetShield, weapon1, weapon2, capacitor, shield, message].forEach(addChild)
 	}

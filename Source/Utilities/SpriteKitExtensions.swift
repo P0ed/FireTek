@@ -13,22 +13,6 @@ extension SKNode {
 			objc_setAssociatedObject(self, SKNode.entityContainerKey, newValue, .OBJC_ASSOCIATION_RETAIN)
 		}
 	}
-
-	var transform: Transform {
-		set {
-			self.position = CGPoint(x: newValue.x, y: newValue.y)
-			self.zRotation = CGFloat(newValue.zRotation)
-		}
-		get {
-			let position = self.position
-			let zRotation = self.zRotation
-			return Transform(
-				x: position.x,
-				y: position.y,
-				zRotation: zRotation
-			)
-		}
-	}
 }
 
 extension SKColor {

@@ -1,23 +1,5 @@
 import SpriteKit
 
-extension Transform {
-
-	init(point: CGPoint, vector: CGVector) {
-		x = point.x
-		y = point.y
-		zRotation = vector.angle
-	}
-
-	func move(by vector: CGVector) -> Transform {
-		let rotated = vector.rotate(CGFloat(zRotation))
-		return Transform(
-			x: x + rotated.dx,
-			y: y + rotated.dy,
-			zRotation: zRotation
-		)
-	}
-}
-
 extension CGVector {
 
 	func rotate(_ angle: CGFloat) -> CGVector {
@@ -31,8 +13,7 @@ extension CGVector {
 	var length: CGFloat { sqrt(lengthSquared) }
 	var angle: CGFloat { atan2(dy, dx) }
 	var point: CGPoint { CGPoint(x: dx, y: dy) }
-
-	func normalized() -> CGVector { self / sqrt(lengthSquared) }
+	var normalized: CGVector { self / length }
 
 	func dot(_ vector: CGVector) -> CGFloat {
 		dx * vector.dx + dy * vector.dy
@@ -42,8 +23,8 @@ extension CGVector {
 	}
 
 	func angle(with vector: CGVector) -> CGFloat {
-		let t1 = normalized()
-		let t2 = vector.normalized()
+		let t1 = normalized
+		let t2 = vector.normalized
 		let cross = t1.cross(t2)
 		let dot = max(-1, min(1, t1.dot(t2)))
 

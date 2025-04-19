@@ -24,7 +24,7 @@ final class PlanetarySystem {
 				let r = planetPosition.distance(to: p.position)
 				if r > 40.0, r < 640.0 {
 					let dv = 96.0 / r / r
-					let v = (planetPosition - p.position).vector.normalized()
+					let v = (planetPosition - p.position).vector.normalized
 					physics[idx].momentum += v * dv
 				}
 			}

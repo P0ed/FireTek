@@ -16,7 +16,7 @@ enum SpriteFactory {
 	}
 
 	static func createProjectileSprite(_ entity: Entity, type: WeaponType) -> SKNode {
-		let spriteNode = SKSpriteNode(texture: effects.textureNamed("shell"))
+		let spriteNode = SKSpriteNode(texture: effects.textureNamed(type.textureName))
 		spriteNode.entity = entity
 		return spriteNode
 	}
@@ -25,6 +25,15 @@ enum SpriteFactory {
 		let node = SKSpriteNode(texture: effects.textureNamed("crystal"))
 		node.entity = entity
 		return node
+	}
+}
+
+extension WeaponType {
+	var textureName: String {
+		switch self {
+		case .torpedo: "torpedo"
+		default: "shell"
+		}
 	}
 }
 

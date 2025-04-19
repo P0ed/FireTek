@@ -40,11 +40,11 @@ struct AISystem {
 					let (sa, ca) = (sin(angle), cos(angle))
 
 					if abs(sa) > 0.1 || ca < 0 {
-						input.dhat = sa > 0 ? .left : .right
+						input.dpad = sa > 0 ? .left : .right
 						input.primary = false
 						input.secondary = false
 					} else {
-						input.dhat = .null
+						input.dpad = .null
 						input.primary = distance < 400
 						input.secondary = distance < 800 && energy > 0.6
 					}
