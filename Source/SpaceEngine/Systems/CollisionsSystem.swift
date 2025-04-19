@@ -43,26 +43,6 @@ final class CollisionsSystem {
 		}
 		contacts.forEach(send)
 	}
-
-	@objc
-	final class SceneDelegate: NSObject, SKPhysicsContactDelegate {
-
-		private let didBeginContact: (SKPhysicsContact) -> ()
-		private let didEndContact: (SKPhysicsContact) -> ()
-
-		init(didBeginContact: @escaping (SKPhysicsContact) -> (), didEndContact: @escaping (SKPhysicsContact) -> ()) {
-			self.didBeginContact = didBeginContact
-			self.didEndContact = didEndContact
-		}
-
-		func didBegin(_ contact: SKPhysicsContact) {
-			didBeginContact(contact)
-		}
-
-		func didEnd(_ contact: SKPhysicsContact) {
-			didEndContact(contact)
-		}
-	}
 }
 
 struct Contact {

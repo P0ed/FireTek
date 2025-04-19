@@ -18,7 +18,7 @@ enum ProjectileFactory {
 			category: projectile.type == .torpedo ? (team == .blue ? .blueShip : .redShip) : .projectile,
 			contacts: team == .blue ? .redShip : .blueShip
 		)
-		let lifetime = LifetimeComponent(lifetime: 128)
+		let lifetime = LifetimeComponent(lifetime: projectile.type == .torpedo ? 320 : 120)
 
 		world.sprites.add(component: sprite, to: entity)
 		world.physics.add(component: physics, to: entity)

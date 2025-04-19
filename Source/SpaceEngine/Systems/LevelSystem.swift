@@ -14,8 +14,8 @@ final class LevelSystem {
 		player = UnitFactory.createTank(world: world, ship: state.ship, position: spawn, team: .blue)
 
 		UnitFactory.createAIPlayer(world: world, position: CGPoint(x: 0, y: 1500))
-		UnitFactory.createAIPlayer(world: world, position: CGPoint(x: 200, y: 1500))
-		UnitFactory.createAIPlayer(world: world, position: CGPoint(x: -200, y: 1500))
+//		UnitFactory.createAIPlayer(world: world, position: CGPoint(x: 200, y: 1500))
+//		UnitFactory.createAIPlayer(world: world, position: CGPoint(x: -200, y: 1500))
 
 		StarSystemFactory.createSystem(world: world, data: starSystem)
 	}

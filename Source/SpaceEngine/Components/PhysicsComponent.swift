@@ -11,7 +11,7 @@ struct PhysicsComponent {
 }
 
 struct Category: OptionSet {
-	var rawValue: UInt32
+	var rawValue: UInt16
 
 	static var zero: Category { .init(rawValue: 0) }
 

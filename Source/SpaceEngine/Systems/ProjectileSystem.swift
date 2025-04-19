@@ -6,7 +6,7 @@ final class ProjectileSystem {
 	struct Unit {
 		let entity: Entity
 		let projectile: ComponentIdx<ProjectileComponent>
-		let sprite: ComponentIdx<SpriteComponent>
+		let physics: ComponentIdx<PhysicsComponent>
 	}
 
 	private let world: World
@@ -23,9 +23,9 @@ final class ProjectileSystem {
 			let projectile = world.projectiles.sharedIndexAt(index)
 			let entity = world.projectiles.entityAt(index)
 
-			if let spriteIndex = world.sprites.indexOf(entity) {
-				let sprite = world.sprites.sharedIndexAt(spriteIndex)
-				let projectile = Unit(entity: entity, projectile: projectile, sprite: sprite)
+			if let phyIdx = world.physics.indexOf(entity) {
+				let phy = world.physics.sharedIndexAt(phyIdx)
+				let projectile = Unit(entity: entity, projectile: projectile, physics: phy)
 				self.units.append(projectile)
 			}
 		}
@@ -42,7 +42,7 @@ final class ProjectileSystem {
 	}
 
 	func update() {
-		let sprites = world.sprites
+		let physics = world.physics
 		let projectiles = world.projectiles
 
 		for unit in units {
@@ -50,12 +50,12 @@ final class ProjectileSystem {
 
 			if case .torpedo = projectile.type,
 			   let target = projectile.target,
-			   let idx = sprites.indexOf(target) {
-				let t = sprites[idx].sprite.position
-				let pSprite = sprites[unit.sprite].sprite
-				let p = pSprite.position
-				let dv = (t - p).vector.normalized() * 4
-				pSprite.position = p + dv.point
+			   let idx = physics.indexOf(target) {
+				let tpos = physics[idx].position
+				let pos = physics[unit.physics].position
+				let v = (tpos - pos).vector
+				let dv = (v + physics[idx].momentum * min(1, v.length)).normalized() / 4
+				physics[unit.physics].momentum += dv
 			}
 		}
 	}

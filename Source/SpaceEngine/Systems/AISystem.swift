@@ -11,7 +11,7 @@ struct AISystem {
 
 	mutating func update(tick: Int) {
 		if tick & 0x7 == 0 {
-//			updateVehicles()
+			updateVehicles()
 		}
 	}
 

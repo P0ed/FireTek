@@ -1,7 +1,6 @@
 import SpriteKit
 
 final class HPNode: SKNode {
-
 	static let spacing: CGFloat = 1
 	static let side: CGFloat = 4
 	static let cellSize: CGSize = .square(side: side)
@@ -14,7 +13,6 @@ final class HPNode: SKNode {
 
 	let hpCell: SKSpriteNode
 	let armorCells: [SKSpriteNode]
-	let label: SKLabelNode
 
 	override init() {
 		hpCell = SKSpriteNode(color: HPNode.cellColor, size: .square(side: HPNode.side * 3 + HPNode.spacing * 2))
@@ -26,8 +24,6 @@ final class HPNode: SKNode {
 			return cell
 		}
 
-		label = SKLabelNode()
-
 		super.init()
 
 		hpCell.anchorPoint = .zero
@@ -35,12 +31,6 @@ final class HPNode: SKNode {
 
 		armorCells.forEach { $0.anchorPoint = .zero }
 		armorCells.forEach(addChild)
-
-		label.horizontalAlignmentMode = .left
-		label.verticalAlignmentMode = .center
-		label.fontSize = 6
-		label.fontName = "Menlo"
-		addChild(label)
 	}
 
 	required init?(coder aDecoder: NSCoder) { fatalError() }
@@ -61,7 +51,5 @@ final class HPNode: SKNode {
 				y: side - CGFloat(position.y) * (HPNode.side + HPNode.spacing)
 			)
 		}
-
-		label.position = hpCell.position + .init(x: 2, y: 48)
 	}
 }

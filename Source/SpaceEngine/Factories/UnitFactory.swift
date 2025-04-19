@@ -36,7 +36,7 @@ enum UnitFactory {
 		let entity = createTank(world: world, ship: ship, position: position, team: .red)
 		let vehicle = world.shipRefs.sharedIndexAt § world.shipRefs.indexOf(entity)!
 
-		let ai = VehicleAIComponent(vehicle: vehicle, state: .hold(CGPoint(x: 0, y: 0)), target: nil)
+		let ai = VehicleAIComponent(vehicle: vehicle, state: .hold(.zero), target: nil)
 		world.vehicleAI.add(component: ai, to: entity)
 
 		return entity

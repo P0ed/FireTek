@@ -10,7 +10,7 @@ final class Engine {
 		set { levelSystem.restart = newValue }
 	}
 
-	private unowned let scene: BattleScene
+	private unowned let scene: SpaceScene
 	private let world: World
 
 	private let levelSystem: LevelSystem
@@ -29,7 +29,7 @@ final class Engine {
 	private let planetarySystem: PlanetarySystem
 	private let renderingSystem: RenderingSystem
 
-	init(scene: BattleScene, input: InputController) {
+	init(scene: SpaceScene, input: InputController) {
 		let state = GameState.make()
 		let world = World()
 		self.state = state
@@ -58,7 +58,6 @@ final class Engine {
 		planetarySystem = PlanetarySystem(planets: world.planets, physics: world.physics)
 		renderingSystem = RenderingSystem(
 			world: world,
-			camera: scene.camera!,
 			ref: world.physics.weakRefOf(levelSystem.player)
 		)
 	}

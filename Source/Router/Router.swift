@@ -41,6 +41,6 @@ extension Router {
 
 	func startNewGame() {
 		if !stack.isEmpty { pop() }
-		push(BattleScene.make())
+		push(SpaceScene.make())
 	}
 }

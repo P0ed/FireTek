@@ -1,29 +1,28 @@
 import SpriteKit
 import Fx
 
-final class BattleScene: Scene {
+final class SpaceScene: Scene {
 	private var engine: Engine!
 	private var lastUpdate = 0 as CFTimeInterval
 
 	let hud = HUDNode()
 
-	static func make() -> BattleScene {
-		let scene = BattleScene(fileNamed: "BattleScene")!
+	static func make() -> SpaceScene {
+		let scene = SpaceScene(size: CGSize(width: 1024, height: 768))
 		scene.scaleMode = .aspectFit
+		scene.backgroundColor = .black
+
+		SoundsFactory.preheat()
+
 		return scene
 	}
 
 	override func didMove(to view: SKView) {
 		super.didMove(to: view)
 
-		backgroundColor = SKColor(red: 0.01, green: 0.02, blue: 0.05, alpha: 1)
-
 		let camera = SKCameraNode()
-		camera.position = CGPoint(x: 128, y: 128)
 		addChild(camera)
 		self.camera = camera
-
-		SoundsFactory.preheat()
 
 		let input = InputController(router!.control)
 		engine = Engine(scene: self, input: input)

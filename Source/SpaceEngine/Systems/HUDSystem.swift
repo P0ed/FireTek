@@ -30,6 +30,7 @@ final class HUDSystem {
 		let stats = playerStats?.value
 		updateHPNode(node: hudNode.playerHP, hp: stats?.hp)
 		updateHPNode(node: hudNode.targetHP, hp: targetStats?.value?.hp)
+		updateBar(node: hudNode.targetShield, progress: targetStats?.value?.shield.normalized)
 
 		updateBar(node: hudNode.weapon1, progress: stats?.primary.capacitor.normalized ?? 1)
 		updateBar(node: hudNode.weapon2, progress: stats?.secondary.capacitor.normalized ?? 1)
@@ -42,7 +43,7 @@ final class HUDSystem {
 			let dx = Int(physics.momentum.dx * 60)
 			let dy = Int(physics.momentum.dy * 60)
 
-			hudNode.playerHP.label.text = "x: \(x), y: \(y), dx: \(dx), dy: \(dy) \(physics.rotation.radians)"
+			hudNode.message.text = "x: \(x), y: \(y), dx: \(dx), dy: \(dy) \(physics.rotation.radians)"
 		}
 	}
 
@@ -69,7 +70,12 @@ final class HUDSystem {
 		}
 	}
 
-	private func updateBar(node: BarNode, progress: CGFloat) {
-		node.progress.size.width = BarNode.size.width * progress
+	private func updateBar(node: BarNode, progress: CGFloat?) {
+		if let progress {
+			node.progress.size.width = BarNode.size.width * progress
+			node.alpha = 1
+		} else {
+			node.alpha = 0
+		}
 	}
 }

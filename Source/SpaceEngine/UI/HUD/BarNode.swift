@@ -1,7 +1,7 @@
 import SpriteKit
 
 final class BarNode: SKNode {
-	static let size = CGSize(width: 44, height: 5.7)
+	static let size = CGSize(width: 34, height: 12)
 
 	let background: SKSpriteNode
 	let progress: SKSpriteNode
