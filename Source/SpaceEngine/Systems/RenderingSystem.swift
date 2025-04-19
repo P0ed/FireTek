@@ -9,12 +9,30 @@ final class RenderingSystem {
 		self.world = world
 		self.camera = camera
 		self.ref = ref
+		camera.position = .zero
 	}
 
 	func update() {
-//		let position = ref?.value?.position ?? .zero
+		let maxR = 640 as CGFloat
+		let position = ref?.value?.position ?? .zero
 		world.physics.forEach { physics in
-			physics.node.position = physics.position
+			let v = (physics.position - position).vector
+			let len = v.length
+			let s = len > maxR / 2 ? maxR / 2 / len : 1
+
+			func f(_ r: CGFloat) -> CGFloat {
+				max(0, min(maxR / 2, r)) - maxR / 6 / (max(1, r / maxR / 2)) + maxR / 6
+			}
+
+			if v == .zero {
+				physics.node.position = .zero
+			} else {
+				let vscale = f(len)
+				let scaled = v.normalized() * vscale / 2
+				physics.node.position = scaled.point
+			}
+
+			physics.node.setScale(s)
 			physics.node.zRotation = physics.rotation.radians
 		}
 	}

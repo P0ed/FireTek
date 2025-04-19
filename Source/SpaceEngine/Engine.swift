@@ -21,7 +21,6 @@ final class Engine {
 	private let damageSystem: DamageSystem
 	private let targetSystem: TargetSystem
 	private var aiSystem: AISystem
-	private let cameraSystem: CameraSystem
 	private var weaponSystem: WeaponSystem
 	private let projectileSystem: ProjectileSystem
 	private let lifetimeSystem: LifetimeSystem
@@ -36,7 +35,6 @@ final class Engine {
 		self.state = state
 		self.world = world
 		self.scene = scene
-		let cam = scene.camera!
 
 		spriteSpawnSystem = SpriteSpawnSystem(scene: scene, store: world.sprites)
 		levelSystem = LevelSystem(world: world, state: state)
@@ -55,19 +53,17 @@ final class Engine {
 
 		lootSystem = LootSystem(world: world, collisionsSystem: collisionsSystem)
 
-		cameraSystem = CameraSystem(player: world.sprites[0].sprite, camera: cam)
-		cameraSystem.update()
-
 		hudSystem = HUDSystem(world: world, player: levelSystem.player, hudNode: scene.hud)
 
 		planetarySystem = PlanetarySystem(planets: world.planets, physics: world.physics)
 		renderingSystem = RenderingSystem(
 			world: world,
-			camera: cam,
+			camera: scene.camera!,
 			ref: world.physics.weakRefOf(levelSystem.player)
 		)
 	}
 
+	private var currentTick: Int = 0
 	func simulate() {
 		inputSystem.update()
 		planetarySystem.update()
@@ -76,28 +72,24 @@ final class Engine {
 
 		weaponSystem.update()
 		targetSystem.update()
-
 		projectileSystem.update()
 
 		levelSystem.update()
-		aiSystem.update()
+		aiSystem.update(tick: currentTick)
 
 		hudSystem.update()
-		renderingSystem.update()
 
 		lootSystem.update()
 		lifetimeSystem.update()
+
+		currentTick &+= 1
 	}
 
 	func didFinishUpdate() {
-		cameraSystem.update()
+		renderingSystem.update()
 	}
 }
 
-extension CFTimeInterval {
-	static let timeStep: Self = 1.0 / 60.0
-}
-
-extension MutableProperty {
-	var io: IO<A> { .init(get: { self.value }, set: { self.value = $0 }) }
+extension TimeInterval {
+	static let timeStep: TimeInterval = 1.0 / 60.0
 }

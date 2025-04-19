@@ -11,19 +11,18 @@ final class PlanetarySystem {
 
 	func update() {
 		for index in planets.indices {
-			var planet = planets[index]
+			let planet = planets[index]
 			let planetPosition = planet.position
 
 			if planet.orbit != 0 {
-				planet.angle += planet.velocity
-				planet.sprite.position = planetPosition
-				planets[index] = planet
+				planets[index].angle += planet.velocity
+				physics[planet.physics].position = planetPosition
 			}
 
 			for idx in physics.indices {
 				let p = physics[idx]
 				let r = planetPosition.distance(to: p.position)
-				if r > 40.0, r < 600.0 {
+				if r > 40.0, r < 640.0 {
 					let dv = 96.0 / r / r
 					let v = (planetPosition - p.position).vector.normalized()
 					physics[idx].momentum += v * dv

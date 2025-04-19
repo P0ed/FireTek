@@ -98,3 +98,7 @@ struct RandomGenerator {
 		array[int(upperBound: array.count - 1)]
 	}
 }
+
+extension MutableProperty {
+	var io: IO<A> { .init(get: { self.value }, set: { self.value = $0 }) }
+}

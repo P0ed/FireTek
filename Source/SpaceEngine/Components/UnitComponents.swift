@@ -95,19 +95,6 @@ struct DeadComponent {
 	let killedBy: Entity
 }
 
-struct MapItem {
-
-	enum ItemType {
-		case star
-		case planet
-		case ally
-		case enemy
-	}
-
-	let type: ItemType
-	let node: SKNode
-}
-
 struct Weapon {
 	var type: WeaponType
 	var damage: UInt16

@@ -23,7 +23,7 @@ struct StarSystemData {
 }
 
 struct PlanetComponent {
-	var sprite: SKSpriteNode
+	var physics: ComponentIdx<PhysicsComponent>
 	var orbit: Float
 	var velocity: Float
 	var angle: Float

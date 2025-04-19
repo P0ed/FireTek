@@ -8,8 +8,6 @@ final class HUDSystem {
 	private var playerSprite: WeakRef<SpriteComponent>?
 	private var playerPhysics: WeakRef<PhysicsComponent>?
 
-	private var mapNodes: [(SKNode, SKNode)] = []
-
 	private var playerTarget: WeakRef<TargetComponent>?
 	private var targetStats: WeakRef<Ship>?
 	private var playerStats: WeakRef<Ship>?
@@ -24,35 +22,6 @@ final class HUDSystem {
 		playerPhysics = world.physics.weakRefOf(player)
 		playerTarget = world.targets.weakRefOf(player)
 		playerStats = world.ships.weakRefOf(player)
-
-		disposable.innerDisposable = observeMap(mapItems: world.mapItems)
-	}
-
-	private func observeMap(mapItems: Store<MapItem>) -> Disposable {
-		let d = CompositeDisposable()
-		let map = hudNode.map
-
-		let add = { [unowned self] (idx: Int) in
-			let item = mapItems[idx]
-			let mapSprite = SKShapeNode(circleOfRadius: 1)
-			mapSprite.fillColor = item.type.color
-			mapSprite.strokeColor = .clear
-			mapSprite.zPosition = item.type == .ally ? 2 : item.type == .enemy ? 1 : 0
-			map.addChild(mapSprite)
-			self.mapNodes.append((item.node, mapSprite))
-		}
-
-		mapItems.indices.forEach(add)
-
-		d += mapItems.newComponents.observe(add)
-
-		d += mapItems.removedComponents.observe { [unowned self] _, item in
-			if let idx = self.mapNodes.firstIndex(where: { $0.0 === item.node }) {
-				self.mapNodes.remove(at: idx).1.removeFromParent()
-			}
-		}
-
-		return d
 	}
 
 	func update() {
@@ -66,8 +35,6 @@ final class HUDSystem {
 		updateBar(node: hudNode.weapon2, progress: stats?.secondary.capacitor.normalized ?? 1)
 		updateBar(node: hudNode.capacitor, progress: stats?.reactor.normalized ?? 1)
 		updateBar(node: hudNode.shield, progress: stats?.shield.normalized ?? 1)
-
-		updateMap()
 
 		if let physics = playerPhysics?.value {
 			let x = Int(physics.position.x)
@@ -104,30 +71,5 @@ final class HUDSystem {
 
 	private func updateBar(node: BarNode, progress: CGFloat) {
 		node.progress.size.width = BarNode.size.width * progress
-	}
-
-	private func updateMap() {
-		let playerNode = playerSprite?.value?.sprite
-		guard let center = playerNode?.position else { return mapNodes.forEach { $0.1.isHidden = true } }
-
-		for (node, mapNode) in mapNodes {
-			let pos = node.position
-			let v = (pos - center).vector
-			let l = v.length
-			let s = max(48, l / 32)
-			mapNode.position = (v / s).point
-			mapNode.isHidden = l > 8000
-		}
-	}
-}
-
-extension MapItem.ItemType {
-	var color: SKColor {
-		switch self {
-		case .star: return SKColor(hex: 0x999911)
-		case .planet: return SKColor(hex: 0x119944)
-		case .ally: return SKColor(hex: 0x1122AA)
-		case .enemy: return SKColor(hex: 0xCC1111)
-		}
 	}
 }

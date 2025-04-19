@@ -4,19 +4,15 @@ import SpriteKit
 struct AISystem {
 
 	let world: World
-	var currentTick: Int
 
 	init(world: World) {
 		self.world = world
-		currentTick = 0
 	}
 
-	mutating func update() {
-		if currentTick & 0x7 == 0 {
+	mutating func update(tick: Int) {
+		if tick & 0x7 == 0 {
 //			updateVehicles()
 		}
-
-		currentTick &+= 1
 	}
 
 	private func updateVehicles() {

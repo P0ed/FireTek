@@ -45,13 +45,13 @@ final class LootSystem {
 
 	private func spread(at index: Int, outOf count: Int) -> CGVector {
 		if count == 1 { return .zero }
-		let angle = CGFloat(Double.pi * 2 / Double(count))
+		let angle = CGFloat.pi * 2 / CGFloat(count)
 		let r = CGVector(dx: 0, dy: 12)
 		return r.rotate(angle * CGFloat(index))
 	}
 
 	private func generate(base: Crystal) -> Crystal {
-		switch Int(arc4random_uniform(16)) {
+		switch Int(arc4random_uniform(20)) {
 		case 0...1: return .red
 		case 2...3: return .green
 		case 4...5: return .blue

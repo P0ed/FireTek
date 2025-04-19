@@ -11,7 +11,6 @@ enum SpriteFactory {
 		let spriteNode = SKSpriteNode(texture: texture)
 		spriteNode.position = position
 		spriteNode.entity = entity
-		spriteNode.setScale(0.66)
 		spriteNode.zPosition = 1
 
 		return SpriteComponent(sprite: spriteNode)
@@ -20,15 +19,11 @@ enum SpriteFactory {
 	static func createProjectileSprite(_ entity: Entity, type: WeaponType) -> SpriteComponent {
 		let spriteNode = SKSpriteNode(texture: effects.textureNamed("shell"))
 		spriteNode.entity = entity
-		spriteNode.setScale(0.33)
 		return SpriteComponent(sprite: spriteNode)
 	}
 
-	static func createCrystal(entity: Entity, at position: CGPoint, crystal: Crystal) -> SpriteComponent {
+	static func createCrystal(entity: Entity, crystal: Crystal) -> SpriteComponent {
 		let node = SKSpriteNode(texture: effects.textureNamed("crystal"))
-		node.setScale(0.25)
-		node.entity = entity
-		node.position = position
 		node.entity = entity
 		return SpriteComponent(sprite: node)
 	}

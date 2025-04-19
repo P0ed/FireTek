@@ -26,7 +26,7 @@ final class CollisionsSystem {
 			for j in idx.dropFirst(1 + i) {
 				let jp = phy[j]
 
-				if !ip.category.intersection(jp.category).isEmpty {
+				if !ip.category.intersection(jp.contacts).isEmpty || !ip.contacts.intersection(jp.category).isEmpty {
 					let v = (jp.position - ip.position).vector
 
 					if v.length < 10 {

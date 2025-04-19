@@ -15,7 +15,8 @@ enum ProjectileFactory {
 			position: position,
 			momentum: velocity,
 			rotation: angle,
-			category: team == .blue ? .redShips : .blueShips
+			category: projectile.type == .torpedo ? (team == .blue ? .blueShip : .redShip) : .projectile,
+			contacts: team == .blue ? .redShip : .blueShip
 		)
 		let lifetime = LifetimeComponent(lifetime: 128)
 
