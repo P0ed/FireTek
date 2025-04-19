@@ -24,10 +24,10 @@ final class LootSystem {
 		for index in world.dead.indices {
 			let entity = world.dead.entityAt(index)
 			if let lootIndex = world.loot.indexOf(entity),
-				let spriteIndex = world.sprites.indexOf(entity) {
+				let phyIndex = world.physics.indexOf(entity) {
 				spawnLoot(
 					loot: world.loot[lootIndex],
-					at: world.sprites[spriteIndex].sprite.position
+					at: world.physics[phyIndex].position
 				)
 			}
 		}
@@ -72,6 +72,6 @@ private extension LootSystem {
 		world.entityManager.removeEntity(loot.entity)
 
 		let e = loot.entity == contact.a ? contact.b : contact.a
-		world.sprites.refOf(e)?.value.sprite.run(SoundsFactory.crystalCollected)
+		world.physics.refOf(e)?.value.node.run(SoundsFactory.crystalCollected)
 	}
 }

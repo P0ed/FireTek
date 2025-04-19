@@ -51,7 +51,6 @@
 		5FE124381D5FA4EC00C41BAC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FE1241E1D5FA4EC00C41BAC /* AppDelegate.swift */; };
 		5FE124391D5FA4EC00C41BAC /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5FE1241F1D5FA4EC00C41BAC /* MainMenu.xib */; };
 		5FE1243B1D5FA4EC00C41BAC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5FE124231D5FA4EC00C41BAC /* Assets.xcassets */; };
-		5FE1243F1D5FA4EC00C41BAC /* SpriteComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FE1242C1D5FA4EC00C41BAC /* SpriteComponent.swift */; };
 		5FE124401D5FA4EC00C41BAC /* UnitComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FE1242D1D5FA4EC00C41BAC /* UnitComponents.swift */; };
 		5FE124411D5FA4ED00C41BAC /* InputComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FE1242E1D5FA4EC00C41BAC /* InputComponents.swift */; };
 		5FE124421D5FA4ED00C41BAC /* Engine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FE1242F1D5FA4EC00C41BAC /* Engine.swift */; };
@@ -130,7 +129,6 @@
 		5FE124201D5FA4EC00C41BAC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		5FE124211D5FA4EC00C41BAC /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5FE124231D5FA4EC00C41BAC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		5FE1242C1D5FA4EC00C41BAC /* SpriteComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpriteComponent.swift; sourceTree = "<group>"; };
 		5FE1242D1D5FA4EC00C41BAC /* UnitComponents.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnitComponents.swift; sourceTree = "<group>"; };
 		5FE1242E1D5FA4EC00C41BAC /* InputComponents.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputComponents.swift; sourceTree = "<group>"; };
 		5FE1242F1D5FA4EC00C41BAC /* Engine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Engine.swift; sourceTree = "<group>"; };
@@ -309,7 +307,6 @@
 			isa = PBXGroup;
 			children = (
 				5FE1242D1D5FA4EC00C41BAC /* UnitComponents.swift */,
-				5FE1242C1D5FA4EC00C41BAC /* SpriteComponent.swift */,
 				5F53F3BB1D6F94610077B2A0 /* PhysicsComponent.swift */,
 				5F428C7E1D6886160075FA6B /* HPComponent.swift */,
 				5FE1242E1D5FA4EC00C41BAC /* InputComponents.swift */,
@@ -462,7 +459,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				5F9C497E2DB009F5000336D8 /* RenderingSystem.swift in Sources */,
-				5FE1243F1D5FA4EC00C41BAC /* SpriteComponent.swift in Sources */,
 				5FFFB4521DDD929500DAD69A /* BarNode.swift in Sources */,
 				5F77832D1D7A04F50027FFED /* CollisionsSystem.swift in Sources */,
 				5F2B51E91D6F71BC00AF62A1 /* InputSystem.swift in Sources */,

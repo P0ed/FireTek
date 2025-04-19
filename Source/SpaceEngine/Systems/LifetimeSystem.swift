@@ -20,8 +20,16 @@ final class LifetimeSystem {
 			lifetime[index].lifetime -= 1
 		}
 
-		lifetime.removeEntities { _, component in
-			component.lifetime == 0
+		lifetime.removeEntities { e, component in
+			let isExpired = component.lifetime == 0
+			if isExpired, let p = world.projectiles.weakRefOf(e) {
+
+				if p.value?.type == .torpedo, let ph = world.physics.weakRefOf(e)?.value {
+					EffectsFactory.createShellExplosion(world: world, at: ph.position, angle: ph.rotation - .pi)
+				}
+			}
+
+			return isExpired
 		}
 	}
 

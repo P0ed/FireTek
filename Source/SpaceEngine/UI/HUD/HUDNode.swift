@@ -17,6 +17,7 @@ final class HUDNode: SKNode {
 		message.horizontalAlignmentMode = .right
 		message.verticalAlignmentMode = .top
 		message.fontSize = 8
+		message.numberOfLines = 8
 		message.fontName = "Menlo"
 
 		capacitor.label.text = "||"

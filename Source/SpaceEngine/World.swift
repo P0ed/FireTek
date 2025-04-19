@@ -2,7 +2,6 @@ import Fx
 
 final class World {
 	let entityManager: EntityManager
-	let sprites: Store<SpriteComponent>
 	let physics: Store<PhysicsComponent>
 	let shipRefs: Store<ShipRef>
 	let ships: Store<Ship>
@@ -19,7 +18,6 @@ final class World {
 
 	init() {
 		entityManager = EntityManager()
-		sprites = entityManager.makeStore()
 		physics = entityManager.makeStore()
 		shipRefs = entityManager.makeStore()
 		ships = entityManager.makeStore()

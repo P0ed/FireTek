@@ -8,10 +8,10 @@ enum ProjectileFactory {
 
 		let sprite = SpriteFactory.createProjectileSprite(entity, type: projectile.type)
 
-		sprite.sprite.run(SoundsFactory.cannon)
+		sprite.run(SoundsFactory.cannon)
 
 		let physics = PhysicsComponent(
-			node: sprite.sprite,
+			node: sprite,
 			position: position,
 			momentum: velocity,
 			rotation: angle,
@@ -20,7 +20,6 @@ enum ProjectileFactory {
 		)
 		let lifetime = LifetimeComponent(lifetime: projectile.type == .torpedo ? 320 : 120)
 
-		world.sprites.add(component: sprite, to: entity)
 		world.physics.add(component: physics, to: entity)
 		world.projectiles.add(component: projectile, to: entity)
 		world.lifetime.add(component: lifetime, to: entity)

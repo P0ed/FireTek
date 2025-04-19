@@ -98,8 +98,8 @@ extension GameState {
 		Weapon(
 			rarity: rarity,
 			type: .torpedo,
-			damage: 48 + rarity.n * 2,
-			velocity: 200,
+			damage: 64 + rarity.n * 2,
+			velocity: 280,
 			cooldown: 40,
 			recharge: 20
 		)
@@ -195,77 +195,4 @@ extension GameState.Crew {
 		"Thessa of the Blight",
 		"Voidbringer Selix"
 	]
-}
-
-extension StarSystemData {
-
-	static func generate() -> StarSystemData {
-		StarSystemData(
-			planets: [
-				Planet(
-					radius: 24,
-					color: .red,
-					orbit: 0,
-					velocity: 0,
-					angle: 0
-				),
-				Planet(
-					radius: 12,
-					color: .cyan,
-					orbit: 800,
-					velocity: 0.00021,
-					angle: 0.2
-				),
-				Planet(
-					radius: 14,
-					color: .yellow,
-					orbit: 1100,
-					velocity: 0.00013,
-					angle: 2.5
-				),
-				Planet(
-					radius: 20,
-					color: .green,
-					orbit: 1400,
-					velocity: 0.00008,
-					angle: 4.1
-				),
-				Planet(
-					radius: 16,
-					color: .orange,
-					orbit: 1700,
-					velocity: 0.00005,
-					angle: 2.9
-				),
-				Planet(
-					radius: 18,
-					color: .cyan,
-					orbit: 1900,
-					velocity: 0.00004,
-					angle: 5.9
-				),
-				Planet(
-					radius: 16,
-					color: .blue,
-					orbit: 2200,
-					velocity: 0.00004,
-					angle: 4.4
-				),
-				Planet(
-					radius: 18,
-					color: .orange,
-					orbit: 2500,
-					velocity: 0.00003,
-					angle: 8.0
-				),
-				Planet(
-					radius: 14,
-					color: .green,
-					orbit: 2800,
-					velocity: 0.00003,
-					angle: 2.3
-				)
-			]
-		)
-	}
 }

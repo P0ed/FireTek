@@ -5,14 +5,14 @@ struct SpriteSpawnSystem {
 
 	let disposable = CompositeDisposable()
 
-	init(scene: SKScene, store: Store<SpriteComponent>) {
+	init(scene: SKScene, store: Store<PhysicsComponent>) {
 
 		disposable += store.newComponents.observe { [unowned scene] index in
-			scene.addChild(store[index].sprite)
+			scene.addChild(store[index].node)
 		}
 
 		disposable += store.removedComponents.observe { entity, component in
-			component.sprite.removeFromParent()
+			component.node.removeFromParent()
 		}
 	}
 }

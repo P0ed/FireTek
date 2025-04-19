@@ -2,7 +2,6 @@ import Fx
 import SpriteKit
 
 struct ShipRef {
-	let sprite: ComponentIdx<SpriteComponent>
 	let physics: ComponentIdx<PhysicsComponent>
 	let input: ComponentIdx<InputComponent>
 	let ship: ComponentIdx<Ship>

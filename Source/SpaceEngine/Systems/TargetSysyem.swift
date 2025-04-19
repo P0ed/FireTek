@@ -33,11 +33,11 @@ final class TargetSystem {
 			pressed = true
 
 			let target = world.shipRefs.first { ship in
-				let e = world.sprites.entityAt(ship.sprite.box.value)
+				let e = world.physics.entityAt(ship.physics.box.value)
 				return e != player && e != playerTarget?.target
 			}
 			.map {
-				world.sprites.entityAt($0.sprite.box.value)
+				world.physics.entityAt($0.physics.box.value)
 			}
 			if let target, let idx = playerTargetIndex {
 				world.targets[idx].target = target

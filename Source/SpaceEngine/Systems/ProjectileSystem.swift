@@ -69,8 +69,7 @@ private extension ProjectileSystem {
 		let projectileComponent = projectile.value
 		world.entityManager.removeEntity(projectile.entity)
 
-		let transform = Transform(point: contact.point, vector: contact.normal)
-		EffectsFactory.createShellExplosion(world: world, at: transform)
+		EffectsFactory.createShellExplosion(world: world, at: contact.point, angle: contact.normal.angle)
 
 		if let shipRef = world.shipRefs.first(contact.a, contact.b) {
 			damageSystem.damage(

@@ -36,7 +36,7 @@ final class Engine {
 		self.world = world
 		self.scene = scene
 
-		spriteSpawnSystem = SpriteSpawnSystem(scene: scene, store: world.sprites)
+		spriteSpawnSystem = SpriteSpawnSystem(scene: scene, store: world.physics)
 		levelSystem = LevelSystem(world: world, state: state)
 		physicsSystem = PhysicsSystem(world: world)
 		collisionsSystem = CollisionsSystem(world: world)

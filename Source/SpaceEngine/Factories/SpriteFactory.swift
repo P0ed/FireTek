@@ -4,28 +4,27 @@ enum SpriteFactory {
 	static let effects = SKTextureAtlas(named: "Effects")
 	static let space = SKTextureAtlas(named: "Space")
 
-	static func createShipSprite(_ entity: Entity, at position: CGPoint) -> SpriteComponent {
+	static func createShipSprite(_ entity: Entity) -> SKNode {
 		let texture = SKTexture(imageNamed: "Intruder")
 		texture.filteringMode = .nearest
 
 		let spriteNode = SKSpriteNode(texture: texture)
-		spriteNode.position = position
 		spriteNode.entity = entity
 		spriteNode.zPosition = 1
 
-		return SpriteComponent(sprite: spriteNode)
+		return spriteNode
 	}
 
-	static func createProjectileSprite(_ entity: Entity, type: WeaponType) -> SpriteComponent {
+	static func createProjectileSprite(_ entity: Entity, type: WeaponType) -> SKNode {
 		let spriteNode = SKSpriteNode(texture: effects.textureNamed("shell"))
 		spriteNode.entity = entity
-		return SpriteComponent(sprite: spriteNode)
+		return spriteNode
 	}
 
-	static func createCrystal(entity: Entity, crystal: Crystal) -> SpriteComponent {
+	static func createCrystal(entity: Entity, crystal: Crystal) -> SKNode {
 		let node = SKSpriteNode(texture: effects.textureNamed("crystal"))
 		node.entity = entity
-		return SpriteComponent(sprite: node)
+		return node
 	}
 }
 
@@ -63,12 +62,13 @@ extension SpriteFactory {
 extension StarSystemData.PlanetColor {
 	var color: SKColor {
 		switch self {
-		case .red:		return SKColor(hex: 0xAA0000)
-		case .green:	return SKColor(hex: 0x00AA00)
-		case .blue:		return SKColor(hex: 0x0000AA)
-		case .yellow:	return SKColor(hex: 0xCCCC00)
-		case .orange:	return SKColor(hex: 0xCC7700)
-		case .cyan:		return SKColor(hex: 0x00AA99)
+		case .red:		SKColor(hex: 0xAA0000)
+		case .green:	SKColor(hex: 0x00AA00)
+		case .blue:		SKColor(hex: 0x0000AA)
+		case .yellow:	SKColor(hex: 0xCCCC00)
+		case .orange:	SKColor(hex: 0xCC7700)
+		case .cyan:		SKColor(hex: 0x00AA99)
+		case .magenta: 	SKColor(hex: 0xEE00DD)
 		}
 	}
 }

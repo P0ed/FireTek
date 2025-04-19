@@ -5,7 +5,6 @@ final class HUDSystem {
 	private let world: World
 	private let hudNode: HUDNode
 
-	private var playerSprite: WeakRef<SpriteComponent>?
 	private var playerPhysics: WeakRef<PhysicsComponent>?
 
 	private var playerTarget: WeakRef<TargetComponent>?
@@ -18,7 +17,6 @@ final class HUDSystem {
 		self.world = world
 		self.hudNode = hudNode
 
-		playerSprite = world.sprites.weakRefOf(player)
 		playerPhysics = world.physics.weakRefOf(player)
 		playerTarget = world.targets.weakRefOf(player)
 		playerStats = world.ships.weakRefOf(player)
@@ -43,7 +41,7 @@ final class HUDSystem {
 			let dx = Int(physics.momentum.dx * 60)
 			let dy = Int(physics.momentum.dy * 60)
 
-			hudNode.message.text = "x: \(x), y: \(y), dx: \(dx), dy: \(dy) \(physics.rotation)"
+			hudNode.message.text = "x: \(x), y: \(y)\ndx: \(dx), dy: \(dy)\na: \(physics.rotation)"
 		}
 	}
 

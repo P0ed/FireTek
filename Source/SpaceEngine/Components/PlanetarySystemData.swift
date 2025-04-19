@@ -17,6 +17,7 @@ struct StarSystemData {
 		case cyan
 		case yellow
 		case orange
+		case magenta
 	}
 
 	var planets: [Planet]
