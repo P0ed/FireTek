@@ -33,7 +33,7 @@ struct PhysicsSystem {
 			physics.position += physics.rotation.vector * CGFloat(ship.engine.warp) * mul
 			physics.momentum = physics.momentum * 0.97
 
-			if ship.engine.driving & 0x1F == 0 { physics.node.run(SoundsFactory.warp) }
+			if ship.engine.driving & 0x1F == 0 { physics.node.run(.play(.warp)) }
 			ship.engine.driving &+= 1
 		} else if ship.engine.driving != 0 {
 			ship.engine.driving = 0
@@ -47,16 +47,20 @@ struct PhysicsSystem {
 	}
 
 	private func apply(physics: inout PhysicsComponent) {
-		if !physics.category.contains(.projectile), physics.momentum.length > 3.3 {
-			physics.momentum = physics.momentum.normalized * 3.3
+		if !physics.category.contains(.projectile), physics.momentum.length > .vMax {
+			physics.momentum = physics.momentum.normalized * .vMax
 		}
 		physics.position += physics.momentum
 	}
 
 	private func chargeBanks(ship: inout Ship) {
 		ship.reactor.charge()
-		ship.shield.charge(from: &ship.reactor)
 		ship.primary.capacitor.charge(from: &ship.reactor)
 		ship.secondary.capacitor.charge(from: &ship.reactor)
+		ship.shield.charge(from: &ship.reactor)
 	}
+}
+
+extension CGFloat {
+	static var vMax: CGFloat { 3.3 }
 }

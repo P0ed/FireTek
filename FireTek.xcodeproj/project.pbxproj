@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		5F039FA41DC6227200AC45C8 /* EffectsFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F039FA31DC6227200AC45C8 /* EffectsFactory.swift */; };
 		5F039FA61DC6284400AC45C8 /* VFX.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 5F039FA51DC6284400AC45C8 /* VFX.atlas */; };
-		5F039FB31DC6481100AC45C8 /* SoundsFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F039FB21DC6481100AC45C8 /* SoundsFactory.swift */; };
+		5F039FB31DC6481100AC45C8 /* Sounds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F039FB21DC6481100AC45C8 /* Sounds.swift */; };
 		5F082FEF1D60D8B400DE34DC /* TileMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F082FEE1D60D8B400DE34DC /* TileMap.swift */; };
 		5F0F8B861E476A1F001EF757 /* PlanetarySystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F0F8B851E476A1F001EF757 /* PlanetarySystem.swift */; };
 		5F0F8B881E476E5B001EF757 /* PlanetarySystemData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F0F8B871E476E5B001EF757 /* PlanetarySystemData.swift */; };
@@ -60,7 +60,6 @@
 		5FFF82EC1DCC863D007EFAAD /* Boom2.wav in Resources */ = {isa = PBXBuildFile; fileRef = 5FFF82E81DCC863D007EFAAD /* Boom2.wav */; };
 		5FFF82ED1DCC863D007EFAAD /* Cannon0.wav in Resources */ = {isa = PBXBuildFile; fileRef = 5FFF82E91DCC863D007EFAAD /* Cannon0.wav */; };
 		5FFFB44E1DDD925300DAD69A /* HUDNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FFFB44D1DDD925300DAD69A /* HUDNode.swift */; };
-		5FFFB4521DDD929500DAD69A /* BarNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FFFB4511DDD929500DAD69A /* BarNode.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -78,7 +77,7 @@
 /* Begin PBXFileReference section */
 		5F039FA31DC6227200AC45C8 /* EffectsFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EffectsFactory.swift; sourceTree = "<group>"; };
 		5F039FA51DC6284400AC45C8 /* VFX.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = VFX.atlas; sourceTree = "<group>"; };
-		5F039FB21DC6481100AC45C8 /* SoundsFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SoundsFactory.swift; sourceTree = "<group>"; };
+		5F039FB21DC6481100AC45C8 /* Sounds.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sounds.swift; sourceTree = "<group>"; };
 		5F082FEE1D60D8B400DE34DC /* TileMap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TileMap.swift; sourceTree = "<group>"; };
 		5F0F8B851E476A1F001EF757 /* PlanetarySystem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlanetarySystem.swift; sourceTree = "<group>"; };
 		5F0F8B871E476E5B001EF757 /* PlanetarySystemData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlanetarySystemData.swift; sourceTree = "<group>"; };
@@ -132,7 +131,6 @@
 		5FFF82E81DCC863D007EFAAD /* Boom2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Boom2.wav; sourceTree = "<group>"; };
 		5FFF82E91DCC863D007EFAAD /* Cannon0.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Cannon0.wav; sourceTree = "<group>"; };
 		5FFFB44D1DDD925300DAD69A /* HUDNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HUDNode.swift; sourceTree = "<group>"; };
-		5FFFB4511DDD929500DAD69A /* BarNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BarNode.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -176,7 +174,7 @@
 				5F428C861D68B2D30075FA6B /* SpriteFactory.swift */,
 				5F6EECAF1D776CA10089A0AB /* ProjectileFactory.swift */,
 				5F039FA31DC6227200AC45C8 /* EffectsFactory.swift */,
-				5F039FB21DC6481100AC45C8 /* SoundsFactory.swift */,
+				5F039FB21DC6481100AC45C8 /* Sounds.swift */,
 				5F0F8B891E477C20001EF757 /* StarSystemFactory.swift */,
 			);
 			path = Factories;
@@ -203,7 +201,7 @@
 		5F52FFA82DB11D4F00C57350 /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				5FFFB44A1DDD924100DAD69A /* HUD */,
+				5FFFB44D1DDD925300DAD69A /* HUDNode.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -270,8 +268,8 @@
 				5FE124341D5FA4EC00C41BAC /* SpaceScene.swift */,
 				5F440AD01F6D54220036189E /* GameState.swift */,
 				5F2F9F3C1D7331E60016AA2F /* Math.swift */,
-				5F35E8A02BE6322500EF3CA0 /* Core.swift */,
 				5F428C8C1D69039C0075FA6B /* World.swift */,
+				5F35E8A02BE6322500EF3CA0 /* Core.swift */,
 			);
 			path = SpaceEngine;
 			sourceTree = "<group>";
@@ -327,15 +325,6 @@
 				5F082FEE1D60D8B400DE34DC /* TileMap.swift */,
 			);
 			path = "Terrain Generator";
-			sourceTree = "<group>";
-		};
-		5FFFB44A1DDD924100DAD69A /* HUD */ = {
-			isa = PBXGroup;
-			children = (
-				5FFFB44D1DDD925300DAD69A /* HUDNode.swift */,
-				5FFFB4511DDD929500DAD69A /* BarNode.swift */,
-			);
-			path = HUD;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -425,7 +414,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				5F9C497E2DB009F5000336D8 /* RenderingSystem.swift in Sources */,
-				5FFFB4521DDD929500DAD69A /* BarNode.swift in Sources */,
 				5F77832D1D7A04F50027FFED /* CollisionsSystem.swift in Sources */,
 				5F2B51E91D6F71BC00AF62A1 /* InputSystem.swift in Sources */,
 				5F428C8D1D69039C0075FA6B /* World.swift in Sources */,
@@ -460,7 +448,7 @@
 				5FFFB44E1DDD925300DAD69A /* HUDNode.swift in Sources */,
 				5F0F8B861E476A1F001EF757 /* PlanetarySystem.swift in Sources */,
 				5F6EECB01D776CA10089A0AB /* ProjectileFactory.swift in Sources */,
-				5F039FB31DC6481100AC45C8 /* SoundsFactory.swift in Sources */,
+				5F039FB31DC6481100AC45C8 /* Sounds.swift in Sources */,
 				5F6EECAC1D775C120089A0AB /* WeaponSystem.swift in Sources */,
 				5FDF95CF1DBEA1DE009E11DA /* ProjectileSystem.swift in Sources */,
 				5FE124461D5FA4ED00C41BAC /* General.swift in Sources */,

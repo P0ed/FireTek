@@ -10,7 +10,7 @@ enum EffectsFactory {
 		let sprite = SKSpriteNode(texture: textures.first)
 		sprite.run(.group([
 			.animate(with: textures, timePerFrame: 0.1),
-			SoundsFactory.explosion
+			.play(.blasterHit)
 		]))
 
 		world.physics.add(component: PhysicsComponent(node: sprite, position: position, rotation: angle), to: entity)
@@ -29,7 +29,7 @@ enum EffectsFactory {
 
 		sprite.run(.group([
 			.animate(with: textures, timePerFrame: 0.1),
-			SoundsFactory.vehicleExplosion
+			.play(.explosion)
 		]))
 
 		world.physics.add(component: PhysicsComponent(node: sprite, position: position, rotation: angle), to: entity)

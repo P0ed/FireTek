@@ -35,9 +35,9 @@ final class HUDSystem {
 		updateBar(node: hudNode.targetCore, progress: targetStats?.value.map { CGFloat($0.hp.core) / CGFloat($0.hp.maxStructure) })
 		updateBar(node: hudNode.targetShield, progress: targetStats?.value?.shield.normalized)
 
-		updateBar(node: hudNode.weapon1, progress: stats?.primary.capacitor.normalized ?? 1)
-		updateBar(node: hudNode.weapon2, progress: stats?.secondary.capacitor.normalized ?? 1)
-		updateBar(node: hudNode.capacitor, progress: stats?.reactor.normalized ?? 1)
+		updateBar(node: hudNode.weapon1, progress: stats?.primary.capacitor.normalized)
+		updateBar(node: hudNode.weapon2, progress: stats?.secondary.capacitor.normalized)
+		updateBar(node: hudNode.capacitor, progress: stats?.reactor.normalized)
 
 		if let physics = playerPhysics?.value {
 			let x = Int(physics.position.x)
@@ -45,7 +45,7 @@ final class HUDSystem {
 			let dx = Int(physics.momentum.dx * 60)
 			let dy = Int(physics.momentum.dy * 60)
 
-			updateBar(node: hudNode.impulse, progress: min(1, physics.momentum.length / 3.3))
+			updateBar(node: hudNode.impulse, progress: min(1, physics.momentum.length / .vMax))
 
 			hudNode.message.text = "x: \(x), y: \(y)\ndx: \(dx), dy: \(dy)\na: \(physics.rotation)"
 		}

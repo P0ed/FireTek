@@ -72,6 +72,6 @@ private extension LootSystem {
 		world.entityManager.removeEntity(loot.entity)
 
 		let e = loot.entity == contact.a ? contact.b : contact.a
-		world.physics.refOf(e)?.value.node.run(SoundsFactory.crystalCollected)
+		world.physics.refOf(e)?.value.node.run(.play(.crystalCollected))
 	}
 }

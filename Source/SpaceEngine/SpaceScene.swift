@@ -12,7 +12,7 @@ final class SpaceScene: Scene {
 		scene.scaleMode = .aspectFit
 		scene.backgroundColor = .black
 
-		SoundsFactory.preheat()
+		_ = Sound.sounds
 
 		return scene
 	}

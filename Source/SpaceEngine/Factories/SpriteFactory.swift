@@ -4,7 +4,7 @@ enum SpriteFactory {
 	static let effects = SKTextureAtlas(named: "VFX")
 
 	static func createShipSprite(_ entity: Entity) -> SKNode {
-		let texture = SKTexture(imageNamed: "Intruder")
+		let texture = effects.textureNamed("Intruder")
 		texture.filteringMode = .nearest
 
 		let spriteNode = SKSpriteNode(texture: texture)

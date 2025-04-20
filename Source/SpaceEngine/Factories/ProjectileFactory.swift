@@ -8,7 +8,7 @@ enum ProjectileFactory {
 
 		let sprite = SpriteFactory.createProjectileSprite(entity, type: projectile.type)
 
-		sprite.run(SoundsFactory.cannon)
+		sprite.run(.play(.blaster))
 
 		let physics = PhysicsComponent(
 			node: sprite,
