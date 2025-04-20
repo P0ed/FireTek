@@ -11,7 +11,7 @@ enum UnitFactory {
 		let physics = PhysicsComponent(
 			node: sprite,
 			position: position,
-			category: team == .blue ? .blueShip : .redShip,
+			category: .ship.union(team == .blue ? .blu : .red),
 			contacts: .crystal
 		)
 		let shipRef = ShipRef(

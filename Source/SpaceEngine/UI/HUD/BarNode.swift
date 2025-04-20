@@ -10,8 +10,8 @@ final class BarNode: SKNode {
 
 	init(alignment: SKLabelHorizontalAlignmentMode, text: String) {
 		self.alignment = alignment
-		background = SKSpriteNode(color: SKColor(white: 0.3, alpha: 0.4), size: Self.size)
-		progress = SKSpriteNode(color: SKColor(white: 0.7, alpha: 0.8), size: Self.size)
+		background = SKSpriteNode(color: SKColor(white: 0.3, alpha: 0.3), size: Self.size)
+		progress = SKSpriteNode(color: SKColor(white: 0.8, alpha: 0.8), size: Self.size)
 		label = SKLabelNode()
 		label.horizontalAlignmentMode = alignment
 		label.verticalAlignmentMode = .center
@@ -26,7 +26,7 @@ final class BarNode: SKNode {
 
 		[background, progress, label].forEach(addChild)
 	}
-	
+
 	required init?(coder aDecoder: NSCoder) { fatalError() }
 
 	func layout(size: CGSize) {

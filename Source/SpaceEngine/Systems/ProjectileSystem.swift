@@ -51,11 +51,13 @@ final class ProjectileSystem {
 			if case .torpedo = projectile.type,
 			   let target = projectile.target,
 			   let idx = physics.indexOf(target) {
-				let tpos = physics[idx].position
-				let pos = physics[unit.physics].position
-				let v = (tpos - pos).vector
-				let dv = (v + physics[idx].momentum * min(1, v.length)).normalized / 4
-				physics[unit.physics].momentum += dv
+
+				let phy = physics[unit.physics]
+				let tphy = physics[idx]
+				let v = (tphy.position - phy.position).vector
+				let m = (phy.momentum + v.normalized / 6).normalized * phy.momentum.length
+				physics[unit.physics].momentum = m
+				physics[unit.physics].rotation = m.angle - .pi / 2
 			}
 		}
 	}

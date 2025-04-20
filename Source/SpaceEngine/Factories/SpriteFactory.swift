@@ -1,8 +1,7 @@
 import SpriteKit
 
 enum SpriteFactory {
-	static let effects = SKTextureAtlas(named: "Effects")
-	static let space = SKTextureAtlas(named: "Space")
+	static let effects = SKTextureAtlas(named: "VFX")
 
 	static func createShipSprite(_ entity: Entity) -> SKNode {
 		let texture = SKTexture(imageNamed: "Intruder")
@@ -57,7 +56,7 @@ extension SpriteFactory {
 extension SpriteFactory {
 
 	static func createPlanet(entity: Entity, data: StarSystemData.Planet) -> SKSpriteNode {
-		let node = SKSpriteNode(texture: space.textureNamed("Planet"))
+		let node = SKSpriteNode(texture: effects.textureNamed("Planet"))
 		node.size = CGSize(width: CGFloat(data.radius * 2), height: CGFloat(data.radius * 2))
 		node.color = data.color.color
 		node.colorBlendFactor = 0.5

@@ -15,10 +15,10 @@ enum ProjectileFactory {
 			position: position,
 			momentum: velocity,
 			rotation: angle,
-			category: projectile.type == .torpedo ? (team == .blue ? Category.blueShip : Category.redShip) : Category.projectile,
-			contacts: (team == .blue ? Category.redShip : Category.blueShip)
+			category: .projectile.union(projectile.type == .torpedo ? team?.category ?? [] : []),
+			contacts: team?.opposite.category ?? [.blu, .red]
 		)
-		let lifetime = LifetimeComponent(lifetime: projectile.type == .torpedo ? 320 : 120)
+		let lifetime = LifetimeComponent(lifetime: projectile.type == .torpedo ? 360 : 180)
 
 		world.physics.add(component: physics, to: entity)
 		world.projectiles.add(component: projectile, to: entity)
@@ -26,4 +26,9 @@ enum ProjectileFactory {
 
 		return entity
 	}
+}
+
+extension Team {
+	var opposite: Team { self == .blue ? .red : .blue }
+	var category: Category { self == .blue ? .blu : .red }
 }

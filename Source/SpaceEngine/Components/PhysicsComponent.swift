@@ -15,11 +15,10 @@ struct Category: OptionSet {
 
 	static var zero: Category { .init(rawValue: 0) }
 
-	static var blueShip: Category { .init(rawValue: 1 << 0) }
-	static var redShip: Category { .init(rawValue: 1 << 1) }
+	static var blu: Category { .init(rawValue: 1 << 0) }
+	static var red: Category { .init(rawValue: 1 << 1) }
 
-	static var projectile: Category { .init(rawValue: 1 << 2) }
-	static var crystal: Category { .init(rawValue: 1 << 3) }
-
-	static var ships: Category { [.blueShip, .redShip] }
+	static var ship: Category { .init(rawValue: 1 << 2) }
+	static var projectile: Category { .init(rawValue: 1 << 3) }
+	static var crystal: Category { .init(rawValue: 1 << 4) }
 }
