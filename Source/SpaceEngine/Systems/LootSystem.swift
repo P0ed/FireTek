@@ -2,7 +2,6 @@ import SpriteKit
 import Fx
 
 final class LootSystem {
-
 	fileprivate let world: World
 	private let collisionsSystem: CollisionsSystem
 	private let disposable = CompositeDisposable()

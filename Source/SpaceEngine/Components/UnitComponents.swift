@@ -3,7 +3,7 @@ import SpriteKit
 
 struct ShipRef {
 	let physics: ComponentIdx<PhysicsComponent>
-	let input: ComponentIdx<InputComponent>
+	let input: ComponentIdx<Input>
 	let ship: ComponentIdx<Ship>
 }
 
@@ -77,7 +77,7 @@ struct TargetComponent {
 }
 
 enum Team {
-	case blue
+	case blu
 	case red
 }
 

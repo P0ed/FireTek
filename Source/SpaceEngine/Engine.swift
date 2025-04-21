@@ -26,7 +26,9 @@ final class Engine {
 	private let lootSystem: LootSystem
 	private let hudSystem: HUDSystem
 	private let planetarySystem: PlanetarySystem
+	private let messageSystem: MessageSystem
 	private let renderingSystem: RenderingSystem
+	private let inputController: InputController
 
 	init(scene: SpaceScene, input: InputController) {
 		let state = GameState.make()
@@ -34,9 +36,12 @@ final class Engine {
 		self.state = state
 		self.world = world
 		self.scene = scene
+		self.inputController = input
 
+		messageSystem = MessageSystem(world: world)
 		renderingSystem = RenderingSystem(world: world, scene: scene)
 		levelSystem = LevelSystem(world: world, state: state)
+		messageSystem.setup(player: levelSystem.player)
 		renderingSystem.ref = world.physics.weakRefOf(levelSystem.player)
 
 		planetarySystem = PlanetarySystem(planets: world.planets, physics: world.physics)
@@ -47,32 +52,28 @@ final class Engine {
 		damageSystem = DamageSystem(world: world)
 		projectileSystem = ProjectileSystem(world: world, collisionsSystem: collisionsSystem, damageSystem: damageSystem)
 
-		inputSystem = InputSystem(world: world, player: levelSystem.player, inputController: input)
-		targetSystem = TargetSystem(world: world, player: levelSystem.player, inputController: input)
+		inputSystem = InputSystem(world: world, player: levelSystem.player)
+		targetSystem = TargetSystem(world: world, player: levelSystem.player)
 		aiSystem = AISystem(world: world)
-
+		hudSystem = HUDSystem(world: world, player: levelSystem.player, hudNode: scene.hud)
 		lifetimeSystem = LifetimeSystem(world: world)
 		lootSystem = LootSystem(world: world, collisionsSystem: collisionsSystem)
-
-		hudSystem = HUDSystem(world: world, player: levelSystem.player, hudNode: scene.hud)
 	}
 
 	private var currentTick: Int = 0
 	func simulate() {
-		inputSystem.update()
+		var input = inputController.readInput()
+		messageSystem.update(input: &input)
+		inputSystem.update(input: input)
 		planetarySystem.update()
 		physicsSystem.update()
 		collisionsSystem.update()
-
 		weaponSystem.update()
-		targetSystem.update()
+		targetSystem.update(input: input)
 		projectileSystem.update()
-
 		levelSystem.update()
 		aiSystem.update(tick: currentTick)
-
-		hudSystem.update()
-
+		hudSystem.update(message: messageSystem.message.text)
 		lootSystem.update()
 		lifetimeSystem.update()
 

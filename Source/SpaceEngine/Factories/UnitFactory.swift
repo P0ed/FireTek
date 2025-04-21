@@ -11,7 +11,7 @@ enum UnitFactory {
 		let physics = PhysicsComponent(
 			node: sprite,
 			position: position,
-			category: .ship.union(team == .blue ? .blu : .red),
+			category: .ship.union(team.category),
 			contacts: .crystal
 		)
 		let shipRef = ShipRef(
@@ -20,8 +20,8 @@ enum UnitFactory {
 			ship: world.ships.sharedIndexAt § world.ships.add(component: data.stats, to: entity)
 		)
 
+		world.messages.add(component: Message(text: data.text), to: entity)
 		world.shipRefs.add(component: shipRef, to: entity)
-		world.team.add(component: team, to: entity)
 		world.targets.add(component: .init(), to: entity)
 		world.loot.add(component: LootComponent(crystal: .orange, count: 3), to: entity)
 
@@ -61,7 +61,7 @@ enum UnitFactory {
 
 		world.physics.add(component: physics, to: entity)
 		world.crystals.add(component: crystal, to: entity)
-		world.lifetime.add(component: LifetimeComponent(lifetime: 640), to: entity)
+		world.lifetime.add(component: LifetimeComponent(lifetime: 900), to: entity)
 
 		return entity
 	}

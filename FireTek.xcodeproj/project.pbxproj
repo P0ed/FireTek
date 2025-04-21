@@ -20,7 +20,6 @@
 		5F2F9F3D1D7331E60016AA2F /* Math.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F2F9F3C1D7331E60016AA2F /* Math.swift */; };
 		5F35E89D2BE50A3E00EF3CA0 /* Fx in Frameworks */ = {isa = PBXBuildFile; productRef = 5F35E89C2BE50A3E00EF3CA0 /* Fx */; };
 		5F35E8A12BE6322500EF3CA0 /* Core.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F35E8A02BE6322500EF3CA0 /* Core.swift */; };
-		5F428C7F1D6886160075FA6B /* HPComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F428C7E1D6886160075FA6B /* HPComponent.swift */; };
 		5F428C811D688DB00075FA6B /* AIComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F428C801D688DB00075FA6B /* AIComponents.swift */; };
 		5F428C851D68A4EC0075FA6B /* UnitFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F428C841D68A4EC0075FA6B /* UnitFactory.swift */; };
 		5F428C871D68B2D30075FA6B /* SpriteFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F428C861D68B2D30075FA6B /* SpriteFactory.swift */; };
@@ -37,6 +36,7 @@
 		5F6EECAC1D775C120089A0AB /* WeaponSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F6EECAB1D775C120089A0AB /* WeaponSystem.swift */; };
 		5F6EECB01D776CA10089A0AB /* ProjectileFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F6EECAF1D776CA10089A0AB /* ProjectileFactory.swift */; };
 		5F77832D1D7A04F50027FFED /* CollisionsSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F77832C1D7A04F50027FFED /* CollisionsSystem.swift */; };
+		5F8127982DB62F10009B01E2 /* MessageSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F8127972DB62F0B009B01E2 /* MessageSystem.swift */; };
 		5F83F144209E14C300B0C3D4 /* GameStateFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F83F143209E14C300B0C3D4 /* GameStateFactory.swift */; };
 		5F9C497C2DAEF0E3000336D8 /* warp.wav in Resources */ = {isa = PBXBuildFile; fileRef = 5F9C497B2DAEF0E3000336D8 /* warp.wav */; };
 		5F9C497E2DB009F5000336D8 /* RenderingSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F9C497D2DB009F0000336D8 /* RenderingSystem.swift */; };
@@ -87,7 +87,6 @@
 		5F2F9F3A1D7328380016AA2F /* AISystem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AISystem.swift; sourceTree = "<group>"; };
 		5F2F9F3C1D7331E60016AA2F /* Math.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Math.swift; sourceTree = "<group>"; };
 		5F35E8A02BE6322500EF3CA0 /* Core.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Core.swift; sourceTree = "<group>"; };
-		5F428C7E1D6886160075FA6B /* HPComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HPComponent.swift; sourceTree = "<group>"; };
 		5F428C801D688DB00075FA6B /* AIComponents.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AIComponents.swift; sourceTree = "<group>"; };
 		5F428C841D68A4EC0075FA6B /* UnitFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnitFactory.swift; sourceTree = "<group>"; };
 		5F428C861D68B2D30075FA6B /* SpriteFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpriteFactory.swift; sourceTree = "<group>"; };
@@ -104,6 +103,7 @@
 		5F6EECAB1D775C120089A0AB /* WeaponSystem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeaponSystem.swift; sourceTree = "<group>"; };
 		5F6EECAF1D776CA10089A0AB /* ProjectileFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectileFactory.swift; sourceTree = "<group>"; };
 		5F77832C1D7A04F50027FFED /* CollisionsSystem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollisionsSystem.swift; sourceTree = "<group>"; };
+		5F8127972DB62F0B009B01E2 /* MessageSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageSystem.swift; sourceTree = "<group>"; };
 		5F83F143209E14C300B0C3D4 /* GameStateFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameStateFactory.swift; sourceTree = "<group>"; };
 		5F9104981D3BA19500C2C519 /* FireTek.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FireTek.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5F9C497B2DAEF0E3000336D8 /* warp.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = warp.wav; sourceTree = "<group>"; };
@@ -174,7 +174,6 @@
 				5F428C861D68B2D30075FA6B /* SpriteFactory.swift */,
 				5F6EECAF1D776CA10089A0AB /* ProjectileFactory.swift */,
 				5F039FA31DC6227200AC45C8 /* EffectsFactory.swift */,
-				5F039FB21DC6481100AC45C8 /* Sounds.swift */,
 				5F0F8B891E477C20001EF757 /* StarSystemFactory.swift */,
 			);
 			path = Factories;
@@ -279,10 +278,10 @@
 			children = (
 				5FE1242D1D5FA4EC00C41BAC /* UnitComponents.swift */,
 				5F53F3BB1D6F94610077B2A0 /* PhysicsComponent.swift */,
-				5F428C7E1D6886160075FA6B /* HPComponent.swift */,
 				5FE1242E1D5FA4EC00C41BAC /* InputComponents.swift */,
 				5F428C801D688DB00075FA6B /* AIComponents.swift */,
 				5F0F8B871E476E5B001EF757 /* PlanetarySystemData.swift */,
+				5F039FB21DC6481100AC45C8 /* Sounds.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -294,6 +293,7 @@
 				5F53F3B91D6F83570077B2A0 /* PhysicsSystem.swift */,
 				5F9C497D2DB009F0000336D8 /* RenderingSystem.swift */,
 				5F77832C1D7A04F50027FFED /* CollisionsSystem.swift */,
+				5F8127972DB62F0B009B01E2 /* MessageSystem.swift */,
 				5F6EECAB1D775C120089A0AB /* WeaponSystem.swift */,
 				5F2B51E81D6F71BC00AF62A1 /* InputSystem.swift */,
 				5F2F9F3A1D7328380016AA2F /* AISystem.swift */,
@@ -432,7 +432,6 @@
 				5F428C9D1D690A250075FA6B /* HIDController.swift in Sources */,
 				5FE124381D5FA4EC00C41BAC /* AppDelegate.swift in Sources */,
 				5FCD334B1DD3B9F000815476 /* TargetSysyem.swift in Sources */,
-				5F428C7F1D6886160075FA6B /* HPComponent.swift in Sources */,
 				5F53F3BC1D6F94610077B2A0 /* PhysicsComponent.swift in Sources */,
 				5F2F9F3B1D7328380016AA2F /* AISystem.swift in Sources */,
 				5F428C8B1D68EC6C0075FA6B /* LevelSystem.swift in Sources */,
@@ -445,6 +444,7 @@
 				5FEF36611DC68A4F00B52FB9 /* LootSystem.swift in Sources */,
 				5FE124541D5FA81700C41BAC /* DiamondSquare.swift in Sources */,
 				5FEFFC401DCF89C300685419 /* DamageSystem.swift in Sources */,
+				5F8127982DB62F10009B01E2 /* MessageSystem.swift in Sources */,
 				5FFFB44E1DDD925300DAD69A /* HUDNode.swift in Sources */,
 				5F0F8B861E476A1F001EF757 /* PlanetarySystem.swift in Sources */,
 				5F6EECB01D776CA10089A0AB /* ProjectileFactory.swift in Sources */,

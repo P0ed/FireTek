@@ -11,7 +11,7 @@ final class LevelSystem {
 
 		let starSystem = StarSystemData.generate()
 		let spawn = starSystem.planets.last!.position + .init(x: 28, y: 28)
-		player = UnitFactory.createTank(world: world, ship: state.ship, position: spawn, team: .blue)
+		player = UnitFactory.createTank(world: world, ship: state.ship, position: spawn, team: .blu)
 
 //		UnitFactory.createAIPlayer(world: world, position: CGPoint(x: 0, y: 1500))
 		UnitFactory.createAIPlayer(world: world, position: CGPoint(x: 200, y: 1500))

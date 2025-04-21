@@ -2,19 +2,16 @@ import SpriteKit
 import Fx
 
 final class InputSystem {
-	private let playerInput: WeakRef<InputComponent>?
-	private let inputController: InputController
+	private let playerInput: WeakRef<Input>?
 	private let world: World
 	private var action = false
 
-	init(world: World, player: Entity, inputController: InputController) {
+	init(world: World, player: Entity) {
 		self.world = world
-		self.inputController = inputController
 		playerInput = world.input.weakRefOf(player)
 	}
 
-	func update() {
-		let input = inputController.currentInput
+	func update(input: Input) {
 		playerInput?.value = input
 
 		if input.action, !action {

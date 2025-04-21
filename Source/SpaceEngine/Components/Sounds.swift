@@ -2,7 +2,9 @@ import SpriteKit
 
 enum Sound: UInt8, CaseIterable {
 	case warp, impulse
-	case blaster, torpedoe, blasterHit, torpedoeHit, explosion
+	case blaster, torpedoe
+	case blasterHit, torpedoeHit
+	case explosion
 	case crystalCollected
 }
 
@@ -18,7 +20,9 @@ extension Sound {
 
 private let soundsMap: [String] = [
 	"warp.vaw", "Boom0.wav",
-	"Cannon0.wav", "Cannon0.wav", "Boom1.wav", "Boom1.wav", "Boom2.wav",
+	"Cannon0.wav", "Cannon0.wav",
+	"Boom1.wav", "Boom1.wav",
+	"Boom2.wav",
 	"CrystalCollected.wav"
 ]
 

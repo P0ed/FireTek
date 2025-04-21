@@ -9,10 +9,10 @@ final class HUDNode: SKNode {
 	let side = BarNode(alignment: .left, text: "SIDE")
 	let core = BarNode(alignment: .left, text: "CORE")
 	let shield = BarNode(alignment: .left, text: "SHLD")
-	let weapon1 = BarNode(alignment: .right, text: "PRM")
-	let weapon2 = BarNode(alignment: .right, text: "SEC")
-	let capacitor = BarNode(alignment: .right, text: "CAP")
 	let impulse = BarNode(alignment: .right, text: "IMP")
+	let capacitor = BarNode(alignment: .right, text: "CAP")
+	let weapon1 = BarNode(alignment: .right, text: "CAN")
+	let weapon2 = BarNode(alignment: .right, text: "TOR")
 	let message = MessageNode()
 
 	override init() {
@@ -67,7 +67,7 @@ final class HUDNode: SKNode {
 		weapon1.position = CGPoint(x: dx, y: dyl - dy * 2)
 		weapon2.position = CGPoint(x: dx, y: dyl - dy * 3)
 
-		message.position = CGPoint(x: wh - 4, y: hh - 4)
+		message.position = CGPoint(x: wh - 4 - 192, y: hh - 4)
 	}
 }
 
@@ -119,5 +119,6 @@ private func MessageNode() -> SKLabelNode {
 	message.verticalAlignmentMode = .top
 	message.numberOfLines = 8
 	message.fontSize = 10
+	message.preferredMaxLayoutWidth = 192
 	return message
 }

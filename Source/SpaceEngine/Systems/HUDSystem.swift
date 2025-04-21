@@ -10,6 +10,7 @@ final class HUDSystem {
 	private var playerTarget: WeakRef<TargetComponent>?
 	private var targetStats: WeakRef<Ship>?
 	private var playerStats: WeakRef<Ship>?
+	private var message: String = ""
 
 	private let disposable = SerialDisposable()
 
@@ -22,7 +23,7 @@ final class HUDSystem {
 		playerStats = world.ships.weakRefOf(player)
 	}
 
-	func update() {
+	func update(message: String) {
 		fillHud()
 
 		let stats = playerStats?.value
@@ -39,15 +40,9 @@ final class HUDSystem {
 		updateBar(node: hudNode.weapon2, progress: stats?.secondary.capacitor.normalized)
 		updateBar(node: hudNode.capacitor, progress: stats?.reactor.normalized)
 
-		if let physics = playerPhysics?.value {
-			let x = Int(physics.position.x)
-			let y = Int(physics.position.y)
-			let dx = Int(physics.momentum.dx * 60)
-			let dy = Int(physics.momentum.dy * 60)
-
-			updateBar(node: hudNode.impulse, progress: min(1, physics.momentum.length / .vMax))
-
-			hudNode.message.text = "x: \(x), y: \(y)\ndx: \(dx), dy: \(dy)\na: \(physics.rotation)"
+		if message != self.message {
+			self.message = message
+			hudNode.message.attributedText = text(message)
 		}
 	}
 
@@ -69,4 +64,12 @@ final class HUDSystem {
 			node.alpha = 0
 		}
 	}
+}
+
+func text(_ string: String) -> NSAttributedString {
+	let ps = NSMutableParagraphStyle()
+	ps.alignment = .right
+	let c = SKColor.white
+	let f = NSFont(name: "Menlo", size: 10)!
+	return .init(string: string, attributes: [.paragraphStyle: ps, .foregroundColor: c, .font: f])
 }

@@ -22,3 +22,12 @@ struct Category: OptionSet {
 	static var projectile: Category { .init(rawValue: 1 << 3) }
 	static var crystal: Category { .init(rawValue: 1 << 4) }
 }
+
+extension Category {
+	var team: Team? { contains(.blu) ? .blu : contains(.red) ? .red : .none }
+}
+
+extension Team {
+	var opposite: Team { self == .blu ? .red : .blu }
+	var category: Category { self == .blu ? .blu : .red }
+}

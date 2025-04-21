@@ -115,8 +115,12 @@ final class Store<C> {
 	}
 
 	subscript(index: ComponentIdx<C>) -> C {
-		get { return self[index.box.value] }
+		get { self[index.box.value] }
 		set { self[index.box.value] = newValue }
+	}
+
+	subscript(entity: Entity) -> C? {
+		get { indexOf(entity).map { self[$0] } }
 	}
 
 	func weakRefAt(_ index: Int) -> WeakRef<C> {

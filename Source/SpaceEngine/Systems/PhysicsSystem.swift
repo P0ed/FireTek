@@ -23,8 +23,8 @@ struct PhysicsSystem {
 		}
 	}
 
-	private func apply(input: InputComponent, ship: inout Ship, physics: inout PhysicsComponent) {
-		if input.impulse, ship.reactor.drain(ship.engine.impulse / 4) {
+	private func apply(input: Input, ship: inout Ship, physics: inout PhysicsComponent) {
+		if input.impulse, ship.reactor.drain(ship.engine.impulse / 2) {
 			physics.momentum += physics.rotation.vector * CGFloat(ship.engine.impulse) / 1024
 
 			ship.engine.driving &+= 1
@@ -62,5 +62,5 @@ struct PhysicsSystem {
 }
 
 extension CGFloat {
-	static var vMax: CGFloat { 3.3 }
+	static var vMax: CGFloat { 2.2 }
 }

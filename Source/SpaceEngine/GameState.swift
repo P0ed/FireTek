@@ -130,6 +130,15 @@ extension GameState.Ship {
 			secondary: weaponComponent(\.secondaryWeapon)
 		)
 	}
+
+	var text: String {
+		"""
+		[SHIP]
+		\t\(name)
+		[CREW]
+		\t\(crew.names)
+		"""
+	}
 }
 
 extension [GameState.Crew] {
@@ -137,6 +146,8 @@ extension [GameState.Crew] {
 	func n(_ path: KeyPath<GameState.Crew, UInt16>) -> UInt16 {
 		reduce(0, { $0 + $1[keyPath: path] })
 	}
+
+	var names: String { map(\.name).joined(separator: "\n\t") }
 }
 
 extension GameState.Rarity {

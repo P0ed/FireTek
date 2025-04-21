@@ -27,8 +27,3 @@ enum ProjectileFactory {
 		return entity
 	}
 }
-
-extension Team {
-	var opposite: Team { self == .blue ? .red : .blue }
-	var category: Category { self == .blue ? .blu : .red }
-}

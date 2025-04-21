@@ -9,12 +9,13 @@ final class World {
 	let loot: Store<LootComponent>
 	let crystals: Store<Crystal>
 	let dead: Store<DeadComponent>
-	let input: Store<InputComponent>
+	let input: Store<Input>
 	let vehicleAI: Store<VehicleAIComponent>
 	let projectiles: Store<ProjectileComponent>
 	let lifetime: Store<LifetimeComponent>
 	let team: Store<Team>
 	let planets: Store<PlanetComponent>
+	let messages: Store<Message>
 
 	init() {
 		entityManager = EntityManager()
@@ -31,5 +32,6 @@ final class World {
 		dead = entityManager.makeStore()
 		crystals = entityManager.makeStore()
 		planets = entityManager.makeStore()
+		messages = entityManager.makeStore()
 	}
 }

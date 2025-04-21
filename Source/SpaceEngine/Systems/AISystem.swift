@@ -23,9 +23,9 @@ struct AISystem {
 
 				let ship = world.ships[ref.ship]
 				var ai = ai as VehicleAIComponent
-				var input = .empty as InputComponent
+				var input = .empty as Input
 				if ai.target == nil {
-					ai.target = world.team.first({ $0 == .blue })?.entity
+					ai.target = world.physics.first({ $0.category.contains(.blu) })?.entity
 				}
 
 				if let target = ai.target, let targetPhysics = world.physics.indexOf(target) {
