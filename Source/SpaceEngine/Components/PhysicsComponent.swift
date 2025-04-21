@@ -1,7 +1,7 @@
 import SpriteKit
 
 struct PhysicsComponent {
-	unowned var node: SKNode
+	var node: SKNode
 	var position: CGPoint
 	var momentum: CGVector = .zero
 	var rotation: CGFloat = 0

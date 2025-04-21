@@ -41,7 +41,7 @@ final class InputController {
 			impulse: buttonPressed(.cross),
 			warp: buttonPressed(.circle),
 			action: buttonPressed(.square),
-			target: buttonPressed(.triangle)
+			scan: buttonPressed(.triangle)
 		))
 		return input
 	}

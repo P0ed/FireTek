@@ -121,6 +121,7 @@ final class Store<C> {
 
 	subscript(entity: Entity) -> C? {
 		get { indexOf(entity).map { self[$0] } }
+		set { if let idx = indexOf(entity), let newValue { self[idx] = newValue } }
 	}
 
 	func weakRefAt(_ index: Int) -> WeakRef<C> {

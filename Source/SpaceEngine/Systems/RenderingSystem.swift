@@ -1,13 +1,15 @@
 import SpriteKit
 
 final class RenderingSystem {
-	let world: World
-	var ref: WeakRef<PhysicsComponent>?
+	private let world: World
+	private let ref: WeakRef<PhysicsComponent>?
 	private var disposable = [] as [Any]
 
-	init(world: World, scene: SKScene) {
+	init(world: World, player: Entity, scene: SKScene) {
 		self.world = world
+		ref = world.physics.weakRefOf(player)
 
+		world.physics.forEach { scene.addChild($0.node) }
 		disposable = [
 			world.physics.newComponents.observe { [unowned scene] index in
 				scene.addChild(world.physics[index].node)

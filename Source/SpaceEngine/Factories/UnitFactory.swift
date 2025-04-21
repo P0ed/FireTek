@@ -4,8 +4,8 @@ import SpriteKit
 enum UnitFactory {
 
 	@discardableResult
-	static func createTank(world: World, ship data: GameState.Ship, position: CGPoint, team: Team) -> Entity {
-		let entity = world.entityManager.create()
+	static func createTank(world: World, entity: Entity? = nil, ship data: GameState.Ship, position: CGPoint, team: Team) -> Entity {
+		let entity = entity ?? world.entityManager.create()
 
 		let sprite = SpriteFactory.createShipSprite(entity)
 		let physics = PhysicsComponent(
@@ -17,10 +17,10 @@ enum UnitFactory {
 		let shipRef = ShipRef(
 			physics: world.physics.sharedIndexAt § world.physics.add(component: physics, to: entity),
 			input: world.input.sharedIndexAt § world.input.add(component: .empty, to: entity),
-			ship: world.ships.sharedIndexAt § world.ships.add(component: data.stats, to: entity)
+			ship: world.ships.sharedIndexAt § world.ships.add(component: data.stats, to: entity),
+			info: data.text
 		)
 
-		world.messages.add(component: Message(text: data.text), to: entity)
 		world.shipRefs.add(component: shipRef, to: entity)
 		world.targets.add(component: .init(), to: entity)
 		world.loot.add(component: LootComponent(crystal: .orange, count: 3), to: entity)

@@ -1,56 +1,40 @@
 final class TargetSystem {
 	private let world: World
 	private let player: Entity
-	private let system: Entity
-	private var message: ComponentIdx<Message>?
-	private var pressed = false
+	private let messageSystem: MessageSystem
 
-	init(world: World, player: Entity) {
+	init(world: World, player: Entity, messageSystem: MessageSystem) {
 		self.world = world
 		self.player = player
-		self.system = world.entityManager.create()
+		self.messageSystem = messageSystem
+
+		scan(entity: player)
 	}
 
-	func update(input: Input) {
+	func update() {
 		let targets = world.targets as Store<TargetComponent>
-		var playerTargetIndex = nil as Int?
 
 		for index in targets.indices {
 			if let target = targets[index].target, !targets.entityManager.isAlive(target) {
 				targets[index].target = nil
 			}
-
-			if targets.entityAt(index) == player { playerTargetIndex = index }
-		}
-
-		var playerTarget: TargetComponent? { playerTargetIndex.map { targets[$0] } }
-
-		if !pressed, input.target {
-			pressed = true
-
-			let target = world.shipRefs.indices.first {
-				let e = world.shipRefs.entityAt($0)
-				return e != player && e != playerTarget?.target
-			}
-			.map(world.shipRefs.entityAt)
-
-			if let target, let idx = playerTargetIndex {
-				world.targets[idx].target = target
-				postMessage(target: target)
-			}
-
-		} else if pressed, !input.target {
-			pressed = false
 		}
 	}
 
-	func postMessage(target: Entity) {
-		if let message {
-			world.messages.removeAt(message.box.value)
-		}
-		if let shipInfo = world.messages[target] {
-			let idx = world.messages.add(component: Message(from: system, to: player, text: shipInfo.text), to: system)
-			self.message = world.messages.sharedIndexAt(idx)
+	func scan(entity: Entity) {
+		guard let phy = world.physics[entity] else { return }
+
+		messageSystem.clearSystemMessages(.target)
+
+		var targets = [] as [Entity]
+		for idx in world.shipRefs.indices {
+			let ref = world.shipRefs[idx]
+			let p = world.physics[ref.physics]
+			if p.category.isSuperset(of: [.ship, phy.category.team?.opposite.category ?? []]) {
+				let target = world.physics.entityAt(idx)
+				targets.append(target)
+				messageSystem.send(Message(system: .target, target: target, text: ref.info))
+			}
 		}
 	}
 }

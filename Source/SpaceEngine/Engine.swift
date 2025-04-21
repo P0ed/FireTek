@@ -5,15 +5,12 @@ final class Engine {
 	@MutableProperty
 	private(set) var state: GameState
 
-	var restart: () -> Void {
-		get { levelSystem.restart }
-		set { levelSystem.restart = newValue }
-	}
+	var restart = {}
 
 	private unowned let scene: SpaceScene
 	private let world: World
+	private let player: Entity
 
-	private let levelSystem: LevelSystem
 	private let inputSystem: InputSystem
 	private let physicsSystem: PhysicsSystem
 	private let collisionsSystem: CollisionsSystem
@@ -33,16 +30,15 @@ final class Engine {
 	init(scene: SpaceScene, input: InputController) {
 		let state = GameState.make()
 		let world = World()
+		player = world.entityManager.create()
 		self.state = state
 		self.world = world
 		self.scene = scene
 		self.inputController = input
 
-		messageSystem = MessageSystem(world: world)
-		renderingSystem = RenderingSystem(world: world, scene: scene)
-		levelSystem = LevelSystem(world: world, state: state)
-		messageSystem.setup(player: levelSystem.player)
-		renderingSystem.ref = world.physics.weakRefOf(levelSystem.player)
+		state.setup(world: world, player: player)
+		messageSystem = MessageSystem(world: world, player: player)
+		renderingSystem = RenderingSystem(world: world, player: player, scene: scene)
 
 		planetarySystem = PlanetarySystem(planets: world.planets, physics: world.physics)
 		physicsSystem = PhysicsSystem(world: world)
@@ -52,10 +48,10 @@ final class Engine {
 		damageSystem = DamageSystem(world: world)
 		projectileSystem = ProjectileSystem(world: world, collisionsSystem: collisionsSystem, damageSystem: damageSystem)
 
-		inputSystem = InputSystem(world: world, player: levelSystem.player)
-		targetSystem = TargetSystem(world: world, player: levelSystem.player)
+		inputSystem = InputSystem(world: world, player: player)
+		targetSystem = TargetSystem(world: world, player: player, messageSystem: messageSystem)
 		aiSystem = AISystem(world: world)
-		hudSystem = HUDSystem(world: world, player: levelSystem.player, hudNode: scene.hud)
+		hudSystem = HUDSystem(world: world, player: player, hudNode: scene.hud)
 		lifetimeSystem = LifetimeSystem(world: world)
 		lootSystem = LootSystem(world: world, collisionsSystem: collisionsSystem)
 	}
@@ -65,17 +61,20 @@ final class Engine {
 		var input = inputController.readInput()
 		messageSystem.update(input: &input)
 		inputSystem.update(input: input)
+		targetSystem.update()
 		planetarySystem.update()
 		physicsSystem.update()
 		collisionsSystem.update()
 		weaponSystem.update()
-		targetSystem.update(input: input)
 		projectileSystem.update()
-		levelSystem.update()
 		aiSystem.update(tick: currentTick)
-		hudSystem.update(message: messageSystem.message.text)
+		hudSystem.update(message: messageSystem.text)
 		lootSystem.update()
 		lifetimeSystem.update()
+
+		if !world.entityManager.isAlive(player) {
+			restart()
+		}
 
 		currentTick &+= 1
 	}

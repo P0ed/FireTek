@@ -5,6 +5,7 @@ struct ShipRef {
 	let physics: ComponentIdx<PhysicsComponent>
 	let input: ComponentIdx<Input>
 	let ship: ComponentIdx<Ship>
+	var info: String
 }
 
 struct Ship {

@@ -33,9 +33,9 @@ final class HUDNode: SKNode {
 		let hh = size.height / 2
 		let dx = wh - BarNode.size.width - 6
 		let dxl = 6 - wh
-		let dyu = hh - 72
 		let dyl = 72 - hh
 		let dy = BarNode.size.height + 4
+		let dyu = hh - 72 + 2 * dy
 
 		targetFront.layout(size: size)
 		targetSide.layout(size: size)
@@ -67,7 +67,7 @@ final class HUDNode: SKNode {
 		weapon1.position = CGPoint(x: dx, y: dyl - dy * 2)
 		weapon2.position = CGPoint(x: dx, y: dyl - dy * 3)
 
-		message.position = CGPoint(x: wh - 4 - 192, y: hh - 4)
+		message.position = CGPoint(x: wh - 4, y: hh - 4)
 	}
 }
 

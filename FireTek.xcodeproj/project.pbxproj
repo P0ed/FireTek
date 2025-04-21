@@ -23,7 +23,6 @@
 		5F428C811D688DB00075FA6B /* AIComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F428C801D688DB00075FA6B /* AIComponents.swift */; };
 		5F428C851D68A4EC0075FA6B /* UnitFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F428C841D68A4EC0075FA6B /* UnitFactory.swift */; };
 		5F428C871D68B2D30075FA6B /* SpriteFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F428C861D68B2D30075FA6B /* SpriteFactory.swift */; };
-		5F428C8B1D68EC6C0075FA6B /* LevelSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F428C8A1D68EC6C0075FA6B /* LevelSystem.swift */; };
 		5F428C8D1D69039C0075FA6B /* World.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F428C8C1D69039C0075FA6B /* World.swift */; };
 		5F428C901D6909EE0075FA6B /* InputController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F428C8F1D6909EE0075FA6B /* InputController.swift */; };
 		5F428C9B1D690A250075FA6B /* DSExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F428C951D690A250075FA6B /* DSExtensions.swift */; };
@@ -90,7 +89,6 @@
 		5F428C801D688DB00075FA6B /* AIComponents.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AIComponents.swift; sourceTree = "<group>"; };
 		5F428C841D68A4EC0075FA6B /* UnitFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnitFactory.swift; sourceTree = "<group>"; };
 		5F428C861D68B2D30075FA6B /* SpriteFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpriteFactory.swift; sourceTree = "<group>"; };
-		5F428C8A1D68EC6C0075FA6B /* LevelSystem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelSystem.swift; sourceTree = "<group>"; };
 		5F428C8C1D69039C0075FA6B /* World.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = World.swift; sourceTree = "<group>"; };
 		5F428C8F1D6909EE0075FA6B /* InputController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputController.swift; sourceTree = "<group>"; };
 		5F428C951D690A250075FA6B /* DSExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DSExtensions.swift; sourceTree = "<group>"; };
@@ -289,7 +287,6 @@
 		5FE124301D5FA4EC00C41BAC /* Systems */ = {
 			isa = PBXGroup;
 			children = (
-				5F428C8A1D68EC6C0075FA6B /* LevelSystem.swift */,
 				5F53F3B91D6F83570077B2A0 /* PhysicsSystem.swift */,
 				5F9C497D2DB009F0000336D8 /* RenderingSystem.swift */,
 				5F77832C1D7A04F50027FFED /* CollisionsSystem.swift */,
@@ -434,7 +431,6 @@
 				5FCD334B1DD3B9F000815476 /* TargetSysyem.swift in Sources */,
 				5F53F3BC1D6F94610077B2A0 /* PhysicsComponent.swift in Sources */,
 				5F2F9F3B1D7328380016AA2F /* AISystem.swift in Sources */,
-				5F428C8B1D68EC6C0075FA6B /* LevelSystem.swift in Sources */,
 				5FE124451D5FA4ED00C41BAC /* SpaceScene.swift in Sources */,
 				5F428C9B1D690A250075FA6B /* DSExtensions.swift in Sources */,
 				5F35E8A12BE6322500EF3CA0 /* Core.swift in Sources */,

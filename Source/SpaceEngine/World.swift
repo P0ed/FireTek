@@ -15,7 +15,6 @@ final class World {
 	let lifetime: Store<LifetimeComponent>
 	let team: Store<Team>
 	let planets: Store<PlanetComponent>
-	let messages: Store<Message>
 
 	init() {
 		entityManager = EntityManager()
@@ -32,6 +31,5 @@ final class World {
 		dead = entityManager.makeStore()
 		crystals = entityManager.makeStore()
 		planets = entityManager.makeStore()
-		messages = entityManager.makeStore()
 	}
 }

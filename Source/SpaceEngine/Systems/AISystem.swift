@@ -11,7 +11,7 @@ struct AISystem {
 
 	mutating func update(tick: Int) {
 		if tick & 0x7 == 0 {
-			updateVehicles()
+//			updateVehicles()
 		}
 	}
 
@@ -50,9 +50,9 @@ struct AISystem {
 					}
 
 					if cos(angle) > 0.1 && distance > 180 {
-						if distance > 500 {
+						if distance > 600 {
 							input.warp = ca > 0.5 && energy > 0.4
-							input.impulse = !input.warp
+							input.impulse = !input.warp && ca > 0.5
 						} else {
 							input.impulse = ca > 0.5
 							input.warp = false

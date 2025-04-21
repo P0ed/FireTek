@@ -6,7 +6,7 @@ struct Input {
 	var impulse: Bool = false
 	var warp: Bool = false
 	var action: Bool = false
-	var target: Bool = false
+	var scan: Bool = false
 
 	static let empty = Input()
 }
@@ -54,22 +54,4 @@ extension DPad {
 			}
 		}
 	}
-}
-
-struct Message: Hashable {
-	var id: Int = 0
-	var from: Entity?
-	var to: Entity?
-	var target: Entity?
-	var text: String = ""
-	var action: Action = .none
-}
-
-struct Action: OptionSet, Hashable {
-	var rawValue: UInt8
-
-	static let none = Action(rawValue: 0 << 0)
-	static let a = Action(rawValue: 1 << 0)
-	static let b = Action(rawValue: 1 << 1)
-	static let c = Action(rawValue: 1 << 2)
 }
