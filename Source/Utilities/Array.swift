@@ -119,7 +119,28 @@ struct Array16<A>: RandomAccessCollection, RangeReplaceableCollection {
 	}
 
 	mutating func replaceSubrange<C>(_ subrange: Range<Self.Index>, with newElements: C) where C : Collection, Self.Element == C.Element {
-		for i in subrange { rm(at: i) }
-		for e in newElements { insrt(e, at: subrange.lowerBound) }
+//		var replaced = 0
+//		for i in subrange {
+//			if replace != 0 {
+//				self[i] = newElements[i]
+//			} else {
+//				rm(at: i)
+//			}
+//		}
+//		for e in newElements { insrt(e, at: subrange.lowerBound) }
+		let sublen = subrange.count
+		let elslen = newElements.count
+		for (i, e) in newElements.enumerated() {
+			if i < sublen {
+				self[i] = e
+			} else {
+				insrt(e, at: i)
+			}
+		}
+		if sublen > elslen {
+			for i in subrange.dropFirst(elslen).reversed() {
+				rm(at: i)
+			}
+		}
 	}
 }

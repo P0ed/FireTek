@@ -28,7 +28,6 @@ struct Category: OptionSet {
 
 extension Category {
 	var team: Team? { contains(.blu) ? .blu : contains(.red) ? .red : .none }
-//	var playerIndex: Int? { contains(.player) ? Int(rawValue >> 6) : nil }
 }
 
 extension Team {

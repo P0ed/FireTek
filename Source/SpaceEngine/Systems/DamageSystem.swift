@@ -20,7 +20,7 @@ final class DamageSystem {
 		damage = damage * shieldMul > shield ? damage - shield / shieldMul : 0
 
 		let sa = sin((point - phy.position).vector.angle - phy.rotation)
-		if sa > 0.5 {
+		if sa > 0.47 {
 			let front = ship.hp.front
 			ship.hp.front = damage >= front ? 0 : front - damage
 			damage = damage > front ? damage - front : 0
@@ -35,7 +35,7 @@ final class DamageSystem {
 		} else {
 			ship.hp.core = 0
 
-			world.unitFactory.makeExplosion(at: phy.position, angle: phy.rotation, textures: .explosionTextures)
+			world.unitFactory.makeExplosion(at: phy.position, angle: phy.rotation, textures: .explosionTextures, sound: .explosion)
 			let dead = DeadComponent(killedBy: projectile.source)
 			world.dead.add(component: dead, to: entity)
 		}

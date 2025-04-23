@@ -27,7 +27,8 @@ final class AISystem {
 				if aic.target == nil {
 					let target = world.physics.first({ $0.category.contains(.blu) })?.entity
 					aic.target = target
-					world.shipRefs[aic.vehicle.box.value].target = target
+					let ref = world.shipRefs[aic.vehicle.box.value]
+					world.ships[ref.ship].target = target
 				}
 
 				if let target = aic.target, let targetPhysics = world.physics.indexOf(target) {

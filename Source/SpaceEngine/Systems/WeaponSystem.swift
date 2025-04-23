@@ -17,11 +17,15 @@ final class WeaponSystem {
 			let entity = refs.entityAt(index)
 			let input = inputs[ref.input]
 
-			if input.primary && ships[ref.ship].primary.capacitor.isCharged {
-				fire(&ships[ref.ship].primary, at: world.physics[ref.physics], target: ref.target, source: entity)
-			}
-			if input.secondary && ships[ref.ship].secondary.capacitor.isCharged {
-				fire(&ships[ref.ship].secondary, at: world.physics[ref.physics], target: ref.target, source: entity)
+			if input.primary || input.secondary {
+				let ship = ships[ref.ship]
+
+				if input.primary, ship.primary.capacitor.isCharged {
+					fire(&ships[ref.ship].primary, at: world.physics[ref.physics], target: ship.target, source: entity)
+				}
+				if input.secondary, ship.secondary.capacitor.isCharged {
+					fire(&ships[ref.ship].secondary, at: world.physics[ref.physics], target: ship.target, source: entity)
+				}
 			}
 		}
 	}

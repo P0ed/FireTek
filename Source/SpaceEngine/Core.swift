@@ -1,40 +1,33 @@
 import Fx
 
 struct Entity: Hashable {
-	private var id: UInt64
+	private var id: UInt32
 
-	var generation: UInt32 {
-		return UInt32(id >> 32)
-	}
-	var index: UInt32 {
-		return UInt32(id & Entity.mask)
-	}
+	var index: UInt16 { UInt16(id & 0xFFFF) }
+	var generation: UInt16 { UInt16(id >> 16) }
+	var next: UInt16 { generation &+ 1 }
 
-	init(generation: UInt32, index: UInt32) {
-		id = UInt64(generation) << 32 | UInt64(index)
+	init(generation: UInt16, index: UInt16) {
+		id = UInt32(generation) << 16 | UInt32(index)
 	}
 
-	var next: UInt32 {
-		return generation < .max ? generation + 1 : 0
-	}
-
-	static let mask: UInt64 = (1 << 32) - 1
+	static let mask: UInt32 = 0xFFFF
 }
 
 final class EntityManager {
 	typealias RemoveHandle = () -> ()
 
 	private var unusedStoreID: StoreID = 0
-	private var generation: [UInt32] = []
-	private var freeIndices: [UInt32] = []
+	private var generation: [UInt16] = []
+	private var freeIndices: [UInt16] = []
 	private var removeHandles: [Entity: [StoreID: RemoveHandle]] = [:]
 
 	func create() -> Entity {
-		if freeIndices.count > 0 {
+		if !freeIndices.isEmpty {
 			let index = freeIndices.removeLast()
 			return Entity(generation: generation[Int(index)], index: index)
 		} else {
-			let entity = Entity(generation: 0, index: UInt32(generation.count))
+			let entity = Entity(generation: 0, index: UInt16(generation.count))
 			generation.append(entity.generation)
 			return entity
 		}
@@ -55,7 +48,7 @@ final class EntityManager {
 	}
 
 	func isAlive(_ entity: Entity) -> Bool {
-		return generation[Int(entity.index)] == entity.generation
+		generation[Int(entity.index)] == entity.generation
 	}
 
 	func setRemoveHandle(entity: Entity, storeID: StoreID, handle: RemoveHandle?) {

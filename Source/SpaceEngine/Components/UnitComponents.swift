@@ -2,11 +2,10 @@ import Fx
 import SpriteKit
 
 struct ShipRef {
-	let physics: ComponentIdx<Physics>
-	let input: ComponentIdx<Input>
-	let ship: ComponentIdx<Ship>
+	var physics: ComponentIdx<Physics>
+	var input: ComponentIdx<Input>
+	var ship: ComponentIdx<Ship>
 	var info: String
-	var target: Entity?
 }
 
 struct Ship {
@@ -16,6 +15,7 @@ struct Ship {
 	var shield: Capacitor
 	var primary: Weapon
 	var secondary: Weapon
+	var target: Entity?
 }
 
 struct HP {

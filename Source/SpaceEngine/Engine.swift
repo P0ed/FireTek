@@ -2,18 +2,16 @@ import SpriteKit
 import Fx
 
 final class Engine {
-	@MutableProperty
-	private(set) var state: GameState
-
-	var restart = {}
-
 	private unowned let scene: SpaceScene
 	private let world: World
-	private let players: Array4<Entity>
+	private var state: GameState
+	private let inputController: InputController
 
+	private let messageSystem: MessageSystem
 	private let inputSystem: InputSystem
 	private let physicsSystem: PhysicsSystem
 	private let collisionsSystem: CollisionsSystem
+	private let planetarySystem: PlanetarySystem
 	private let damageSystem: DamageSystem
 	private let targetSystem: TargetSystem
 	private let aiSystem: AISystem
@@ -22,21 +20,18 @@ final class Engine {
 	private let lifetimeSystem: LifetimeSystem
 	private let lootSystem: LootSystem
 	private let hudSystem: HUDSystem
-	private let planetarySystem: PlanetarySystem
-	private let messageSystem: MessageSystem
 	private let renderingSystem: RenderingSystem
-	private let inputController: InputController
+
+	var restart = {}
 
 	init(scene: SpaceScene, input: InputController) {
-		let state = GameState.make()
-		let world = World()
-		self.state = state
-		self.world = world
+		state = GameState.make()
+		world = World()
 		self.scene = scene
 		self.inputController = input
 
-		self.players = state.setup(world: world)
-		let player = players[0]
+		world.load(state: state)
+		let player = world.players[0]
 
 		messageSystem = MessageSystem(world: world, player: player)
 		renderingSystem = RenderingSystem(world: world, player: player, scene: scene)
@@ -74,7 +69,7 @@ final class Engine {
 		lootSystem.update()
 		lifetimeSystem.update()
 
-		if !world.entityManager.isAlive(players[0]) {
+		if !world.players.contains(where: world.entityManager.isAlive) {
 			restart()
 		}
 

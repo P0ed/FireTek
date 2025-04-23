@@ -14,7 +14,7 @@ final class MessageSystem {
 	private var message: Message? { playerMessages.current }
 	private var target: Entity? { message?.target }
 	private var isModal: Bool { message.map { !$0.action.isEmpty } ?? false }
-	var text: String = "..."
+	var text: String = ""
 
 	init(world: World, player: Entity) {
 		self.world = world
@@ -41,11 +41,11 @@ final class MessageSystem {
 
 	private func updateText() {
 		if let message {
-			text = "\(playerMessages.head)\n\n\(message.text)"
-			world.shipRefs[player]?.target = message.target
+			text = playerMessages.head + message.text
+			world.ships[player]?.target = message.target
 		} else {
-			text = "..."
-			world.shipRefs[player]?.target = nil
+			text = playerMessages.head
+			world.ships[player]?.target = nil
 		}
 	}
 
@@ -78,7 +78,9 @@ final class MessageSystem {
 				playerMessages.rm()
 				updateText()
 			}
-			input = .empty
+			input.warp = false
+			input.action = false
+			input.scan = false
 		} else {
 			if input.dpad.up, !selecting {
 				selecting = true
@@ -101,7 +103,7 @@ struct Messages {
 
 	var current: Message? { index < messages.count ? messages[index] : nil }
 	var next: Message? { index < messages.count - 1 ? messages[index + 1] : nil }
-	var prev: Message? { index > 0 ? messages[index - 1] : nil }
+	var prev: Message? { index > 0 && index - 1 < messages.count ? messages[index - 1] : nil }
 
 	mutating func rm(at idx: Int? = nil) {
 		if index < messages.count {
@@ -117,7 +119,8 @@ struct Messages {
 	}
 
 	var head: String {
-		"\(prev?.head ?? "...")\n\(current?.head ?? "...")\n\(next?.head ?? "...")"
+		messages.count < 2 ? (messages.isEmpty ? "..." : "")
+		: "\(prev?.head ?? "...")\n\(current?.head ?? "...")\n\(next?.head ?? "...")\n\n"
 	}
 }
 
@@ -145,7 +148,7 @@ struct Message {
 
 extension Message {
 	var head: String {
-		String(text.split(separator: "\n", maxSplits: 1, omittingEmptySubsequences: false)[0])
+		.init(text.split(separator: "\n", maxSplits: 1, omittingEmptySubsequences: false)[0])
 	}
 }
 

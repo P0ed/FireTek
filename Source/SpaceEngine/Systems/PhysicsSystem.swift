@@ -27,6 +27,7 @@ struct PhysicsSystem {
 		if input.impulse, ship.reactor.drain(ship.engine.impulse / 2) {
 			physics.momentum += physics.rotation.vector * CGFloat(ship.engine.impulse) / 1024
 
+			if ship.engine.driving & 0xF == 0 { physics.node.run(.play(.impulse)) }
 			ship.engine.driving &+= 1
 		} else if input.warp, ship.reactor.drain(ship.engine.warp / 2) {
 			let mul = CGFloat(min(32, ship.engine.driving)) / 128

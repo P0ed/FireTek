@@ -5,7 +5,7 @@ final class HUDSystem {
 	private let world: World
 	private let hudNode: HUDNode
 
-	private var playerShipRef: WeakRef<ShipRef>?
+	private var playerShip: WeakRef<Ship>?
 	private var playerPhysics: WeakRef<Physics>?
 	private var playerStats: WeakRef<Ship>?
 	private var targetStats: WeakRef<Ship>?
@@ -17,7 +17,7 @@ final class HUDSystem {
 		self.world = world
 		self.hudNode = hudNode
 
-		playerShipRef = world.shipRefs.weakRefOf(player)
+		playerShip = world.ships.weakRefOf(player)
 		playerPhysics = world.physics.weakRefOf(player)
 		playerStats = world.ships.weakRefOf(player)
 	}
@@ -30,11 +30,14 @@ final class HUDSystem {
 		updateBar(node: hudNode.side, progress: stats.map { CGFloat($0.hp.side) / CGFloat($0.hp.maxArmor) })
 		updateBar(node: hudNode.core, progress: stats.map { CGFloat($0.hp.core) / CGFloat($0.hp.maxStructure) })
 		updateBar(node: hudNode.shield, progress: stats?.shield.normalized ?? 1)
-		updateBar(node: hudNode.targetFront, progress: targetStats?.value.map { CGFloat($0.hp.front) / CGFloat($0.hp.maxArmor) })
-		updateBar(node: hudNode.targetSide, progress: targetStats?.value.map { CGFloat($0.hp.side) / CGFloat($0.hp.maxArmor) })
-		updateBar(node: hudNode.targetCore, progress: targetStats?.value.map { CGFloat($0.hp.core) / CGFloat($0.hp.maxStructure) })
-		updateBar(node: hudNode.targetShield, progress: targetStats?.value?.shield.normalized)
 
+		let tstats = targetStats?.value
+		updateBar(node: hudNode.targetFront, progress: tstats.map { CGFloat($0.hp.front) / CGFloat($0.hp.maxArmor) })
+		updateBar(node: hudNode.targetSide, progress: tstats.map { CGFloat($0.hp.side) / CGFloat($0.hp.maxArmor) })
+		updateBar(node: hudNode.targetCore, progress: tstats.map { CGFloat($0.hp.core) / CGFloat($0.hp.maxStructure) })
+		updateBar(node: hudNode.targetShield, progress: tstats?.shield.normalized)
+
+		updateBar(node: hudNode.impulse, progress: (playerPhysics?.value?.momentum.length ?? 0) / .vMax)
 		updateBar(node: hudNode.weapon1, progress: stats?.primary.capacitor.normalized)
 		updateBar(node: hudNode.weapon2, progress: stats?.secondary.capacitor.normalized)
 		updateBar(node: hudNode.capacitor, progress: stats?.reactor.normalized)
@@ -46,7 +49,7 @@ final class HUDSystem {
 	}
 
 	private func fillHud() {
-		if let target = playerShipRef?.value?.target {
+		if let target = playerShip?.value?.target {
 			if targetStats?.entity != target {
 				targetStats = world.ships.weakRefOf(target)
 			}

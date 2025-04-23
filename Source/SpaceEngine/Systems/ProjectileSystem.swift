@@ -76,7 +76,10 @@ private extension ProjectileSystem {
 			angle: contact.normal.angle,
 			textures: projectileComponent.type == .blaster
 				? .blasterHitTextures
-				: .torpHitTextures
+				: .torpHitTextures,
+			sound: projectileComponent.type == .blaster
+				? .blasterHit
+				: .torpedoHit
 		)
 
 		if let shipRef = world.shipRefs.first(contact.a, contact.b) {

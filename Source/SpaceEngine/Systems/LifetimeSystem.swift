@@ -28,7 +28,8 @@ final class LifetimeSystem {
 					world.unitFactory.makeExplosion(
 						at: ph.position,
 						angle: ph.rotation - .pi,
-						textures: .torpHitTextures
+						textures: .torpHitTextures,
+						sound: .torpedoHit
 					)
 				}
 			}

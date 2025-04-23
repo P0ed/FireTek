@@ -131,9 +131,8 @@ extension GameState.Ship {
 
 	var text: String {
 		"""
-		[SHIP]
-		\t\(name)
-		[CREW]
+		[SHIP: \(name)]
+		[CREW:]
 		\t\(crew.names)
 		"""
 	}

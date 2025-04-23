@@ -12,11 +12,11 @@ final class TargetSystem {
 	}
 
 	func update() {
-		let refs = world.shipRefs as Store<ShipRef>
+		let ships = world.ships as Store<Ship>
 
-		for index in refs.indices {
-			if let target = refs[index].target, !refs.entityManager.isAlive(target) {
-				refs[index].target = nil
+		for index in ships.indices {
+			if let target = ships[index].target, !ships.entityManager.isAlive(target) {
+				ships[index].target = nil
 			}
 		}
 	}

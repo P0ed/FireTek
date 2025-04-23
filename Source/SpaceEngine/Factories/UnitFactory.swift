@@ -94,7 +94,7 @@ struct UnitFactory {
 
 		let sprite = SpriteFactory.createProjectileSprite(entity, type: projectile.type)
 
-		sprite.run(.play(.blaster))
+		sprite.run(.play(projectile.type == .torpedo ? .torpedo : .blaster))
 
 		let physics = Physics(
 			node: sprite,
@@ -114,13 +114,13 @@ struct UnitFactory {
 	}
 
 	@discardableResult
-	func makeExplosion(at position: CGPoint, angle: CGFloat, textures: [SKTexture]) -> Entity {
+	func makeExplosion(at position: CGPoint, angle: CGFloat, textures: [SKTexture], sound: Sound) -> Entity {
 		let entity = world.entityManager.create()
 
 		let sprite = SKSpriteNode(texture: textures.first)
 		sprite.run(.group([
 			.animate(with: textures, timePerFrame: 0.1),
-			.play(.blasterHit)
+			.play(sound)
 		]))
 
 		world.physics.add(component: Physics(node: sprite, position: position, rotation: angle), to: entity)

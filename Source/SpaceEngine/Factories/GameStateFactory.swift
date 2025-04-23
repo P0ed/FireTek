@@ -9,26 +9,6 @@ extension GameState {
 		)
 	}
 
-	func setup(world: World) -> Array4<Entity> {
-		let starSystem = StarSystemData.generate()
-		let spawn = starSystem.planets.last!.position + .init(x: 28, y: 28)
-		let mkEntity = world.entityManager.create
-
-		let players = Array4([
-			world.entityManager.create()
-		])
-		let units = world.unitFactory
-
-		units.makeTank(entity: players[0], ship: ship, position: spawn, category: [.blu, .player])
-		units.makeAIPlayer(entity: mkEntity(), position: CGPoint(x: 0, y: 1500))
-		units.makeAIPlayer(entity: mkEntity(), position: CGPoint(x: 200, y: 1500))
-		units.makeAIPlayer(entity: mkEntity(), position: CGPoint(x: -200, y: 1500))
-
-		units.createSystem(data: starSystem)
-
-		return players
-	}
-
 	private static func createLocation() -> Location {
 
 		let systemLocation = SystemLocation(
