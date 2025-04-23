@@ -4,11 +4,12 @@ final class MessageSystem {
 	private let world: World
 	private let player: Entity
 	private let disposable = CompositeDisposable()
-	private var messages: [Entity: Messages] = [:]
+
+	private var messages = Quad<Messages>(repeating: .init())
 	private var targets: Set<Entity> = []
 
 	private var playerMessages: Messages {
-		get { messages[player] ?? .init() } set { messages[player] = newValue }
+		get { messages[0] } set { messages[0] = newValue }
 	}
 	private var message: Message? { playerMessages.current }
 	private var target: Entity? { message?.target }
@@ -21,31 +22,30 @@ final class MessageSystem {
 	}
 
 	func clearSystemMessages(_ system: System) {
-		var msgs = messages[player] ?? .init()
-		msgs.messages.removeAll { msg in msg.system == system }
-		messages[player] = msgs
+		messages[0].messages.removeAll { msg in msg.system == system }
+		updateText()
 	}
 
 	func send(_ message: Message) {
 		send(message, to: player)
 	}
 
-	func send(_ message: Message, to entity: Entity) {
-		var msgs = messages[entity] ?? .init()
-		msgs.messages.append(message)
-		messages[entity] = msgs
+	private func send(_ message: Message, to entity: Entity) {
+		guard entity == player else { return }
+
+		messages[0].messages.append(message)
+		updateText()
 
 		if let target = message.target { targets.insert(target) }
-		if entity == player { updateText() }
 	}
 
 	private func updateText() {
 		if let message {
 			text = "\(playerMessages.head)\n\n\(message.text)"
-			world.targets[player]?.target = message.target
+			world.shipRefs[player]?.target = message.target
 		} else {
 			text = "..."
-			world.targets[player]?.target = nil
+			world.shipRefs[player]?.target = nil
 		}
 	}
 
@@ -75,18 +75,18 @@ final class MessageSystem {
 			}
 			if !action.isEmpty, action.isSubset(of: message.action) {
 				reply(action)
-				messages[player]?.rm()
+				playerMessages.rm()
 				updateText()
 			}
 			input = .empty
 		} else {
 			if input.dpad.up, !selecting {
 				selecting = true
-				messages[player]?.selectPrev()
+				playerMessages.selectPrev()
 				updateText()
 			} else if input.dpad.down, !selecting {
 				selecting = true
-				messages[player]?.selectNext()
+				playerMessages.selectNext()
 				updateText()
 			} else if selecting, !input.dpad.up, !input.dpad.down {
 				selecting = false
@@ -96,7 +96,7 @@ final class MessageSystem {
 }
 
 struct Messages {
-	fileprivate var messages: [Message] = []
+	fileprivate var messages: Array16<Message> = .init([])
 	private var index: Int = 0
 
 	var current: Message? { index < messages.count ? messages[index] : nil }
@@ -145,7 +145,7 @@ struct Message {
 
 extension Message {
 	var head: String {
-		String(text.split(separator: "\n", maxSplits: 1)[0])
+		String(text.split(separator: "\n", maxSplits: 1, omittingEmptySubsequences: false)[0])
 	}
 }
 
@@ -159,5 +159,5 @@ struct Action: OptionSet, Hashable {
 }
 
 enum System: UInt8 {
-	case none, target
+	case none, target, planet
 }

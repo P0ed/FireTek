@@ -5,11 +5,10 @@ final class HUDSystem {
 	private let world: World
 	private let hudNode: HUDNode
 
-	private var playerPhysics: WeakRef<PhysicsComponent>?
-
-	private var playerTarget: WeakRef<TargetComponent>?
-	private var targetStats: WeakRef<Ship>?
+	private var playerShipRef: WeakRef<ShipRef>?
+	private var playerPhysics: WeakRef<Physics>?
 	private var playerStats: WeakRef<Ship>?
+	private var targetStats: WeakRef<Ship>?
 	private var message: String = ""
 
 	private let disposable = SerialDisposable()
@@ -18,8 +17,8 @@ final class HUDSystem {
 		self.world = world
 		self.hudNode = hudNode
 
+		playerShipRef = world.shipRefs.weakRefOf(player)
 		playerPhysics = world.physics.weakRefOf(player)
-		playerTarget = world.targets.weakRefOf(player)
 		playerStats = world.ships.weakRefOf(player)
 	}
 
@@ -47,7 +46,7 @@ final class HUDSystem {
 	}
 
 	private func fillHud() {
-		if let target = playerTarget?.value?.target {
+		if let target = playerShipRef?.value?.target {
 			if targetStats?.entity != target {
 				targetStats = world.ships.weakRefOf(target)
 			}

@@ -36,32 +36,32 @@ extension GameState {
 	}
 
 	struct ShipHull: Codable {
-		var rarity: Rarity
+		var rank: Rank
 		var armor: UInt16
 		var structure: UInt16
 	}
 
 	struct ShipPropulsion: Codable {
-		var rarity: Rarity
+		var rank: Rank
 		var impulse: UInt16
 		var warp: UInt16
 		var efficency: UInt16
 	}
 
 	struct ShipReactor: Codable {
-		var rarity: Rarity
+		var rank: Rank
 		var capacity: UInt16
 		var recharge: UInt16
 	}
 
 	struct ShipShield: Codable {
-		var rarity: Rarity
+		var rank: Rank
 		var capacity: UInt16
 		var recharge: UInt16
 	}
 
 	struct Weapon: Codable {
-		var rarity: Rarity
+		var rank: Rank
 		var type: WeaponType
 		var damage: UInt16
 		var velocity: UInt16
@@ -69,9 +69,7 @@ extension GameState {
 		var recharge: UInt16
 	}
 
-	enum Rarity: UInt8, Codable {
-		case common, uncommon, rare, epic, unknown
-	}
+	enum Rank: UInt8, Codable { case a, b, c, d, e, f }
 
 	struct Crew: Codable {
 		var name: String
@@ -150,41 +148,35 @@ extension [GameState.Crew] {
 	var names: String { map(\.name).joined(separator: "\n\t") }
 }
 
-extension GameState.Rarity {
-	var k: Float {
-		switch self {
-		case .common: return 1
-		case .uncommon: return 1.4
-		case .rare: return 1.7
-		case .epic: return 2
-		case .unknown: return 2.2
-		}
-	}
+extension GameState.Rank {
 	var n: UInt16 {
 		switch self {
-		case .common: return 2
-		case .uncommon: return 3
-		case .rare: return 5
-		case .epic: return 8
-		case .unknown: return 13
+		case .a: return 2
+		case .b: return 3
+		case .c: return 5
+		case .d: return 8
+		case .e: return 13
+		case .f: return 21
 		}
 	}
-	var lower: GameState.Rarity {
+	var lower: GameState.Rank {
 		switch self {
-		case .common: .common
-		case .uncommon: .common
-		case .rare: .uncommon
-		case .epic: .rare
-		case .unknown: .epic
+		case .a: .a
+		case .b: .a
+		case .c: .b
+		case .d: .c
+		case .e: .d
+		case .f: .e
 		}
 	}
-	var higher: GameState.Rarity {
+	var higher: GameState.Rank {
 		switch self {
-		case .common: .uncommon
-		case .uncommon: .rare
-		case .rare: .epic
-		case .epic: .unknown
-		case .unknown: .unknown
+		case .a: .b
+		case .b: .c
+		case .c: .d
+		case .d: .e
+		case .e: .f
+		case .f: .f
 		}
 	}
 }

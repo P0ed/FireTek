@@ -23,7 +23,7 @@ struct PhysicsSystem {
 		}
 	}
 
-	private func apply(input: Input, ship: inout Ship, physics: inout PhysicsComponent) {
+	private func apply(input: Input, ship: inout Ship, physics: inout Physics) {
 		if input.impulse, ship.reactor.drain(ship.engine.impulse / 2) {
 			physics.momentum += physics.rotation.vector * CGFloat(ship.engine.impulse) / 1024
 
@@ -40,13 +40,13 @@ struct PhysicsSystem {
 		}
 
 		if input.dpad.left {
-			physics.rotation += CGFloat(ship.engine.impulse) / 1024
+			physics.rotation += CGFloat(ship.engine.impulse) / CGFloat(input.impulse ? 900 : 1600)
 		} else if input.dpad.right {
-			physics.rotation -= CGFloat(ship.engine.impulse) / 1024
+			physics.rotation -= CGFloat(ship.engine.impulse) / CGFloat(input.impulse ? 900 : 1600)
 		}
 	}
 
-	private func apply(physics: inout PhysicsComponent) {
+	private func apply(physics: inout Physics) {
 		if !physics.category.contains(.projectile), physics.momentum.length > .vMax {
 			physics.momentum = physics.momentum.normalized * .vMax
 		}

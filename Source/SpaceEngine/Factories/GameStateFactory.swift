@@ -4,21 +4,29 @@ extension GameState {
 	static func make() -> GameState {
 		GameState(
 			location: createLocation(),
-			ship: makeShip(name: "Von Neumann", crew: makeCrew(), rarity: .uncommon),
+			ship: makeShip(name: "Von Neumann", crew: makeCrew(), rank: .b),
 			crystals: Crystals(red: 4, green: 2, blue: 3, yellow: 1, magenta: 0, cyan: 0)
 		)
 	}
 
-	func setup(world: World, player: Entity) {
+	func setup(world: World) -> Array4<Entity> {
 		let starSystem = StarSystemData.generate()
 		let spawn = starSystem.planets.last!.position + .init(x: 28, y: 28)
-		UnitFactory.createTank(world: world, entity: player, ship: ship, position: spawn, team: .blu)
+		let mkEntity = world.entityManager.create
 
-//		UnitFactory.createAIPlayer(world: world, position: CGPoint(x: 0, y: 1500))
-		UnitFactory.createAIPlayer(world: world, position: CGPoint(x: 200, y: 1500))
-		UnitFactory.createAIPlayer(world: world, position: CGPoint(x: -200, y: 1500))
+		let players = Array4([
+			world.entityManager.create()
+		])
+		let units = world.unitFactory
 
-		StarSystemFactory.createSystem(world: world, data: starSystem)
+		units.makeTank(entity: players[0], ship: ship, position: spawn, category: [.blu, .player])
+		units.makeAIPlayer(entity: mkEntity(), position: CGPoint(x: 0, y: 1500))
+		units.makeAIPlayer(entity: mkEntity(), position: CGPoint(x: 200, y: 1500))
+		units.makeAIPlayer(entity: mkEntity(), position: CGPoint(x: -200, y: 1500))
+
+		units.createSystem(data: starSystem)
+
+		return players
 	}
 
 	private static func createLocation() -> Location {
@@ -35,16 +43,16 @@ extension GameState {
 		return location
 	}
 
-	private static func vararity(_ rarity: Rarity) -> Rarity {
+	private static func varank(_ rank: Rank) -> Rank {
 		switch random.float() {
-		case 0..<0.15: rarity.lower
-		case 0.85..<0.95: rarity.higher
-		case 0.95..<1: rarity.higher.higher
-		default: rarity
+		case 0..<0.15: rank.lower
+		case 0.85..<0.95: rank.higher
+		case 0.95..<1: rank.higher.higher
+		default: rank
 		}
 	}
 
-	static func makeShip(name: String? = nil, crew: [Crew] = [], rarity: Rarity) -> Ship {
+	static func makeShip(name: String? = nil, crew: [Crew] = [], rank: Rank) -> Ship {
 		let name = name ?? random.element(Ship.shipNames)
 		let crew = !crew.isEmpty ? crew : [
 			.random(friendly: false, random: random),
@@ -53,78 +61,78 @@ extension GameState {
 		return Ship(
 			name: name,
 			crew: crew,
-			hull: createShipHull(rarity: rarity),
-			reactor: createShipReactor(rarity: rarity),
-			propulsion: createShipPropulsion(rarity: rarity),
-			shield: createShipShield(rarity: rarity),
-			primaryWeapon: makeBlaster(rarity: rarity),
-			secondaryWeapon: makeTorpedo(rarity: rarity)
+			hull: createShipHull(rank: rank),
+			reactor: createShipReactor(rank: rank),
+			propulsion: createShipPropulsion(rank: rank),
+			shield: createShipShield(rank: rank),
+			primaryWeapon: makeBlaster(rank: rank),
+			secondaryWeapon: makeTorpedo(rank: rank)
 		)
 	}
 
-	static func createShipHull(rarity: Rarity) -> ShipHull {
+	static func createShipHull(rank: Rank) -> ShipHull {
 		ShipHull(
-			rarity: rarity,
-			armor: random.int(40...50) * rarity.n,
-			structure: random.int(30...40) * rarity.n
+			rank: rank,
+			armor: random.int(40...50) * rank.n,
+			structure: random.int(30...40) * rank.n
 		)
 	}
 
-	static func createShipPropulsion(rarity: Rarity) -> ShipPropulsion {
+	static func createShipPropulsion(rank: Rank) -> ShipPropulsion {
 		ShipPropulsion(
-			rarity: rarity,
-			impulse: random.int(18...22) + rarity.n,
-			warp: random.int(12...20) + rarity.n,
-			efficency: rarity.n - 1
+			rank: rank,
+			impulse: random.int(18...22) + rank.n,
+			warp: random.int(12...20) + rank.n,
+			efficency: rank.n - 1
 		)
 	}
 
-	static func createShipReactor(rarity: Rarity) -> ShipReactor {
+	static func createShipReactor(rank: Rank) -> ShipReactor {
 		ShipReactor(
-			rarity: rarity,
-			capacity: random.int(2400...3200) * rarity.n,
-			recharge: random.int(6...8) + rarity.n
+			rank: rank,
+			capacity: random.int(2400...3200) * rank.n,
+			recharge: random.int(6...8) + rank.n
 		)
 	}
 
-	static func createShipShield(rarity: Rarity) -> ShipShield {
+	static func createShipShield(rank: Rank) -> ShipShield {
 		ShipShield(
-			rarity: rarity,
-			capacity: random.int(1600...1800) * rarity.n,
-			recharge: random.int(0...1) + rarity.n
+			rank: rank,
+			capacity: random.int(1600...1800) * rank.n,
+			recharge: random.int(0...1) + rank.n
 		)
 	}
 
-	static func makeLaser(rarity: Rarity) -> Weapon {
+	static func makeLaser(rank: Rank) -> Weapon {
 		Weapon(
-			rarity: rarity,
+			rank: rank,
 			type: .laser,
-			damage: 8 + rarity.n,
+			damage: 8 + rank.n,
 			velocity: 300,
 			cooldown: 20,
 			recharge: 6
 		)
 	}
 
-	static func makeTorpedo(rarity: Rarity) -> Weapon {
+	static func makeTorpedo(rank: Rank) -> Weapon {
 		Weapon(
-			rarity: rarity,
+			rank: rank,
 			type: .torpedo,
-			damage: 85 + rarity.n * 6,
-			velocity: 320 + rarity.n * 3,
+			damage: 85 + rank.n * 6,
+			velocity: 320 + rank.n * 3,
 			cooldown: 40,
-			recharge: 20 + rarity.n
+			recharge: 20 + rank.n
 		)
 	}
 
-	static func makeBlaster(rarity: Rarity) -> Weapon {
+	static func makeBlaster(rank: Rank) -> Weapon {
 		Weapon(
-			rarity: rarity,
+			rank: rank,
 			type: .blaster,
-			damage: 45 + rarity.n * 3,
-			velocity: 500 + rarity.n * 4,
-			cooldown: 32,
-			recharge: 16 + rarity.n / 3
+			damage: 45 + rank.n * 3,
+			velocity: 500 + rank.n * 4,
+			cooldown: 32 - rank.n / 2,
+			recharge: 16 + rank.n / 3
 		)
 	}
 

@@ -18,24 +18,22 @@ final class WeaponSystem {
 			let input = inputs[ref.input]
 
 			if input.primary && ships[ref.ship].primary.capacitor.isCharged {
-				fire(&ships[ref.ship].primary, at: world.physics[ref.physics], source: entity)
+				fire(&ships[ref.ship].primary, at: world.physics[ref.physics], target: ref.target, source: entity)
 			}
 			if input.secondary && ships[ref.ship].secondary.capacitor.isCharged {
-				fire(&ships[ref.ship].secondary, at: world.physics[ref.physics], source: entity)
+				fire(&ships[ref.ship].secondary, at: world.physics[ref.physics], target: ref.target, source: entity)
 			}
 		}
 	}
 
-	private func fire(_ weapon: inout Weapon, at physics: PhysicsComponent, source: Entity) {
+	private func fire(_ weapon: inout Weapon, at physics: Physics, target: Entity?, source: Entity) {
 		weapon.capacitor.discharge()
 
-		let target = world.targets.indexOf(source).map { world.targets[$0] }?.target
 		let angle = physics.rotation
 		let velocity = CGVector(dx: 0, dy: CGFloat(weapon.velocity) / 128).rotate(angle) + physics.momentum
 		let offset = CGVector(dx: 0, dy: 14).rotate(angle)
 
-		ProjectileFactory.createProjectile(
-			world,
+		world.unitFactory.createProjectile(
 			at: physics.position + offset.point,
 			velocity: velocity,
 			angle: physics.rotation,

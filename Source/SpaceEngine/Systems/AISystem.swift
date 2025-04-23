@@ -1,7 +1,7 @@
 import Fx
 import SpriteKit
 
-struct AISystem {
+final class AISystem {
 
 	let world: World
 
@@ -9,7 +9,7 @@ struct AISystem {
 		self.world = world
 	}
 
-	mutating func update(tick: Int) {
+	func update(tick: Int) {
 		if tick & 0x7 == 0 {
 //			updateVehicles()
 		}
@@ -17,18 +17,20 @@ struct AISystem {
 
 	private func updateVehicles() {
 		let ai = world.vehicleAI
-		ai.enumerated().forEach { index, ai in
-			let ref = world.shipRefs[ai.vehicle.box.value]
+		ai.enumerated().forEach { index, aic in
+			let ref = world.shipRefs[aic.vehicle.box.value]
 			world.input[ref.input.box.value] = {
 
 				let ship = world.ships[ref.ship]
-				var ai = ai as VehicleAIComponent
+				var aic = aic as VehicleAIComponent
 				var input = .empty as Input
-				if ai.target == nil {
-					ai.target = world.physics.first({ $0.category.contains(.blu) })?.entity
+				if aic.target == nil {
+					let target = world.physics.first({ $0.category.contains(.blu) })?.entity
+					aic.target = target
+					world.shipRefs[aic.vehicle.box.value].target = target
 				}
 
-				if let target = ai.target, let targetPhysics = world.physics.indexOf(target) {
+				if let target = aic.target, let targetPhysics = world.physics.indexOf(target) {
 					let physics = world.physics[ref.physics]
 					let tPhysics = world.physics[targetPhysics]
 					let energy = ship.reactor.normalized
@@ -63,7 +65,7 @@ struct AISystem {
 					}
 				}
 
-				world.vehicleAI[index] = ai
+				world.vehicleAI[index] = aic
 
 				return input
 			}()

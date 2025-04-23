@@ -1,6 +1,6 @@
 import SpriteKit
 
-struct PhysicsComponent {
+struct Physics {
 	var node: SKNode
 	var position: CGPoint
 	var momentum: CGVector = .zero
@@ -21,10 +21,14 @@ struct Category: OptionSet {
 	static var ship: Category { .init(rawValue: 1 << 2) }
 	static var projectile: Category { .init(rawValue: 1 << 3) }
 	static var crystal: Category { .init(rawValue: 1 << 4) }
+	static var player: Category { .init(rawValue: 1 << 5) }
+	static var b0: Category { .init(rawValue: 1 << 6) }
+	static var b1: Category { .init(rawValue: 1 << 7) }
 }
 
 extension Category {
 	var team: Team? { contains(.blu) ? .blu : contains(.red) ? .red : .none }
+//	var playerIndex: Int? { contains(.player) ? Int(rawValue >> 6) : nil }
 }
 
 extension Team {

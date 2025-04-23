@@ -35,7 +35,7 @@ final class DamageSystem {
 		} else {
 			ship.hp.core = 0
 
-			EffectsFactory.createVehilceExplosion(world: world, at: phy.position, angle: phy.rotation)
+			world.unitFactory.makeExplosion(at: phy.position, angle: phy.rotation, textures: .explosionTextures)
 			let dead = DeadComponent(killedBy: projectile.source)
 			world.dead.add(component: dead, to: entity)
 		}

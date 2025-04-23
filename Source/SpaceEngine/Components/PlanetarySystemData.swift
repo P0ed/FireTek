@@ -3,11 +3,12 @@ import SpriteKit
 struct StarSystemData {
 
 	struct Planet {
-		var radius: Float
+		var radius: CGFloat
 		var color: PlanetColor
-		var orbit: Float
-		var velocity: Float
-		var angle: Float
+		var orbit: CGFloat
+		var velocity: CGFloat
+		var angle: CGFloat
+		var hasShop: Bool = false
 	}
 
 	enum PlanetColor {
@@ -20,19 +21,22 @@ struct StarSystemData {
 		case magenta
 	}
 
+	var name: String
 	var planets: [Planet]
 }
 
 struct PlanetComponent {
-	var physics: ComponentIdx<PhysicsComponent>
-	var orbit: Float
-	var velocity: Float
-	var angle: Float
+	var physics: ComponentIdx<Physics>
+	var orbit: CGFloat
+	var velocity: CGFloat
+	var angle: CGFloat
+	var hasShop: Bool
+	var orbiting: Array4<Entity>
 }
 
 extension StarSystemData.Planet {
 	var position: CGPoint {
-		CGPoint(x: CGFloat(orbit * cos(angle)), y: CGFloat(orbit * sin(angle)))
+		.init(x: CGFloat(orbit * cos(angle)), y: CGFloat(orbit * sin(angle)))
 	}
 }
 

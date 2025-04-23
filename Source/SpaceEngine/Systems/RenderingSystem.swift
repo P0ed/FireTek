@@ -2,7 +2,7 @@ import SpriteKit
 
 final class RenderingSystem {
 	private let world: World
-	private let ref: WeakRef<PhysicsComponent>?
+	private let ref: WeakRef<Physics>?
 	private var disposable = [] as [Any]
 
 	init(world: World, player: Entity, scene: SKScene) {

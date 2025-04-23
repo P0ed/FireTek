@@ -1,37 +1,8 @@
-import SpriteKit
-
-enum StarSystemFactory {
-
-	static func createSystem(world: World, data: StarSystemData) {
-		data.planets.forEach { createPlanet(world: world, data: $0) }
-	}
-
-	@discardableResult
-	static func createPlanet(world: World, data: StarSystemData.Planet) -> Entity {
-		let entity = world.entityManager.create()
-
-		let sprite = SpriteFactory.createPlanet(entity: entity, data: data)
-		let physics = PhysicsComponent(node: sprite, position: data.position)
-
-		let pidx = world.physics.add(component: physics, to: entity)
-		let phyRef = world.physics.sharedIndexAt(pidx)
-
-		let planet = PlanetComponent(
-			physics: phyRef,
-			orbit: data.orbit,
-			velocity: data.velocity,
-			angle: data.angle
-		)
-		world.planets.add(component: planet, to: entity)
-
-		return entity
-	}
-}
-
 extension StarSystemData {
 
 	static func generate() -> StarSystemData {
 		StarSystemData(
+			name: "Vulcan",
 			planets: [
 				Planet(
 					radius: 28,
@@ -45,7 +16,8 @@ extension StarSystemData {
 					color: .cyan,
 					orbit: 800,
 					velocity: 0.00021,
-					angle: 0.2
+					angle: 0.2,
+					hasShop: true
 				),
 				Planet(
 					radius: 16,
@@ -108,7 +80,8 @@ extension StarSystemData {
 					color: .yellow,
 					orbit: 3200,
 					velocity: 0.00003,
-					angle: 4.2
+					angle: 4.2,
+					hasShop: true
 				)
 			]
 		)

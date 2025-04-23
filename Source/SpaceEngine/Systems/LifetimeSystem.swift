@@ -25,7 +25,11 @@ final class LifetimeSystem {
 			if isExpired, let p = world.projectiles.weakRefOf(e) {
 
 				if p.value?.type == .torpedo, let ph = world.physics.weakRefOf(e)?.value {
-					EffectsFactory.createShellExplosion(world: world, at: ph.position, angle: ph.rotation - .pi)
+					world.unitFactory.makeExplosion(
+						at: ph.position,
+						angle: ph.rotation - .pi,
+						textures: .torpHitTextures
+					)
 				}
 			}
 

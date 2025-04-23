@@ -25,35 +25,6 @@ enum SpriteFactory {
 		node.entity = entity
 		return node
 	}
-}
-
-extension WeaponType {
-	var textureName: String {
-		switch self {
-		case .torpedo: "torpedo"
-		default: "shell"
-		}
-	}
-}
-
-// MARK: Textures
-extension SpriteFactory {
-
-	static func shellExplosionTextures() -> [SKTexture] {
-		return (0...7).map { index in
-			effects.textureNamed("shell-explosion-\(index)")
-		}
-	}
-
-	static func vehiceExplosionTextures() -> [SKTexture] {
-		return (0...6).map { index in
-			effects.textureNamed("vehicle-explosion-\(index)")
-		}
-	}
-}
-
-// MARK: Stars & Planets
-extension SpriteFactory {
 
 	static func createPlanet(entity: Entity, data: StarSystemData.Planet) -> SKSpriteNode {
 		let node = SKSpriteNode(texture: effects.textureNamed("Planet"))
@@ -64,6 +35,34 @@ extension SpriteFactory {
 		node.entity = entity
 
 		return node
+	}
+}
+
+private extension WeaponType {
+	var textureName: String {
+		switch self {
+		case .torpedo: "torpedo"
+		default: "shell"
+		}
+	}
+}
+
+extension [SKTexture] {
+
+	static var blasterHitTextures: [SKTexture] {
+		(0...7).map { index in
+			SpriteFactory.effects.textureNamed("shell-explosion-\(index)")
+		}
+	}
+	static var torpHitTextures: [SKTexture] {
+		(0...7).map { index in
+			SpriteFactory.effects.textureNamed("torp-hit-\(index)")
+		}
+	}
+	static var explosionTextures: [SKTexture] {
+		(0...6).map { index in
+			SpriteFactory.effects.textureNamed("vehicle-explosion-\(index)")
+		}
 	}
 }
 

@@ -34,11 +34,12 @@ final class LootSystem {
 
 	private func spawnLoot(loot: LootComponent, at position: CGPoint) {
 		let count = Int(arc4random_uniform(UInt32(loot.count))) + 1
+		let units = world.unitFactory
 		for index in 0..<count {
 			let offset = spread(at: index, outOf: count)
 			let crystal = generate(base: loot.crystal)
 
-			UnitFactory.addCrystal(world: world, crystal: crystal, at: position, moveBy: offset)
+			units.addCrystal(crystal: crystal, at: position, moveBy: offset)
 		}
 	}
 

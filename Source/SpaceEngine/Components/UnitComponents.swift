@@ -2,10 +2,11 @@ import Fx
 import SpriteKit
 
 struct ShipRef {
-	let physics: ComponentIdx<PhysicsComponent>
+	let physics: ComponentIdx<Physics>
 	let input: ComponentIdx<Input>
 	let ship: ComponentIdx<Ship>
 	var info: String
+	var target: Entity?
 }
 
 struct Ship {
@@ -73,18 +74,8 @@ struct Capacitor {
 	mutating func discharge() { value = 0 }
 }
 
-struct TargetComponent {
-	var target: Entity?
-}
-
-enum Team {
-	case blu
-	case red
-}
-
-enum Crystal {
-	case blue, red, purple, cyan, yellow, green, orange
-}
+enum Team { case blu, red }
+enum Crystal { case blue, red, purple, cyan, yellow, green, orange }
 
 struct LootComponent {
 	let crystal: Crystal

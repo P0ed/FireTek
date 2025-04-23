@@ -2,10 +2,9 @@ import Fx
 
 final class World {
 	let entityManager: EntityManager
-	let physics: Store<PhysicsComponent>
+	let physics: Store<Physics>
 	let shipRefs: Store<ShipRef>
 	let ships: Store<Ship>
-	let targets: Store<TargetComponent>
 	let loot: Store<LootComponent>
 	let crystals: Store<Crystal>
 	let dead: Store<DeadComponent>
@@ -21,7 +20,6 @@ final class World {
 		physics = entityManager.makeStore()
 		shipRefs = entityManager.makeStore()
 		ships = entityManager.makeStore()
-		targets = entityManager.makeStore()
 		input = entityManager.makeStore()
 		vehicleAI = entityManager.makeStore()
 		team = entityManager.makeStore()

@@ -9,15 +9,15 @@ final class Engine {
 
 	private unowned let scene: SpaceScene
 	private let world: World
-	private let player: Entity
+	private let players: Array4<Entity>
 
 	private let inputSystem: InputSystem
 	private let physicsSystem: PhysicsSystem
 	private let collisionsSystem: CollisionsSystem
 	private let damageSystem: DamageSystem
 	private let targetSystem: TargetSystem
-	private var aiSystem: AISystem
-	private var weaponSystem: WeaponSystem
+	private let aiSystem: AISystem
+	private let weaponSystem: WeaponSystem
 	private let projectileSystem: ProjectileSystem
 	private let lifetimeSystem: LifetimeSystem
 	private let lootSystem: LootSystem
@@ -30,17 +30,18 @@ final class Engine {
 	init(scene: SpaceScene, input: InputController) {
 		let state = GameState.make()
 		let world = World()
-		player = world.entityManager.create()
 		self.state = state
 		self.world = world
 		self.scene = scene
 		self.inputController = input
 
-		state.setup(world: world, player: player)
+		self.players = state.setup(world: world)
+		let player = players[0]
+
 		messageSystem = MessageSystem(world: world, player: player)
 		renderingSystem = RenderingSystem(world: world, player: player, scene: scene)
 
-		planetarySystem = PlanetarySystem(planets: world.planets, physics: world.physics)
+		planetarySystem = PlanetarySystem(planets: world.planets, physics: world.physics, msgsys: messageSystem)
 		physicsSystem = PhysicsSystem(world: world)
 		collisionsSystem = CollisionsSystem(world: world)
 
@@ -50,6 +51,7 @@ final class Engine {
 
 		inputSystem = InputSystem(world: world, player: player)
 		targetSystem = TargetSystem(world: world, player: player, messageSystem: messageSystem)
+		inputSystem.scan = { [targetSystem] in targetSystem.scan(entity: player) }
 		aiSystem = AISystem(world: world)
 		hudSystem = HUDSystem(world: world, player: player, hudNode: scene.hud)
 		lifetimeSystem = LifetimeSystem(world: world)
@@ -72,7 +74,7 @@ final class Engine {
 		lootSystem.update()
 		lifetimeSystem.update()
 
-		if !world.entityManager.isAlive(player) {
+		if !world.entityManager.isAlive(players[0]) {
 			restart()
 		}
 

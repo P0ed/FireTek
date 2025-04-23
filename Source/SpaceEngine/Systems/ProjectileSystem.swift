@@ -6,7 +6,7 @@ final class ProjectileSystem {
 	struct Unit {
 		let entity: Entity
 		let projectile: ComponentIdx<ProjectileComponent>
-		let physics: ComponentIdx<PhysicsComponent>
+		let physics: ComponentIdx<Physics>
 	}
 
 	private let world: World
@@ -71,7 +71,13 @@ private extension ProjectileSystem {
 		let projectileComponent = projectile.value
 		world.entityManager.removeEntity(projectile.entity)
 
-		EffectsFactory.createShellExplosion(world: world, at: contact.point, angle: contact.normal.angle)
+		world.unitFactory.makeExplosion(
+			at: contact.point,
+			angle: contact.normal.angle,
+			textures: projectileComponent.type == .blaster
+				? .blasterHitTextures
+				: .torpHitTextures
+		)
 
 		if let shipRef = world.shipRefs.first(contact.a, contact.b) {
 			damageSystem.damage(
