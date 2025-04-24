@@ -24,20 +24,25 @@ struct PhysicsSystem {
 	}
 
 	private func apply(input: Input, ship: inout Ship, physics: inout Physics) {
-		if input.impulse, ship.reactor.drain(ship.engine.impulse / 2) {
-			physics.momentum += physics.rotation.vector * CGFloat(ship.engine.impulse) / 1024
-
-			if ship.engine.driving & 0xF == 0 { physics.node.run(.play(.impulse)) }
-			ship.engine.driving &+= 1
-		} else if input.warp, ship.reactor.drain(ship.engine.warp / 2) {
-			let mul = CGFloat(min(32, ship.engine.driving)) / 128
-			physics.position += physics.rotation.vector * CGFloat(ship.engine.warp) * mul
-			physics.momentum = physics.momentum * 0.97
-
-			if ship.engine.driving & 0x1F == 0 { physics.node.run(.play(.warp)) }
-			ship.engine.driving &+= 1
-		} else if ship.engine.driving != 0 {
-			ship.engine.driving = 0
+		if ship.engine.warping != 0 || input.warp {
+			if input.warp, ship.reactor.drain(ship.engine.warp / 2) {
+				let mul = CGFloat(min(32, ship.engine.warping)) / 128
+				physics.position += physics.rotation.vector * CGFloat(ship.engine.warp) * mul
+				physics.momentum = physics.momentum * 0.97
+				if ship.engine.warping & 0x1F == 0 { physics.node.run(.play(.warp)) }
+			}
+			ship.engine.warping = input.warp
+				? (ship.engine.warping < 0x7F ? ship.engine.warping + 1 : 0x40)
+				: (ship.engine.warping + 1) & 0x1F
+		}
+		if ship.engine.driving != 0 || input.impulse, ship.engine.warping == 0 {
+			if input.impulse, ship.reactor.drain(ship.engine.impulse / 2) {
+				physics.momentum += physics.rotation.vector * CGFloat(ship.engine.impulse) / 1024
+				if ship.engine.driving & 0xF == 0 { physics.node.run(.play(.impulse)) }
+			}
+			ship.engine.driving = input.impulse
+				? (ship.engine.driving < 0x7F ? ship.engine.driving + 1 : 0x40)
+				: (ship.engine.driving + 1) & 0xF
 		}
 
 		if input.dpad.left {

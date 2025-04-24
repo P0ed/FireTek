@@ -4,7 +4,6 @@ import Fx
 final class Engine {
 	private unowned let scene: SpaceScene
 	private let world: World
-	private var state: GameState
 	private let inputController: InputController
 
 	private let messageSystem: MessageSystem
@@ -24,31 +23,32 @@ final class Engine {
 
 	var restart = {}
 
-	init(scene: SpaceScene, input: InputController) {
-		state = GameState.make()
-		world = World()
+	init(scene: SpaceScene, input: InputController, state: GameState = .make()) {
+		world = World(initialState: state)
 		self.scene = scene
 		self.inputController = input
 
-		world.load(state: state)
-		let player = world.players[0]
+		inputSystem = InputSystem(world: world)
+		messageSystem = MessageSystem(world: world)
+		renderingSystem = RenderingSystem(world: world, scene: scene)
 
-		messageSystem = MessageSystem(world: world, player: player)
-		renderingSystem = RenderingSystem(world: world, player: player, scene: scene)
-
-		planetarySystem = PlanetarySystem(planets: world.planets, physics: world.physics, msgsys: messageSystem)
+		planetarySystem = PlanetarySystem(world: world, msgsys: messageSystem)
 		physicsSystem = PhysicsSystem(world: world)
 		collisionsSystem = CollisionsSystem(world: world)
-
 		weaponSystem = WeaponSystem(world: world)
 		damageSystem = DamageSystem(world: world)
-		projectileSystem = ProjectileSystem(world: world, collisionsSystem: collisionsSystem, damageSystem: damageSystem)
+		projectileSystem = ProjectileSystem(
+			world: world,
+			collisionsSystem: collisionsSystem,
+			damageSystem: damageSystem
+		)
 
-		inputSystem = InputSystem(world: world, player: player)
-		targetSystem = TargetSystem(world: world, player: player, messageSystem: messageSystem)
-		inputSystem.scan = { [targetSystem] in targetSystem.scan(entity: player) }
+		targetSystem = TargetSystem(world: world, messageSystem: messageSystem)
+		inputSystem.scan = { [player = world.players[0], targetSystem] in
+			targetSystem.scan(entity: player)
+		}
 		aiSystem = AISystem(world: world)
-		hudSystem = HUDSystem(world: world, player: player, hudNode: scene.hud)
+		hudSystem = HUDSystem(world: world, hudNode: scene.hud)
 		lifetimeSystem = LifetimeSystem(world: world)
 		lootSystem = LootSystem(world: world, collisionsSystem: collisionsSystem)
 	}

@@ -40,7 +40,8 @@ struct ShipEngine {
 	var impulse: UInt16
 	var warp: UInt16
 	var efficiency: UInt16
-	var driving: UInt16 = 0
+	var driving: UInt8 = 0
+	var warping: UInt8 = 0
 }
 
 struct Capacitor {
@@ -113,4 +114,12 @@ struct Damaged: OptionSet {
 	static var cap: Damaged { .init(rawValue: 1 << 4) }
 	static var prm: Damaged { .init(rawValue: 1 << 5) }
 	static var sec: Damaged { .init(rawValue: 1 << 6) }
+}
+
+extension HP {
+	mutating func repair() {
+		front = maxArmor
+		side = maxArmor
+		core = maxStructure
+	}
 }

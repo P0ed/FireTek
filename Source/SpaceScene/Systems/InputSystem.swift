@@ -10,9 +10,9 @@ final class InputSystem {
 	var scan = {}
 	var action = {}
 
-	init(world: World, player: Entity) {
+	init(world: World) {
 		self.world = world
-		playerInput = world.input.weakRefOf(player)
+		playerInput = world.input.weakRefOf(world.players[0])
 	}
 
 	func update(input: Input) {

@@ -15,9 +15,10 @@ final class World {
 	let loot: Store<LootComponent>
 	let dead: Store<DeadComponent>
 
+	private(set) var state: GameState
 	private(set) var players: Array4<Entity>
 
-	init() {
+	init(initialState: GameState) {
 		entityManager = EntityManager()
 		input = entityManager.makeStore()
 		physics = entityManager.makeStore()
@@ -32,23 +33,28 @@ final class World {
 		loot = entityManager.makeStore()
 		dead = entityManager.makeStore()
 
+		state = initialState
 		players = .init([entityManager.create()])
+
+		loadState()
 	}
 }
 
 extension World {
 
-	func load(state: GameState) {
+	private func loadState() {
 		let starSystem = StarSystemData()
 		let spawn = starSystem.planets[3].position + .init(x: 27, y: 22)
-		let mkEntity = entityManager.create
 
 		let units = unitFactory
 		units.makeTank(entity: players[0], ship: state.ship, position: spawn, category: [.blu, .player])
-		units.makeAIPlayer(entity: mkEntity(), position: CGPoint(x: 0, y: 1500))
-		units.makeAIPlayer(entity: mkEntity(), position: CGPoint(x: 200, y: 1500))
-		units.makeAIPlayer(entity: mkEntity(), position: CGPoint(x: -200, y: 1500))
 
 		units.createSystem(data: starSystem)
+	}
+
+	func spawnEnemies() {
+		let spawn = planets.indices.last.map { planets[$0].position } ?? .zero
+		unitFactory.makeAIPlayer(entity: entityManager.create(), position: spawn + .init(x: 27, y: 22))
+		unitFactory.makeAIPlayer(entity: entityManager.create(), position: spawn - .init(x: 27, y: 22))
 	}
 }

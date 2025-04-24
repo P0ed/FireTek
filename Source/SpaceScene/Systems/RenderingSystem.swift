@@ -5,7 +5,8 @@ final class RenderingSystem {
 	private let ref: WeakRef<Physics>?
 	private var disposable = [] as [Any]
 
-	init(world: World, player: Entity, scene: SKScene) {
+	init(world: World, scene: SKScene) {
+		let player = world.players[0]
 		self.world = world
 		ref = world.physics.weakRefOf(player)
 

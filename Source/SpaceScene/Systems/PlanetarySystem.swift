@@ -1,15 +1,28 @@
 import SpriteKit
 
 final class PlanetarySystem {
+	private let world: World
 	private let planets: Store<PlanetComponent>
 	private let physics: Store<Physics>
-	private var messages = Quad<Int?>(repeating: nil)
 	private let msgsys: MessageSystem
 
-	init(planets: Store<PlanetComponent>, physics: Store<Physics>, msgsys: MessageSystem) {
-		self.planets = planets
-		self.physics = physics
+	private var visitingPlanet = Quad<Int?>(repeating: nil)
+
+	init(world: World, msgsys: MessageSystem) {
+		self.world = world
+		planets = world.planets
+		physics = world.physics
 		self.msgsys = msgsys
+
+		msgsys.monitor(system: .planet) { [weak msgsys] player, action in
+			if action == .a {
+				world.ships[player]?.hp.repair()
+			}
+			if action == .b {
+				world.spawnEnemies()
+				msgsys?.clearSystemMessages(.planet)
+			}
+		}
 	}
 
 	func update() {
@@ -18,14 +31,20 @@ final class PlanetarySystem {
 	}
 
 	private func updateMessages() {
+		let planets = world.planets
 		for index in planets.indices {
 			let planet = planets[index]
 
-			if planet.hasShop, messages[0] == nil, !planet.orbiting.isEmpty {
-				messages[0] = index
-				msgsys.send(Message(system: .planet, text: index != 0 ? "Sol \(index)" : "Sol"))
-			} else if planet.hasShop, messages[0] == index, planet.orbiting.isEmpty {
-				messages[0] = nil
+			if planet.hasShop, visitingPlanet[0] != index, !planet.orbiting.isEmpty {
+				visitingPlanet[0] = index
+				msgsys.send(Message(
+					system: .planet,
+					text: "Sol \(index)\n",
+					act: "Repair",
+					scan: "Fight"
+				))
+			} else if planet.hasShop, visitingPlanet[0] == index, planet.orbiting.isEmpty {
+				visitingPlanet[0] = nil
 				msgsys.clearSystemMessages(.planet)
 			}
 		}

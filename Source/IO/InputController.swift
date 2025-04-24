@@ -29,7 +29,19 @@ final class InputController {
 				.l1: buttonAction(.l1),
 				.r1: buttonAction(.r1)
 			],
-			dpad: _dpad.set
+			dpad: _dpad.set,
+			keyboardMapTable: [
+				0x7B: { [_dpad] in _dpad.value.left = $0 },
+				0x7C: { [_dpad] in _dpad.value.right = $0 },
+				0x7D: { [_dpad] in _dpad.value.down = $0 },
+				0x7E: { [_dpad] in _dpad.value.up = $0 },
+				0x6: buttonAction(.cross),
+				0x7: buttonAction(.circle),
+				0x8: buttonAction(.r1),
+				0x0: buttonAction(.square),
+				0x1: buttonAction(.triangle),
+				0x2: buttonAction(.l1),
+			]
 		)
 	}
 

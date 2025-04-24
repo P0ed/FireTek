@@ -8,7 +8,6 @@ struct GameState: Codable {
 
 enum WeaponType: UInt8, Codable {
 	case torpedo
-	case laser
 	case blaster
 }
 
@@ -73,6 +72,7 @@ extension GameState {
 
 	struct Crew: Codable {
 		var name: String
+		var rank: Rank
 		var combat: UInt16
 		var engineering: UInt16
 		var science: UInt16

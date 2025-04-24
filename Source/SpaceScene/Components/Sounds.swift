@@ -8,6 +8,11 @@ enum Sound: UInt8, CaseIterable {
 	case crystalCollected
 }
 
+extension WeaponType {
+	var fireSound: Sound { self == .blaster ? .blaster : .torpedo }
+	var hitSound: Sound { self == .blaster ? .blasterHit : .torpedoHit }
+}
+
 extension Sound {
 	static let sounds: [Sound: SKAction] = .init(uniqueKeysWithValues: allCases.map { s in
 		(s, s.action)

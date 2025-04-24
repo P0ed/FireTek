@@ -259,27 +259,27 @@
 			children = (
 				5F115F471F6D3404004509D0 /* Router */,
 				5F428C8E1D6909DD0075FA6B /* IO */,
-				5FE1242A1D5FA4EC00C41BAC /* SpaceEngine */,
+				5FE1242A1D5FA4EC00C41BAC /* SpaceScene */,
 				5FE124351D5FA4EC00C41BAC /* Utilities */,
 			);
 			path = Source;
 			sourceTree = "<group>";
 		};
-		5FE1242A1D5FA4EC00C41BAC /* SpaceEngine */ = {
+		5FE1242A1D5FA4EC00C41BAC /* SpaceScene */ = {
 			isa = PBXGroup;
 			children = (
 				5FE124301D5FA4EC00C41BAC /* Systems */,
 				5FE1242B1D5FA4EC00C41BAC /* Components */,
 				5F428C831D68A4D60075FA6B /* Factories */,
 				5F52FFA82DB11D4F00C57350 /* UI */,
-				5FE1242F1D5FA4EC00C41BAC /* Engine.swift */,
 				5FE124341D5FA4EC00C41BAC /* SpaceScene.swift */,
+				5FE1242F1D5FA4EC00C41BAC /* Engine.swift */,
+				5F428C8C1D69039C0075FA6B /* World.swift */,
 				5F440AD01F6D54220036189E /* GameState.swift */,
 				5F2F9F3C1D7331E60016AA2F /* Math.swift */,
-				5F428C8C1D69039C0075FA6B /* World.swift */,
 				5F35E8A02BE6322500EF3CA0 /* Core.swift */,
 			);
-			path = SpaceEngine;
+			path = SpaceScene;
 			sourceTree = "<group>";
 		};
 		5FE1242B1D5FA4EC00C41BAC /* Components */ = {

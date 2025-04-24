@@ -5,7 +5,6 @@ final class HUDSystem {
 	private let world: World
 	private let hudNode: HUDNode
 
-	private var playerShip: WeakRef<Ship>?
 	private var playerPhysics: WeakRef<Physics>?
 	private var playerStats: WeakRef<Ship>?
 	private var targetStats: WeakRef<Ship>?
@@ -13,17 +12,17 @@ final class HUDSystem {
 
 	private let disposable = SerialDisposable()
 
-	init(world: World, player: Entity, hudNode: HUDNode) {
+	init(world: World, hudNode: HUDNode) {
 		self.world = world
 		self.hudNode = hudNode
 
-		playerShip = world.ships.weakRefOf(player)
+		let player = world.players[0]
 		playerPhysics = world.physics.weakRefOf(player)
 		playerStats = world.ships.weakRefOf(player)
 	}
 
 	func update(message: String) {
-		fillHud()
+		updateTargetStats()
 
 		let stats = playerStats?.value
 		updateBar(node: hudNode.front, progress: stats.map { CGFloat($0.hp.front) / CGFloat($0.hp.maxArmor) })
@@ -48,8 +47,8 @@ final class HUDSystem {
 		}
 	}
 
-	private func fillHud() {
-		if let target = playerShip?.value?.target {
+	private func updateTargetStats() {
+		if let target = playerStats?.value?.target {
 			if targetStats?.entity != target {
 				targetStats = world.ships.weakRefOf(target)
 			}
@@ -73,5 +72,7 @@ func text(_ string: String) -> NSAttributedString {
 	ps.alignment = .right
 	let c = SKColor.white
 	let f = NSFont(name: "Menlo", size: 10)!
-	return .init(string: string, attributes: [.paragraphStyle: ps, .foregroundColor: c, .font: f])
+	return .init(string: string, attributes: [
+		.paragraphStyle: ps, .foregroundColor: c, .font: f
+	])
 }

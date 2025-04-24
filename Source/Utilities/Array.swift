@@ -39,18 +39,22 @@ struct Quad<A>: RandomAccessCollection {
 }
 
 struct Array4<A>: RandomAccessCollection, RangeReplaceableCollection {
-	private var q: Quad<A?> = .init(repeating: nil)
+	private var q: Quad<A>
 	private var cnt: Int
 
-	init() { cnt = 0 }
+	init() {
+		q = withUnsafeTemporaryAllocation(of: A.self, capacity: 1) { Quad(repeating: $0[0]) }
+		cnt = 0
+	}
 	init<C: Collection>(_ collection: C) where C.Element == A {
 		guard collection.count <= 4 else { fatalError() }
+		self = Self.init()
 		for (i, e) in collection.enumerated() { q[i] = e }
 		cnt = collection.count
 	}
 
 	subscript(position: Int) -> A {
-		get { q[position]! }
+		get { q[position] }
 		set { q[position] = newValue }
 	}
 
@@ -119,22 +123,13 @@ struct Array16<A>: RandomAccessCollection, RangeReplaceableCollection {
 	}
 
 	mutating func replaceSubrange<C>(_ subrange: Range<Self.Index>, with newElements: C) where C : Collection, Self.Element == C.Element {
-//		var replaced = 0
-//		for i in subrange {
-//			if replace != 0 {
-//				self[i] = newElements[i]
-//			} else {
-//				rm(at: i)
-//			}
-//		}
-//		for e in newElements { insrt(e, at: subrange.lowerBound) }
 		let sublen = subrange.count
 		let elslen = newElements.count
 		for (i, e) in newElements.enumerated() {
 			if i < sublen {
-				self[i] = e
+				self[i + subrange.lowerBound] = e
 			} else {
-				insrt(e, at: i)
+				insrt(e, at: i + subrange.lowerBound)
 			}
 		}
 		if sublen > elslen {

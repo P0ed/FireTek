@@ -83,17 +83,6 @@ extension GameState {
 		)
 	}
 
-	static func makeLaser(rank: Rank) -> Weapon {
-		Weapon(
-			rank: rank,
-			type: .laser,
-			damage: 8 + rank.n,
-			velocity: 300,
-			cooldown: 20,
-			recharge: 6
-		)
-	}
-
 	static func makeTorpedo(rank: Rank) -> Weapon {
 		Weapon(
 			rank: rank,
@@ -120,12 +109,14 @@ extension GameState {
 		[
 			Crew(
 				name: "Jim",
+				rank: .d,
 				combat: 9,
 				engineering: 6,
 				science: 6
 			),
 			Crew(
 				name: "Spok",
+				rank: .d,
 				combat: 8,
 				engineering: 8,
 				science: 9
@@ -154,6 +145,7 @@ extension GameState.Crew {
 	static func random(friendly: Bool, random: RandomGenerator) -> Self {
 		.init(
 			name: random.element(friendly ? friendlyNames : hostileNames),
+			rank: random.bool() ? .a : .b,
 			combat: random.int(2...6),
 			engineering: random.int(2...6),
 			science: random.int(2...6)

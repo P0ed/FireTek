@@ -91,10 +91,8 @@ struct UnitFactory {
 	@discardableResult
 	func createProjectile(at position: CGPoint, velocity: CGVector, angle: CGFloat, projectile: ProjectileComponent, team: Team?) -> Entity {
 		let entity = world.entityManager.create()
-
 		let sprite = SpriteFactory.createProjectileSprite(entity, type: projectile.type)
-
-		sprite.run(.play(projectile.type == .torpedo ? .torpedo : .blaster))
+		sprite.run(.play(projectile.type.fireSound))
 
 		let physics = Physics(
 			node: sprite,

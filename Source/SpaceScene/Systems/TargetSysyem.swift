@@ -3,9 +3,9 @@ final class TargetSystem {
 	private let player: Entity
 	private let messageSystem: MessageSystem
 
-	init(world: World, player: Entity, messageSystem: MessageSystem) {
+	init(world: World, messageSystem: MessageSystem) {
 		self.world = world
-		self.player = player
+		self.player = world.players[0]
 		self.messageSystem = messageSystem
 
 		scan(entity: player)
@@ -31,7 +31,7 @@ final class TargetSystem {
 			let ref = world.shipRefs[idx]
 			let p = world.physics[ref.physics]
 			if p.category.isSuperset(of: [.ship, phy.category.team?.opposite.category ?? []]) {
-				let target = world.physics.entityAt(idx)
+				let target = world.shipRefs.entityAt(idx)
 				targets.append(target)
 				messageSystem.send(Message(system: .target, target: target, text: ref.info))
 			}
