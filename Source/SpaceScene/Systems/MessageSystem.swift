@@ -97,7 +97,7 @@ final class MessageSystem {
 }
 
 struct Cursor16<A>: RandomAccessCollection, RangeReplaceableCollection {
-	private var array: Array16<A> = .init([])
+	private var array: Array16<A> = []
 	private(set) var index: Int = 0
 
 	init() {}
@@ -146,7 +146,7 @@ struct Message {
 	var action: Action
 
 	init(
-		system: System = .none,
+		system: System,
 		target: Entity? = nil,
 		text: String,
 		act: String? = nil,

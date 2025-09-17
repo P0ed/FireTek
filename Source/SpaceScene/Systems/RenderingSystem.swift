@@ -25,15 +25,15 @@ final class RenderingSystem {
 		let maxR = 192 as CGFloat
 		let position = ref?.value?.position ?? .zero
 		let rotation = ref?.value?.rotation ?? 0
-		world.physics.forEach { physics in
+		world.physics.enumerated().forEach { idx, physics in
 			let v = (physics.position - position).vector
 			let len = v.length
 
-			func f(_ r: CGFloat) -> CGFloat {
+			func map(_ r: CGFloat) -> CGFloat {
 				max(0, min(maxR, r)) - maxR / max(1, r / maxR) + maxR
 			}
 
-			let scaled: CGVector = v == .zero ? .zero : v.normalized.rotate(-rotation) * f(len)
+			let scaled: CGVector = v == .zero ? .zero : v.normalized.rotate(-rotation) * map(len)
 			physics.node.position = scaled.point
 
 			let scale: CGFloat = len > maxR ? maxR / len : 1

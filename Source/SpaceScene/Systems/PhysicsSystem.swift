@@ -38,11 +38,11 @@ struct PhysicsSystem {
 		if ship.engine.driving != 0 || input.impulse, ship.engine.warping == 0 {
 			if input.impulse, ship.reactor.drain(ship.engine.impulse / 2) {
 				physics.momentum += physics.rotation.vector * CGFloat(ship.engine.impulse) / 1024
-				if ship.engine.driving & 0xF == 0 { physics.node.run(.play(.impulse)) }
+				if ship.engine.driving & 0x7 == 0 { physics.node.run(.play(.impulse)) }
 			}
 			ship.engine.driving = input.impulse
 				? (ship.engine.driving < 0x7F ? ship.engine.driving + 1 : 0x40)
-				: (ship.engine.driving + 1) & 0xF
+				: (ship.engine.driving + 1) & 0x7
 		}
 
 		if input.dpad.left {
@@ -63,7 +63,9 @@ struct PhysicsSystem {
 		ship.reactor.charge()
 		ship.primary.capacitor.charge(from: &ship.reactor)
 		ship.secondary.capacitor.charge(from: &ship.reactor)
-		ship.shield.charge(from: &ship.reactor)
+		if ship.primary.capacitor.isCharged, ship.secondary.capacitor.isCharged {
+			ship.shield.charge(from: &ship.reactor)
+		}
 	}
 }
 

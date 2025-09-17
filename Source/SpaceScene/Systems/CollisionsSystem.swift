@@ -34,6 +34,8 @@ final class CollisionsSystem {
 						contacts.append(Contact(
 							a: phy.entityAt(i),
 							b: phy.entityAt(j),
+							acat: ip.category,
+							bcat: jp.category,
 							point: p,
 							normal: v
 						))
@@ -48,6 +50,8 @@ final class CollisionsSystem {
 struct Contact {
 	var a: Entity
 	var b: Entity
+	var acat: Category
+	var bcat: Category
 	var point: CGPoint
 	var normal: CGVector
 }

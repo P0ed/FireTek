@@ -1,11 +1,11 @@
-extension GameState {
+extension PlayerState {
 	static let random = RandomGenerator()
 
-	static func make() -> GameState {
-		GameState(
+	static func make() -> PlayerState {
+		PlayerState(
 			location: createLocation(),
-			ship: makeShip(name: "Von Neumann", crew: makeCrew(), rank: .b),
-			crystals: Crystals(red: 4, green: 2, blue: 3, yellow: 1, magenta: 0, cyan: 0)
+			ship: makeShip(name: "Von Neumann", crew: makeCrew(), rank: .c),
+			crystals: Crystals(red: 4, amber: 1, yellow: 2, cyan: 0, blue: 0, violet: 0)
 		)
 	}
 
@@ -35,8 +35,9 @@ extension GameState {
 	static func makeShip(name: String? = nil, crew: [Crew] = [], rank: Rank) -> Ship {
 		let name = name ?? random.element(Ship.shipNames)
 		let crew = !crew.isEmpty ? crew : [
-			.random(friendly: false, random: random),
-			.random(friendly: false, random: random)
+			.random(rank: rank.higher, friendly: false, random: random),
+			.random(rank: rank, friendly: false, random: random),
+			.random(rank: rank.lower, friendly: false, random: random)
 		]
 		return Ship(
 			name: name,
@@ -53,8 +54,8 @@ extension GameState {
 	static func createShipHull(rank: Rank) -> ShipHull {
 		ShipHull(
 			rank: rank,
-			armor: random.int(40...50) * rank.n,
-			structure: random.int(30...40) * rank.n
+			armor: random.int(32...56) * (rank.n + 2),
+			structure: random.int(36...44) * (rank.n + 1)
 		)
 	}
 
@@ -70,7 +71,7 @@ extension GameState {
 	static func createShipReactor(rank: Rank) -> ShipReactor {
 		ShipReactor(
 			rank: rank,
-			capacity: random.int(2400...3200) * rank.n,
+			capacity: random.int(2200...2800) * (rank.n + 1),
 			recharge: random.int(6...8) + rank.n
 		)
 	}
@@ -78,7 +79,7 @@ extension GameState {
 	static func createShipShield(rank: Rank) -> ShipShield {
 		ShipShield(
 			rank: rank,
-			capacity: random.int(1600...1800) * rank.n,
+			capacity: random.int(1800...2200) * (rank.n + 1),
 			recharge: random.int(0...1) + rank.n
 		)
 	}
@@ -87,7 +88,7 @@ extension GameState {
 		Weapon(
 			rank: rank,
 			type: .torpedo,
-			damage: 85 + rank.n * 6,
+			damage: 70 + rank.n * 8,
 			velocity: 320 + rank.n * 3,
 			cooldown: 40,
 			recharge: 20 + rank.n
@@ -98,7 +99,7 @@ extension GameState {
 		Weapon(
 			rank: rank,
 			type: .blaster,
-			damage: 45 + rank.n * 3,
+			damage: 45 + rank.n * 6,
 			velocity: 500 + rank.n * 4,
 			cooldown: 32 - rank.n / 2,
 			recharge: 16 + rank.n / 3
@@ -125,7 +126,7 @@ extension GameState {
 	}
 }
 
-private extension GameState.Ship {
+private extension PlayerState.Ship {
 	static let shipNames: [String] = [
 		"ISS Horizon",
 		"USS Pathfinder",
@@ -140,12 +141,12 @@ private extension GameState.Ship {
 	]
 }
 
-extension GameState.Crew {
+extension PlayerState.Crew {
 
-	static func random(friendly: Bool, random: RandomGenerator) -> Self {
+	static func random(rank: Rank, friendly: Bool, random: RandomGenerator) -> Self {
 		.init(
 			name: random.element(friendly ? friendlyNames : hostileNames),
-			rank: random.bool() ? .a : .b,
+			rank: random.bool() ? rank : rank.lower,
 			combat: random.int(2...6),
 			engineering: random.int(2...6),
 			science: random.int(2...6)

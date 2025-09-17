@@ -1,6 +1,6 @@
 import Foundation
 
-struct GameState: Codable {
+struct PlayerState: Codable {
 	var location: Location
 	var ship: Ship
 	var crystals: Crystals
@@ -11,7 +11,7 @@ enum WeaponType: UInt8, Codable {
 	case blaster
 }
 
-extension GameState {
+extension PlayerState {
 
 	struct Location: Codable {
 		var position: CGPoint
@@ -68,8 +68,6 @@ extension GameState {
 		var recharge: UInt16
 	}
 
-	enum Rank: UInt8, Codable { case a, b, c, d, e, f }
-
 	struct Crew: Codable {
 		var name: String
 		var rank: Rank
@@ -81,17 +79,17 @@ extension GameState {
 
 	struct Crystals: Codable {
 		var red: UInt16
-		var green: UInt16
-		var blue: UInt16
+		var amber: UInt16
 		var yellow: UInt16
-		var magenta: UInt16
 		var cyan: UInt16
+		var blue: UInt16
+		var violet: UInt16
 	}
 }
 
-extension GameState.Ship {
+extension PlayerState.Ship {
 
-	func weaponComponent(_ path: KeyPath<Self, GameState.Weapon>) -> Weapon {
+	func weaponComponent(_ path: KeyPath<Self, PlayerState.Weapon>) -> Weapon {
 		let wpn = self[keyPath: path]
 
 		return Weapon(
@@ -131,51 +129,63 @@ extension GameState.Ship {
 
 	var text: String {
 		"""
-		[SHIP: \(name)]
-		[CREW:]
-		\t\(crew.names)
+		SHIP: \(name)
+		
+		CREW:
+		\(crew.map(\.name).joined(separator: "\n"))
 		"""
 	}
 }
 
-extension [GameState.Crew] {
-	var traits: UInt16 { reduce(0, { $0 | $1.traits }) }
-	func n(_ path: KeyPath<GameState.Crew, UInt16>) -> UInt16 {
-		reduce(0, { $0 + $1[keyPath: path] })
+extension PlayerState.Crystals {
+	var text: String {
+		"""
+		
+		CRYSTALS:
+		red:\(red) amber:\(amber) yellow:\(yellow)
+		cyan:\(cyan) blue:\(blue) violet:\(violet)
+		"""
 	}
-
-	var names: String { map(\.name).joined(separator: "\n\t") }
 }
 
-extension GameState.Rank {
+extension PlayerState {
+	var text: String {
+		ship.text + "\n" + crystals.text
+	}
+}
+
+extension [PlayerState.Crew] {
+	var traits: UInt16 { reduce(0, { $0 | $1.traits }) }
+	func n(_ path: KeyPath<PlayerState.Crew, UInt16>) -> UInt16 {
+		reduce(0, { $0 + $1[keyPath: path] })
+	}
+}
+
+enum Rank: UInt8, Codable { case a, b, c, d }
+
+extension Rank {
 	var n: UInt16 {
 		switch self {
 		case .a: return 2
 		case .b: return 3
 		case .c: return 5
 		case .d: return 8
-		case .e: return 13
-		case .f: return 21
 		}
 	}
-	var lower: GameState.Rank {
+	var lower: Rank {
 		switch self {
 		case .a: .a
 		case .b: .a
 		case .c: .b
 		case .d: .c
-		case .e: .d
-		case .f: .e
 		}
 	}
-	var higher: GameState.Rank {
+	var higher: Rank {
 		switch self {
 		case .a: .b
 		case .b: .c
 		case .c: .d
-		case .d: .e
-		case .e: .f
-		case .f: .f
+		case .d: .d
 		}
 	}
 }

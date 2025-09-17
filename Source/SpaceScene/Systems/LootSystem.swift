@@ -3,62 +3,54 @@ import Fx
 
 final class LootSystem {
 	fileprivate let world: World
-	private let collisionsSystem: CollisionsSystem
+	private let colsys: CollisionsSystem
 	private let disposable = CompositeDisposable()
 
-	init(world: World, collisionsSystem: CollisionsSystem) {
+	init(world: World, colsys: CollisionsSystem) {
 		self.world = world
-		self.collisionsSystem = collisionsSystem
+		self.colsys = colsys
 
-		disposable += collisionsSystem.didBeginContact.observe {
+		disposable += colsys.didBeginContact.observe {
 			[weak self] in self?.processContact($0)
 		}
 	}
 
 	func update() {
-		spawnLoot()
-	}
-
-	private func spawnLoot() {
 		for index in world.dead.indices {
 			let entity = world.dead.entityAt(index)
-			if let lootIndex = world.loot.indexOf(entity),
+			if let lootIndex = world.crystalBank.indexOf(entity),
 				let phyIndex = world.physics.indexOf(entity) {
 				spawnLoot(
-					loot: world.loot[lootIndex],
+					loot: world.crystalBank[lootIndex],
 					at: world.physics[phyIndex].position
 				)
 			}
 		}
 	}
 
-	private func spawnLoot(loot: LootComponent, at position: CGPoint) {
-		let count = Int(arc4random_uniform(UInt32(loot.count))) + 1
+	private func spawnLoot(loot: Array4<Crystal>, at position: CGPoint) {
+		let count = loot.count
 		let units = world.unitFactory
 		for index in 0..<count {
 			let offset = spread(at: index, outOf: count)
-			let crystal = generate(base: loot.crystal)
-
+			let crystal = generate(base: loot[index])
 			units.addCrystal(crystal: crystal, at: position, moveBy: offset)
 		}
 	}
 
 	private func spread(at index: Int, outOf count: Int) -> CGVector {
-		if count == 1 { return .zero }
-		let angle = CGFloat.pi * 2 / CGFloat(count)
-		let r = CGVector(dx: 0, dy: 12)
-		return r.rotate(angle * CGFloat(index))
+		count == 1 ? .zero : CGVector(dx: 0, dy: 8)
+			.rotate(CGFloat(index * 2) * .pi / CGFloat(count))
 	}
 
 	private func generate(base: Crystal) -> Crystal {
-		switch Int(arc4random_uniform(20)) {
-		case 0...1: return .red
-		case 2...3: return .green
-		case 4...5: return .blue
-		case 5...7: return .purple
-		case 8: return .yellow
-		case 9: return .cyan
-		case 10: return .orange
+		switch Int(arc4random_uniform(24)) {
+		case 0...3: return .red
+		case 4...6: return .amber
+		case 7...9: return .yellow
+		case 9...10: return .cyan
+		case 11...12: return .blue
+		case 13: return .violet
 		default: return base
 		}
 	}
@@ -67,11 +59,42 @@ final class LootSystem {
 private extension LootSystem {
 
 	func processContact(_ contact: Contact) {
-		guard let loot = world.crystals.first(contact.a, contact.b) else { return }
+		let u = contact.acat.union(contact.bcat)
+		guard u.contains(.crystal), u.contains(.ship) else { return }
 
-		world.entityManager.removeEntity(loot.entity)
+		let loot = contact.acat.contains(.crystal) ? contact.a : contact.b
+		let ship = contact.acat.contains(.ship) ? contact.a : contact.b
 
-		let e = loot.entity == contact.a ? contact.b : contact.a
-		world.physics.refOf(e)?.value.node.run(.play(.crystalCollected))
+		guard let idx = world.crystalBank.indexOf(ship) else { return }
+
+		defer { world.entityManager.removeEntity(loot) }
+
+		if let crystal = world.crystals[loot] {
+			if world.crystalBank[idx].count == 4, let index = world.players.firstIndex(of: ship) {
+				world.crystalBank[idx].collect(in: &world[index])
+			}
+			if world.crystalBank[idx].count < 4 {
+				world.crystalBank[idx].append(crystal)
+				world.physics[ship]?.node.run(.play(.crystalCollected))
+			}
+		}
+	}
+}
+
+extension Array4<Crystal> {
+
+	mutating func collect(in state: inout PlayerState) {
+
+		forEach { c in
+			switch c {
+			case .red: state.crystals.red += 1
+			case .amber: state.crystals.amber += 1
+			case .yellow: state.crystals.yellow += 1
+			case .cyan: state.crystals.cyan += 1
+			case .blue: state.crystals.blue += 1
+			case .violet: state.crystals.violet += 1
+			}
+		}
+		self = []
 	}
 }

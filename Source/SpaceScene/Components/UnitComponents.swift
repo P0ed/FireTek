@@ -75,16 +75,11 @@ struct Capacitor {
 	mutating func discharge() { value = 0 }
 }
 
-enum Team { case blu, red }
-enum Crystal { case blue, red, purple, cyan, yellow, green, orange }
-
-struct LootComponent {
-	let crystal: Crystal
-	let count: Int8
-}
+enum Team: UInt8, Hashable { case blu, red }
+enum Crystal: UInt8, Hashable { case red, amber, yellow, cyan, blue, violet }
 
 struct DeadComponent {
-	let killedBy: Entity
+	var killedBy: Entity
 }
 
 struct Weapon {

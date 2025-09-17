@@ -15,7 +15,7 @@ final class ProjectileSystem {
 	private var units = [] as [Unit]
 	private let disposable = CompositeDisposable()
 
-	init(world: World, collisionsSystem: CollisionsSystem, damageSystem: DamageSystem) {
+	init(world: World, colsys: CollisionsSystem, damageSystem: DamageSystem) {
 		self.world = world
 		self.damageSystem = damageSystem
 
@@ -32,13 +32,13 @@ final class ProjectileSystem {
 
 		disposable += world.projectiles.removedComponents
 			.observe { [unowned self] entity, _ in
-				if let index = self.units.firstIndex(where: { $0.entity == entity }) {
-					self.units.fastRemove(at: index)
+				if let index = units.firstIndex(where: { x in x.entity == entity }) {
+					units.fastRemove(at: index)
 				}
 			}
 
-		disposable += collisionsSystem.didBeginContact
-			.observe { [unowned self] in processContact($0) }
+		disposable += colsys.didBeginContact
+			.observe { [unowned self] x in processContact(x) }
 	}
 
 	func update() {
@@ -61,11 +61,8 @@ final class ProjectileSystem {
 			}
 		}
 	}
-}
 
-private extension ProjectileSystem {
-
-	func processContact(_ contact: Contact) {
+	private func processContact(_ contact: Contact) {
 		guard let projectile = world.projectiles.first(contact.a, contact.b) else { return }
 
 		let projectileComponent = projectile.value

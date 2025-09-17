@@ -8,7 +8,7 @@ extension World {
 struct UnitFactory {
 	var world: World
 
-	func makeTank(entity: Entity, ship: GameState.Ship, position: CGPoint, category: Category) {
+	func makeTank(entity: Entity, ship: PlayerState.Ship, position: CGPoint, category: Category, loot: Array4<Crystal> = []) {
 		let sprite = SpriteFactory.createShipSprite(entity)
 		let physics = Physics(
 			node: sprite,
@@ -24,12 +24,12 @@ struct UnitFactory {
 		)
 
 		world.shipRefs.add(component: shipRef, to: entity)
-		world.loot.add(component: LootComponent(crystal: .orange, count: 3), to: entity)
+		world.crystalBank.add(component: loot, to: entity)
 	}
 
 	func makeAIPlayer(entity: Entity, position: CGPoint) {
-		let ship = GameState.makeShip(rank: .a)
-		makeTank(entity: entity, ship: ship, position: position, category: .red)
+		let ship = PlayerState.makeShip(rank: .a)
+		makeTank(entity: entity, ship: ship, position: position, category: .red, loot: [.red, .yellow, .blue])
 		let vehicle = world.shipRefs.sharedIndexAt § world.shipRefs.indexOf(entity)!
 		let ai = VehicleAIComponent(vehicle: vehicle, state: .hold(.zero), target: nil)
 		world.vehicleAI.add(component: ai, to: entity)
@@ -40,17 +40,15 @@ struct UnitFactory {
 		let entity = world.entityManager.create()
 
 		let sprite = SpriteFactory.createCrystal(entity: entity, crystal: crystal)
-		sprite.run(.group([
-			.repeatForever(.rotate(byAngle: 1, duration: 0.6)),
-			.move(by: offset, duration: 0.6)
-		]))
+		sprite.run(.repeatForever(.rotate(byAngle: 4, duration: 1)))
 
 		let node = SKNode()
 		node.addChild(sprite)
 
 		let physics = Physics(
 			node: node,
-			position: position,
+			position: position + offset.point,
+			momentum: offset / 128,
 			category: .crystal
 		)
 
@@ -81,7 +79,7 @@ struct UnitFactory {
 			velocity: data.velocity,
 			angle: data.angle,
 			hasShop: data.hasShop,
-			orbiting: .init([])
+			orbiting: []
 		)
 		world.planets.add(component: planet, to: entity)
 
@@ -127,4 +125,3 @@ struct UnitFactory {
 		return entity
 	}
 }
-

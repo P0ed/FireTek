@@ -7,6 +7,7 @@ final class HUDSystem {
 
 	private var playerPhysics: WeakRef<Physics>?
 	private var playerStats: WeakRef<Ship>?
+	private var playerCrystals: WeakRef<Array4<Crystal>>?
 	private var targetStats: WeakRef<Ship>?
 	private var message: String = ""
 
@@ -19,6 +20,7 @@ final class HUDSystem {
 		let player = world.players[0]
 		playerPhysics = world.physics.weakRefOf(player)
 		playerStats = world.ships.weakRefOf(player)
+		playerCrystals = world.crystalBank.weakRefOf(player)
 	}
 
 	func update(message: String) {
@@ -40,6 +42,7 @@ final class HUDSystem {
 		updateBar(node: hudNode.weapon1, progress: stats?.primary.capacitor.normalized)
 		updateBar(node: hudNode.weapon2, progress: stats?.secondary.capacitor.normalized)
 		updateBar(node: hudNode.capacitor, progress: stats?.reactor.normalized)
+		hudNode.crystals.crystals = playerCrystals?.value ?? []
 
 		if message != self.message {
 			self.message = message

@@ -5,10 +5,13 @@ final class HUDNode: SKNode {
 	let targetSide = BarNode(alignment: .left, text: "SIDE")
 	let targetCore = BarNode(alignment: .left, text: "CORE")
 	let targetShield = BarNode(alignment: .left, text: "SHLD")
+
 	let front = BarNode(alignment: .left, text: "FRNT")
 	let side = BarNode(alignment: .left, text: "SIDE")
 	let core = BarNode(alignment: .left, text: "CORE")
 	let shield = BarNode(alignment: .left, text: "SHLD")
+
+	let crystals = CrystalsNode()
 	let impulse = BarNode(alignment: .right, text: "IMP")
 	let capacitor = BarNode(alignment: .right, text: "CAP")
 	let weapon1 = BarNode(alignment: .right, text: "CAN")
@@ -20,7 +23,7 @@ final class HUDNode: SKNode {
 		[
 			targetFront, targetSide, targetCore, targetShield,
 			front, side, core, shield,
-			weapon1, weapon2, capacitor, impulse,
+			weapon1, weapon2, capacitor, impulse, crystals,
 			message
 		]
 		.forEach(addChild)
@@ -62,6 +65,7 @@ final class HUDNode: SKNode {
 		side.position = CGPoint(x: dxl, y: dyl - dy * 2)
 		core.position = CGPoint(x: dxl, y: dyl - dy * 3)
 
+		crystals.position = CGPoint(x: dx, y: dyl + dy)
 		impulse.position = CGPoint(x: dx, y: dyl)
 		capacitor.position = CGPoint(x: dx, y: dyl - dy)
 		weapon1.position = CGPoint(x: dx, y: dyl - dy * 2)
@@ -121,4 +125,55 @@ private func MessageNode() -> SKLabelNode {
 	message.fontSize = 10
 	message.preferredMaxLayoutWidth = 192
 	return message
+}
+
+final class CrystalsNode: SKNode {
+
+	var crystals: Array4<Crystal> = [] {
+		didSet {
+			guard crystals != oldValue else { return }
+			sprites.enumerated().forEach { i, s in
+				let cnt = crystals.count
+				s.alpha = i < cnt ? 0.7 : 0.1
+				s.color = i < cnt ? crystals[i].color : .gray
+			}
+		}
+	}
+
+	private let sprites: Quad<SKSpriteNode>
+
+	override init() {
+		sprites = .init(
+			SKSpriteNode(color: .red, size: .square(side: 14)),
+			SKSpriteNode(color: .red, size: .square(side: 14)),
+			SKSpriteNode(color: .red, size: .square(side: 14)),
+			SKSpriteNode(color: .red, size: .square(side: 14))
+		)
+		super.init()
+
+		let dx = 24 as CGFloat
+		sprites.enumerated().forEach { i, e in
+			e.position = CGPoint(x: dx * CGFloat(i) + 12, y: 12)
+			e.zRotation = .pi / 4
+			e.color = .gray
+			e.alpha = 0.1
+		}
+		sprites.forEach(addChild)
+	}
+
+	required init?(coder aDecoder: NSCoder) { fatalError() }
+}
+
+extension Crystal {
+
+	var color: SKColor {
+		switch self {
+		case .red: .red
+		case .amber: .orange
+		case .yellow: .yellow
+		case .cyan: .cyan
+		case .blue: .blue
+		case .violet: .magenta
+		}
+	}
 }

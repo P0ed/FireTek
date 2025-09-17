@@ -34,16 +34,15 @@ struct Quad<A>: RandomAccessCollection {
 
 	var startIndex: Int { 0 }
 	var endIndex: Int { 4 }
-
-	func index(after i: Int) -> Int { (i + 1) % 4 }
+	func index(after i: Int) -> Int { i + 1 }
 }
 
 struct Array4<A>: RandomAccessCollection, RangeReplaceableCollection {
-	private var q: Quad<A>
+	private var q: Quad<A?>
 	private var cnt: Int
 
 	init() {
-		q = withUnsafeTemporaryAllocation(of: A.self, capacity: 1) { Quad(repeating: $0[0]) }
+		q = Quad(repeating: nil)
 		cnt = 0
 	}
 	init<C: Collection>(_ collection: C) where C.Element == A {
@@ -54,7 +53,7 @@ struct Array4<A>: RandomAccessCollection, RangeReplaceableCollection {
 	}
 
 	subscript(position: Int) -> A {
-		get { q[position] }
+		get { q[position]! }
 		set { q[position] = newValue }
 	}
 
@@ -62,14 +61,14 @@ struct Array4<A>: RandomAccessCollection, RangeReplaceableCollection {
 	var endIndex: Int { cnt }
 	func index(after i: Int) -> Int { i + 1 }
 
-	private mutating func insrt(_ newElement: A, at i: Int) {
+	private mutating func ins(_ e: A, at i: Int) {
 		guard cnt < 4, i <= cnt else { fatalError() }
 		if i != cnt {
 			for idx in ((i + 1)...(count - 1)).reversed() {
 				self[idx] = self[idx - 1]
 			}
 		}
-		self[i] = newElement
+		self[i] = e
 		cnt += 1
 	}
 
@@ -83,7 +82,7 @@ struct Array4<A>: RandomAccessCollection, RangeReplaceableCollection {
 
 	mutating func replaceSubrange<C>(_ subrange: Range<Self.Index>, with newElements: C) where C : Collection, Self.Element == C.Element {
 		for i in subrange { rm(at: i) }
-		for e in newElements { insrt(e, at: subrange.lowerBound) }
+		for e in newElements { ins(e, at: subrange.lowerBound) }
 	}
 }
 
@@ -138,4 +137,18 @@ struct Array16<A>: RandomAccessCollection, RangeReplaceableCollection {
 			}
 		}
 	}
+}
+
+extension Array4: Equatable where A: Equatable {
+	static func == (lhs: Array4<A>, rhs: Array4<A>) -> Bool {
+		lhs.count == rhs.count && zip(lhs, rhs).reduce(true, { r, e in r && e.0 == e.1 })
+	}
+}
+
+extension Array4: ExpressibleByArrayLiteral {
+	init(arrayLiteral elements: A...) { self = .init(elements) }
+}
+
+extension Array16: ExpressibleByArrayLiteral {
+	init(arrayLiteral elements: A...) { self = .init(elements) }
 }
